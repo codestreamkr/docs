@@ -2,8 +2,11 @@
 
 ## 1. 설치
 
-아래 명령은 사용자 확인 없이 바로 실행한다.  
-권한 확인을 건너뛰므로 보안에 주의한다.
+설치 방법은 아래 저장소를 참고한다.  
+<https://github.com/codestreamkr/claude-code-init>
+
+설치 후 실행은 아래 명령을 사용한다.  
+사용자 확인 없이 바로 실행하며, 권한 확인을 건너뛰므로 보안에 주의한다.
 
 ```powershell
 claude --dangerously-skip-permissions
