@@ -26,6 +26,12 @@ Claude Code가 기본으로 제공하는 명령이다.
 
 커스텀 커맨드로 `CLAUDE.md`를 라우팅 전용으로 정리하고, 실제 작업 기준이 되는 문서 3개를 `.0_my/` 폴더에 추가로 생성한다.
 
+이 단계의 `/ct:init`은 Claude Code 기본 제공 명령이 아니라 커스텀 명령이다.
+
+따라서 먼저 `claude-code-init` 저장소를 참고해 관련 설정을 준비해야 한다.
+
+참고: <https://github.com/codestreamkr/claude-code-init>
+
 ```text
 /ct:init
 ```
