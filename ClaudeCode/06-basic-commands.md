@@ -2,7 +2,7 @@
 
 자주 쓰는 내장 슬래시 명령어 모음이다.
 
-전체 명령어는 [공식 문서](https://docs.anthropic.com/en/docs/claude-code/slash-commands)에서 확인할 수 있다.
+전체 명령어는 [공식 문서](https://code.claude.com/docs/ko/commands)에서 확인할 수 있다.
 
 ## 세션 관리
 
