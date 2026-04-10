@@ -12,8 +12,4 @@ Claude Code 관련 사용법과 작업 가이드를 정리한다.
 - [04. 프로젝트 시작하기](./ClaudeCode/04-starting-a-project.md)
 - [05. 프로젝트 요리하기](./ClaudeCode/05-project-cooking.md)
 - [06. 기본 명령어](./ClaudeCode/06-basic-commands.md)
-
-## 참고 Git 저장소
-
-- [claude-code-init](https://github.com/codestreamkr/claude-code-init)
-  Claude Code 환경 설치와 설정 동기화를 위한 저장소다.
+- [07. 분석과 테스트](./ClaudeCode/07-analysis-and-testing.md)
