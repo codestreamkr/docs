@@ -13,3 +13,4 @@ Claude Code 관련 사용법과 작업 가이드를 정리한다.
 - [05. [중급]프로젝트 시작](./ClaudeCode/04-starting-a-project.md)
 - [06. [중급]프로젝트 코딩](./ClaudeCode/05-project-cooking.md)
 - [07. [중급]프로젝트 분석/테스트(spring+java)](./ClaudeCode/07-analysis-and-testing.md)
+- [08. [특집]대부님 첫번째 이야기 - 튜닝전문가](./ClaudeCode/08-query-tuner-guide.md)
