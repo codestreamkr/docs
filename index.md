@@ -15,4 +15,4 @@ Claude Code 관련 사용법과 작업 가이드를 정리한다.
 - [07. [중급]프로젝트 분석/테스트(spring+java)](./ClaudeCode/07-analysis-and-testing.md)
 - [08. [특집]대부님 첫번째 이야기 - 튜닝전문가](./ClaudeCode/08-query-tuner-guide.md)
 - [09. [특집]잡스형 첫번째 이야기 - 서비스·제품 기획 전문가](./ClaudeCode/09-pd-guide.md)
-- [10. [특집]로드형 첫번째 이야기 - Spring/JPA 전문가](./ClaudeCode/10-spring-guide.md)
+- [10. [특집]로드형 첫번째 이야기 - Spring Data JPA 전문가](./ClaudeCode/10-spring-jpa-guide.md)
