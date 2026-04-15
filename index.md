@@ -2,23 +2,17 @@
 
 ## 목차
 
-원하는 섹션으로 바로 이동
-
 <table>
   <tr>
     <td width="50%" align="center">
       <a href="#claudecode">
-        <img src="./assets/brand/claudecode-icon.png" width="28" alt="Claude Code 아이콘"><br>
-        <strong>ClaudeCode</strong>
-      </a><br>
-      Claude Code 사용법과 작업 흐름
+        <img src="./assets/brand/claudecode-icon.png" width="24" alt="Claude Code 아이콘"> <strong>ClaudeCode</strong>
+      </a>
     </td>
     <td width="50%" align="center">
       <a href="#git">
-        <img src="./assets/brand/git-icon.svg" width="28" alt="Git 로고"><br>
-        <strong>Git</strong>
-      </a><br>
-      Git 기본 개념과 자주 쓰는 작업 흐름
+        <img src="./assets/brand/git-icon.svg" width="24" alt="Git 로고"> <strong>Git</strong>
+      </a>
     </td>
   </tr>
 </table>
