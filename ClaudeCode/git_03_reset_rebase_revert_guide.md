@@ -1,4 +1,4 @@
-# Git `reset`, `rebase`, `revert` 활용
+# Git 되돌리기와 히스토리 정리
 
 ## 바로 선택
 

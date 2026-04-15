@@ -43,5 +43,5 @@
 | 번호 | 문서 | 링크 |
 |---|---|---|
 | 01 | 워크트리 빠른 이해 | [열기](./ClaudeCode/git_01_worktree_guide.md) |
-| 02 | 적용 빠른 선택 | [열기](./ClaudeCode/git_02_apply_guide.md) |
-| 03 | `reset`, `rebase`, `revert` 빠른 선택 | [열기](./ClaudeCode/git_03_reset_rebase_revert_guide.md) |
+| 02 | 변경 적용과 반영 | [열기](./ClaudeCode/git_02_apply_guide.md) |
+| 03 | 되돌리기와 히스토리 정리 | [열기](./ClaudeCode/git_03_reset_rebase_revert_guide.md) |
