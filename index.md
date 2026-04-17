@@ -33,7 +33,8 @@
 | 07 | [중급]프로젝트 분석/테스트(spring+java) | [열기](./ClaudeCode/07-analysis-and-testing.md) |
 | 08 | [특집]대부님 첫번째 이야기 - 쿼리 튜닝 전문가 | [열기](./ClaudeCode/08-query-tuner-guide.md) |
 | 09 | [특집]잡스형 첫번째 이야기 - 서비스·제품 기획 전문가 | [열기](./ClaudeCode/09-pd-guide.md) |
-| 10 | [특집]로드형 첫번째 이야기 - Spring 생태계 전문가 | [열기](./ClaudeCode/10-spring-jpa-guide.md) |
+| 10 | [특집]로드형 첫번째 이야기 - Spring Data JPA 전문가 | [열기](./ClaudeCode/10-spring-jpa-guide.md) |
+| 11 | [특집]로드형 두번째 이야기 - Spring Security 전문가 | [열기](./ClaudeCode/11-spring-security-guide.md) |
 
 <br>
 
