@@ -35,6 +35,8 @@
 | 09 | [특집]잡스형 첫번째 이야기 - 서비스·제품 기획 전문가 | [열기](./ClaudeCode/09-pd-guide.md) |
 | 10 | [특집]로드형 첫번째 이야기 - Spring Data JPA 전문가 | [열기](./ClaudeCode/10-spring-jpa-guide.md) |
 | 11 | [특집]로드형 두번째 이야기 - Spring Security 전문가 | [열기](./ClaudeCode/11-spring-security-guide.md) |
+| 12 | [특집]로드형 세번째 이야기 - Spring MVC·REST API 전문가 | [열기](./ClaudeCode/12-spring-mvc-guide.md) |
+| 13 | [특집]로드형 네번째 이야기 - Spring MyBatis 전문가 | [열기](./ClaudeCode/13-spring-mybatis-guide.md) |
 
 <br>
 

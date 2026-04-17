@@ -51,12 +51,14 @@ Rod, 엔티티 하나 추가해야 해.
 
 ### 이 문서에서 길게 다루지 않는 영역
 
-- Spring Security
-- Spring Cloud
-- Spring Batch
-- Spring WebFlux
+- 상속 매핑, `@Embeddable`, 복합 키 같은 고급 엔티티 모델링
+- 낙관적 락, 비관적 락, 버전 충돌 처리 같은 동시성 제어
+- Envers, Soft Delete, 멀티테넌시 같은 운영성 확장 패턴
+- JDBC batch, 대량 적재, 배치성 쓰기 최적화
+- 실행 계획 분석, 인덱스 전략, DB 튜닝 중심의 최적화 작업
 
-보안은 별도 문서인 `로드형 두번째 특집 - Spring Security 전문가`에서 다룬다.
+이 문서는 JPA 안에서도  
+주로 엔티티 매핑, Repository 선택, 조회 패턴, 서비스 경계, 일반적인 성능 문제를 정리하는 데 집중한다.
 
 ## 4. 처음부터 잘 묻는 방법
 
