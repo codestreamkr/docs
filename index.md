@@ -38,6 +38,7 @@
 | 12 | [특집]로드형 세번째 이야기 - Spring MVC·REST API 전문가 | [열기](./ClaudeCode/12-spring-mvc-guide.md) |
 | 13 | [특집]로드형 네번째 이야기 - Spring MyBatis 전문가 | [열기](./ClaudeCode/13-spring-mybatis-guide.md) |
 | 14 | [특집]호페형 첫번째 이야기 - 외부 연동 아키텍트 | [열기](./ClaudeCode/14-architect-guide.md) |
+| 15 | [특집]루신 첫번째 이야기 - QA 전문가 | [열기](./ClaudeCode/15-qa-lucin-guide.md) |
 
 <br>
 
