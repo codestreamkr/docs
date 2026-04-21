@@ -6,9 +6,9 @@
       <img src="../assets/portraits/hohpehyeong-friendly.png" alt="호페형 이미지" width="150">
     </td>
     <td valign="top">
-      그레고르 호페(Gregor Hohpe)는 엔터프라이즈 통합과 분산 아키텍처 분야에서 널리 알려진 아키텍트이자 저자다.</br></br>
-      『Enterprise Integration Patterns』의 공동 저자로 잘 알려져 있으며, Google Cloud CTO 조직과 Allianz 등의 역할을 거치며 대규모 시스템 통합, 클라우드 전환, 기술 조직 변화 같은 주제를 다뤄 왔다.</br></br>      
-      복잡한 연동 문제를 패턴과 원칙으로 정리해 설명하는 인물로 자주 인용된다.
+      <p>그레고르 호페(Gregor Hohpe)는 엔터프라이즈 통합과 분산 아키텍처 분야에서 널리 알려진 아키텍트이자 저자다.</p>
+      <p>『Enterprise Integration Patterns』의 공동 저자로 잘 알려져 있으며, Google Cloud CTO 조직과 Allianz 등의 역할을 거치며 대규모 시스템 통합, 클라우드 전환, 기술 조직 변화 같은 주제를 다뤄 왔다.</p>
+      <p>복잡한 연동 문제를 패턴과 원칙으로 정리해 설명하는 인물로 자주 인용된다.</p>
     </td>
   </tr>
 </table>
