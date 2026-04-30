@@ -1,14 +1,177 @@
-# 07. [중급]프로젝트 분석/테스트(spring+java)
+# 07. [중급] 프로젝트 분석/테스트 (spring+java)
 
-## 이 문서는 언제 보나
+spring+java 코드를 분석하거나 테스트를 작성하거나 전환 계획을 잡아야 할 때 사용하는 스킬 가이드다.
 
-spring+java 코드를 분석하거나 단위 테스트를 작성해야 할 때 본다.
+## 목차
 
-처음 보는 코드의 흐름을 파악해야 하는 경우도 있고, 기존 코드에 테스트가 없어서 커버리지를 쌓아야 하는 경우도 있다.
+1. [스킬 소개](#스킬-소개)
+2. [ct:calltree 활용](#ctcalltree-활용)
+3. [ct:calltreeTest 활용](#ctcalltreetest-활용)
+4. [ct:tran-plan 활용](#cttran-plan-활용)
+5. [이어서 쓰는 흐름](#이어서-쓰는-흐름)
+6. [알아두면 좋은 것](#알아두면-좋은-것)
 
-이 문서는 그런 상황에서 `ct:calltree`와 `ct:calltreeTest`를 어떻게 이어서 쓰면 되는지 정리한 가이드다.
+---
 
-## 미리 알아야 할 것
+## 스킬 소개
+
+세 가지 스킬이 있다. 역할이 다르기 때문에 상황에 따라 하나만 쓰거나 순서에 맞게 이어서 쓴다.
+
+| 스킬 | 하는 일 | 결과물 저장 위치 |
+|------|---------|-----------------|
+| `ct:calltree` | Java 파일의 메서드 호출 관계를 분석해 트리 구조로 정리한다 | `.0_my/call-trees/` |
+| `ct:calltreeTest` | calltree 문서를 기반으로 단위 테스트를 생성한다 | `.0_my/call-trees/` |
+| `ct:tran-plan` | 특정 진입점의 AS-IS/TO-BE 호출 구조와 전환 계획을 작성한다 | `.0_my/tran-plans/` |
+
+어떤 스킬을 쓸지 모르겠으면 아래 기준으로 고른다.
+
+- 코드 흐름을 모르면 → `ct:calltree`
+- 테스트를 써야 하면 → `ct:calltree` → `ct:calltreeTest`
+- calltree 문서가 이미 있으면 → `ct:calltreeTest`
+- 전환/리팩토링 계획이 필요하면 → `ct:tran-plan`
+
+---
+
+## ct:calltree 활용
+
+호출 관계를 파악할 때 쓴다. 코드를 바꾸지 않고 분석 문서만 만든다.
+
+입력 단위는 파일명이고, 메서드를 좁히려면 쉼표로 구분해서 지정한다.
+
+파일 전체 분석:
+
+```text
+/ct:calltree PaymentService.java
+```
+
+특정 메서드만:
+
+```text
+/ct:calltree OrderService.java reqOrder,cancelOrder
+```
+
+컨트롤러의 특정 버전 엔드포인트만:
+
+```text
+/ct:calltree OrderTrxController.java /v4/
+```
+
+자연어 지시를 함께 넘기면 분석 범위나 방향을 바로 조정할 수 있다.
+
+```text
+/ct:calltree OrderService.java reqOrder,cancelOrder
+알림 발송 쪽은 제외하고, 외부 API 호출이 있는 지점은 별도로 표시해줘.
+```
+
+실행하면 아래 결과를 기대할 수 있다.
+
+- 진입점 메서드부터 하위 호출이 트리 형태로 정리된다.
+- 외부 의존(Repository, 외부 서비스 등)이 어느 지점에서 연결되는지 표시된다.
+- `[TC:✅]` 판정이 함께 나와 테스트 대상 노드를 바로 확인할 수 있다.
+
+---
+
+## ct:calltreeTest 활용
+
+calltree 문서를 기반으로 단위 테스트를 생성한다.
+
+같은 대화에서 `ct:calltree`를 바로 실행했다면 문서 경로 없이 호출한다.
+
+```text
+/ct:calltreeTest
+```
+
+이전 대화와 독립적으로 실행하거나 특정 calltree 문서를 지정할 때는 파일명을 넘긴다.
+
+```text
+/ct:calltreeTest callTree-OrderService.md
+```
+
+특정 노드만 처리하거나 제약 조건을 함께 넘길 수 있다.
+
+```text
+/ct:calltreeTest
+reqOrder 쪽만 우선 작성하고, Mockito 사용해줘.
+```
+
+```text
+/ct:calltreeTest callTree-OrderService.md orderService.reqOrder()
+기존 테스트 파일 패턴 유지해줘.
+```
+
+실행하면 아래 결과를 기대할 수 있다.
+
+- `[TC:✅]` 노드를 실제 소스 코드와 대조해서 테스트 로직을 추출한다.
+- UnitTest, MainTest, 보조 문서가 함께 생성된다.
+- 외부 의존이 있는 지점은 Mock으로 처리한다.
+
+---
+
+## ct:tran-plan 활용
+
+특정 메서드, Controller API, Service, 배치 진입점의 AS-IS/TO-BE 호출 구조와 전환 계획 문서를 작성한다.
+
+같은 대화에서 `ct:calltree`를 먼저 실행했다면 전환 방향만 넘긴다.
+
+```text
+/ct:tran-plan
+레거시 PaymentGateway 의존을 제거하고 신규 PaymentClient로 교체하는 방향으로 계획 잡아줘.
+```
+
+대상 파일을 직접 지정해서 독립적으로 실행할 수도 있다.
+
+특정 메서드 단위:
+
+```text
+/ct:tran-plan OrderService.java reqOrder
+레거시 PaymentGateway 의존을 제거하고 신규 PaymentClient로 교체하는 방향으로 계획 잡아줘.
+```
+
+Controller API 단위:
+
+```text
+/ct:tran-plan OrderTrxController.java /v4/
+```
+
+배치 진입점 전체:
+
+```text
+/ct:tran-plan PaymentBatchJob.java
+```
+
+---
+
+## 이어서 쓰는 흐름
+
+### 분석 → 테스트
+
+```text
+/ct:calltree OrderService.java reqOrder,cancelOrder
+```
+
+calltree가 끝나면 이어서:
+
+```text
+/ct:calltreeTest
+reqOrder 쪽만 우선 작성하고, Mockito 사용해줘.
+```
+
+### 분석 → 전환 계획
+
+```text
+/ct:calltree PaymentService.java charge
+```
+
+분석 결과를 보고 전환 방향을 결정한 뒤:
+
+```text
+/ct:tran-plan
+레거시 PGClient 의존을 제거하고 신규 PaymentClient로 교체하는 방향으로 계획 잡아줘.
+```
+
+---
+
+## 알아두면 좋은 것
 
 ### 분석 깊이는 기본 3depth다
 
@@ -35,178 +198,18 @@ depth3  │   └─ auditService.log()
 
 ### `[TC:✅]`는 테스트 작성을 위한 옵션이다
 
-calltree 분석 결과에는 `[TC:✅]` 판정이 함께 표시된다.  
-테스트를 쓸 계획이라면 이 마킹을 기준으로 대상을 바로 추릴 수 있다.  
-분기/검증/데이터 가공/외부 연동이 있는 메서드가 대상이 되고,  
-단순 위임(조건 없이 dao/service 호출 후 바로 반환)은 표기하지 않는다.
+분기/검증/데이터 가공/외부 연동이 있는 메서드가 대상이 되고, 단순 위임(조건 없이 dao/service 호출 후 바로 반환)은 표기하지 않는다.
 
-### 결과물 저장 위치
+### 대용량 파일은 범위를 좁혀서 요청한다
 
-분석 결과는 `.0_my/call-trees/` 아래에 저장된다.
+2000줄이 넘는 파일은 메서드 필터를 써서 범위를 좁히는 것이 좋다. 파일 전체를 한 번에 분석하면 결과가 길어지고 정밀도가 떨어진다.
 
-- 기본: `callTree-OrderService.md`
-- 메서드 필터 적용 시: `callTree-OrderService-reqOrder.md`
+### calltreeTest는 문서만 보고 테스트를 만들지 않는다
 
-### 대용량 파일 주의
-
-2000줄이 넘는 파일은 메서드 필터를 써서 범위를 좁히는 것이 좋다.  
-파일 전체를 한 번에 분석하면 결과가 길어지고 정밀도가 떨어진다.
-
----
-
-## 먼저 감을 잡자
-
-### 코드 흐름을 파악해야 할 때
-
-- 추천 흐름: `ct:calltree`
-- 이유: 호출 관계를 시각적으로 정리하면 코드 전체 구조가 한눈에 들어온다.
-
-### 테스트를 새로 써야 할 때
-
-- 추천 흐름: `ct:calltree` → `ct:calltreeTest`
-- 이유: 호출 관계를 먼저 파악한 뒤 테스트를 쓰면, 검증 대상과 범위가 명확해진다.
-
-### 이미 calltree 문서가 있는 경우
-
-- 추천 흐름: `ct:calltreeTest`
-- 이유: 분석 단계는 끝났으니 바로 테스트 생성으로 들어간다.
-
-## 각 스킬은 무슨 일을 하나
-
-### `ct:calltree`
-
-- 하는 일: Java 파일의 메서드 호출 관계를 분석해 트리 구조로 정리한다.
-- 결과물: calltree 문서 (호출 노드, 의존 관계, 진입점 정리)
-
-### `ct:calltreeTest`
-
-- 하는 일: calltree 문서를 기반으로 `[TC:✅]` 노드를 실제 소스 코드와 대조해 단위 테스트를 생성한다.
-- 결과물: UnitTest 파일, MainTest 파일, 보조 문서 (`.0_my/call-trees/` 저장)
-
-핵심은 순서다.
-
-- `ct:calltree`는 분석 단계다. 코드를 바꾸지 않고 호출 구조를 문서화한다.
-- `ct:calltreeTest`는 생성 단계다. 분석 문서를 기준으로 실제 소스를 다시 확인하며 테스트를 만든다.
-
-## 흐름. 분석하고 테스트까지 이어간다
-
-### Step 1. `ct:calltree`로 호출 관계를 파악한다
-
-입력 단위는 파일명이고, 메서드를 좁히려면 쉼표로 구분해서 지정한다.
-
-예시 — 파일 전체:
-
-```text
-/ct:calltree OrderService.java
-```
-
-예시 — 특정 메서드만:
-
-```text
-/ct:calltree OrderService.java reqOrder,cancelOrder
-```
-
-예시 — 엔드포인트 경로 필터:
-
-```text
-/ct:calltree OrderTrxController.java /v4/
-```
-
-이 단계에서 기대하는 결과는 아래와 같다.
-
-- 진입점 메서드부터 하위 호출이 트리 형태로 정리된다.
-- 외부 의존(Repository, 외부 서비스 등)이 어느 지점에서 연결되는지 표시된다.
-- `[TC:✅]` 판정이 함께 나와 테스트 대상 노드를 바로 확인할 수 있다.
-
-### Step 2. `ct:calltreeTest`로 테스트를 생성한다
-
-Step 1에서 생성된 calltree 문서를 입력으로 넘긴다.  
-`[TC:✅]` 노드 전체를 대상으로 하거나, 특정 노드만 지정할 수 있다.
-
-예시 — 전체 노드 처리:
-
-```text
-/ct:calltreeTest callTree-OrderService.md
-```
-
-예시 — 특정 노드만 처리:
-
-```text
-/ct:calltreeTest callTree-OrderService.md orderService.reqOrder()
-```
-
-이 단계에서 기대하는 결과는 아래와 같다.
-
-- `[TC:✅]` 노드를 실제 소스 코드와 대조해서 테스트 로직을 추출한다.
-- UnitTest, MainTest, 보조 문서가 함께 생성된다.
-- 외부 의존이 있는 지점은 Mock으로 처리한다.
-
-## 요청을 이렇게 쓰면 결과가 좋아진다
-
-기본 형식은 `파일명` 이고, 메서드를 좁히려면 쉼표로 구분해서 지정한다.
-
-```text
-/ct:calltree OrderService.java reqOrder,cancelOrder
-```
-
-제약 조건이 있으면 뒤에 붙인다.
-
-```text
-/ct:calltree OrderService.java reqOrder,cancelOrder
-알림 발송 쪽은 제외해줘.
-```
-
-테스트는 calltree 문서를 입력으로 넘긴다.
-
-```text
-/ct:calltreeTest callTree-OrderService.md
-Mockito 사용하고 기존 테스트 파일 패턴 유지해줘.
-```
-
-## 실무에서 많이 쓰는 조합
-
-### 1. 처음 보는 코드 파악할 때
-
-```text
-/ct:calltree PaymentService.java
-```
-
-### 2. 특정 메서드 흐름만 볼 때
-
-```text
-/ct:calltree OrderService.java reqOrder,cancelOrder
-```
-
-### 3. 컨트롤러 특정 버전 엔드포인트만 볼 때
-
-```text
-/ct:calltree OrderTrxController.java /v4/
-```
-
-### 4. 분석하고 바로 테스트까지 이어갈 때
-
-```text
-/ct:calltree OrderService.java reqOrder,cancelOrder
-```
-
-calltree 문서가 생성되면 (`callTree-OrderService.md`) 이어서 실행한다.
-
-```text
-/ct:calltreeTest callTree-OrderService.md
-```
-
-## 헷갈리기 쉬운 점
-
-- `ct:calltree`는 코드를 바꾸지 않는다. 분석 문서만 만든다.
-- `ct:calltreeTest`는 calltree 문서를 기반으로 실제 소스를 다시 확인한다. 문서만 보고 테스트를 만들지 않는다.
-- 파일이 크거나 의존이 복잡할수록 범위를 좁혀서 요청하는 편이 결과가 깔끔하다.
-
-## 빠르게 고르는 기준
-
-1. 코드 흐름을 모르면 `ct:calltree`
-2. 테스트를 쓰려면 `ct:calltree` → `ct:calltreeTest`
-3. calltree 문서가 이미 있으면 바로 `ct:calltreeTest`
+calltree 문서를 기반으로 실제 소스를 다시 확인한다. 소스와 문서가 크게 다르면 결과가 부정확해질 수 있다.
 
 ## 이력관리
 
 - 2026-04-10: `ct:calltree`, `ct:calltreeTest` 활용 흐름을 설명하는 분석·테스트 가이드 문서 추가
+- 2026-04-28: `ct:tran-plan` 스킬 설명 및 예제 추가
+- 2026-04-30: 목차 추가, 스킬 소개 구조 재편
