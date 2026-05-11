@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="고수 가이드 아이콘">
+  <circle cx="32" cy="32" r="29" fill="#F8F5EC"/>
+  <path d="M32 8v8M32 48v8M8 32h8M48 32h8M15.03 15.03l5.66 5.66M43.31 43.31l5.66 5.66M48.97 15.03l-5.66 5.66M20.69 43.31l-5.66 5.66" stroke="#B08D57" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="27" r="8" fill="#2F3A32"/>
+  <path d="M19 47c2.4-7 7.1-11 13-11s10.6 4 13 11" fill="none" stroke="#2F3A32" stroke-width="5" stroke-linecap="round"/>
+  <path d="M25 29c2.2 2 4.5 3 7 3s4.8-1 7-3" fill="none" stroke="#F8F5EC" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M22 18c2.7-3.2 6-4.8 10-4.8S39.3 14.8 42 18" fill="none" stroke="#2F3A32" stroke-width="4" stroke-linecap="round"/>
+</svg>

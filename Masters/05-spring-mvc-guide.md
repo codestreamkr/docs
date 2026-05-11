@@ -1,4 +1,4 @@
-# 로드형 세번째 특집 - Spring MVC·REST API 전문가
+# 로드형 #3 - Spring MVC·REST API 전문가
 
 <table>
   <tr>
@@ -156,4 +156,6 @@ Query String, Pageable, enum 필터를 같이 받고 있고 Controller가 너무
 
 ## 이력관리
 
+- 2026-05-11: 고수 가이드 공통 섹션으로 이동
 - 2026-04-22: 호페형 문서 포맷에 맞춰 사용 목적, 요청 방식, 결과물 중심으로 재구성
+- 2026-04-17: 최초 생성
