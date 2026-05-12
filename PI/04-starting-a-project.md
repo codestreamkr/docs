@@ -14,8 +14,11 @@
 | 인증 | `/login` 또는 API 키 환경 변수 |
 | Git 상태 | `git status` |
 | 프로젝트 실행 명령 | README, build 파일, package.json, gradle/maven 설정 확인 |
+| 기본 모델 | `/model` 또는 `~/.pi/agent/settings.json` 확인 |
 | 터미널 키 입력 | Shift+Enter, Alt+Enter 동작 확인 |
 | 프로젝트 Pi 설정 | `.pi/settings.json` 사용 여부 확인 |
+| 프로젝트 설정 우선순위 | `.pi/settings.json`이 전역 설정을 덮어쓰는지 확인 |
+| 세션 저장 기준 | 기본 저장 또는 `--no-session`, `sessionDir` 사용 여부 확인 |
 | 프로젝트 Extension | `.pi/extensions` 사용 여부 확인 |
 | 공통 package | 설치할 Pi package 목록 확인 |
 
@@ -266,5 +269,5 @@ AGENTS.md 초안 작성
 
 ## 이력관리
 
-- 2026-05-11: 프로젝트 설정, Extension, Pi package 적용 기준 추가
+- 2026-05-12: 프로젝트 시작 전 모델, 설정 우선순위, 세션 저장 기준 확인 항목 추가
 - 2026-05-11: 최초 생성

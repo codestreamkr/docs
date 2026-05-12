@@ -166,6 +166,17 @@ pi -p @screenshot.png "이 이미지에 뭐가 있어?"
 pi --tools read,grep,find,ls -p "코드를 리뷰해줘"
 ```
 
+## JSON/RPC 모드
+
+자동화나 외부 시스템 연동이 필요하면 아래 모드를 사용한다.
+
+| 모드 | 용도 |
+|---|---|
+| `--mode json` | 단일 실행의 이벤트를 JSON Lines로 출력 |
+| `--mode rpc` | 외부 프로그램이 stdin/stdout JSONL로 Pi를 제어 |
+
+자세한 활용 예시는 `03-applying-core-concepts.md`에서 확인한다.
+
 ## 자주 쓰는 조합
 
 ### 새 작업 시작
@@ -216,5 +227,5 @@ Pi 안에서 확인한다.
 
 ## 이력관리
 
-- 2026-05-11: Pi package 관련 명령 추가
+- 2026-05-12: JSON/RPC 모드 요약 추가
 - 2026-05-11: 최초 생성
