@@ -42,13 +42,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>01</td><td>[초급]클로드코드요?</td><td><a href="./ClaudeCode/01-getting-started-and-key-concepts.md">열기</a></td></tr>
-        <tr><td>02</td><td>[초급]핵심개념 이해</td><td><a href="./ClaudeCode/02-understanding-core-concepts.md">열기</a></td></tr>
-        <tr><td>03</td><td>[초급]핵심개념 적용</td><td><a href="./ClaudeCode/03-applying-core-concepts.md">열기</a></td></tr>
-        <tr><td>04</td><td>[초급]기본명령어 이해</td><td><a href="./ClaudeCode/06-basic-commands.md">열기</a></td></tr>
-        <tr><td>05</td><td>[중급]프로젝트 시작</td><td><a href="./ClaudeCode/04-starting-a-project.md">열기</a></td></tr>
-        <tr><td>06</td><td>[중급]프로젝트 코딩</td><td><a href="./ClaudeCode/05-project-cooking.md">열기</a></td></tr>
-        <tr><td>07</td><td>[중급]프로젝트 분석/테스트(spring+java)</td><td><a href="./ClaudeCode/07-analysis-and-testing.md">열기</a></td></tr>
+        <tr><td>01</td><td>[초급]클로드코드요?</td><td><a href="./ClaudeCode/01-getting-started-and-key-concepts.html">열기</a></td></tr>
+        <tr><td>02</td><td>[초급]핵심개념 이해</td><td><a href="./ClaudeCode/02-understanding-core-concepts.html">열기</a></td></tr>
+        <tr><td>03</td><td>[초급]핵심개념 적용</td><td><a href="./ClaudeCode/03-applying-core-concepts.html">열기</a></td></tr>
+        <tr><td>04</td><td>[초급]기본명령어 이해</td><td><a href="./ClaudeCode/06-basic-commands.html">열기</a></td></tr>
+        <tr><td>05</td><td>[중급]프로젝트 시작</td><td><a href="./ClaudeCode/04-starting-a-project.html">열기</a></td></tr>
+        <tr><td>06</td><td>[중급]프로젝트 코딩</td><td><a href="./ClaudeCode/05-project-cooking.html">열기</a></td></tr>
+        <tr><td>07</td><td>[중급]프로젝트 분석/테스트(spring+java)</td><td><a href="./ClaudeCode/07-analysis-and-testing.html">열기</a></td></tr>
       </tbody>
     </table>
   </section>
@@ -64,13 +64,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>01</td><td>[초급]Codex요?</td><td><a href="./Codex/01-getting-started-and-key-concepts.md">열기</a></td></tr>
-        <tr><td>02</td><td>[초급]핵심개념 이해</td><td><a href="./Codex/02-understanding-core-concepts.md">열기</a></td></tr>
-        <tr><td>03</td><td>[초급]핵심개념 적용</td><td><a href="./Codex/03-applying-core-concepts.md">열기</a></td></tr>
-        <tr><td>04</td><td>[초급]기본명령어 이해</td><td><a href="./Codex/06-basic-commands.md">열기</a></td></tr>
-        <tr><td>05</td><td>[중급]프로젝트 시작</td><td><a href="./Codex/04-starting-a-project.md">열기</a></td></tr>
-        <tr><td>06</td><td>[중급]프로젝트 코딩</td><td><a href="./Codex/05-project-cooking.md">열기</a></td></tr>
-        <tr><td>07</td><td>[중급]프로젝트 분석/테스트(spring+java)</td><td><a href="./Codex/07-analysis-and-testing.md">열기</a></td></tr>
+        <tr><td>01</td><td>[초급]Codex요?</td><td><a href="./Codex/01-getting-started-and-key-concepts.html">열기</a></td></tr>
+        <tr><td>02</td><td>[초급]핵심개념 이해</td><td><a href="./Codex/02-understanding-core-concepts.html">열기</a></td></tr>
+        <tr><td>03</td><td>[초급]핵심개념 적용</td><td><a href="./Codex/03-applying-core-concepts.html">열기</a></td></tr>
+        <tr><td>04</td><td>[초급]기본명령어 이해</td><td><a href="./Codex/06-basic-commands.html">열기</a></td></tr>
+        <tr><td>05</td><td>[중급]프로젝트 시작</td><td><a href="./Codex/04-starting-a-project.html">열기</a></td></tr>
+        <tr><td>06</td><td>[중급]프로젝트 코딩</td><td><a href="./Codex/05-project-cooking.html">열기</a></td></tr>
+        <tr><td>07</td><td>[중급]프로젝트 분석/테스트(spring+java)</td><td><a href="./Codex/07-analysis-and-testing.html">열기</a></td></tr>
       </tbody>
     </table>
   </section>
@@ -87,14 +87,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>01</td><td>대부님 #1 - 쿼리 튜닝 전문가</td><td><a href="./Masters/01-query-tuner-guide.md">열기</a></td></tr>
-        <tr><td>02</td><td>잡스형 #1 - 서비스·제품 기획 전문가</td><td><a href="./Masters/02-pd-guide.md">열기</a></td></tr>
-        <tr><td>03</td><td>로드형 #1 - Spring Data JPA 전문가</td><td><a href="./Masters/03-spring-jpa-guide.md">열기</a></td></tr>
-        <tr><td>04</td><td>로드형 #2 - Spring Security 전문가</td><td><a href="./Masters/04-spring-security-guide.md">열기</a></td></tr>
-        <tr><td>05</td><td>로드형 #3 - Spring MVC·REST API 전문가</td><td><a href="./Masters/05-spring-mvc-guide.md">열기</a></td></tr>
-        <tr><td>06</td><td>로드형 #4 - Spring MyBatis 전문가</td><td><a href="./Masters/06-spring-mybatis-guide.md">열기</a></td></tr>
-        <tr><td>07</td><td>호페형 #1 - 외부 연동 아키텍트</td><td><a href="./Masters/07-architect-guide.md">열기</a></td></tr>
-        <tr><td>08</td><td>루신 #1 - QA 전문가</td><td><a href="./Masters/08-qa-lucin-guide.md">열기</a></td></tr>
+        <tr><td>01</td><td>대부님 #1 - 쿼리 튜닝 전문가</td><td><a href="./Masters/01-query-tuner-guide.html">열기</a></td></tr>
+        <tr><td>02</td><td>잡스형 #1 - 서비스·제품 기획 전문가</td><td><a href="./Masters/02-pd-guide.html">열기</a></td></tr>
+        <tr><td>03</td><td>로드형 #1 - Spring Data JPA 전문가</td><td><a href="./Masters/03-spring-jpa-guide.html">열기</a></td></tr>
+        <tr><td>04</td><td>로드형 #2 - Spring Security 전문가</td><td><a href="./Masters/04-spring-security-guide.html">열기</a></td></tr>
+        <tr><td>05</td><td>로드형 #3 - Spring MVC·REST API 전문가</td><td><a href="./Masters/05-spring-mvc-guide.html">열기</a></td></tr>
+        <tr><td>06</td><td>로드형 #4 - Spring MyBatis 전문가</td><td><a href="./Masters/06-spring-mybatis-guide.html">열기</a></td></tr>
+        <tr><td>07</td><td>호페형 #1 - 외부 연동 아키텍트</td><td><a href="./Masters/07-architect-guide.html">열기</a></td></tr>
+        <tr><td>08</td><td>루신 #1 - QA 전문가</td><td><a href="./Masters/08-qa-lucin-guide.html">열기</a></td></tr>
       </tbody>
     </table>
   </section>
@@ -110,9 +110,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>01</td><td>워크트리 빠른 이해</td><td><a href="./Git/git_01_worktree_guide.md">열기</a></td></tr>
-        <tr><td>02</td><td>변경 적용과 반영</td><td><a href="./Git/git_02_apply_guide.md">열기</a></td></tr>
-        <tr><td>03</td><td>되돌리기와 히스토리 정리</td><td><a href="./Git/git_03_reset_rebase_revert_guide.md">열기</a></td></tr>
+        <tr><td>01</td><td>워크트리 빠른 이해</td><td><a href="./Git/git_01_worktree_guide.html">열기</a></td></tr>
+        <tr><td>02</td><td>변경 적용과 반영</td><td><a href="./Git/git_02_apply_guide.html">열기</a></td></tr>
+        <tr><td>03</td><td>되돌리기와 히스토리 정리</td><td><a href="./Git/git_03_reset_rebase_revert_guide.html">열기</a></td></tr>
       </tbody>
     </table>
   </section>
@@ -120,5 +120,6 @@
 
 ## 이력관리
 
+- 2026-05-19: GitHub Pages 문서 링크를 HTML 렌더링 경로로 수정
 - 2026-05-11: Codex 섹션 추가 및 레이아웃 개선
 - 2026-04-09: 최초 생성
