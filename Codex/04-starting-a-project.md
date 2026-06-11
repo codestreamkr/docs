@@ -65,12 +65,11 @@ Codex CLI에서 제공하는 `/init` 명령을 실행한다.
 
 ## Step 3. Codex 설정 확인
 
-프로젝트별 설정이 필요하면 `.codex/config.toml`을 둔다.
+프로젝트별 설정이 필요할 때만 `.codex/config.toml`을 둔다.
 
 ```toml
-model = "gpt-5.5"
-approval_policy = "on-request"
-sandbox_mode = "workspace-write"
+[features]
+codex_hooks = true
 ```
 
 설정 기준:
@@ -78,6 +77,7 @@ sandbox_mode = "workspace-write"
 - 팀 공통 설정은 프로젝트 `.codex/config.toml`에 둔다.
 - 개인 설정은 `~/.codex/config.toml`에 둔다.
 - 프로젝트 `.codex/` 설정은 신뢰한 프로젝트에서만 로드된다.
+- 프로젝트마다 달라야 하는 값만 둔다.
 
 ## Step 4. MCP 확인
 
@@ -93,13 +93,29 @@ codex mcp add openaiDeveloperDocs --url https://developers.openai.com/mcp
 /mcp
 ```
 
+## Step 5. Skill 확인
+
+준비된 Skill을 기준으로 작업 방식을 고른다.
+
+| 상황 | 우선 호출 |
+| --- | --- |
+| 프로젝트 기준 문서 생성 | `$ct-init` |
+| 개선 과제 정리 | `$ct-improve-plan` |
+| 설계 검토 | `$ct-design-review` |
+| 구현 | `$ct-implement` |
+| Spring 컴포넌트 추가 | `$ct-spring-component <component-name>` |
+| QA 검증 | `qa-lucin` |
+
+`ct-spring-component`는 `service-log`, `jwt-auth`, `exception-handler`, `api-response`만 허용한다.
+
 ## 실행 순서 요약
 
 ```text
 /init
 AGENTS.md 정리
-.codex/config.toml 확인
+.codex/config.toml 필요 여부 확인
 /mcp 확인
+사용할 Skill 확인
 ```
 
 ## 실행 후 할 일
@@ -109,6 +125,7 @@ AGENTS.md 정리
 3. `.codex/config.toml`의 승인 정책과 샌드박스 수준을 확인한다.
 4. 외부 도구가 필요하면 MCP 연결 상태를 확인한다.
 5. 첫 작업 전 Git 변경사항 기준선을 확인한다.
+6. 프론트엔드나 화면 검증이 필요하면 in-app browser나 Browser use 사용 여부를 확인한다.
 
 ## 공식 문서 기준
 
@@ -119,4 +136,5 @@ AGENTS.md 정리
 
 ## 이력관리
 
+- 2026-06-10: 프로젝트별 설정 최소화와 Skill 확인 절차 추가
 - 2026-05-11: Codex 프로젝트 시작 문서 추가

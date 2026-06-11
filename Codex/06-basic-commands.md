@@ -27,6 +27,7 @@ Codex CLI에서 자주 쓰는 명령어 모음이다.
 | `/fork` | 현재 대화를 새 스레드로 분기 | 다른 접근법을 실험할 때 |
 | `/side` | 임시 사이드 대화 시작 | 메인 흐름을 흐리지 않고 질문할 때 |
 | `/resume` | 저장된 대화 재개 | 이전 세션을 이어갈 때 |
+| `/archive` | 완료한 대화 보관 | 끝난 작업을 정리할 때 |
 | `/new` | 같은 CLI 세션에서 새 대화 시작 | 터미널은 유지하고 새 맥락으로 바꿀 때 |
 | `/exit` | CLI 종료 | 작업 종료 |
 | `/quit` | CLI 종료 | `/exit`와 같은 종료 명령 |
@@ -78,10 +79,10 @@ Codex CLI에서 자주 쓰는 명령어 모음이다.
 | 옵션 | 설명 | 예시 |
 |---|---|---|
 | `--cd`, `-C` | 작업 디렉토리 지정 | `codex -C ./service` |
-| `--model`, `-m` | 모델 지정 | `codex -m gpt-5.5` |
+| `--model`, `-m` | 모델 지정 | `codex -m <model-name>` |
 | `--ask-for-approval`, `-a` | 승인 정책 지정 | `codex -a on-request` |
 | `--sandbox`, `-s` | 샌드박스 수준 지정 | `codex -s workspace-write` |
-| `--config`, `-c` | 설정값 일회성 덮어쓰기 | `codex -c model=\"gpt-5.5\"` |
+| `--config`, `-c` | 설정값 일회성 덮어쓰기 | `codex -c model=\"<model-name>\"` |
 | `--profile`, `-p` | 설정 프로필 사용 | `codex -p work` |
 | `--add-dir` | 추가 디렉토리 쓰기 접근 허용 | `codex --add-dir ../shared` |
 | `--image`, `-i` | 이미지 입력 첨부 | `codex -i screen.png` |
@@ -107,22 +108,48 @@ Codex CLI에서 자주 쓰는 명령어 모음이다.
 
 - `/diff`로 수정 파일과 내용을 확인한다.
 - 필요한 테스트를 실행한 뒤 결과를 정리한다.
+- `/review`로 실제 결함, 회귀, 테스트 누락을 먼저 확인한다.
 
 **외부 도구가 필요할 때**
 
 - `/mcp`로 연결 상태를 확인한다.
 - `/plugins`로 Plugins 설치와 활성 상태를 확인한다.
+- Browser 계열 도구가 준비되어 있으면 로컬 웹 확인에 사용한다.
 
 **다른 접근을 실험할 때**
 
 - `/fork`로 현재 대화를 분기한다.
 - 작은 질문은 `/side`로 분리한다.
 
+**최신 정보가 필요할 때**
+
+- 한 번 실행할 때만 검색이 필요하면 `--search`를 붙인다.
+- 공식 문서, 라이브러리 버전, 릴리즈 노트, API 변경처럼 시간이 지나면 바뀌는 정보에 사용한다.
+- 검색 결과는 출처와 날짜를 확인한다.
+
+**이미지나 화면 정보가 필요할 때**
+
+- 이미지 입력은 `--image` 또는 `-i`로 첨부한다.
+- 여러 이미지는 쉼표로 구분하거나 `--image`를 반복해서 첨부한다.
+- 스크린샷, 오류 화면, 디자인 시안, 다이어그램처럼 시각 정보가 판단에 필요한 경우에 사용한다.
+- 이미지 생성이나 수정이 필요하면 image generation 기능 또는 관련 Skill을 사용한다.
+- 로컬 웹 화면 확인은 Codex App의 in-app browser나 Browser use를 사용한다.
+- 데스크톱 앱이나 OS UI를 조작해야 하면 Computer Use를 사용한다.
+
+**Skill을 호출할 때**
+
+- 준비된 Skill은 명시 호출이 가장 안정적이다.
+- 예: `$ct-implement`, `$ct-design-review`, `$ct-calltree`, `qa-lucin`, `spring`
+
 ## 공식 문서 기준
 
 - <https://developers.openai.com/codex/cli/slash-commands/>
 - <https://developers.openai.com/codex/cli/reference/>
+- <https://developers.openai.com/codex/cli/features/>
+- <https://developers.openai.com/codex/app/features/>
 
 ## 이력관리
 
+- 2026-06-11: Web search, 이미지 입력, 이미지 생성, 화면 확인 기능 기준 보강
+- 2026-06-10: Browser, 리뷰, 검색, Skill 호출 기준 반영
 - 2026-05-11: Codex CLI 기본 명령어 문서 추가

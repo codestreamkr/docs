@@ -4,6 +4,8 @@ spring+java 코드를 분석하거나 테스트를 작성하거나 전환 계획
 
 아래 예시는 관련 Skill이 설치된 상태에서 실행한다.
 
+분석 Skill과 QA 검증, 화면 확인, `/review`를 함께 쓰면 변경 위험을 줄일 수 있다.
+
 ## 목차
 
 - [07. \[중급\] 프로젝트 분석/테스트 (spring+java)](#07-중급-프로젝트-분석테스트-springjava)
@@ -14,6 +16,7 @@ spring+java 코드를 분석하거나 테스트를 작성하거나 전환 계획
   - [$ct-calltree 활용](#ct-calltree-활용)
   - [$ct-calltree-test 활용](#ct-calltree-test-활용)
   - [$ct-tran-plan 활용](#ct-tran-plan-활용)
+  - [qa-lucin 활용](#qa-lucin-활용)
   - [이어서 쓰는 흐름](#이어서-쓰는-흐름)
     - [분석 -\> 테스트](#분석---테스트)
     - [분석 -\> 전환 계획](#분석---전환-계획)
@@ -37,6 +40,8 @@ spring+java 코드를 분석하거나 테스트를 작성하거나 전환 계획
 | `$ct-calltree` | Skill | Java 호출 관계 분석 Skill이 설치되어 있어야 한다 |
 | `$ct-calltree-test` | Skill | calltree 기반 테스트 생성 Skill이 설치되어 있어야 한다 |
 | `$ct-tran-plan` | Skill | 전환 계획 작성 Skill이 설치되어 있어야 한다 |
+| `qa-lucin` | Skill | 엔드포인트 테스트와 E2E 검증 Skill이 설치되어 있어야 한다 |
+| Browser 도구 | App 또는 도구 | 웹 화면 검증이 필요한 경우 준비되어 있어야 한다 |
 
 Skill이 설치되어 있으면 스킬명을 직접 언급하거나 `$스킬명` 형태로 호출한다.
 
@@ -51,6 +56,7 @@ Skill이 설치되어 있으면 스킬명을 직접 언급하거나 `$스킬명`
 | `$ct-calltree` | Java 파일의 메서드 호출 관계를 분석해 트리 구조로 정리한다 | `.0_my/call-trees/` |
 | `$ct-calltree-test` | calltree 문서를 기반으로 단위 테스트를 생성한다 | `.0_my/call-trees/` |
 | `$ct-tran-plan` | 특정 진입점의 AS-IS/TO-BE 호출 구조와 전환 계획을 작성한다 | `.0_my/tran-plans/` |
+| `qa-lucin` | API, E2E, 회귀 테스트 위험을 탐색하고 검증한다 | 테스트 코드 또는 검증 결과 |
 
 선택 기준:
 
@@ -58,6 +64,8 @@ Skill이 설치되어 있으면 스킬명을 직접 언급하거나 `$스킬명`
 - 테스트를 써야 하면: `$ct-calltree` -> `$ct-calltree-test`
 - calltree 문서가 이미 있으면: `$ct-calltree-test`
 - 전환/리팩토링 계획이 필요하면: `$ct-tran-plan`
+- 웹 기능 회귀와 E2E 확인이 필요하면: `qa-lucin`
+- 화면 확인이 필요하면: in-app browser 또는 Browser use
 
 ---
 
@@ -152,6 +160,31 @@ $ct-tran-plan PaymentBatchJob.java
 
 ---
 
+## qa-lucin 활용
+
+웹 기능의 테스트 위험을 찾고 검증할 때 쓴다.
+
+엔드포인트 테스트:
+
+```text
+qa-lucin 주문 API의 성공/실패 케이스를 엔드포인트 테스트로 검증해줘.
+```
+
+E2E 테스트:
+
+```text
+qa-lucin 로그인부터 주문 등록까지 Playwright E2E로 검증해줘.
+```
+
+화면 확인:
+
+- 로컬 서버가 필요하면 실행 명령을 먼저 확인한다.
+- in-app browser나 Browser use로 화면을 열어 동작을 확인한다.
+- 화면이 깨지는 문제는 스크린샷과 DOM 상태를 함께 확인한다.
+- 검증 후 `/review`로 코드 변경의 결함과 누락 테스트를 다시 본다.
+
+---
+
 ## 이어서 쓰는 흐름
 
 ### 분석 -> 테스트
@@ -167,6 +200,12 @@ $ct-calltree-test
 reqOrder 쪽만 우선 작성하고, Mockito 사용해줘.
 ```
 
+이후:
+
+```text
+/review
+```
+
 ### 분석 -> 전환 계획
 
 ```text
@@ -179,6 +218,20 @@ $ct-calltree PaymentService.java charge
 $ct-tran-plan
 레거시 PGClient 의존을 제거하고 신규 PaymentClient로 교체하는 방향으로 계획 잡아줘.
 ```
+
+### 구현 -> QA 검증
+
+```text
+$ct-implement 주문 상태 변경 API를 구현해줘.
+```
+
+이어서:
+
+```text
+qa-lucin 주문 상태 변경 API의 권한, 상태 전이, 실패 케이스를 검증해줘.
+```
+
+화면이 있으면 in-app browser나 Browser use로 실제 흐름을 확인한다.
 
 ---
 
@@ -217,4 +270,5 @@ depth3  │   └─ auditService.log()
 
 ## 이력관리
 
+- 2026-06-10: qa-lucin, 화면 확인, /review를 분석·테스트 흐름에 연결
 - 2026-05-11: Codex 스킬 호출 방식에 맞춘 분석·테스트 가이드 추가

@@ -45,7 +45,46 @@ CLI 대화 중 `/명령어`로 실행하는 내장 제어 명령이다.
 
 > 언제 쓰나: 세션 중 Codex 동작을 빠르게 바꿀 때
 
-## 4. MCP
+## 4. App 작업 모드
+
+Codex App은 작업마다 실행 위치와 격리 수준을 고른다.
+
+- `Local`: 현재 프로젝트에서 바로 읽고 수정한다.
+- `Worktree`: Git worktree로 격리해 같은 repo의 다른 작업과 충돌을 줄인다.
+- `Cloud`: 원격 환경에 작업을 맡기고 로컬에서는 검토와 후속 지시를 이어간다.
+
+> 언제 쓰나: 작업을 병렬로 나누거나 로컬 변경 위험을 줄일 때
+
+## 5. Review와 Git 도구
+
+Codex App 안에서 변경사항을 검토하고 반영한다.
+
+- diff로 변경 내용을 확인한다.
+- inline comment로 특정 줄에 수정 지시를 남긴다.
+- stage, revert, commit, push, PR 생성을 이어서 처리할 수 있다.
+
+> 언제 쓰나: 구현 결과를 바로 반영하지 않고 검토를 거쳐 정리할 때
+
+## 6. Automations
+
+반복 작업과 장기 thread를 일정에 맞춰 다시 실행한다.
+
+- standalone automation은 별도 반복 작업에 쓴다.
+- thread automation은 같은 대화 맥락을 유지하며 다시 실행한다.
+
+> 언제 쓰나: 같은 확인 작업을 주기적으로 반복하거나 장기 작업을 이어갈 때
+
+## 7. Browser와 Computer Use
+
+화면이 있는 작업은 직접 확인하는 도구를 붙인다.
+
+- Browser 계열 도구는 로컬 웹과 프론트엔드 확인에 쓴다.
+- Computer Use는 데스크톱 앱이나 OS UI 조작에 쓴다.
+- 이미지 입력은 스크린샷, 시안, 오류 화면을 전달할 때 쓴다.
+
+> 언제 쓰나: 코드만으로 검증하기 어려운 화면, 동작, 재현 절차가 있을 때
+
+## 8. MCP
 
 Codex를 외부 도구와 컨텍스트에 연결하는 프로토콜이다.
 
@@ -57,7 +96,7 @@ Codex를 외부 도구와 컨텍스트에 연결하는 프로토콜이다.
 
 > 언제 쓰나: 공식 문서, Figma, 브라우저, 사내 도구 같은 외부 컨텍스트가 필요할 때
 
-## 5. Skills
+## 9. Skills
 
 반복 작업을 위한 지침, 참조 자료, 스크립트를 묶은 단위다.
 
@@ -70,7 +109,7 @@ Codex를 외부 도구와 컨텍스트에 연결하는 프로토콜이다.
 
 > 언제 쓰나: 반복 작업 절차나 전문 지식을 재사용할 때
 
-## 6. Subagents
+## 10. Subagents
 
 독립 에이전트를 병렬로 실행하는 작업 방식이다.
 
@@ -83,7 +122,7 @@ Codex를 외부 도구와 컨텍스트에 연결하는 프로토콜이다.
 
 > 언제 쓰나: 코드 탐색, 리뷰, 구현 분할처럼 독립 작업을 병렬 처리할 때
 
-## 7. Memories
+## 11. Memories
 
 이전 작업에서 얻은 유용한 맥락을 이후 세션에 이어주는 기능이다.
 
@@ -95,7 +134,7 @@ Codex를 외부 도구와 컨텍스트에 연결하는 프로토콜이다.
 
 > 언제 쓰나: 개인 선호, 반복 작업 방식, 자주 쓰는 프로젝트 맥락을 이어가고 싶을 때
 
-## 8. Hooks
+## 12. Hooks
 
 Codex 생명주기 중 실행되는 결정론적 스크립트다.
 
@@ -108,7 +147,7 @@ Codex 생명주기 중 실행되는 결정론적 스크립트다.
 
 > 언제 쓰나: 프롬프트 검사, 명령 검증, 작업 종료 후 요약 같은 자동화가 필요할 때
 
-## 9. Rules
+## 13. Rules
 
 샌드박스 밖에서 실행할 명령을 제어하는 규칙이다.
 
@@ -122,7 +161,7 @@ Codex 생명주기 중 실행되는 결정론적 스크립트다.
 
 > 언제 쓰나: 특정 명령을 승인 없이 허용하거나 반드시 막아야 할 때
 
-## 10. Plugins
+## 14. Plugins
 
 Plugins는 Skills, Apps, MCP servers를 설치 가능한 묶음으로 만든 단위다.
 
@@ -135,6 +174,14 @@ Plugins는 Skills, Apps, MCP servers를 설치 가능한 묶음으로 만든 단
 
 > 언제 쓰나: 여러 사람이 같은 워크플로우와 외부 연결을 재사용해야 할 때
 
+## 15. Sites
+
+Codex App에서 웹 결과물을 만들고 프리뷰하는 기능이다.
+
+- 웹사이트, 대시보드, 내부 도구, 게임 같은 결과물에 적합하다.
+
+> 언제 쓰나: 공유 가능한 웹 결과물을 빠르게 만들고 확인할 때
+
 ## 개념 비교 요약
 
 | 개념 | 저장 위치 | 주요 용도 |
@@ -142,6 +189,10 @@ Plugins는 Skills, Apps, MCP servers를 설치 가능한 묶음으로 만든 단
 | `AGENTS.md` | `~/.codex/`, 저장소 루트, 하위 폴더 | 작업 지침 |
 | Config | `~/.codex/config.toml`, `.codex/config.toml` | 모델, 권한, 샌드박스, MCP |
 | Slash Commands | Codex CLI 내장 | 세션 제어 |
+| App Modes | Codex App | Local, Worktree, Cloud 작업 선택 |
+| Review | Codex App, CLI | 변경 검토와 Git 반영 |
+| Automations | Codex App | 반복 작업과 thread 재실행 |
+| Browser | Plugin | 로컬 웹과 화면 검증 |
 | MCP | `config.toml` | 외부 도구 연결 |
 | Skills | `.agents/skills`, 사용자 스킬 위치 | 반복 워크플로우 |
 | Subagents | `.codex/agents`, `~/.codex/agents` | 병렬 작업 |
@@ -149,12 +200,16 @@ Plugins는 Skills, Apps, MCP servers를 설치 가능한 묶음으로 만든 단
 | Hooks | `hooks.json`, `config.toml` | 생명주기 자동화 |
 | Rules | `.codex/rules`, `~/.codex/rules` | 샌드박스 밖 명령 실행 제어 |
 | Plugins | Plugin Directory, plugin browser | 설치형 워크플로우 |
+| Sites | Codex App | 웹 결과물 생성과 프리뷰 |
 
 ## 공식 문서 기준
 
 - <https://developers.openai.com/codex/guides/agents-md/>
 - <https://developers.openai.com/codex/config-basic>
 - <https://developers.openai.com/codex/cli/slash-commands/>
+- <https://developers.openai.com/codex/app/features/>
+- <https://developers.openai.com/codex/app/automations/>
+- <https://developers.openai.com/codex/app/review/>
 - <https://developers.openai.com/codex/mcp/>
 - <https://developers.openai.com/codex/skills>
 - <https://developers.openai.com/codex/subagents>
@@ -165,5 +220,5 @@ Plugins는 Skills, Apps, MCP servers를 설치 가능한 묶음으로 만든 단
 
 ## 이력관리
 
+- 2026-06-10: App 작업 모드, Review, Automations, Browser, Sites 개념 추가
 - 2026-05-11: Codex 핵심 개념 문서 추가
-- 

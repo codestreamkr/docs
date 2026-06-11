@@ -11,10 +11,10 @@ Claude Code 환경 설치와 설정 동기화를 위한 저장소다.
 
 ## Codex
 
-OpenAI Codex 관련 사용법과 작업 가이드를 정리한다.
+OpenAI Codex를 실제 작업 환경에 맞춰 쓰는 기준을 정리한다.
 
 참고 공식 문서: <https://developers.openai.com/codex/>  
-Codex CLI, IDE 확장, 앱, 클라우드 사용과 설정 기준을 확인하는 문서다.
+Codex App, CLI, IDE, Cloud, Browser, Skills를 함께 써서 작업을 맡기고 검토하고 이어가는 기준을 확인하는 문서다.
 
 ## 고수 가이드
 
@@ -34,5 +34,6 @@ Git 작업 중 자주 쓰는 개념과 변경 관리 기준을 정리한다.
 
 ## 이력관리
 
+- 2026-06-10: Codex 문서 설명을 App, CLI, Browser, Skill 활용 기준에 맞게 갱신
 - 2026-05-11: Codex, 고수 가이드, Git 섹션과 라이선스 안내 추가
 - 2026-04-09: 최초 생성
