@@ -215,7 +215,7 @@ agents/
 name: security-reviewer
 description: 보안 취약점 검토가 필요할 때 사용한다
 tools: Read, Grep, Bash
-model: claude-opus-4-6
+model: claude-opus-4-8
 ---
 당신은 시니어 보안 엔지니어다. 코드를 검토할 때 다음을 확인한다:
 - SQL 인젝션, XSS, 커맨드 인젝션 등 입력값 취약점
@@ -342,6 +342,7 @@ claude plugins list
 
 ## 이력관리
 
+- 2026-06-11: Custom Agent 예시 모델 ID claude-opus-4-6 → claude-opus-4-8 업데이트
 - 2026-05-11: 이력관리 섹션 정리
 - 2026-04-10: 문서 번호와 제목 표기 정리
 - 2026-04-09: 최초 생성
