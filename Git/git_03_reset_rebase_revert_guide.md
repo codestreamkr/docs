@@ -1,110 +1,127 @@
-# Git 되돌리기와 히스토리 정리
+# Git 되돌리기와 복구
+
+되돌리기는 공유 여부와 버릴 범위를 먼저 확인하고 선택한다.
 
 ## 바로 선택
 
-| 상황 | 명령 |
-|---|---|
-| 최근 커밋 여러 개를 다시 묶고 싶다 | `git reset --soft` |
-| 중간 커밋 하나를 빼거나 커밋 구조를 손보고 싶다 | `git rebase -i` |
-| 이미 공유된 커밋을 안전하게 취소하고 싶다 | `git revert` |
+| 상황 | 명령 | 기준 |
+|---|---|---|
+| add하지 않은 파일 변경 취소 | `git restore <파일>` | 로컬 수정만 제거 |
+| add한 파일을 다시 내리기 | `git restore --staged <파일>` | 파일 내용은 유지 |
+| 아직 공유하지 않은 최근 커밋 다시 만들기 | `git reset --soft <커밋>` | 변경을 Staging area에 유지 |
+| 아직 공유하지 않은 커밋 순서·메시지 정리 | `git rebase -i HEAD~N` | 로컬 히스토리 재작성 |
+| 이미 공유한 커밋 취소 | `git revert <커밋>` | 취소용 새 커밋 생성 |
+| 잃어버린 커밋 위치 찾기 | `git reflog` | 로컬 HEAD 이동 기록 조회 |
 
-## 핵심 차이
+## 파일 변경 되돌리기
 
-| 명령 | 무엇을 바꾸나 | 히스토리 재작성 | 기본 용도 |
-|---|---|---|---|
-| `git reset --soft <기준커밋>` | HEAD만 옮김 | 예 | 최근 커밋 다시 묶기 |
-| `git rebase -i HEAD~N` | 커밋 구조 재작성 | 예 | drop, squash, reword |
-| `git revert <커밋해시>` | 취소용 새 커밋 추가 | 아니오 | 공유된 커밋 되돌리기 |
+취소할 범위를 나눠서 실행한다.
 
-## 명령별로 바로 쓰기
+```bash
+# add하지 않은 변경 취소
+git restore path/to/file
 
-### 최근 커밋을 하나로 묶기
+# add한 상태만 취소하고 파일 변경은 유지
+git restore --staged path/to/file
+
+# 파일을 HEAD 상태로 완전히 복원
+git restore --source=HEAD --staged --worktree path/to/file
+```
+
+복원 전에 필요한 변경은 별도 커밋이나 `stash`로 보관한다.
+
+## 최근 커밋 다시 만들기
+
+로컬 커밋을 다시 묶을 때 기준 커밋으로 HEAD를 이동한다.
 
 ```bash
 git log --oneline --decorate -n 8
-git reset --soft <남겨둘 마지막 커밋>
+git reset --soft <새 커밋의 바로 이전 커밋>
+git diff --staged
 git commit -m "새 커밋 메시지"
 ```
 
-예:
+`reset` 모드의 차이는 다음과 같다.
 
-```text
-a63819c5  남겨둘 마지막 커밋
-f169d84f
-35ac9970
-f401a7d5
-```
+| 모드 | 커밋 변경 | Staging area | Working tree |
+|---|---|---|---|
+| `--soft` | 이동 | 유지 | 유지 |
+| `--mixed` | 이동 | 초기화 | 유지 |
+| `--hard` | 이동 | 초기화 | 초기화 |
 
-```bash
-git reset --soft a63819c5
-git commit -m "결제 테스트 정리"
-```
+`--hard`는 추적 중인 로컬 변경을 제거할 때만 사용한다.
 
-주의:
-- 워킹트리가 지저분하면 먼저 정리한다
-- 로컬 수정과 히스토리 정리 대상을 섞지 않는다
+## 중간 커밋 정리
 
-### 중간 커밋 하나 빼기
+아직 공유하지 않은 커밋은 대화형 rebase로 정리한다.
 
 ```bash
 git rebase -i HEAD~3
 ```
 
-편집기 예시:
+편집 명령:
 
-```text
-pick <aaaa해시> aaaa
-drop <bbbb해시> bbbb
-pick <cccc해시> cccc
-```
-
-자주 쓰는 옵션:
-- `pick`: 그대로 둠
+- `pick`: 커밋 유지
+- `reword`: 메시지 변경
+- `squash`: 앞 커밋과 합치기
+- `fixup`: 앞 커밋과 합치고 현재 메시지 버리기
 - `drop`: 커밋 제거
-- `squash`: 앞 커밋과 합침
-- `reword`: 메시지만 변경
 
-주의:
-- 공유 브랜치에서는 신중히 사용한다
+충돌이 발생하면 [변경 통합과 충돌 해결](./git_05_integration_conflict_guide.md)을 따른다.
 
-### 공유된 커밋 되돌리기
+## 공유된 커밋 취소
+
+원격에 공유한 이력은 `revert`로 보존하면서 취소한다.
 
 ```bash
 git revert <커밋해시>
 ```
 
-특징:
-- 기존 커밋은 남는다
-- 되돌림 커밋이 새로 생긴다
+결과:
 
-## 자주 쓰는 판단 기준
+- 기존 커밋은 이력에 남는다.
+- 반대 변경을 담은 새 커밋이 생긴다.
+- 다른 개발자가 이미 받은 이력을 다시 쓰지 않는다.
 
-| 질문 | 답 | 명령 |
-|---|---|---|
-| 최근 커밋을 다시 만들고 싶은가 | 예 | `reset --soft` |
-| 중간 커밋을 선택적으로 정리하고 싶은가 | 예 | `rebase -i` |
-| 이미 원격에 올린 기록을 건드리면 안 되는가 | 예 | `revert` |
+## 잃어버린 커밋 복구
 
-## push 관련 메모
-
-`reset`이나 `rebase`로 히스토리를 바꿨고 원격 브랜치에도 이미 올라가 있다면 보통 아래 명령이 필요하다.
+`reset`이나 `rebase` 후 커밋이 보이지 않으면 `reflog`에서 찾는다.
 
 ```bash
+git reflog --date=local
+git show <찾은커밋>
+git branch recover/work <찾은커밋>
+```
+
+복구 기준:
+
+- 찾은 커밋의 내용을 `git show`로 확인한다.
+- 바로 `reset`하지 않고 복구 브랜치를 먼저 만든다.
+- 커밋하지 않은 변경과 `git clean`으로 삭제한 파일은 `reflog`로 복구할 수 없다.
+
+## 원격 히스토리 갱신
+
+팀이 허용한 개인 작업 브랜치의 이력을 재작성했을 때만 다음 명령을 사용한다.
+
+```bash
+git fetch origin
 git push --force-with-lease
 ```
 
-## 최소 확인 순서
+`--force-with-lease`는 마지막으로 확인한 원격 상태와 다르면 push를 막는다. 공유 브랜치에서는 팀 정책을 우선한다.
+
+## 실행 전 확인
+
+되돌리기 전에 현재 상태와 대상을 기록한다.
 
 ```bash
-git status --short
-git log --oneline --decorate -n 8
+git status --short --branch
+git log --oneline --decorate --graph -n 12
+git diff
+git diff --staged
 ```
 
-## 마지막 정리
-
-- 최근 커밋 다시 묶기: `reset --soft`
-- 중간 커밋 정리: `rebase -i`
-- 공유된 커밋 취소: `revert`
-
 ## 이력관리
+
+- 2026-07-13: 파일 복원, reflog 복구, reset 범위와 원격 이력 갱신 기준 보완
 - 2026-04-15: 최초 작성

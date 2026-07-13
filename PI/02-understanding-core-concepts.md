@@ -1,8 +1,10 @@
-# 02. [초급]핵심개념 이해
+# 02. [초급] Pi 기본 개념
 
 Pi를 사용할 때 먼저 알아야 할 기본 개념을 정리한다.
 
 1차 문서에서는 커스텀 확장 제작이 아니라 Pi 기본 기능만 다룬다.
+
+검증 기준은 Pi `0.80.6`이다.
 
 ## 1. Interactive Mode
 
@@ -23,7 +25,7 @@ pi
 
 Footer의 컨텍스트 사용량은 현재 모델의 context window 기준으로 표시된다.
 
-실제 입력 단축키와 slash command는 `06-basic-commands.md`에서 확인한다.
+실제 입력 단축키와 slash command는 [Pi 기본 명령](./06-basic-commands.md)에서 확인한다.
 
 ## 2. Editor
 
@@ -100,8 +102,9 @@ Pi에서 사용하는 값은 아래와 같다.
 - `medium`
 - `high`
 - `xhigh`
+- `max`
 
-모든 모델이 모든 thinking level을 지원하는 것은 아니다.
+`max`는 `xhigh`보다 높은 opt-in 단계다. 모든 모델이 모든 thinking level을 지원하는 것은 아니므로 모델 선택 화면에서 지원 여부를 확인한다.
 
 ## 6. Session
 
@@ -117,6 +120,8 @@ Pi의 대화는 자동으로 세션에 저장된다.
 
 그래서 이전 지점으로 이동해 다른 방향으로 이어가거나, 새 세션 파일로 분기할 수 있다.
 
+세션 이름은 목록에 표시할 작업명이고, 세션 ID는 자동화에서 같은 프로젝트 세션을 정확히 지정하는 식별자다. CLI의 `--name`, `--session`, `--session-id` 사용 기준은 [Pi 기본 명령](./06-basic-commands.md)에서 확인한다.
+
 주요 명령은 아래와 같다.
 
 | 명령어 | 설명 |
@@ -128,7 +133,7 @@ Pi의 대화는 자동으로 세션에 저장된다.
 | `/fork` | 이전 사용자 메시지에서 새 세션 생성 |
 | `/clone` | 현재 활성 브랜치를 새 세션으로 복제 |
 
-세션을 실제 작업에서 쓰는 흐름은 `05-project-cooking.md`의 긴 작업 관리 항목을 따른다.
+세션을 실제 작업에서 쓰는 흐름은 [프로젝트 코딩](./05-project-cooking.md)의 긴 작업 관리 항목을 따른다.
 
 ## 7. Context
 
@@ -173,7 +178,7 @@ contextTokens > contextWindow - reserveTokens
 | `compaction.reserveTokens` | `16384` | 응답을 위해 남겨둘 토큰 |
 | `compaction.keepRecentTokens` | `20000` | 요약하지 않고 유지할 최근 토큰 |
 
-긴 작업 중 compaction 실행 예시는 `05-project-cooking.md`, `07-analysis-and-testing.md`에서 확인한다.
+긴 작업 중 compaction 실행 예시는 [프로젝트 코딩](./05-project-cooking.md)과 [Spring/Java 프로젝트 분석과 테스트](./07-analysis-and-testing.md)에서 확인한다.
 
 ## 9. Settings
 
@@ -186,6 +191,8 @@ Pi 설정은 JSON 파일로 관리된다.
 
 프로젝트 설정은 전역 설정을 덮어쓴다.
 
+프로젝트에 `.pi/settings.json`이나 `.pi` 리소스가 있으면 Project Trust 결정 후 해당 설정과 리소스를 불러온다. `/trust`로 저장한 결정은 다음 실행부터 적용된다.
+
 자주 보는 항목은 아래와 같다.
 
 - `defaultProvider`
@@ -197,7 +204,7 @@ Pi 설정은 JSON 파일로 관리된다.
 - `enabledModels`
 - `shellPath`
 
-프로젝트 설정 생성 기준은 `04-starting-a-project.md`에서 확인한다.
+일반 설정은 `/settings`, package 리소스 활성화 여부는 `pi config`로 관리한다. `pi config -l`은 프로젝트 설정 화면에서 시작한다. 세부 명령은 [Pi 기본 명령](./06-basic-commands.md), 프로젝트 설정 생성 기준은 [프로젝트 시작](./04-starting-a-project.md)에서 확인한다.
 
 ## 10. Customization 구성 요소
 
@@ -450,5 +457,6 @@ Pi 세션은 선형 기록이 아니라 트리 구조로 저장된다.
 
 ## 이력관리
 
+- 2026-07-13: 제목과 관련 문서 링크를 정리하고 Pi 0.80.6 기준 max thinking level, 세션 식별자, Project Trust와 config 개념 반영
 - 2026-05-12: Customization 구성 요소와 활용 기준 추가
 - 2026-05-11: 최초 생성

@@ -1,33 +1,9 @@
-# 01. [초급]클로드코드요?
+# Claude Code 시작 문서 이동 안내
 
-## 1. 설치
+<meta http-equiv="refresh" content="0; url=../Platforms/ClaudeCode/getting-started.html">
 
-설치 방법은 아래 저장소를 참고한다.  
-<https://github.com/codestreamkr/claude-code-init>
-
-설치 후 실행은 아래 명령을 사용한다.  
-사용자 확인 없이 바로 실행하며, 권한 확인을 건너뛰므로 보안에 주의한다.
-
-```powershell
-claude --dangerously-skip-permissions
-```
-
-## 2. Claude Code 주요 개념
-
-- 단순 채팅이 아니라, 읽기·수정·실행까지 이어지는 작업 도구다.
-- 프로젝트 전체 맥락을 본다.
-- 현재 폴더의 코드, 문서, 설정을 함께 읽고 작업에 반영한다.
-- 도구로 직접 수행한다.
-- 파일 수정, 터미널 실행, 검색을 직접 처리한다.
-- 프로젝트 규칙을 반영할 수 있다.
-- `CLAUDE.md`, 설정, 메모리로 팀 방식과 코드 스타일을 맞춘다.
-- 여러 환경에서 같은 흐름으로 쓸 수 있다.
-- 터미널, IDE, 데스크톱, 웹에서 비슷한 방식으로 이어진다.
-
-> 처음에는 "Claude가 답한다"보다 "Claude가 프로젝트 안에서 일을 한다"로 이해하면 훨씬 빠르게 감이 잡힌다.
+이 문서는 [Claude Code 시작하기](../Platforms/ClaudeCode/getting-started.md)로 이동했다.
 
 ## 이력관리
 
-- 2026-05-11: 이력관리 섹션 정리
-- 2026-04-10: 문서 번호와 제목 표기 정리
-- 2026-04-09: 최초 생성
+- 2026-07-13: 기존 공개 URL을 유지하기 위한 이동 안내 추가

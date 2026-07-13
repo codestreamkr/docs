@@ -1,15 +1,34 @@
-# 01. [초급]PI요?
+# 01. [초급] Pi 시작하기
 
 Pi는 터미널에서 사용하는 코딩 에이전트 하네스다.
 
 단순히 답변만 받는 채팅 도구가 아니라, 현재 프로젝트 안에서 파일을 읽고, 수정하고, 명령을 실행하며 작업을 이어가는 도구로 보면 된다.
 
+이 문서는 Pi `0.80.6`을 기준으로 한다.
+
 ## 1. 설치
 
-Pi는 npm 패키지로 설치한다.
+Pi는 Node.js `22.19.0` 이상에서 npm 패키지로 설치한다.
+
+먼저 버전을 확인한다.
 
 ```bash
-npm install -g @earendil-works/pi-coding-agent
+node --version
+npm --version
+```
+
+Pi를 설치한다.
+
+```bash
+npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+```
+
+`--ignore-scripts`는 설치 중 의존성 lifecycle script 실행을 막는다. Pi의 일반 npm 설치에는 install script가 필요하지 않다.
+
+설치 결과를 확인한다.
+
+```bash
+pi --version
 ```
 
 설치 후 작업할 프로젝트 디렉토리에서 실행한다.
@@ -115,33 +134,70 @@ Pi는 시작 시 `~/.pi/agent/AGENTS.md`를 전역 지침으로 읽고, 현재 �
 /reload
 ```
 
-## 6. 문서 읽는 순서
+## 6. Project Trust
+
+Project Trust는 프로젝트가 Pi의 로컬 설정과 리소스를 불러오도록 승인하는 기준이다.
+
+아래 프로젝트 리소스가 있으면 신뢰 결정이 필요하다.
+
+- `.pi/settings.json`
+- `.pi/extensions`, `.pi/skills`, `.pi/prompts`, `.pi/themes`
+- `.pi/SYSTEM.md`, `.pi/APPEND_SYSTEM.md`
+- 현재 디렉토리 또는 상위 디렉토리의 `.agents/skills`
+
+대화형 실행에서는 현재 디렉토리나 상위 디렉토리에 저장된 결정이 없으면 신뢰 여부를 묻는다. 신뢰하면 프로젝트 설정과 리소스를 불러오고, 프로젝트 설정에 지정된 누락 package를 설치하며, 프로젝트 Extension을 실행할 수 있다.
+
+신뢰하지 않으면 보호 대상 리소스를 건너뛴다. `AGENTS.md`와 `CLAUDE.md`는 컨텍스트 파일 로드를 끄지 않은 경우 Project Trust와 관계없이 불러온다.
+
+현재 프로젝트의 신뢰 결정을 저장하려면 아래 명령을 사용한다.
+
+```text
+/trust
+```
+
+결정은 `~/.pi/agent/trust.json`에 저장된다. 현재 세션은 자동으로 다시 로드되지 않으므로 Pi를 재시작해야 적용된다.
+
+비대화형 모드인 `-p`, `--mode json`, `--mode rpc`는 신뢰 확인 창을 표시하지 않는다. 한 번의 실행에만 결정을 지정하려면 아래 옵션을 사용한다.
+
+```bash
+pi --approve -p "이 프로젝트를 요약해줘."
+pi --no-approve -p "프로젝트 로컬 리소스를 제외하고 구조를 요약해줘."
+```
+
+- `--approve`, `-a`: 이번 실행에서 프로젝트 로컬 리소스를 신뢰한다.
+- `--no-approve`, `-na`: 이번 실행에서 프로젝트 로컬 리소스를 제외한다.
+
+Project Trust는 프로젝트 입력 리소스의 로드를 제어하며 sandbox를 제공하지 않는다. Pi와 Extension은 Pi를 실행한 사용자 계정의 권한으로 파일과 명령에 접근한다.
+
+## 7. 문서 읽는 순서
 
 처음 사용하는 경우 아래 순서로 보면 된다.
 
 | 상황 | 볼 문서 |
 |---|---|
-| 설치와 첫 실행 | `01-getting-started-and-key-concepts.md` |
-| 화면 구조와 핵심 개념 이해 | `02-understanding-core-concepts.md` |
-| 자주 쓰는 명령 확인 | `06-basic-commands.md` |
-| 새 프로젝트에 적용 | `04-starting-a-project.md` |
-| 실제 코딩 작업 | `05-project-cooking.md` |
-| Spring/Java 분석과 테스트 | `07-analysis-and-testing.md` |
-| 확장, package, SDK/RPC 실습 | `03-applying-core-concepts.md` |
+| 설치와 첫 실행 | [Pi 시작하기](./01-getting-started-and-key-concepts.md) |
+| 화면 구조와 핵심 개념 이해 | [Pi 기본 개념](./02-understanding-core-concepts.md) |
+| 자주 쓰는 명령 확인 | [Pi 기본 명령](./06-basic-commands.md) |
+| 새 프로젝트에 적용 | [프로젝트 시작](./04-starting-a-project.md) |
+| 실제 코딩 작업 | [프로젝트 코딩](./05-project-cooking.md) |
+| Spring/Java 분석과 테스트 | [Spring/Java 프로젝트 분석과 테스트](./07-analysis-and-testing.md) |
+| 확장, package, SDK/RPC 실습 | [Pi 확장과 자동화](./03-applying-core-concepts.md) |
 
-## 7. 기본 사용 흐름
+## 8. 기본 사용 흐름
 
 ```text
 1. 프로젝트 폴더에서 pi 실행
-2. /login 또는 API 키로 인증
-3. /model로 모델 선택
-4. AGENTS.md로 프로젝트 규칙 정리
-5. 자연어로 작업 요청
-6. 변경 내용을 확인하고 테스트 실행
-7. 필요하면 /compact 또는 /new로 세션 관리
+2. Project Trust 결정
+3. /login 또는 API 키로 인증
+4. /model로 모델 선택
+5. AGENTS.md로 프로젝트 규칙 정리
+6. 자연어로 작업 요청
+7. 변경 내용을 확인하고 테스트 실행
+8. 필요하면 /compact 또는 /new로 세션 관리
 ```
 
 ## 이력관리
 
+- 2026-07-13: 제목과 학습 문서 링크를 정리하고 Pi 0.80.6 기준 설치 조건, 안전한 npm 설치 명령, Project Trust와 비대화형 승인 옵션 추가
 - 2026-05-12: 문서 읽는 순서 추가
 - 2026-05-11: 최초 생성

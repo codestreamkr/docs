@@ -1,123 +1,136 @@
-# Git 변경 적용과 반영
+# Git 변경 확인과 커밋
 
-## 바로 선택
+커밋은 검토 가능한 하나의 작업 단위로 만든다.
 
-| 상황 | 명령 |
-|---|---|
-| 지금 수정한 내용을 내 브랜치에 기본 커밋으로 남기고 싶다 | `git add` + `git commit` |
-| 다른 브랜치의 특정 커밋만 가져오고 싶다 | `git cherry-pick` |
-| 브랜치 전체를 이력과 함께 합치고 싶다 | `git merge` |
-| 브랜치 변경만 가져와 한 커밋으로 넣고 싶다 | `git merge --squash` |
+## 기본 작업 흐름
 
-## 핵심 차이
-
-| 명령 | 가져오는 단위 | 결과 | 이력 특징 |
-|---|---|---|---|
-| `git add <파일>` + `git commit -m "메시지"` | working tree 변경 | 현재 브랜치에 새 커밋 생성 | 내가 만든 변경을 기록 |
-| `git cherry-pick <커밋해시>` | 커밋 | 현재 브랜치에 새 커밋 생성 | 원래 커밋을 복제해서 반영 |
-| `git merge <브랜치명>` | 브랜치 | 브랜치 전체 반영 | 브랜치 이력 연결 |
-| `git merge --squash <브랜치명>` | 브랜치 | 현재 브랜치에 새 커밋 1개로 정리 | merge 관계를 남기지 않음 |
-
-## 명령별로 바로 쓰기
-
-### 기본 커밋 만들기
+변경 확인부터 커밋까지 같은 순서를 유지한다.
 
 ```bash
-git status --short
+git status --short --branch
+git diff
 git add <파일>
-git commit -m "커밋 메시지"
+git diff --staged
+git commit -m "변경 이유가 드러나는 메시지"
+git status --short --branch
 ```
 
-예:
+실행 기준:
+
+- 관련된 소스, 테스트, 설정 변경을 한 커밋으로 묶는다.
+- 서로 독립적으로 되돌릴 변경은 커밋을 나눈다.
+- 생성 파일, 개인 설정, 임시 파일은 `.gitignore`로 관리한다.
+- 비밀번호, API 키, 인증서, 개인정보는 커밋하지 않는다.
+
+## 커밋 범위 선택
+
+파일 전체 또는 변경 조각을 선택해 올린다.
 
 ```bash
+# 지정한 파일만 추가
 git add src/payment.js test/payment.test.js
-git commit -m "결제 검증 로직 보완"
+
+# 파일 안의 변경 조각을 대화형으로 선택
+git add -p
+
+# 잘못 올린 파일을 Staging area에서 내리기
+git restore --staged path/to/file
 ```
 
-주의:
-- `git add .` 전에는 불필요한 파일이 없는지 확인한다
-- 커밋 전에 `git status --short`로 범위를 다시 본다
+`git add .`을 사용할 때는 새 파일과 삭제 파일까지 모두 포함되는지 먼저 확인한다.
 
-### 커밋 하나만 가져오기
+## 커밋 전 확인
 
-```bash
-git checkout target-branch
-git cherry-pick <커밋해시>
-```
-
-예:
+실제 커밋에 들어갈 내용을 최종 검토한다.
 
 ```bash
-git checkout release
-git cherry-pick abc1234
-```
-
-주의:
-- 의존성 있는 커밋이면 충돌하거나 깨질 수 있다
-- 일부 수정만 급하게 옮길 때 적합하다
-
-### 브랜치 전체 합치기
-
-```bash
-git checkout main
-git merge <브랜치명>
-```
-
-예:
-
-```bash
-git checkout main
-git merge feature/order-tests
-```
-
-특징:
-- fast-forward 또는 merge commit으로 반영된다
-- 브랜치 작업 흐름을 남기고 싶을 때 적합하다
-
-### 브랜치 변경만 한 커밋으로 가져오기
-
-```bash
-git checkout main
-git merge --squash <브랜치명>
-git commit -m "새 커밋 메시지"
-```
-
-예:
-
-```bash
-git checkout main
-git merge --squash feature/test-upgrade
-git commit -m "테스트케이스 고도화 반영"
-```
-
-특징:
-- 변경 내용은 가져온다
-- 원래 브랜치의 개별 커밋은 남기지 않는다
-- merge commit이나 merge 관계도 남기지 않는다
-
-## 빠른 판단 기준
-
-| 질문 | 답 | 명령 |
-|---|---|---|
-| 내 변경을 먼저 현재 브랜치에 기록하고 싶은가 | 예 | `git add` + `git commit` |
-| 일부 커밋만 필요한가 | 예 | `cherry-pick` |
-| 브랜치 작업 흐름까지 남겨야 하는가 | 예 | `merge` |
-| 결과만 한 커밋으로 정리하고 싶은가 | 예 | `merge --squash` |
-
-## 최소 확인 순서
-
-```bash
+git diff --staged
 git status --short
-git log --oneline --decorate --graph -n 12
 ```
 
-## 마지막 정리
+확인 항목:
 
-- 내 변경을 기본 커밋으로 남기기: `git add` + `git commit`
-- 커밋 하나만 가져오기: `cherry-pick`
-- 브랜치 이력까지 합치기: `merge`
-- 결과만 한 커밋으로 반영하기: `merge --squash`
+- 요청 범위 밖의 파일이 포함되지 않았다.
+- 디버그 코드와 임시 로그가 남아 있지 않다.
+- 테스트와 문서 변경이 필요한 경우 함께 포함됐다.
+- 민감정보와 불필요한 대용량 파일이 없다.
+
+## 제외 파일과 민감정보
+
+`.gitignore`에는 저장소에서 추적하지 않을 파일 규칙만 등록한다.
+
+```bash
+# 특정 파일에 적용된 ignore 규칙 확인
+git check-ignore -v path/to/file
+
+# 이미 추적 중인 파일을 로컬에는 남기고 Git에서만 제거
+git rm --cached path/to/file
+```
+
+관리 기준:
+
+- 빌드 결과, 의존성 디렉터리, IDE 개인 설정, 로컬 환경 파일을 제외한다.
+- 팀이 함께 사용할 설정 예시는 민감정보 없이 별도 파일로 제공한다.
+- 이미 추적 중인 파일은 `.gitignore`만 추가해도 추적이 중단되지 않는다.
+- 민감정보를 커밋했다면 해당 키나 인증정보를 먼저 폐기·교체하고 팀 보안 절차에 따라 이력을 정리한다.
+
+## 커밋 메시지
+
+메시지는 변경 결과와 이유를 바로 알 수 있게 쓴다.
+
+```text
+결제 금액 검증 시 통화 단위 누락 보완
+주문 취소 실패 시 재시도 조건 추가
+로그인 만료 처리 회귀 테스트 추가
+```
+
+작성 기준:
+
+- 한 커밋에는 한 가지 목적을 담는다.
+- `수정`, `작업`, `반영`만 적지 않고 대상을 명시한다.
+- 구현 방식보다 변경 결과와 이유를 우선한다.
+- 팀에서 정한 이슈 번호나 메시지 형식이 있으면 그 규칙을 따른다.
+
+## 마지막 커밋 보완
+
+아직 공유하지 않은 마지막 커밋은 보완할 수 있다.
+
+```bash
+git add <추가할 파일>
+git commit --amend
+```
+
+적용 기준:
+
+- 로컬에만 있는 마지막 커밋에 사용한다.
+- 이미 공유한 커밋은 새 커밋으로 수정하거나 팀 기준에 따라 처리한다.
+
+## 다른 변경 가져오기
+
+가져올 단위와 남길 이력에 따라 명령을 선택한다.
+
+| 상황 | 명령 | 결과 |
+|---|---|---|
+| 특정 커밋만 가져오기 | `git cherry-pick <커밋>` | 현재 브랜치에 해당 변경을 새 커밋으로 적용 |
+| 브랜치 이력까지 합치기 | `git merge <브랜치>` | 브랜치 이력을 연결 |
+| 브랜치 변경을 한 커밋으로 만들기 | `git merge --squash <브랜치>` | 변경만 Staging area에 반영 |
+
+상세한 선택 기준과 충돌 처리는 [변경 통합과 충돌 해결](./git_05_integration_conflict_guide.md)을 따른다.
+
+## 완료 기준
+
+커밋이 끝나면 다음 상태를 확인한다.
+
+```bash
+git status --short --branch
+git show --stat --oneline HEAD
+```
+
+- 커밋 범위와 메시지가 한 가지 목적을 설명한다.
+- 남은 로컬 변경을 의도한 상태로 설명할 수 있다.
+- 프로젝트 검증 명령이 통과했다.
 
 ## 이력관리
+
+- 2026-07-13: 안전한 커밋 흐름, 범위 선택, 메시지, 제외 파일과 민감정보 기준 보완
 - 2026-04-15: 최초 작성

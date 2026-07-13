@@ -1,0 +1,17 @@
+{
+  "name": "pi-basic-example-package",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pi prompt template과 skill 호출을 확인하는 로컬 예제 package",
+  "keywords": [
+    "pi-package"
+  ],
+  "pi": {
+    "prompts": [
+      "./prompts"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  }
+}

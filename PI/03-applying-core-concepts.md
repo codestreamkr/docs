@@ -1,8 +1,8 @@
-# 03. [초급]핵심개념 활용
+# 03. [중급] Pi 확장과 자동화
 
 Pi의 하네스 강점을 서로 다른 방식으로 직접 확인한다.
 
-이 문서는 02의 `Pi가 잘하는 작업 방식`을 실습으로 연결한다. 같은 형태의 Extension 예제를 반복하지 않고, 설치해서 쓰기, 명령으로 쓰기, 도구로 쓰기, provider 연결, SDK/RPC 내장, 세션 분기까지 다른 패턴으로 나눠 확인한다.
+이 문서는 [Pi 기본 개념](./02-understanding-core-concepts.md)의 `Pi가 잘하는 작업 방식`을 실습으로 연결한다. 같은 형태의 Extension 예제를 반복하지 않고, 설치해서 쓰기, 명령으로 쓰기, 도구로 쓰기, provider 연결, SDK/RPC 내장, 세션 분기까지 다른 패턴으로 나눠 확인한다.
 
 ## 1. 실습 전 준비
 
@@ -135,57 +135,79 @@ package는 extension, skill, prompt template, theme를 묶어 배포하는 단�
 
 ### 설치
 
-프로젝트에만 적용하려면 `-l`을 붙인다.
+저장소 루트에 `PI/examples/basic-pi-package/package.json`, `prompts/ready-pr.md`, `skills/project-check/SKILL.md`가 있는지 먼저 확인한다.
 
 ```bash
-pi install -l ./my-pi-package
+test -f PI/examples/basic-pi-package/package.json
+test -f PI/examples/basic-pi-package/prompts/ready-pr.md
+test -f PI/examples/basic-pi-package/skills/project-check/SKILL.md
 ```
 
-전역으로 설치하려면 `-l` 없이 실행한다.
+설치 전에 package가 등록하는 리소스와 실행 지침을 검토한다.
 
 ```bash
-pi install ./my-pi-package
+sed -n '1,220p' PI/examples/basic-pi-package/package.json
+sed -n '1,220p' PI/examples/basic-pi-package/prompts/ready-pr.md
+sed -n '1,260p' PI/examples/basic-pi-package/skills/project-check/SKILL.md
 ```
 
-npm이나 git에서도 설치할 수 있다.
+검토한 로컬 리소스를 이 명령에서 승인하고 프로젝트에만 설치한다. `--approve`는 현재 명령에만 적용된다.
 
 ```bash
-pi install npm:@scope/pi-package
-pi install git:github.com/user/pi-package
+pi install -l ./PI/examples/basic-pi-package --approve
 ```
 
 설치 상태를 확인한다.
 
 ```bash
-pi list
+pi list --approve
 ```
 
-설치하지 않고 한 번만 확인할 수도 있다.
-
-```bash
-pi -e ./my-pi-package
-```
-
-Pi 안에서 다시 로드한다.
+Pi 안에서 `/trust`를 실행해 현재 프로젝트를 신뢰 대상으로 저장한다. Pi를 종료하고 저장소 루트에서 다시 시작한다.
 
 ```text
-/reload
+/trust
+```
+
+```bash
+pi
+```
+
+### 실행
+
+설치한 prompt template과 skill을 각각 호출한다.
+
+```text
+/ready-pr
+/skill:project-check
 ```
 
 ### 확인할 결과
 
-package에 포함된 리소스가 Pi에 추가된다.
+- `/ready-pr`가 변경 상태, 검증 상태, PR 초안을 요청하는 프롬프트로 확장된다.
+- `/skill:project-check`가 읽기 전용 프로젝트 점검 절차를 불러온다.
+- `pi list --approve`의 `Project packages`에 `../PI/examples/basic-pi-package`와 실제 package 경로가 표시된다.
 
-- Extension: custom tool, command, provider
-- Skill: `/skill:name`
-- Prompt template: `/template-name`
-- Theme: `/settings`에서 선택 가능한 테마
+### 실패 점검
+
+- `No such file`이 나오면 저장소 루트에서 실행했는지 확인한다.
+- `Project is not trusted`가 나오면 소스를 검토한 뒤 명령에 `--approve`를 붙였는지 확인한다.
+- 명령이 보이지 않으면 `/trust` 저장 후 Pi를 재시작했는지 확인한다.
+- 같은 이름의 전역 prompt나 skill이 있으면 충돌을 피하도록 기존 리소스를 비활성화한다.
+
+전역, npm, git 설치 형식은 실제 배포 package를 사용할 때 적용한다.
+
+```bash
+pi install ./PI/examples/basic-pi-package
+pi install npm:@scope/pi-package
+pi install git:github.com/organization/pi-package
+```
 
 ## 4. 패턴 3: prompt template을 명령처럼 쓰기
 
 반복 프롬프트는 prompt template로 실행한다.
 
-예를 들어 `ready-pr.md`를 만들면 Pi 안에서 `/ready-pr`로 호출할 수 있다.
+예를 들어 `ready-pr-local.md`를 만들면 Pi 안에서 `/ready-pr-local`로 호출할 수 있다.
 
 ### 목표
 
@@ -193,24 +215,36 @@ package에 포함된 리소스가 Pi에 추가된다.
 - PR 준비 점검 흐름을 재사용한다.
 - 매번 같은 출력 형식을 유지한다.
 
-### 파일 위치
+### 사전 조건
 
-전역으로 쓰려면 아래 위치에 둔다.
+프로젝트 루트에서 `.pi/prompts`를 만든다.
 
-```text
-~/.pi/agent/prompts/ready-pr.md
+```bash
+mkdir -p .pi/prompts
 ```
 
-프로젝트에서만 쓰려면 아래 위치에 둔다.
+### 파일 생성
 
-```text
-.pi/prompts/ready-pr.md
+`.pi/prompts/ready-pr-local.md`를 만든다.
+
+```markdown
+---
+description: 현재 변경 상태를 읽고 로컬 PR 준비 결과를 정리한다
+---
+`git status --short`와 `git diff`를 기준으로 변경 요약, 검증 상태, 남은 확인 사항, PR 제목과 본문 초안을 작성해줘.
+파일은 수정하지 마.
 ```
 
-### 입력
+### 다시 읽기
 
 ```text
-/ready-pr
+/reload
+```
+
+### 실행
+
+```text
+/ready-pr-local
 ```
 
 ### 확인할 결과
@@ -220,6 +254,12 @@ package에 포함된 리소스가 Pi에 추가된다.
 - 검증 상태
 - 남은 확인 사항
 - PR 설명 초안
+
+### 실패 점검
+
+- `/ready-pr-local`이 보이지 않으면 파일 경로와 `.md` 확장자를 확인한다.
+- frontmatter의 `---` 시작·종료 구분자가 있는지 확인한다.
+- 같은 이름의 전역 prompt가 있으면 파일명을 바꾸고 `/reload`한다.
 
 ### 활용 기준
 
@@ -231,7 +271,7 @@ package에 포함된 리소스가 Pi에 추가된다.
 
 작업 절차와 참고 기준은 skill로 불러온다.
 
-예를 들어 `project-check` skill을 만들면 `/skill:project-check`로 호출할 수 있다.
+예를 들어 `project-check-local` skill을 만들면 `/skill:project-check-local`로 호출할 수 있다.
 
 ### 목표
 
@@ -239,24 +279,42 @@ package에 포함된 리소스가 Pi에 추가된다.
 - 새 프로젝트 분석 흐름을 표준화한다.
 - 명령 실행 전 확인 절차를 유지한다.
 
-### 파일 위치
+### 사전 조건
 
-전역으로 쓰려면 아래 구조로 둔다.
+프로젝트 로컬 skill 디렉터리를 만든다.
 
-```text
-~/.pi/agent/skills/project-check/SKILL.md
+```bash
+mkdir -p .pi/skills/project-check-local
 ```
 
-프로젝트에서만 쓰려면 아래 구조로 둔다.
+### 파일 생성
 
-```text
-.pi/skills/project-check/SKILL.md
+`.pi/skills/project-check-local/SKILL.md`를 만든다.
+
+```markdown
+---
+name: project-check-local
+description: 현재 프로젝트의 실행 명령과 검증 명령을 읽기 전용으로 점검할 때 사용한다.
+---
+
+# 프로젝트 점검
+
+1. README와 빌드 설정 파일을 찾는다.
+2. 파일에 정의된 실행·빌드·테스트·린트 명령만 정리한다.
+3. 명령은 실행하지 않고 확인되지 않은 항목은 `확인 필요`로 표시한다.
+4. 파일은 수정하지 않는다.
 ```
 
-### 입력
+### 다시 읽기
 
 ```text
-/skill:project-check
+/reload
+```
+
+### 실행
+
+```text
+/skill:project-check-local
 ```
 
 ### 이어서 입력
@@ -272,6 +330,12 @@ package에 포함된 리소스가 Pi에 추가된다.
 - 실행 명령 후보
 - 검증 명령 후보
 - 먼저 읽을 파일
+
+### 실패 점검
+
+- 명령이 보이지 않으면 디렉터리명과 frontmatter의 `name`이 같은지 확인한다.
+- 파일명이 대문자 `SKILL.md`인지 확인한다.
+- `/reload` 후 `/skill:project-check-local`을 다시 실행한다.
 
 ### 활용 기준
 
@@ -290,17 +354,82 @@ custom tool은 모델이 직접 호출할 수 있는 실행 기능이다.
 - 로컬 정보 조회를 프롬프트 설명이 아니라 도구 호출로 처리한다.
 - 사내 Jira, Confluence, 로그 조회 도구로 확장할 기준을 잡는다.
 
-### 입력
+### 사전 조건
+
+프로젝트 루트에 유효한 `package.json`이 있어야 한다. Extension 디렉터리를 만든다.
+
+```bash
+test -f package.json
+mkdir -p .pi/extensions
+```
+
+### 파일 생성
+
+`.pi/extensions/package-scripts.ts`를 만든다.
+
+```typescript
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { Type } from "typebox";
+
+export default function (pi: ExtensionAPI) {
+  pi.registerTool({
+    name: "package_scripts",
+    label: "Package Scripts",
+    description: "현재 프로젝트 package.json의 scripts를 읽는다.",
+    parameters: Type.Object({}),
+    execute: async () => {
+      try {
+        const path = join(process.cwd(), "package.json");
+        const packageJson = JSON.parse(await readFile(path, "utf8"));
+        const scripts = packageJson.scripts ?? {};
+
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(scripts, null, 2),
+            },
+          ],
+          details: { scriptCount: Object.keys(scripts).length },
+        };
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        return {
+          content: [{ type: "text", text: `package.json 조회 실패: ${message}` }],
+          details: { scriptCount: 0 },
+        };
+      }
+    },
+  });
+}
+```
+
+### 다시 읽기
 
 ```text
-package.json scripts를 확인해서 테스트와 빌드에 쓸 수 있는 명령을 정리해줘.
+/reload
+```
+
+### 실행
+
+```text
+package_scripts 도구를 사용해서 테스트와 빌드에 쓸 수 있는 명령을 정리해줘.
 ```
 
 ### 확인할 결과
 
 - 모델이 custom tool을 호출할 수 있다.
-- 도구 결과를 바탕으로 테스트/빌드 명령을 정리한다.
+- 도구 결과에 `package.json`의 `scripts` 객체가 JSON으로 표시된다.
+- 모델이 실제 script 이름을 바탕으로 테스트·빌드 명령을 정리한다.
 - 같은 방식으로 외부 API나 로컬 스크립트를 도구화할 수 있다.
+
+### 실패 점검
+
+- 도구가 보이지 않으면 Extension 파일 위치와 `/reload` 결과를 확인한다.
+- `package.json 조회 실패`가 나오면 현재 작업 디렉터리와 JSON 문법을 확인한다.
+- `scripts`가 빈 객체라면 `package.json`에 실행 script가 정의되어 있는지 확인한다.
 
 ### 사내 Jira 예시
 
@@ -381,7 +510,7 @@ export default function (pi: ExtensionAPI) {
   pi.registerProvider("local-openai", {
     name: "Local OpenAI Compatible",
     baseUrl: "http://localhost:1234/v1",
-    apiKey: "LOCAL_OPENAI_API_KEY",
+    apiKey: "$LOCAL_OPENAI_API_KEY",
     api: "openai-completions",
     models: [
       {
@@ -396,6 +525,12 @@ export default function (pi: ExtensionAPI) {
     ],
   });
 }
+```
+
+`$LOCAL_OPENAI_API_KEY`는 환경 변수 참조다. 실제 호출 전에는 로컬 서버를 실행하고 값을 설정한다.
+
+```bash
+export LOCAL_OPENAI_API_KEY="replace-with-local-api-key"
 ```
 
 Pi에서 다시 로드한다.
@@ -436,13 +571,14 @@ SDK는 Pi를 다른 Node.js 프로그램 안에 넣을 때 사용한다.
 
 ### 준비
 
-임시 폴더에서 진행한다.
+Pi에서 `/login`을 완료했거나 사용할 provider의 API 키 환경 변수가 설정되어 있어야 한다. `/model`에서 기본 모델을 선택한 뒤 임시 폴더에서 진행한다.
 
 ```bash
 mkdir pi-sdk-practice
 cd pi-sdk-practice
 npm init -y
-npm install @earendil-works/pi-coding-agent
+npm install --ignore-scripts @earendil-works/pi-coding-agent@0.80.6
+mkdir -p scripts
 ```
 
 `package.json`에 아래 값을 추가한다.
@@ -499,6 +635,12 @@ node scripts/pi-check.mjs
 - 출력 스트림을 코드에서 받을 수 있다.
 - 같은 구조를 PR 점검, CI 리포트, 내부 포털에 붙일 수 있다.
 
+### 실패 점검
+
+- 인증 오류가 나오면 `/login` 상태 또는 provider API 키 환경 변수를 확인한다.
+- 모델 오류가 나오면 Pi의 `/model`에서 기본 모델을 다시 선택한다.
+- `scripts/pi-check.mjs`를 찾지 못하면 `scripts` 디렉터리와 실행 위치를 확인한다.
+
 ## 9. 패턴 8: RPC 모드로 다른 언어에서 붙이기
 
 RPC 모드는 Pi를 별도 프로세스로 실행하고 외부 프로그램에서 제어할 때 사용한다.
@@ -509,11 +651,47 @@ RPC 모드는 Pi를 별도 프로세스로 실행하고 외부 프로그램에�
 - Node.js가 아닌 언어에서도 붙일 수 있는 방식을 확인한다.
 - SDK와 RPC의 선택 기준을 구분한다.
 
+### 사전 조건
+
+Pi 0.80.6 이상에서 `/login`을 완료했거나 provider API 키 환경 변수를 설정한다. 요청 파일을 둘 디렉터리를 만든다.
+
+```bash
+pi --version
+mkdir -p scripts
+```
+
+### 파일 생성
+
+`scripts/pi-rpc-request.jsonl`을 만든다. JSON 객체 한 개를 한 줄에 작성하고 마지막에 줄바꿈을 둔다.
+
+```json
+{"id":"req-1","type":"prompt","message":"현재 디렉터리를 요약해줘"}
+```
+
 ### 실행
 
 ```bash
-pi --mode rpc --no-session
+pi --mode rpc --no-session < scripts/pi-rpc-request.jsonl
 ```
+
+RPC를 계속 제어하는 프로그램은 같은 형식의 JSON 객체를 stdin에 한 줄씩 보내고 stdout의 JSONL을 읽는다.
+
+### 확인할 결과
+
+요청이 수락되면 stdout 이벤트 중 아래 응답을 확인할 수 있다.
+
+```json
+{"id":"req-1","type":"response","command":"prompt","success":true}
+```
+
+이후 모델 응답이 이벤트로 이어지고 작업이 끝나면 종료 이벤트가 출력된다.
+
+### 실패 점검
+
+- JSON 파싱 오류가 나오면 요청이 한 줄짜리 JSON인지와 마지막 줄바꿈을 확인한다.
+- `success:false`가 나오면 같은 `id`의 응답에 포함된 오류 내용을 확인한다.
+- 인증·모델 오류가 나오면 `/login`, API 키, 기본 모델 설정을 확인한다.
+- 프로세스가 계속 실행되면 RPC는 지속 통신 모드이므로 stdin을 닫거나 프로세스를 종료한다.
 
 ### 활용 기준
 
@@ -600,6 +778,8 @@ Pi 세션은 이전 지점으로 돌아가 다른 방향으로 이어갈 수 있
 
 프로젝트에서 만든 Extension, prompt, skill이 반복 사용되면 package로 묶는다.
 
+먼저 `PI/examples/basic-pi-package`로 설치와 호출을 확인한다. 아래 `my-pi-package`는 새 package를 설계할 때 바꿔 쓰는 placeholder다.
+
 ### 목표
 
 - 로컬 실험을 재사용 가능한 단위로 만든다.
@@ -622,6 +802,8 @@ my-pi-package/
 ```json
 {
   "name": "my-pi-package",
+  "version": "1.0.0",
+  "private": true,
   "keywords": ["pi-package"],
   "pi": {
     "extensions": ["./extensions"],
@@ -635,7 +817,7 @@ my-pi-package/
 로컬 package를 설치해 확인한다.
 
 ```bash
-pi install -l ./my-pi-package
+pi install -l ./path/to/my-pi-package
 ```
 
 ### 활용 기준
@@ -690,5 +872,6 @@ Customization 리소스는 목적에 맞게 나눠 쓴다.
 
 ## 이력관리
 
+- 2026-07-13: 중급 확장·자동화 문서로 제목을 정리하고 실행 가능한 basic-pi-package와 prompt, skill, custom tool, Custom Provider, SDK, RPC 실습 절차를 보완했으며 Pi 0.80.6의 Project Trust와 package source 출력 기준 반영
 - 2026-05-12: Customization 선택 기준 추가 및 삭제된 예시 package 참조 제거
 - 2026-05-11: 직접 따라 할 수 있는 실습 흐름으로 재작성

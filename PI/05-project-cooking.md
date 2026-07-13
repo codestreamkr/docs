@@ -197,21 +197,20 @@ README의 로컬 실행 방법이 현재 프로젝트와 맞는지 확인하고 
 
 필요한 기능이 이미 만들어져 있으면 Pi package로 설치한다.
 
-프로젝트 전용으로 설치한다.
+이 문서 저장소 자체에서 예제 package의 `package.json`, prompt, skill을 검토한 뒤 프로젝트 전용으로 설치한다. `--approve`는 현재 명령에서 검토한 프로젝트 로컬 리소스를 승인한다.
 
 ```bash
-pi install -l npm:@scope/pi-package
-pi install -l git:github.com/user/pi-package
-pi install -l ./PI/examples/basic-pi-package
+pi install -l ./PI/examples/basic-pi-package --approve
+pi list --approve
 ```
 
-설치된 package를 확인한다.
+Pi 안에서 `/trust`로 신뢰 결정을 저장한다.
 
-```bash
-pi list
+```text
+/trust
 ```
 
-예시 package를 설치했다면 PR 준비 템플릿을 실행할 수 있다.
+Pi를 종료하고 저장소 루트에서 다시 시작한다. 예시 package를 설치했다면 PR 준비 템플릿을 실행할 수 있다.
 
 ```text
 /ready-pr
@@ -223,6 +222,15 @@ pi list
 /skill:project-check
 ```
 
+외부 package를 설치할 때는 placeholder를 실제 package 이름이나 repository로 바꾼다.
+
+```bash
+pi install -l npm:@scope/pi-package
+pi install -l git:github.com/organization/pi-package
+```
+
+예제 호출이 보이지 않으면 저장소 루트에서 설치했는지, `/trust` 저장 후 Pi를 재시작했는지 확인한다.
+
 package 사용 기준은 아래와 같다.
 
 - 이미 있는 기능은 설치해서 사용한다.
@@ -232,38 +240,39 @@ package 사용 기준은 아래와 같다.
 
 ## 흐름 9. package로 묶을 후보 정리하기
 
-하나의 프로젝트에서 검증된 Extension, prompt, skill은 package 후보가 된다.
+하나의 프로젝트에서 검증된 Extension, prompt, skill은 package 후보가 된다. 이 저장소에서는 실제 `basic-pi-package`를 기준으로 구조를 확인한다.
 
-권장 구조는 아래와 같다.
+예제 구조는 아래와 같다.
 
 ```text
-my-pi-package/
+PI/examples/basic-pi-package/
 ├── package.json
-├── extensions/
 ├── prompts/
-├── skills/
-└── themes/
+│   └── ready-pr.md
+└── skills/
+    └── project-check/
+        └── SKILL.md
 ```
 
 `package.json`에는 `pi` 항목을 둔다.
 
 ```json
 {
-  "name": "my-pi-package",
+  "name": "pi-basic-example-package",
+  "version": "1.0.0",
+  "private": true,
   "keywords": ["pi-package"],
   "pi": {
-    "extensions": ["./extensions"],
     "prompts": ["./prompts"],
-    "skills": ["./skills"],
-    "themes": ["./themes"]
+    "skills": ["./skills"]
   }
 }
 ```
 
-로컬 package는 바로 설치해 확인한다.
+이 문서 저장소에서는 로컬 package를 바로 설치해 확인한다.
 
 ```bash
-pi install -l ./my-pi-package
+pi install -l ./PI/examples/basic-pi-package
 ```
 
 ## 주의할 점
@@ -276,5 +285,6 @@ pi install -l ./my-pi-package
 
 ## 이력관리
 
+- 2026-07-13: 실행 가능한 basic-pi-package 기준으로 설치, 외부 source 형식과 package 구조 예시를 정리하고 Pi 0.80.6의 Project Trust와 package source 확인 절차 반영
 - 2026-05-12: 긴 작업에서 세션 분기와 compaction 선택 기준 보강
 - 2026-05-11: 최초 생성

@@ -1,39 +1,89 @@
 # CodeStream 기술문서
 
-CodeStream 작업 방식과 도구 활용 가이드를 정리하는 문서 저장소다.
+새로운 기능을 만들고 어려운 문제를 해결하는 공통 작업 방식과 AI별 실행 방법을 안내한다.
 
-## ClaudeCode
+사용자는 먼저 문제에 맞는 Master와 Playbook을 선택한다. Codex와 Claude Code 문서는 같은 작업을 각 플랫폼에서 실행하는 설정, Skill과 명령만 다룬다.
 
-Claude Code 관련 사용법과 작업 가이드를 정리한다.
+## 처음 시작하기
 
-참고 Git 저장소: <https://github.com/codestreamkr/claude-code-init>  
-Claude Code 환경 설치와 설정 동기화를 위한 저장소다.
+현재 목적에 맞는 경로를 선택한다.
 
-## Codex
+1. 함께할 전문가를 찾는다: [Masters](./Masters/README.md)
+2. 작업 순서를 고른다: [문제 해결 Playbook](./Playbooks/README.md)
+3. 현재 AI에서 실행 방법을 확인한다: [Codex](./Platforms/Codex/README.md) 또는 [Claude Code](./Platforms/ClaudeCode/README.md)
+4. 코드 변경과 협업이 필요하면 [Git 필수 가이드](./Git/README.md)를 연결한다.
 
-OpenAI Codex를 실제 작업 환경에 맞춰 쓰는 기준을 정리한다.
+웹 목차에서 전체 문서를 찾으려면 [CodeStream 기술문서 목록](./index.md)을 사용한다.
 
-참고 공식 문서: <https://developers.openai.com/codex/>  
-Codex App, CLI, IDE, Cloud, Browser, Skills를 함께 써서 작업을 맡기고 검토하고 이어가는 기준을 확인하는 문서다.
+## 문서 구성
 
-## 고수 가이드
+각 영역은 하나의 책임만 담당한다.
 
-ClaudeCode와 Codex에서 함께 참고할 수 있는 전문가형 작업 가이드를 정리한다.
+| 영역 | 책임 | 시작 문서 |
+| --- | --- | --- |
+| Masters | 친근한 전문가의 역할, 입력, 결과와 완료 기준 | [누구를 찾을까](./Masters/README.md) |
+| Playbooks | 여러 Master와 작업 단계를 연결하는 공통 순서 | [문제 해결 Playbook](./Playbooks/README.md) |
+| Codex | Codex 설치, `AGENTS.md`, Skill과 명령 | [Codex 사용 안내](./Platforms/Codex/README.md) |
+| Claude Code | Claude Code 설치, `CLAUDE.md`, Skill·Agent와 명령 | [Claude Code 사용 안내](./Platforms/ClaudeCode/README.md) |
+| Pi | Pi 설치, 세션, 프로젝트 적용과 확장 | [Pi 학습 가이드](./PI/README.md) |
+| Git | 변경 확인, 커밋, 복구, 브랜치와 충돌 해결 | [Git 필수 가이드](./Git/README.md) |
 
-## Git
+## 지금 필요한 일
 
-Git 작업 중 자주 쓰는 개념과 변경 관리 기준을 정리한다.
+문제 상황에서 바로 시작한다.
 
-## 라이선스
+| 필요한 일 | 함께할 Master | Playbook |
+| --- | --- | --- |
+| 아이디어를 기능으로 구체화한다 | [잡스형](./Masters/jobs/product-planning.md) | [새로운 기능 만들기](./Playbooks/feature-development.md) |
+| 느린 SQL의 원인을 찾는다 | [대부님](./Masters/godfather/query-tuning.md) | [어려운 문제 풀기](./Playbooks/difficult-problem-solving.md) |
+| Spring 기능을 설계하고 구현한다 | [로드형](./Masters/rod/README.md) | [계획하고 구현하기](./Playbooks/planning-and-implementation.md) |
+| 결제·인증·메시징을 연동하거나 전환한다 | [호페형](./Masters/hoppe/external-integration.md) | [구조 전환하기](./Playbooks/architecture-transition.md) |
+| 기능의 결함과 위험을 검증한다 | [루신](./Masters/lucin/quality-assurance.md) | [분석하고 테스트하기](./Playbooks/analysis-and-testing.md) |
 
-저장소의 원본 문서와 예제는 MIT License를 따른다.
+## AI별 구현 기준
 
-브랜드 로고와 외부 서비스명은 각 권리자의 상표와 사용 정책을 따른다.
+활용 방식과 플랫폼 구현의 정본을 분리한다.
 
-자세한 예외 범위는 [NOTICE.md](./NOTICE.md)를 확인한다.
+- Master의 역할과 완료 조건: `Masters`
+- 여러 단계의 작업 순서: `Playbooks`
+- Codex Skill과 명령: `Platforms/Codex`
+- Claude Code Skill·Agent와 명령: `Platforms/ClaudeCode`
+- 아직 적용되지 않은 플랫폼 기능: 해당 연결 문서에 `적용 예정` 표시
+
+같은 Master를 어느 플랫폼에서 호출하더라도 필수 입력과 결과 기준은 동일하게 유지한다.
+
+## Git 문서 활용
+
+Git 과정은 공통 학습 가이드에서 시작하고 필요한 작업 문서로 이동한다.
+
+- 전체 학습 순서와 완료 기준: [개발자를 위한 Git 필수 가이드](./Git/README.md)
+- 작업 상태와 변경 범위 확인: [Git 상태와 변경 확인](./Git/git_01_worktree_guide.md)
+- 안전한 커밋 작성: [Git 변경 확인과 커밋](./Git/git_02_apply_guide.md)
+- 브랜치 생성과 원격 동기화: [Git 브랜치와 원격 협업](./Git/git_04_branch_remote_guide.md)
+- merge, rebase와 충돌 처리: [Git 변경 통합과 충돌 해결](./Git/git_05_integration_conflict_guide.md)
+- 로컬 변경과 공유 커밋 복구: [Git 되돌리기와 복구](./Git/git_03_reset_rebase_revert_guide.md)
+
+## 문서 사용 기준
+
+문서 원본과 웹 탐색 화면의 역할을 구분한다.
+
+- `README.md`: 저장소의 목적과 시작 경로
+- `index.md`: GitHub Pages 전체 목차
+- `Masters`: AI에 구속되지 않는 전문가 역할
+- `Playbooks`: AI에 구속되지 않는 작업 흐름
+- `Platforms`: 제품별 기능과 실행 방법
+- `NOTICE.md`: 라이선스 적용 범위와 제3자 권리
+
+제품 기능과 명령은 변경될 수 있으므로 플랫폼 문서의 공식 자료와 현재 설치 환경을 함께 확인한다.
+
+## 라이선스와 고지
+
+저장소에서 직접 작성한 문서와 예제는 [MIT License](./LICENSE)를 따른다.
+
+외부 서비스명, 상표, 브랜드 자산에는 각 권리자의 정책이 적용된다. 상세 범위는 [NOTICE.md](./NOTICE.md)를 확인한다.
 
 ## 이력관리
 
-- 2026-06-10: Codex 문서 설명을 App, CLI, Browser, Skill 활용 기준에 맞게 갱신
+- 2026-07-13: 저장소 시작 절차와 Git·Pi 안내를 정리하고 Masters·Playbooks·Codex·Claude Code의 공통 활용 및 플랫폼 구현 구조로 개편
 - 2026-05-11: Codex, 고수 가이드, Git 섹션과 라이선스 안내 추가
 - 2026-04-09: 최초 생성
