@@ -6,14 +6,14 @@
 
 | 영역 | 용도 | 링크 |
 | --- | --- | --- |
-| Masters | 함께 문제를 해결할 전문가 선택 | [열기](./Masters/README.html) |
-| Playbooks | 기능 개발, 분석, 테스트와 전환 순서 선택 | [열기](./Playbooks/README.html) |
-| Codex | Codex 설정, Skill과 명령 확인 | [열기](./Platforms/Codex/README.html) |
-| Claude Code | Claude Code 설정, Skill·Agent와 명령 확인 | [열기](./Platforms/ClaudeCode/README.html) |
-| Pi | Pi 설치와 프로젝트 활용 | [열기](./PI/README.html) |
-| Git | 코드 변경과 협업 절차 | [열기](./Git/README.html) |
+| Masters | 함께 문제를 해결할 전문가 선택 | [열기](./Masters/) |
+| Playbooks | 기능 개발, 분석, 테스트와 전환 순서 선택 | [열기](./Playbooks/) |
+| Codex | Codex 설정, Skill과 명령 확인 | [열기](./Platforms/Codex/) |
+| Claude Code | Claude Code 설정, Skill·Agent와 명령 확인 | [열기](./Platforms/ClaudeCode/) |
+| Pi | Pi 설치와 프로젝트 활용 | [열기](./PI/) |
+| Git | 코드 변경과 협업 절차 | [열기](./Git/) |
 
-저장소의 문서 역할과 사용 순서는 [README](./README.html)에서 확인한다.
+저장소의 문서 역할과 사용 순서는 [README](https://github.com/codestreamkr/docs/blob/main/README.md)에서 확인한다.
 
 ## 문제에서 시작하기
 
@@ -23,11 +23,11 @@
 | --- | --- | --- |
 | 아이디어는 있지만 사용자와 기능 범위가 불명확하다 | [잡스형](./Masters/jobs/product-planning.html) | [새로운 기능 만들기](./Playbooks/feature-development.html) |
 | SQL이 느리거나 DB 부하 원인을 찾아야 한다 | [대부님](./Masters/godfather/query-tuning.html) | [어려운 문제 풀기](./Playbooks/difficult-problem-solving.html) |
-| Spring 기능을 설계하거나 실제 코드로 구현해야 한다 | [로드형](./Masters/rod/README.html) | [계획하고 구현하기](./Playbooks/planning-and-implementation.html) |
+| Spring 기능을 설계하거나 실제 코드로 구현해야 한다 | [로드형](./Masters/rod/) | [계획하고 구현하기](./Playbooks/planning-and-implementation.html) |
 | 외부 API, 웹훅 또는 벤더 전환 구조가 필요하다 | [호페형](./Masters/hoppe/external-integration.html) | [구조 전환하기](./Playbooks/architecture-transition.html) |
 | 기능의 위험을 찾고 회귀 테스트로 남겨야 한다 | [루신](./Masters/lucin/quality-assurance.html) | [분석하고 테스트하기](./Playbooks/analysis-and-testing.html) |
 
-실행할 AI를 정한 뒤 [Codex](./Platforms/Codex/README.html) 또는 [Claude Code](./Platforms/ClaudeCode/README.html) 연결 문서에서 Skill과 명령을 확인한다.
+실행할 AI를 정한 뒤 [Codex](./Platforms/Codex/) 또는 [Claude Code](./Platforms/ClaudeCode/) 연결 문서에서 Skill과 명령을 확인한다.
 
 ## Masters
 
@@ -37,7 +37,7 @@ Masters는 AI 제품과 관계없이 같은 이름과 역할로 사용한다.
 | --- | --- | --- |
 | 잡스형 | 서비스·제품 기획 | [열기](./Masters/jobs/product-planning.html) |
 | 대부님 | 쿼리 튜닝 | [열기](./Masters/godfather/query-tuning.html) |
-| 로드형 | Spring 개발 | [열기](./Masters/rod/README.html) |
+| 로드형 | Spring 개발 | [열기](./Masters/rod/) |
 | 로드형 | Spring Data JPA | [열기](./Masters/rod/jpa.html) |
 | 로드형 | Spring Security | [열기](./Masters/rod/security.html) |
 | 로드형 | Spring MVC·REST API | [열기](./Masters/rod/mvc-rest-api.html) |
@@ -66,7 +66,7 @@ Codex 문서는 공통 활용 방식을 Codex 기능에 연결한다.
 
 | 문서 | 링크 |
 | --- | --- |
-| Codex 사용 안내 | [열기](./Platforms/Codex/README.html) |
+| Codex 사용 안내 | [열기](./Platforms/Codex/) |
 | Codex 시작하기 | [열기](./Platforms/Codex/getting-started.html) |
 | 프로젝트 설정 | [열기](./Platforms/Codex/project-configuration.html) |
 | Master 연결표 | [열기](./Platforms/Codex/master-bindings.html) |
@@ -80,7 +80,7 @@ Claude Code 문서는 현재 적용된 Command와 앞으로 적용할 Skill을 �
 
 | 문서 | 링크 |
 | --- | --- |
-| Claude Code 사용 안내 | [열기](./Platforms/ClaudeCode/README.html) |
+| Claude Code 사용 안내 | [열기](./Platforms/ClaudeCode/) |
 | Claude Code 시작하기 | [열기](./Platforms/ClaudeCode/getting-started.html) |
 | 프로젝트 설정 | [열기](./Platforms/ClaudeCode/project-configuration.html) |
 | Master 연결표와 적용 상태 | [열기](./Platforms/ClaudeCode/master-bindings.html) |
@@ -94,7 +94,7 @@ Pi는 기존 학습 과정을 유지한다.
 
 | 번호 | 문서 | 링크 |
 | --- | --- | --- |
-| 안내 | Pi 학습 가이드 | [열기](./PI/README.html) |
+| 안내 | Pi 학습 가이드 | [열기](./PI/) |
 | 01 | Pi 시작하기 | [열기](./PI/01-getting-started-and-key-concepts.html) |
 | 02 | Pi 기본 개념 | [열기](./PI/02-understanding-core-concepts.html) |
 | 03 | Pi 확장과 자동화 | [열기](./PI/03-applying-core-concepts.html) |
@@ -109,7 +109,7 @@ Git 문서는 플랫폼과 관계없이 코드 변경과 협업에 사용한다.
 
 | 번호 | 문서 | 링크 |
 | --- | --- | --- |
-| 안내 | 개발자를 위한 Git 필수 가이드 | [열기](./Git/README.html) |
+| 안내 | 개발자를 위한 Git 필수 가이드 | [열기](./Git/) |
 | 01 | 상태와 변경 확인 | [열기](./Git/git_01_worktree_guide.html) |
 | 02 | 변경 확인과 커밋 | [열기](./Git/git_02_apply_guide.html) |
 | 03 | 되돌리기와 복구 | [열기](./Git/git_03_reset_rebase_revert_guide.html) |
@@ -118,13 +118,13 @@ Git 문서는 플랫폼과 관계없이 코드 변경과 협업에 사용한다.
 
 ## 공통 안내
 
-- [저장소 사용 안내](./README.html)
+- [저장소 사용 안내](https://github.com/codestreamkr/docs/blob/main/README.md)
 - [라이선스 원문](./LICENSE)
 - [제3자 권리와 브랜드 자산 고지](./NOTICE.html)
 
 ## 이력관리
 
-- 2026-07-13: Pi·Git 탐색 구조를 유지하고 Masters, Playbooks와 AI별 플랫폼 문서를 분리했으며 문제별 Master·Playbook 시작 경로를 추가
+- 2026-07-13: Pi·Git 탐색 구조를 유지하고 Masters, Playbooks와 AI별 플랫폼 문서를 분리했으며 문제별 Master·Playbook 시작 경로를 추가하고 폴더 README의 GitHub Pages 링크 수정
 - 2026-05-19: GitHub Pages 문서 링크를 HTML 렌더링 경로로 수정
 - 2026-05-11: Codex 섹션 추가 및 레이아웃 개선
 - 2026-04-09: 최초 생성
