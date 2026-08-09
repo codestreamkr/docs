@@ -12,6 +12,7 @@
 | Claude Code | Claude Code 설정, Skill·Agent와 명령 확인 | [열기](./Platforms/ClaudeCode/) |
 | Pi | Pi 설치와 프로젝트 활용 | [열기](./PI/) |
 | Git | 코드 변경과 협업 절차 | [열기](./Git/) |
+| Python | Python 생태계와 웹 백엔드 구현 기준 | [열기](./Python/) |
 
 저장소의 문서 역할과 사용 순서는 [README](https://github.com/codestreamkr/docs/blob/main/README.md)에서 확인한다.
 
@@ -26,6 +27,7 @@
 | Spring 기능을 설계하거나 실제 코드로 구현해야 한다 | [로드형](./Masters/rod/) | [계획하고 구현하기](./Playbooks/planning-and-implementation.html) |
 | 외부 API, 웹훅 또는 벤더 전환 구조가 필요하다 | [호페형](./Masters/hoppe/external-integration.html) | [구조 전환하기](./Playbooks/architecture-transition.html) |
 | 기능의 위험을 찾고 회귀 테스트로 남겨야 한다 | [루신](./Masters/lucin/quality-assurance.html) | [분석하고 테스트하기](./Playbooks/analysis-and-testing.html) |
+| Python 프로젝트의 환경, 구조와 운영 기준을 잡아야 한다 | [Python 개발 가이드](./Python/) | [계획하고 구현하기](./Playbooks/planning-and-implementation.html) |
 
 실행할 AI를 정한 뒤 [Codex](./Platforms/Codex/) 또는 [Claude Code](./Platforms/ClaudeCode/) 연결 문서에서 Skill과 명령을 확인한다.
 
@@ -116,6 +118,22 @@ Git 문서는 플랫폼과 관계없이 코드 변경과 협업에 사용한다.
 | 04 | 브랜치와 원격 협업 | [열기](./Git/git_04_branch_remote_guide.html) |
 | 05 | 변경 통합과 충돌 해결 | [열기](./Git/git_05_integration_conflict_guide.html) |
 
+## Python
+
+Python 문서는 생태계 기반을 먼저 다루고 웹 백엔드 구현으로 이어진다.
+
+| 번호 | 문서 | 링크 |
+| --- | --- | --- |
+| 안내 | 개발자를 위한 Python 개발 가이드 | [열기](./Python/) |
+| 01 | Python 생태계 지도 | [열기](./Python/python_01_ecosystem_overview.html) |
+| 02 | 실행 환경과 가상환경 | [열기](./Python/python_02_runtime_environment_guide.html) |
+| 03 | 패키징과 의존성 관리 | [열기](./Python/python_03_packaging_dependency_guide.html) |
+| 04 | 코드 품질 도구 | [열기](./Python/python_04_quality_tools_guide.html) |
+| 05 | 웹 백엔드 구조 선택 | [열기](./Python/python_05_web_backend_structure_guide.html) |
+| 06 | 데이터 접근과 마이그레이션 | [열기](./Python/python_06_web_data_access_guide.html) |
+| 07 | API 계약과 인증 | [열기](./Python/python_07_web_api_contract_guide.html) |
+| 08 | 실행과 운영 | [열기](./Python/python_08_web_runtime_operations_guide.html) |
+
 ## 공통 안내
 
 - [저장소 사용 안내](https://github.com/codestreamkr/docs/blob/main/README.md)
@@ -124,6 +142,7 @@ Git 문서는 플랫폼과 관계없이 코드 변경과 협업에 사용한다.
 
 ## 이력관리
 
+- 2026-08-09: Python 개발 가이드 목차와 문제별 시작 경로 추가
 - 2026-07-13: Pi·Git 탐색 구조를 유지하고 Masters, Playbooks와 AI별 플랫폼 문서를 분리했으며 문제별 Master·Playbook 시작 경로를 추가하고 폴더 README의 GitHub Pages 링크 수정
 - 2026-05-19: GitHub Pages 문서 링크를 HTML 렌더링 경로로 수정
 - 2026-05-11: Codex 섹션 추가 및 레이아웃 개선
