@@ -136,7 +136,7 @@ def test_수량이_0이면_검증에_실패한다(client, auth_headers):
 - 비동기 테스트: `pytest-asyncio`와 `httpx.AsyncClient`를 사용한다.
 - 데이터 준비: 테스트마다 독립적으로 만들고 실행 순서에 의존하지 않는다.
 
-테스트 설계 범위와 회귀 검증 절차는 [루신](../Masters/lucin/quality-assurance.md)과 [분석하고 테스트하기](../Playbooks/analysis-and-testing.md)를 연결한다.
+테스트 설계 범위와 회귀 검증 절차는 [08 오픈 전 품질을 검증한다](../Playbooks/08-verify-before-release.md)와 연결한다.
 
 ## 로깅
 

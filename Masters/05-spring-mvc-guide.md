@@ -1,6 +1,0 @@
-# Spring MVC 문서 이동 안내
-
-<meta http-equiv="refresh" content="0; url=./rod/mvc-rest-api.html">
-
-이 문서는 [로드형의 MVC와 REST API](./rod/mvc-rest-api.md)로 이동했다.
-

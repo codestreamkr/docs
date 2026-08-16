@@ -2,11 +2,11 @@
 
 여러 결과가 필요한 작업에서는 앞 단계의 확정된 결과를 다음 Skill의 입력으로 연결한다.
 
-아래 흐름은 예시다. 현재 프로젝트에 필요하지 않은 단계는 사용하지 않는다.
+문제 유형별 흐름과 단계별 판단 기준은 [Playbook](../../Playbooks/README.md)에서 관리한다. 이 문서는 Pi에서의 호출과 연결 방법만 다룬다.
 
-## Spring 기능 개발
+## 호출과 연결
 
-구현 범위가 불명확하면 계획부터 시작한다.
+Skill 이름 앞에 `/skill:`을 붙이고, 앞 단계가 만든 결과를 다음 호출에서 지정한다.
 
 ```text
 /skill:ct-plan impl 주문 취소의 중복 요청 방지 기능
@@ -16,76 +16,6 @@
 /skill:ct-qa-lucin 주문 취소의 정상·중복·외부 실패 흐름을 검증해줘
 ```
 
-결과 연결:
-
-1. `ct-plan`이 변경 대상과 검증 기준을 확정한다.
-2. `ct-spring`이 현재 버전과 관례에 맞춰 구현한다.
-3. `ct-qa-lucin`이 사용자 결과와 실패 경로를 검증한다.
-
-## 외부 서비스 이관
-
-공급자 계약과 내부 영향부터 분리한다.
-
-```text
-/skill:ct-external-architect 기존 PG를 신규 PG로 이관하는 구조를 설계해줘
-        ↓
-/skill:ct-plan impl 확정된 이관 설계를 단계별 구현 계획으로 작성해줘
-        ↓
-/skill:ct-spring 계획의 첫 단계인 신규 PG 어댑터를 구현해줘
-        ↓
-/skill:ct-qa-lucin 병행 운영, 중복 요청과 공급자 지연을 검증해줘
-```
-
-공급자 API의 현재 계약은 `ct-external-architect`가 공식 자료에서 확인하고, 구현은 프로젝트에 적용할 단계가 확정된 뒤 진행한다.
-
-## 호출 구조 분석과 전환
-
-대상 심볼의 현재 흐름을 근거로 전환과 테스트를 연결한다.
-
-```text
-/skill:ct-calltree analyze OrderService.cancel
-        ↓
-/skill:ct-calltree transition OrderService.cancel
-        ↓
-/skill:ct-calltree test 생성한 전환 계획
-```
-
-기존 구조를 유지한 테스트만 필요하면 `analyze` 다음에 바로 `test`를 사용할 수 있다.
-
-## SQL 성능 개선
-
-측정 근거를 먼저 확보하고 코드 변경이 필요한 경우에만 구현을 연결한다.
-
-```text
-/skill:ct-query-tuner OrderMapper.findOrders의 실행 계획을 분석해줘
-        ↓
-/skill:ct-plan impl 확정된 쿼리 개선안의 적용과 검증 순서를 작성해줘
-        ↓
-/skill:ct-spring 계획에 따라 Mapper와 관련 코드를 수정해줘
-        ↓
-/skill:ct-qa-lucin 주문 조회 결과와 회귀 범위를 검증해줘
-```
-
-쿼리나 인덱스 변경만으로 끝나면 Spring 구현 단계는 사용하지 않는다.
-
-## 위키 수집과 반영
-
-원격 위키 원문과 프로젝트 Markdown 위키의 책임을 나눈다.
-
-```text
-/skill:ct-wiki-api 333 페이지와 하위 페이지를 저장해줘
-        ↓
-/skill:ct-wiki-ops capture 저장한 원문
-        ↓
-/skill:ct-wiki-ops ingest 저장한 원문
-        ↓
-/skill:ct-wiki-ops verify 갱신된 위키 문서
-```
-
-`ct-wiki-api`는 원격 API 작업을, `ct-wiki-ops`는 저장소 안의 위키 구조와 내용 품질을 담당한다.
-
-## 결과 전달 기준
-
 다음 Skill을 호출할 때 앞 단계의 결과 중 필요한 항목을 지정한다.
 
 - 확정된 범위와 제외 범위
@@ -94,6 +24,21 @@
 - 검증 기준과 미확인 사항
 
 대화만으로 대상을 구분하기 어렵다면 앞 단계가 만든 문서나 파일 경로를 함께 전달한다.
+
+## 문제 유형별 흐름
+
+| 필요한 결과 | Playbook |
+| --- | --- |
+| 만들 것의 범위와 완료 조건을 정한다 | [01 무엇을 만들지 정한다](../../Playbooks/01-define-scope.md) |
+| 확정된 계획을 코드로 반영하고 검증한다 | [02 기능을 구현하고 검증한다](../../Playbooks/02-implement-and-verify.md) |
+| 기존 코드의 실제 동작을 파악한다 | [03 낯선 코드를 파악한다](../../Playbooks/03-understand-code.md) |
+| 느린 조회의 원인을 찾고 개선한다 | [04 느린 SQL을 개선한다](../../Playbooks/04-tune-sql.md) |
+| 기존 구조를 유지하면서 새 구조로 옮긴다 | [05 구조를 전환한다](../../Playbooks/05-transition-structure.md) |
+| 외부 서비스를 붙이거나 공급자를 바꾼다 | [06 외부 서비스를 연동한다](../../Playbooks/06-integrate-external.md) |
+| 무엇부터 손볼지 정하고 순서대로 반영한다 | [07 개선 과제를 정리해 반영한다](../../Playbooks/07-improve-module.md) |
+| 배포 전에 위험한 흐름을 검증한다 | [08 오픈 전 품질을 검증한다](../../Playbooks/08-verify-before-release.md) |
+| 빌드와 실행 절차를 재현 가능하게 만든다 | [09 실행 환경을 준비한다](../../Playbooks/09-prepare-runtime.md) |
+| 흩어진 지식을 위키로 정리한다 | [10 지식을 위키로 남긴다](../../Playbooks/10-operate-wiki.md) |
 
 ## 긴 작업의 맥락 관리
 
@@ -107,3 +52,6 @@
 
 단계 사이에 맥락을 정리한 경우 다음 Skill 호출에 필요한 결과 문서와 경로를 다시 지정한다.
 
+## 확인
+
+각 Skill의 입력과 결과는 [사용자 Skill](./skills.md)에서, 세션 명령은 [명령 확인](./commands.md)에서 확인한다.

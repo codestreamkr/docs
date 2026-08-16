@@ -6,7 +6,7 @@
     </a>
     <nav aria-label="주요 문서 영역">
       <a href="#platforms">AI 플랫폼</a>
-      <a href="#work-guides">작업 가이드</a>
+      <a href="#work-guides">Playbook</a>
       <a href="#development">개발 가이드</a>
     </nav>
     <a class="cs-all-link" href="#directory">전체 문서 <span aria-hidden="true">↓</span></a>
@@ -19,7 +19,7 @@
       <p class="cs-lead">플랫폼별 사용법부터 계획·구현·검증 절차까지.<br>필요한 문서로 바로 이동할 수 있는 CodeStream 가이드입니다.</p>
       <div class="cs-hero-actions">
         <a class="cs-primary" href="#platforms">가이드 살펴보기</a>
-        <a class="cs-secondary" href="#work-guides">작업별로 찾기 <span aria-hidden="true">→</span></a>
+        <a class="cs-secondary" href="#work-guides">문제 유형으로 찾기 <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
@@ -66,19 +66,20 @@
     <section class="cs-section cs-guides" id="work-guides" aria-labelledby="work-guides-title">
       <div class="cs-section-heading">
         <div>
-          <p class="cs-kicker">WORK GUIDES</p>
-          <h2 id="work-guides-title">무엇을 하려 하나요?</h2>
+          <p class="cs-kicker">PLAYBOOK</p>
+          <h2 id="work-guides-title">지금 필요한 결과는?</h2>
         </div>
-        <p>제품이 아닌 목적을 기준으로<br>필요한 절차를 찾아보세요.</p>
+        <p>제품이 아닌 문제 유형을 기준으로<br>어떤 결과를 어떤 순서로 만들지 찾습니다.</p>
       </div>
       <div class="cs-guide-list">
-        <a href="./Playbooks/project-setup.html"><span class="cs-guide-number">01</span><strong>준비하기</strong><span>프로젝트 구조와 작업 기준을 먼저 파악합니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/feature-development.html"><span class="cs-guide-number">02</span><strong>기능 만들기</strong><span>아이디어를 계획, 구현과 검증으로 연결합니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/planning-and-implementation.html"><span class="cs-guide-number">03</span><strong>계획하고 구현하기</strong><span>개선 우선순위부터 실제 코드 변경까지 진행합니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/analysis-and-testing.html"><span class="cs-guide-number">04</span><strong>분석하고 테스트하기</strong><span>호출 흐름을 분석하고 검증 가능한 테스트로 남깁니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/architecture-transition.html"><span class="cs-guide-number">05</span><strong>구조 전환하기</strong><span>레거시와 외부 의존을 안전한 순서로 바꿉니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/01-define-scope.html"><span class="cs-guide-number">01</span><strong>무엇을 만들지 정한다</strong><span>범위, 흐름과 완료 조건을 구현 전에 확정합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/02-implement-and-verify.html"><span class="cs-guide-number">02</span><strong>구현하고 검증한다</strong><span>확정된 계획을 반영하고 실패 경로까지 확인합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/03-understand-code.html"><span class="cs-guide-number">03</span><strong>낯선 코드를 파악한다</strong><span>실제 호출 흐름과 외부 경계를 먼저 확인합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/04-tune-sql.html"><span class="cs-guide-number">04</span><strong>느린 SQL을 개선한다</strong><span>측정 근거를 확보한 뒤에 변경을 연결합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/05-transition-structure.html"><span class="cs-guide-number">05</span><strong>구조를 전환한다</strong><span>되돌릴 수 있는 단계로 나눠 옮깁니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/06-integrate-external.html"><span class="cs-guide-number">06</span><strong>외부 서비스를 연동한다</strong><span>공급자 계약과 내부 영향을 분리해 설계합니다.</span><b aria-hidden="true">→</b></a>
       </div>
-      <a class="cs-more-link" href="./Playbooks/">모든 작업 가이드 보기 <span aria-hidden="true">→</span></a>
+      <a class="cs-more-link" href="./Playbooks/">Playbook 10개 전체 보기 <span aria-hidden="true">→</span></a>
     </section>
 
     <section class="cs-section" id="development" aria-labelledby="development-title">
@@ -160,22 +161,24 @@
             <li><a href="./Platforms/Pi/workflows.html">작업 흐름 <span>→</span></a></li>
             <li><a href="./Platforms/Pi/extensions.html">확장 기능 <span>→</span></a></li>
             <li><a href="./Platforms/Pi/commands.html">명령 확인 <span>→</span></a></li>
-            <li><a href="./Platforms/Pi/reference/03-applying-core-concepts.html">심화 학습 자료 <span>→</span></a></li>
+            <li><a href="./Platforms/Pi/reference/01-getting-started-and-key-concepts.html">심화 학습 자료 <span>→</span></a></li>
           </ul>
         </section>
 
         <section class="cs-directory-group">
-          <h3>작업 가이드</h3>
+          <h3>Playbook</h3>
           <ul>
-            <li><a href="./Playbooks/">문제 해결 Playbook <span>→</span></a></li>
-            <li><a href="./Playbooks/safe-work-cycle.html">안전한 작업 흐름 <span>→</span></a></li>
-            <li><a href="./Playbooks/project-setup.html">프로젝트 준비하기 <span>→</span></a></li>
-            <li><a href="./Playbooks/difficult-problem-solving.html">어려운 문제 풀기 <span>→</span></a></li>
-            <li><a href="./Playbooks/feature-development.html">새로운 기능 만들기 <span>→</span></a></li>
-            <li><a href="./Playbooks/planning-and-implementation.html">계획하고 구현하기 <span>→</span></a></li>
-            <li><a href="./Playbooks/analysis-and-testing.html">분석하고 테스트하기 <span>→</span></a></li>
-            <li><a href="./Playbooks/architecture-transition.html">구조 전환하기 <span>→</span></a></li>
-            <li><a href="./Playbooks/workflow-automation.html">작업 방식 자동화하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/">Playbook 안내 <span>→</span></a></li>
+            <li><a href="./Playbooks/01-define-scope.html">01 무엇을 만들지 정한다 <span>→</span></a></li>
+            <li><a href="./Playbooks/02-implement-and-verify.html">02 기능을 구현하고 검증한다 <span>→</span></a></li>
+            <li><a href="./Playbooks/03-understand-code.html">03 낯선 코드를 파악한다 <span>→</span></a></li>
+            <li><a href="./Playbooks/04-tune-sql.html">04 느린 SQL을 개선한다 <span>→</span></a></li>
+            <li><a href="./Playbooks/05-transition-structure.html">05 구조를 전환한다 <span>→</span></a></li>
+            <li><a href="./Playbooks/06-integrate-external.html">06 외부 서비스를 연동한다 <span>→</span></a></li>
+            <li><a href="./Playbooks/07-improve-module.html">07 개선 과제를 정리해 반영한다 <span>→</span></a></li>
+            <li><a href="./Playbooks/08-verify-before-release.html">08 오픈 전 품질을 검증한다 <span>→</span></a></li>
+            <li><a href="./Playbooks/09-prepare-runtime.html">09 실행 환경을 준비한다 <span>→</span></a></li>
+            <li><a href="./Playbooks/10-operate-wiki.html">10 지식을 위키로 남긴다 <span>→</span></a></li>
           </ul>
         </section>
 
@@ -257,7 +260,7 @@
   #codestream-docs .cs-section-heading .cs-kicker { margin-bottom: 9px; }
   #codestream-docs h2 { margin: 0; font-size: 32px; letter-spacing: -.04em; }
   #codestream-docs .cs-section-heading > p { margin: 0; color: var(--cs-muted); font-size: 13px; line-height: 1.65; }
-  #codestream-docs .cs-platform-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  #codestream-docs .cs-platform-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
   #codestream-docs .cs-platform { position: relative; min-height: 224px; padding: 26px; border: 1px solid var(--cs-line); border-radius: 15px; background: var(--cs-panel); display: flex; flex-direction: column; transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
   #codestream-docs .cs-platform:hover, #codestream-docs .cs-development-card:hover { border-color: var(--cs-accent); transform: translateY(-2px); box-shadow: 0 10px 30px light-dark(rgba(20, 23, 22, .07), rgba(0, 0, 0, .2)); }
   #codestream-docs .cs-platform-icon { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--cs-line); border-radius: 9px; font-size: 16px; font-weight: 800; background: var(--cs-paper); }
@@ -295,6 +298,10 @@
   #codestream-docs .cs-footer { min-height: 70px; padding: 20px max(24px, calc((100% - 1120px) / 2)); display: flex; align-items: center; justify-content: space-between; gap: 24px; border-top: 1px solid var(--cs-line); color: var(--cs-muted); font-size: 11px; }
   #codestream-docs .cs-footer > span { color: var(--cs-ink); font-weight: 750; }
   #codestream-docs .cs-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 20px; }
+
+  @media (max-width: 980px) {
+    #codestream-docs .cs-platform-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
 
   @media (max-width: 760px) {
     #codestream-docs .cs-header { min-height: 62px; padding: 0 20px; gap: 18px; }

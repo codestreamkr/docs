@@ -2,7 +2,7 @@
 
 프로젝트에서 할 일을 고르고 필요한 사용자 Skill을 직접 호출한다.
 
-업무 역할과 결과 기준은 [Masters](../../Masters/README.md), 공통 작업 흐름은 [Playbooks](../../Playbooks/README.md)를 참고한다. 이 가이드는 Pi의 설정, Skill 호출과 확장 기능만 다룬다.
+문제 유형별 작업 흐름은 [Playbook](../../Playbooks/README.md)에서 관리한다. 이 가이드는 Pi의 설정, Skill 호출과 확장 기능만 다룬다.
 
 ## 바로 시작
 
