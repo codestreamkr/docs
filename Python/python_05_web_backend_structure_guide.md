@@ -207,6 +207,3 @@ def get_order(order_id: int, db: DbSession) -> OrderResponse:
 
 - 데이터 접근과 스키마 변경 기준을 정한다: [데이터 접근과 마이그레이션](./python_06_web_data_access_guide.md)
 
-## 이력관리
-
-- 2026-08-09: 프레임워크 선택 기준, Spring 대응 관계, 계층 구조, 앱 초기화와 설정·의존성 주입 기준 작성

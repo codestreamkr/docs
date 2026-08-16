@@ -207,6 +207,3 @@ uv run python manage.py sqlmigrate orders 0003   # 실행될 SQL 확인
 
 - 요청·응답 계약과 인증 기준을 정한다: [API 계약과 인증](./python_07_web_api_contract_guide.md)
 
-## 이력관리
-
-- 2026-08-09: SQLAlchemy 모델 매핑, 세션·트랜잭션 경계, 조회 패턴과 N+1 대응, 비동기 접근 기준, Alembic·Django 마이그레이션 절차와 무중단 변경 순서 작성

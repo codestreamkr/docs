@@ -96,8 +96,5 @@ getter, 로깅과 단순 DTO 필드 설정은 기본 흐름에서 제외한다.
 ## 플랫폼별 연결
 
 - [Codex 사용자 Skill](../Platforms/Codex/skills.md)
-- [Claude Code Skill·Command 사용](../Platforms/ClaudeCode/skill-usage.md)
+- [Claude Code 사용자 Skill](../Platforms/ClaudeCode/skills.md)
 
-## 이력관리
-
-- 2026-07-13: CallTree와 테스트 작성의 공통 판단 기준을 플랫폼 호출 문법에서 분리

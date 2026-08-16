@@ -14,7 +14,8 @@
 - 공통 작업 절차는 `Playbooks`에서 관리한다.
 - Codex 실행 방법은 `Platforms/Codex`에서 관리한다.
 - Claude Code 실행 방법은 `Platforms/ClaudeCode`에서 관리한다.
-- Pi 실행 방법은 `PI`에서 관리한다.
+- Grok Build 실행 방법은 `Platforms/GrokBuild`에서 관리한다.
+- Pi 실행 방법은 `Platforms/Pi`에서 관리한다.
 - Git 작업 절차는 `Git`에서 관리한다.
 - Python 생태계와 웹 백엔드 기준은 `Python`에서 관리한다.
 - 라이선스 적용 범위와 제3자 권리는 `NOTICE.md`에서 관리한다.

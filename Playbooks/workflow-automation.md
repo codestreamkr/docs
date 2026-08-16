@@ -80,8 +80,5 @@ Codex와 Claude Code의 결과가 같은 공통 기준을 충족하는지 확인
 ## 플랫폼별 문서
 
 - [Codex 사용자 Skill](../Platforms/Codex/skills.md)
-- [Claude Code Skill·Command 사용](../Platforms/ClaudeCode/skill-usage.md)
+- [Claude Code 사용자 Skill](../Platforms/ClaudeCode/skills.md)
 
-## 이력관리
-
-- 2026-07-13: 공통 계약과 AI별 Skill·Agent 구현을 분리하는 자동화 기준 생성

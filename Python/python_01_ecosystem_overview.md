@@ -95,6 +95,3 @@ python -m pip list            # 설치된 패키지 목록
 
 - 실행 환경을 프로젝트 기준으로 고정한다: [실행 환경과 가상환경](./python_02_runtime_environment_guide.md)
 
-## 이력관리
-
-- 2026-08-09: Python 생태계 계층, 인터프리터·버전 정책, PEP와 패키지 배포 경로, Java·Spring 대응 관계 작성

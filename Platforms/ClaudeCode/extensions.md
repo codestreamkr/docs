@@ -1,72 +1,90 @@
 # Claude Code 확장 기능
 
-반복 절차, 역할 분리, 외부 연결과 자동 검사는 서로 다른 확장 수단으로 구성한다.
+필요한 책임에 맞는 확장 수단을 선택한다.
 
-## 선택 기준
+## 선택표
 
-필요한 책임에 맞는 기능을 선택한다.
-
-| 필요한 것 | Claude Code 기능 |
+| 필요한 것 | 선택 |
 | --- | --- |
-| 저장소에서 계속 읽을 기준 | `CLAUDE.md` |
-| 반복 작업 절차와 전문 지식 | Skill |
-| 역할이 고정된 독립 작업 | Custom subagent |
-| 여러 독립 역할의 협력 | Agent team |
-| 외부 데이터와 도구 | MCP |
-| 결정적인 생명주기 검사 | Hook |
-| 여러 구성요소의 설치 단위 | Plugin |
+| 프로젝트에서 계속 적용할 작업 기준 | `CLAUDE.md` |
+| 특정 파일과 경로에만 적용할 기준 | `.claude/rules/` |
+| 반복 가능한 작업 절차, 전문 지식과 자원 | Skill |
+| 분리 가능한 작업의 별도 컨텍스트 | Subagent |
+| 외부 API, 서비스와 실시간 데이터 | MCP |
+| 도구 실행 전후의 결정적 자동 검사 | Hook |
+| 여러 구성요소를 배포하는 단위 | Plugin |
 
 ## Skill
 
-Skill은 `SKILL.md`와 선택적 참조 자료·스크립트로 구성한다.
+Skill은 반복 가능한 작업의 입력, 절차, 결과와 필요한 자원을 묶는다.
 
 - 개인 위치: `~/.claude/skills/<name>/SKILL.md`
-- 프로젝트 위치: `.claude/skills/<name>/SKILL.md`
+- 프로젝트 위치: `<repo>/.claude/skills/<name>/SKILL.md`
 - 직접 호출: `/skill-name`
-- 자연 호출: `description`과 현재 요청을 기준으로 선택
+- 자동 선택: `description`과 현재 요청을 기준으로 Claude가 선택
+- 선택 자원: `references/`, `scripts/`, `assets/`
 
-Claude Code의 기존 `.claude/commands/*.md`도 동작하지만 공식 문서에서는 Custom commands가 Skills에 통합되었다고 안내한다. 신규 공통 기능은 Skill 구조로 작성한다.
+frontmatter로 동작을 제한할 수 있다.
 
-## Custom subagent와 Agent team
+- `disable-model-invocation: true`: 사용자가 호출할 때만 실행한다.
+- `user-invocable: false`: Claude만 사용하는 배경 지식으로 둔다.
+- `allowed-tools`: 호출한 턴에서 승인 없이 사용할 도구를 지정한다.
 
-격리된 컨텍스트에서 역할을 반복할 때 사용한다.
+기존 `.claude/commands/*.md`도 계속 동작하지만 Custom command는 Skill로 통합되었다. 신규 공통 기능은 Skill 구조로 작성한다.
 
-- Custom subagent: 탐색, 리뷰, 검증처럼 독립된 단일 역할
-- Agent team: 서로 다른 역할이 결과와 메시지를 주고받는 협력 작업
+현재 사용자 Skill과 호출 예제는 [Skill 안내](./skills.md)에서 확인한다.
 
-Master를 항상 Agent로 구현할 필요는 없다. 현재 대화 안에서 함께 일하는 역할은 Skill로 구현하고, 격리된 독립 작업이 필요할 때 Agent를 연결한다.
+## Subagent
+
+서로 독립된 조사, 검증이나 구현을 별도 컨텍스트로 나눌 때 사용한다.
+
+- 개인 위치: `~/.claude/agents/<name>.md`
+- 프로젝트 위치: `<repo>/.claude/agents/<name>.md`
+- 주요 frontmatter: `description`, `tools`, `model`, `skills`
+
+적합한 예:
+
+- 서로 다른 모듈의 독립 분석
+- 보안, 품질과 성능의 별도 검토
+- 출력이 큰 작업의 컨텍스트 분리
+
+Subagent는 현재 대화의 파일과 맥락을 물려받지 않는다. 단계마다 결과를 주고받아야 하는 작업은 현재 대화에서 진행한다.
 
 ## MCP
 
-외부 서비스와 도구를 연결한다.
+외부 시스템의 현재 데이터를 읽거나 작업할 때 사용한다.
 
-- 로컬 프로세스 또는 원격 HTTP 서버
-- 프로젝트 공유 설정과 사용자별 설정 분리
-- `/mcp`에서 연결과 인증 상태 확인
-- 신뢰할 수 있는 서버와 최소 권한 사용
+```bash
+claude mcp add --transport http <name> <url>
+claude mcp list
+```
+
+- 범위: `local`은 현재 프로젝트 개인용, `project`는 `.mcp.json`으로 팀 공유, `user`는 모든 프로젝트
+- 인증: 환경 변수 또는 서버가 제공하는 인증 절차 사용
+- 확인: `/mcp`에서 연결과 도구 상태를 확인
 
 ## Hook
 
 모델 판단 없이 항상 실행할 검사를 연결한다.
 
-- 도구 실행 전후 검사
-- 세션 시작과 종료 처리
-- 파일 변경 뒤 formatter 또는 lint
-- 명령 차단과 감사 로그
+- 설정 위치: `settings.json`의 `hooks`
+- 도구 실행 전후: `PreToolUse`, `PostToolUse`
+- 세션 생명주기: `SessionStart`, `SessionEnd`, `Stop`
+- 그 외: 권한 요청, 컨텍스트 압축, 파일 변경 등 이벤트별 연결
+
+프로젝트의 의미와 맥락을 판단해야 하는 기준은 Hook이 아니라 `CLAUDE.md`나 Skill에서 제공한다.
 
 ## Plugin
 
-Skill, Agent, Hook과 MCP 설정을 배포 단위로 묶는다.
+Skill, Subagent, Hook과 MCP 설정을 하나의 설치 단위로 배포할 때 사용한다.
 
-팀에서 Masters 전체를 배포할 때 공통 문서를 복제하지 않고 Claude Code 구현과 연결 정보만 Plugin에 포함한다.
+하나의 개인 작업 절차만 필요하면 Skill로 시작하고, 여러 구성요소를 함께 배포할 때 Plugin을 검토한다.
 
-## 공식 문서 기준
+## 공식 문서
 
-- [Claude Code Skills](https://code.claude.com/docs/en/skills)
-- [Custom subagents](https://code.claude.com/docs/en/sub-agents)
-- [Claude Code MCP](https://code.claude.com/docs/en/mcp)
-- [Hooks](https://code.claude.com/docs/en/hooks-guide)
+- [Skills](https://code.claude.com/docs/en/skills)
+- [Subagents](https://code.claude.com/docs/en/sub-agents)
+- [MCP](https://code.claude.com/docs/en/mcp)
+- [Hooks](https://code.claude.com/docs/en/hooks)
+- [Plugins](https://code.claude.com/docs/en/plugins)
 
-## 이력관리
-
-- 2026-07-13: Commands의 Skill 통합과 Master 구현 기준을 반영해 Claude Code 확장 기능 재구성

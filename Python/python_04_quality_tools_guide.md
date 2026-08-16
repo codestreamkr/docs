@@ -172,6 +172,3 @@ uv run pytest
 
 - 웹 프레임워크와 프로젝트 구조를 정한다: [웹 백엔드 구조 선택](./python_05_web_backend_structure_guide.md)
 
-## 이력관리
-
-- 2026-08-09: Ruff, 타입 검사, pytest, pre-commit의 역할과 설정 기준, CI 검증 순서와 기존 프로젝트 도입 절차 작성

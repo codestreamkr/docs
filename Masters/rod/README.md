@@ -91,6 +91,3 @@ Spring 밖의 전문 판단이 필요하면 해당 Master에게 연결한다.
 - 외부 서비스 계약과 상태: [호페형](../hoppe/external-integration.md)
 - 위험 기반 검증: [루신](../lucin/quality-assurance.md)
 
-## 이력관리
-
-- 2026-07-13: 로드형 공통 역할과 네 가지 Spring 전문 분야의 선택 기준을 통합

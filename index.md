@@ -43,14 +43,21 @@
           <span class="cs-platform-icon cs-claude" aria-hidden="true">A</span>
           <span class="cs-platform-meta">AI CODING AGENT</span>
           <strong>Claude Code</strong>
-          <span class="cs-platform-copy">프로젝트 설정, Skill·Command와 확장 기능</span>
+          <span class="cs-platform-copy">환경 설정, Skill, 명령과 작업 흐름</span>
           <span class="cs-arrow" aria-hidden="true">→</span>
         </a>
-        <a class="cs-platform" href="./PI/">
+        <a class="cs-platform" href="./Platforms/GrokBuild/">
+          <span class="cs-platform-icon cs-grok" aria-hidden="true">G</span>
+          <span class="cs-platform-meta">AI CODING AGENT</span>
+          <strong>Grok Build</strong>
+          <span class="cs-platform-copy">환경 설정, Skill, 모델 연결과 확장 기능</span>
+          <span class="cs-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="cs-platform" href="./Platforms/Pi/">
           <span class="cs-platform-icon cs-pi" aria-hidden="true">π</span>
           <span class="cs-platform-meta">AI CODING AGENT</span>
           <strong>Pi</strong>
-          <span class="cs-platform-copy">설치, 프로젝트 적용과 확장·자동화</span>
+          <span class="cs-platform-copy">환경 설정, Skill, Extension과 모델 연결</span>
           <span class="cs-arrow" aria-hidden="true">→</span>
         </a>
       </div>
@@ -109,28 +116,51 @@
 
       <div class="cs-directory-grid">
         <section class="cs-directory-group">
-          <h3>AI 플랫폼</h3>
+          <h3>Codex</h3>
           <ul>
             <li><a href="./Platforms/Codex/">Codex 가이드 <span>→</span></a></li>
-            <li><a href="./Platforms/Codex/setup.html">Codex 환경 설정 <span>→</span></a></li>
-            <li><a href="./Platforms/Codex/skills.html">Codex Skill <span>→</span></a></li>
-            <li><a href="./Platforms/Codex/workflows.html">Codex 작업 흐름 <span>→</span></a></li>
-            <li><a href="./Platforms/Codex/extensions.html">Codex 확장 기능 <span>→</span></a></li>
-            <li><a href="./Platforms/Codex/commands.html">Codex 명령 확인 <span>→</span></a></li>
-            <li><a href="./Platforms/ClaudeCode/">Claude Code 안내 <span>→</span></a></li>
-            <li><a href="./Platforms/ClaudeCode/getting-started.html">Claude Code 시작하기 <span>→</span></a></li>
-            <li><a href="./Platforms/ClaudeCode/project-configuration.html">Claude Code 프로젝트 설정 <span>→</span></a></li>
-            <li><a href="./Platforms/ClaudeCode/skill-usage.html">Claude Code Skill·Command <span>→</span></a></li>
-            <li><a href="./Platforms/ClaudeCode/extensions.html">Claude Code 확장 기능 <span>→</span></a></li>
-            <li><a href="./Platforms/ClaudeCode/cli-reference.html">Claude Code CLI 참조 <span>→</span></a></li>
-            <li><a href="./PI/">Pi 학습 가이드 <span>→</span></a></li>
-            <li><a href="./PI/01-getting-started-and-key-concepts.html">Pi 시작하기 <span>→</span></a></li>
-            <li><a href="./PI/02-understanding-core-concepts.html">Pi 기본 개념 <span>→</span></a></li>
-            <li><a href="./PI/06-basic-commands.html">Pi 기본 명령 <span>→</span></a></li>
-            <li><a href="./PI/04-starting-a-project.html">Pi 프로젝트 시작 <span>→</span></a></li>
-            <li><a href="./PI/05-project-cooking.html">Pi 프로젝트 코딩 <span>→</span></a></li>
-            <li><a href="./PI/07-analysis-and-testing.html">Pi 분석과 테스트 <span>→</span></a></li>
-            <li><a href="./PI/03-applying-core-concepts.html">Pi 확장과 자동화 <span>→</span></a></li>
+            <li><a href="./Platforms/Codex/setup.html">환경 설정 <span>→</span></a></li>
+            <li><a href="./Platforms/Codex/skills.html">Skill <span>→</span></a></li>
+            <li><a href="./Platforms/Codex/workflows.html">작업 흐름 <span>→</span></a></li>
+            <li><a href="./Platforms/Codex/extensions.html">확장 기능 <span>→</span></a></li>
+            <li><a href="./Platforms/Codex/commands.html">명령 확인 <span>→</span></a></li>
+          </ul>
+        </section>
+
+        <section class="cs-directory-group">
+          <h3>Claude Code</h3>
+          <ul>
+            <li><a href="./Platforms/ClaudeCode/">Claude Code 가이드 <span>→</span></a></li>
+            <li><a href="./Platforms/ClaudeCode/setup.html">환경 설정 <span>→</span></a></li>
+            <li><a href="./Platforms/ClaudeCode/skills.html">Skill <span>→</span></a></li>
+            <li><a href="./Platforms/ClaudeCode/workflows.html">작업 흐름 <span>→</span></a></li>
+            <li><a href="./Platforms/ClaudeCode/extensions.html">확장 기능 <span>→</span></a></li>
+            <li><a href="./Platforms/ClaudeCode/commands.html">명령 확인 <span>→</span></a></li>
+          </ul>
+        </section>
+
+        <section class="cs-directory-group">
+          <h3>Grok Build</h3>
+          <ul>
+            <li><a href="./Platforms/GrokBuild/">Grok Build 가이드 <span>→</span></a></li>
+            <li><a href="./Platforms/GrokBuild/setup.html">환경 설정 <span>→</span></a></li>
+            <li><a href="./Platforms/GrokBuild/skills.html">Skill <span>→</span></a></li>
+            <li><a href="./Platforms/GrokBuild/workflows.html">작업 흐름 <span>→</span></a></li>
+            <li><a href="./Platforms/GrokBuild/extensions.html">확장 기능 <span>→</span></a></li>
+            <li><a href="./Platforms/GrokBuild/commands.html">명령 확인 <span>→</span></a></li>
+          </ul>
+        </section>
+
+        <section class="cs-directory-group">
+          <h3>Pi</h3>
+          <ul>
+            <li><a href="./Platforms/Pi/">Pi 가이드 <span>→</span></a></li>
+            <li><a href="./Platforms/Pi/setup.html">환경 설정 <span>→</span></a></li>
+            <li><a href="./Platforms/Pi/skills.html">Skill <span>→</span></a></li>
+            <li><a href="./Platforms/Pi/workflows.html">작업 흐름 <span>→</span></a></li>
+            <li><a href="./Platforms/Pi/extensions.html">확장 기능 <span>→</span></a></li>
+            <li><a href="./Platforms/Pi/commands.html">명령 확인 <span>→</span></a></li>
+            <li><a href="./Platforms/Pi/reference/03-applying-core-concepts.html">심화 학습 자료 <span>→</span></a></li>
           </ul>
         </section>
 
@@ -233,6 +263,7 @@
   #codestream-docs .cs-platform-icon { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--cs-line); border-radius: 9px; font-size: 16px; font-weight: 800; background: var(--cs-paper); }
   #codestream-docs .cs-codex { color: var(--cs-accent); }
   #codestream-docs .cs-claude { color: #c56d46; }
+  #codestream-docs .cs-grok { color: #4a5361; }
   #codestream-docs .cs-pi { color: #6b6fd2; }
   #codestream-docs .cs-platform-meta { margin-top: 32px; color: var(--cs-muted); font-size: 9px; letter-spacing: .12em; }
   #codestream-docs .cs-platform strong { margin-top: 5px; font-size: 21px; letter-spacing: -.025em; }

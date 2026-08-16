@@ -78,7 +78,7 @@ SQL과 실행 계획을 보고 원인을 찾아줘.
 플랫폼 문서에는 Master를 실제 Skill이나 Agent에 연결하는 방법만 둔다.
 
 - [Codex 사용자 Skill](../Platforms/Codex/skills.md)
-- [Claude Code에서 Masters 사용하기](../Platforms/ClaudeCode/master-bindings.md)
+- [Claude Code 사용자 Skill](../Platforms/ClaudeCode/skills.md)
 
 ## 문서 관리 기준
 
@@ -88,6 +88,3 @@ Masters 문서는 AI 제품과 관계없이 유지한다.
 - Playbook 문서: 여러 Master를 연결하는 작업 순서
 - 플랫폼 문서: Skill·Agent 이름, 호출 문법, 설치와 상태 확인
 
-## 이력관리
-
-- 2026-07-13: Master 선택, 자연어 호출, 협업 흐름과 플랫폼 연결을 중심으로 안내 문서 생성

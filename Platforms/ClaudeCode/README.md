@@ -1,38 +1,49 @@
-# Claude Code 사용 안내
+# Claude Code 가이드
 
-이 폴더는 공통 Master와 Playbook을 Claude Code에서 실행하는 방법만 다룬다.
+프로젝트에서 할 일을 고르고 필요한 사용자 Skill을 직접 호출한다.
 
-업무 역할과 결과 기준은 [Masters](../../Masters/README.md), 여러 단계의 공통 작업 순서는 [Playbooks](../../Playbooks/README.md)를 정본으로 사용한다.
+업무 역할과 결과 기준은 [Masters](../../Masters/README.md), 공통 작업 흐름은 [Playbooks](../../Playbooks/README.md)를 참고한다. 이 가이드는 Claude Code의 설정, Skill 호출과 확장 기능만 다룬다.
 
-## 시작 순서
+## 바로 시작
 
-Claude Code를 처음 사용하는 경우 필요한 문서만 순서대로 본다.
+1. 프로젝트 루트에서 `claude`를 실행한다.
+2. 입력창에 `/`를 입력해 사용할 수 있는 Skill을 확인한다.
+3. `/ct-plan ?`처럼 물음표를 붙여 지원 작업과 예제를 확인한다.
+4. 작업과 대상을 이어서 입력해 실행한다.
 
-| 단계 | 문서 | 완료 결과 |
+```text
+/ct-plan ?
+/ct-plan impl 주문 취소의 중복 요청 방지 기능
+```
+
+## 무엇을 하려나요?
+
+| 목적 | Skill | 시작 예제 |
 | --- | --- | --- |
-| 실행 | [Claude Code 시작하기](./getting-started.md) | 프로젝트에서 Claude Code를 실행한다 |
-| 프로젝트 적용 | [프로젝트 설정](./project-configuration.md) | `CLAUDE.md`와 Settings의 책임을 나눈다 |
-| Master 연결 | [Master 연결표](./master-bindings.md) | 공통 Master의 적용 목표와 상태를 확인한다 |
-| 팀 Skill | [Skill 사용](./skill-usage.md) | 기존 Command와 목표 Skill을 구분한다 |
-| 확장 | [확장 기능](./extensions.md) | Skill, Agent, MCP와 Hook을 구분한다 |
-| 명령 조회 | [CLI 명령 참조](./cli-reference.md) | 현재 작업에 필요한 명령을 찾는다 |
+| 제품·설계·구현·개선 계획 | `ct-plan` | `/ct-plan ?` |
+| Spring 구현과 검토 | `ct-spring` | `/ct-spring ?` |
+| 호출 흐름 분석·전환·테스트 | `ct-calltree` | `/ct-calltree ?` |
+| QA와 회귀 검증 | `ct-qa-lucin` | `/ct-qa-lucin ?` |
+| SQL 성능 분석 | `ct-query-tuner` | `/ct-query-tuner ?` |
+| 외부 서비스 연동과 이관 설계 | `ct-external-architect` | `/ct-external-architect ?` |
+| 실행 스크립트 생성과 검증 | `ct-script-run` | `/ct-script-run ?` |
+| Confluence REST API 작업 | `ct-wiki-api` | `/ct-wiki-api ?` |
+| 프로젝트 Markdown 위키 운영 | `ct-wiki-ops` | `/ct-wiki-ops ?` |
 
-## 현재 적용 기준
+## 필요한 문서
 
-공통 문서는 완성된 Master와 Playbook을 기준으로 한다.
+| 알고 싶은 것 | 문서 |
+| --- | --- |
+| 설치, Skill 위치와 `CLAUDE.md`·Settings의 책임 | [환경 설정](./setup.md) |
+| 9개 Skill의 입력, 작업과 결과 | [Skill 안내](./skills.md) |
+| 여러 Skill을 연결하는 실제 예제 | [작업 흐름](./workflows.md) |
+| Skill, Subagent, MCP와 Hook의 차이 | [확장 기능](./extensions.md) |
+| 현재 환경에서 명령을 찾는 방법 | [명령 확인](./commands.md) |
 
-- Codex와 같은 역할·입력·결과 기준 사용
-- Claude Code Skill이 없는 기능은 `적용 예정`으로 표시
-- 기존 `/ct:*` Command는 현재 연결로 기록
-- 신규 구현은 `.claude/skills/<skill-name>/SKILL.md` 구조를 우선 사용
+## 사용 기준
 
-## 공식 문서 기준
+- 사용자 Skill은 `/ct-*` 이름으로 직접 호출한다.
+- Skill은 현재 프로젝트의 지침 문서, 코드와 설정에서 필요한 근거를 수집한다.
+- 작업별 입력과 결과는 실제 Skill 안내를 기준으로 한다.
+- 제품 기능과 명령은 현재 환경과 [Claude Code 공식 문서](https://code.claude.com/docs/en/overview)에서 확인한다.
 
-- [Claude Code 시작](https://code.claude.com/docs/en/quickstart)
-- [Claude Code Skills](https://code.claude.com/docs/en/skills)
-- [Custom subagents](https://code.claude.com/docs/en/sub-agents)
-- [Claude Code Settings](https://code.claude.com/docs/en/settings)
-
-## 이력관리
-
-- 2026-07-13: 공통 Master·Playbook과 분리하고 미적용 Skill 상태를 포함한 Claude Code 플랫폼 안내 생성

@@ -40,9 +40,5 @@ Playbook이 정한 단계를 실제 코드로 옮길 때 언어 문서를 함께
 플랫폼 문서는 공통 흐름을 실제 기능에 연결한다.
 
 - [Codex 사용 안내](../Platforms/Codex/README.md)
-- [Claude Code 사용 안내](../Platforms/ClaudeCode/README.md)
+- [Claude Code 가이드](../Platforms/ClaudeCode/README.md)
 
-## 이력관리
-
-- 2026-08-09: 언어별 구현 기준 섹션을 추가하고 Python 개발 가이드 연결
-- 2026-07-13: AI 제품과 관계없이 사용할 문제 해결 Playbook의 시작 경로와 관리 원칙 생성

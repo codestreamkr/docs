@@ -90,9 +90,3 @@ SQL, EXPLAIN (ANALYZE, BUFFERS), 인덱스 목록을 기준으로
 - MyBatis Mapper와 SQL 구조: [로드형의 Spring MyBatis](../rod/mybatis.md)
 - 변경 후 회귀 검증: [루신과 기능 검증하기](../lucin/quality-assurance.md)
 
-## 이력관리
-
-- 2026-07-13: 대부님 중심의 입력, 작업 흐름, 결과와 완료 기준으로 재구성
-- 2026-05-11: 고수 가이드 공통 섹션으로 이동
-- 2026-04-22: 사용 목적, 요청 방식, 결과물 중심으로 재구성
-- 2026-04-10: 최초 생성

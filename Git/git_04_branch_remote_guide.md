@@ -136,6 +136,3 @@ git fetch --prune origin
 
 `git branch -d`는 통합되지 않은 커밋이 있으면 삭제를 막는다.
 
-## 이력관리
-
-- 2026-07-13: 브랜치 생성, 원격 동기화, push, stash와 브랜치 정리 기준 작성

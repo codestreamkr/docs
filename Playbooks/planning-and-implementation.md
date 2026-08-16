@@ -91,8 +91,5 @@
 공통 단계를 플랫폼의 Skill이나 Command에 연결한다.
 
 - [Codex 사용자 Skill](../Platforms/Codex/skills.md)
-- [Claude Code Skill·Command 사용](../Platforms/ClaudeCode/skill-usage.md)
+- [Claude Code 사용자 Skill](../Platforms/ClaudeCode/skills.md)
 
-## 이력관리
-
-- 2026-07-13: `ct-*` 호출 문법을 분리하고 우선순위, 설계, 구현의 공통 책임으로 재구성

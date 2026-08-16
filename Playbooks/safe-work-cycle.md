@@ -89,8 +89,5 @@
 diff, 계획과 권한 확인 명령은 플랫폼 문서에서 찾는다.
 
 - [Codex 명령 확인](../Platforms/Codex/commands.md)
-- [Claude Code 명령](../Platforms/ClaudeCode/cli-reference.md)
+- [Claude Code 명령 확인](../Platforms/ClaudeCode/commands.md)
 
-## 이력관리
-
-- 2026-07-13: Codex 전용 명령을 분리하고 공통 파일 작업 순서로 전환

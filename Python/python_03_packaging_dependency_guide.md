@@ -129,6 +129,3 @@ pip install --require-hashes -r requirements.lock
 
 - 코드 품질 검사 기준을 정한다: [코드 품질 도구](./python_04_quality_tools_guide.md)
 
-## 이력관리
-
-- 2026-08-09: `pyproject.toml` 구성, 버전 범위와 lock 파일 기준, 도구별 명령 대응표, 소스 레이아웃과 재현성 검증 방법 작성

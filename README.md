@@ -2,7 +2,7 @@
 
 새로운 기능을 만들고 어려운 문제를 해결하는 공통 작업 방식과 AI별 실행 방법을 안내한다.
 
-사용자는 먼저 문제에 맞는 Master와 Playbook을 선택한다. Codex와 Claude Code 문서는 같은 작업을 각 플랫폼에서 실행하는 설정, Skill과 명령만 다룬다.
+사용자는 먼저 문제에 맞는 Master와 Playbook을 선택한다. 플랫폼 문서는 같은 작업을 각 도구에서 실행하는 설정, Skill과 명령만 다룬다.
 
 ## 처음 시작하기
 
@@ -10,7 +10,7 @@
 
 1. 함께할 전문가를 찾는다: [Masters](./Masters/README.md)
 2. 작업 순서를 고른다: [문제 해결 Playbook](./Playbooks/README.md)
-3. 현재 AI에서 실행 방법을 확인한다: [Codex](./Platforms/Codex/README.md) 또는 [Claude Code](./Platforms/ClaudeCode/README.md)
+3. 현재 AI에서 실행 방법을 확인한다: [Codex](./Platforms/Codex/README.md), [Claude Code](./Platforms/ClaudeCode/README.md), [Grok Build](./Platforms/GrokBuild/README.md) 또는 [Pi](./Platforms/Pi/README.md)
 4. 코드 변경과 협업이 필요하면 [Git 필수 가이드](./Git/README.md)를 연결한다.
 5. Python 프로젝트를 맡으면 [Python 개발 가이드](./Python/README.md)에서 환경과 구현 기준을 확인한다.
 
@@ -25,8 +25,9 @@
 | Masters | 친근한 전문가의 역할, 입력, 결과와 완료 기준 | [누구를 찾을까](./Masters/README.md) |
 | Playbooks | 여러 Master와 작업 단계를 연결하는 공통 순서 | [문제 해결 Playbook](./Playbooks/README.md) |
 | Codex | 환경 설정, 사용자 Skill, 작업 흐름과 명령 확인 | [Codex 가이드](./Platforms/Codex/README.md) |
-| Claude Code | Claude Code 설치, `CLAUDE.md`, Skill·Agent와 명령 | [Claude Code 사용 안내](./Platforms/ClaudeCode/README.md) |
-| Pi | Pi 설치, 세션, 프로젝트 적용과 확장 | [Pi 학습 가이드](./PI/README.md) |
+| Claude Code | 환경 설정, 사용자 Skill, 작업 흐름과 명령 확인 | [Claude Code 가이드](./Platforms/ClaudeCode/README.md) |
+| Grok Build | 환경 설정, 사용자 Skill, 모델 연결과 확장 기능 | [Grok Build 가이드](./Platforms/GrokBuild/README.md) |
+| Pi | 환경 설정, 사용자 Skill, Extension과 모델 연결 | [Pi 가이드](./Platforms/Pi/README.md) |
 | Git | 변경 확인, 커밋, 복구, 브랜치와 충돌 해결 | [Git 필수 가이드](./Git/README.md) |
 | Python | Python 생태계 이해와 웹 백엔드 구현 기준 | [Python 개발 가이드](./Python/README.md) |
 
@@ -50,10 +51,11 @@
 - Master의 역할과 완료 조건: `Masters`
 - 여러 단계의 작업 순서: `Playbooks`
 - Codex Skill과 명령: `Platforms/Codex`
-- Claude Code Skill·Agent와 명령: `Platforms/ClaudeCode`
-- 아직 적용되지 않은 플랫폼 기능: 해당 연결 문서에 `적용 예정` 표시
+- Claude Code Skill과 명령: `Platforms/ClaudeCode`
+- Grok Build Skill과 명령: `Platforms/GrokBuild`
+- Pi Skill과 명령: `Platforms/Pi`
 
-같은 Master를 어느 플랫폼에서 호출하더라도 필수 입력과 결과 기준은 동일하게 유지한다.
+같은 Skill을 어느 플랫폼에서 호출하더라도 필수 입력과 결과 기준은 동일하고 호출 표기와 실행 방법만 다르다. Codex는 `$ct-*`, Claude Code와 Grok Build은 `/ct-*`, Pi는 `/skill:ct-*`를 사용한다.
 
 ## Git 문서 활용
 
