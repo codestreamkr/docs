@@ -1,140 +1,298 @@
-# CodeStream 기술문서
+<div id="codestream-docs">
+  <header class="cs-header">
+    <a class="cs-logo" href="#top" aria-label="CodeStream 문서 홈">
+      <span class="cs-logo-mark" aria-hidden="true">C</span>
+      <span>CodeStream</span>
+    </a>
+    <nav aria-label="주요 문서 영역">
+      <a href="#platforms">AI 플랫폼</a>
+      <a href="#work-guides">작업 가이드</a>
+      <a href="#development">개발 가이드</a>
+    </nav>
+    <a class="cs-all-link" href="#directory">전체 문서 <span aria-hidden="true">↓</span></a>
+  </header>
 
-문제에 맞는 Master와 Playbook을 먼저 고르고 현재 AI 플랫폼의 실행 방법을 연결한다.
+  <main id="top">
+    <section class="cs-hero" aria-labelledby="hero-title">
+      <p class="cs-eyebrow">AI WORK DOCUMENTATION</p>
+      <h1 id="hero-title">AI와 함께 일하는 방법을<br>한곳에서 찾으세요.</h1>
+      <p class="cs-lead">플랫폼별 사용법부터 계획·구현·검증 절차까지.<br>필요한 문서로 바로 이동할 수 있는 CodeStream 가이드입니다.</p>
+      <div class="cs-hero-actions">
+        <a class="cs-primary" href="#platforms">가이드 살펴보기</a>
+        <a class="cs-secondary" href="#work-guides">작업별로 찾기 <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
 
-## 바로 시작하기
+    <section class="cs-section" id="platforms" aria-labelledby="platforms-title">
+      <div class="cs-section-heading">
+        <div>
+          <p class="cs-kicker">PLATFORMS</p>
+          <h2 id="platforms-title">AI 플랫폼</h2>
+        </div>
+        <p>현재 사용하는 도구에 맞는<br>설정과 실행 방법을 확인하세요.</p>
+      </div>
+      <div class="cs-platform-grid">
+        <a class="cs-platform" href="./Platforms/Codex/">
+          <span class="cs-platform-icon cs-codex" aria-hidden="true">C</span>
+          <span class="cs-platform-meta">AI CODING AGENT</span>
+          <strong>Codex</strong>
+          <span class="cs-platform-copy">환경 설정, Skill, 명령과 작업 흐름</span>
+          <span class="cs-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="cs-platform" href="./Platforms/ClaudeCode/">
+          <span class="cs-platform-icon cs-claude" aria-hidden="true">A</span>
+          <span class="cs-platform-meta">AI CODING AGENT</span>
+          <strong>Claude Code</strong>
+          <span class="cs-platform-copy">프로젝트 설정, Skill·Command와 확장 기능</span>
+          <span class="cs-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="cs-platform" href="./PI/">
+          <span class="cs-platform-icon cs-pi" aria-hidden="true">π</span>
+          <span class="cs-platform-meta">AI CODING AGENT</span>
+          <strong>Pi</strong>
+          <span class="cs-platform-copy">설치, 프로젝트 적용과 확장·자동화</span>
+          <span class="cs-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
 
-| 영역 | 용도 | 링크 |
-| --- | --- | --- |
-| Masters | 함께 문제를 해결할 전문가 선택 | [열기](./Masters/) |
-| Playbooks | 기능 개발, 분석, 테스트와 전환 순서 선택 | [열기](./Playbooks/) |
-| Codex | Codex 설정, Skill과 명령 확인 | [열기](./Platforms/Codex/) |
-| Claude Code | Claude Code 설정, Skill·Agent와 명령 확인 | [열기](./Platforms/ClaudeCode/) |
-| Pi | Pi 설치와 프로젝트 활용 | [열기](./PI/) |
-| Git | 코드 변경과 협업 절차 | [열기](./Git/) |
-| Python | Python 생태계와 웹 백엔드 구현 기준 | [열기](./Python/) |
+    <section class="cs-section cs-guides" id="work-guides" aria-labelledby="work-guides-title">
+      <div class="cs-section-heading">
+        <div>
+          <p class="cs-kicker">WORK GUIDES</p>
+          <h2 id="work-guides-title">무엇을 하려 하나요?</h2>
+        </div>
+        <p>제품이 아닌 목적을 기준으로<br>필요한 절차를 찾아보세요.</p>
+      </div>
+      <div class="cs-guide-list">
+        <a href="./Playbooks/project-setup.html"><span class="cs-guide-number">01</span><strong>준비하기</strong><span>프로젝트 구조와 작업 기준을 먼저 파악합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/feature-development.html"><span class="cs-guide-number">02</span><strong>기능 만들기</strong><span>아이디어를 계획, 구현과 검증으로 연결합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/planning-and-implementation.html"><span class="cs-guide-number">03</span><strong>계획하고 구현하기</strong><span>개선 우선순위부터 실제 코드 변경까지 진행합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/analysis-and-testing.html"><span class="cs-guide-number">04</span><strong>분석하고 테스트하기</strong><span>호출 흐름을 분석하고 검증 가능한 테스트로 남깁니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/architecture-transition.html"><span class="cs-guide-number">05</span><strong>구조 전환하기</strong><span>레거시와 외부 의존을 안전한 순서로 바꿉니다.</span><b aria-hidden="true">→</b></a>
+      </div>
+      <a class="cs-more-link" href="./Playbooks/">모든 작업 가이드 보기 <span aria-hidden="true">→</span></a>
+    </section>
 
-저장소의 문서 역할과 사용 순서는 [README](https://github.com/codestreamkr/docs/blob/main/README.md)에서 확인한다.
+    <section class="cs-section" id="development" aria-labelledby="development-title">
+      <div class="cs-section-heading">
+        <div>
+          <p class="cs-kicker">DEVELOPMENT</p>
+          <h2 id="development-title">개발 가이드</h2>
+        </div>
+        <p>플랫폼과 관계없이 사용하는<br>개발 환경과 협업 기준입니다.</p>
+      </div>
+      <div class="cs-development-grid">
+        <a class="cs-development-card" href="./Git/">
+          <span class="cs-card-index">01</span>
+          <strong>Git</strong>
+          <span>변경 확인, 커밋, 브랜치 협업과 안전한 복구</span>
+          <b aria-hidden="true">→</b>
+        </a>
+        <a class="cs-development-card" href="./Python/">
+          <span class="cs-card-index">02</span>
+          <strong>Python</strong>
+          <span>실행 환경, 의존성, 품질 도구와 웹 백엔드</span>
+          <b aria-hidden="true">→</b>
+        </a>
+      </div>
+    </section>
 
-## 문제에서 시작하기
+    <section class="cs-directory-section" id="directory" aria-labelledby="directory-title">
+      <div class="cs-section-heading">
+        <div>
+          <p class="cs-kicker">DIRECTORY</p>
+          <h2 id="directory-title">전체 문서</h2>
+        </div>
+        <p>분야별 세부 문서로<br>바로 이동하세요.</p>
+      </div>
 
-현재 해결할 문제를 기준으로 Master와 Playbook을 함께 선택한다.
+      <div class="cs-directory-grid">
+        <section class="cs-directory-group">
+          <h3>AI 플랫폼</h3>
+          <ul>
+            <li><a href="./Platforms/Codex/">Codex 가이드 <span>→</span></a></li>
+            <li><a href="./Platforms/Codex/setup.html">Codex 환경 설정 <span>→</span></a></li>
+            <li><a href="./Platforms/Codex/skills.html">Codex Skill <span>→</span></a></li>
+            <li><a href="./Platforms/Codex/workflows.html">Codex 작업 흐름 <span>→</span></a></li>
+            <li><a href="./Platforms/Codex/extensions.html">Codex 확장 기능 <span>→</span></a></li>
+            <li><a href="./Platforms/Codex/commands.html">Codex 명령 확인 <span>→</span></a></li>
+            <li><a href="./Platforms/ClaudeCode/">Claude Code 안내 <span>→</span></a></li>
+            <li><a href="./Platforms/ClaudeCode/getting-started.html">Claude Code 시작하기 <span>→</span></a></li>
+            <li><a href="./Platforms/ClaudeCode/project-configuration.html">Claude Code 프로젝트 설정 <span>→</span></a></li>
+            <li><a href="./Platforms/ClaudeCode/skill-usage.html">Claude Code Skill·Command <span>→</span></a></li>
+            <li><a href="./Platforms/ClaudeCode/extensions.html">Claude Code 확장 기능 <span>→</span></a></li>
+            <li><a href="./Platforms/ClaudeCode/cli-reference.html">Claude Code CLI 참조 <span>→</span></a></li>
+            <li><a href="./PI/">Pi 학습 가이드 <span>→</span></a></li>
+            <li><a href="./PI/01-getting-started-and-key-concepts.html">Pi 시작하기 <span>→</span></a></li>
+            <li><a href="./PI/02-understanding-core-concepts.html">Pi 기본 개념 <span>→</span></a></li>
+            <li><a href="./PI/06-basic-commands.html">Pi 기본 명령 <span>→</span></a></li>
+            <li><a href="./PI/04-starting-a-project.html">Pi 프로젝트 시작 <span>→</span></a></li>
+            <li><a href="./PI/05-project-cooking.html">Pi 프로젝트 코딩 <span>→</span></a></li>
+            <li><a href="./PI/07-analysis-and-testing.html">Pi 분석과 테스트 <span>→</span></a></li>
+            <li><a href="./PI/03-applying-core-concepts.html">Pi 확장과 자동화 <span>→</span></a></li>
+          </ul>
+        </section>
 
-| 현재 상황 | 먼저 찾을 Master | 함께 볼 Playbook |
-| --- | --- | --- |
-| 아이디어는 있지만 사용자와 기능 범위가 불명확하다 | [잡스형](./Masters/jobs/product-planning.html) | [새로운 기능 만들기](./Playbooks/feature-development.html) |
-| SQL이 느리거나 DB 부하 원인을 찾아야 한다 | [대부님](./Masters/godfather/query-tuning.html) | [어려운 문제 풀기](./Playbooks/difficult-problem-solving.html) |
-| Spring 기능을 설계하거나 실제 코드로 구현해야 한다 | [로드형](./Masters/rod/) | [계획하고 구현하기](./Playbooks/planning-and-implementation.html) |
-| 외부 API, 웹훅 또는 벤더 전환 구조가 필요하다 | [호페형](./Masters/hoppe/external-integration.html) | [구조 전환하기](./Playbooks/architecture-transition.html) |
-| 기능의 위험을 찾고 회귀 테스트로 남겨야 한다 | [루신](./Masters/lucin/quality-assurance.html) | [분석하고 테스트하기](./Playbooks/analysis-and-testing.html) |
-| Python 프로젝트의 환경, 구조와 운영 기준을 잡아야 한다 | [Python 개발 가이드](./Python/) | [계획하고 구현하기](./Playbooks/planning-and-implementation.html) |
+        <section class="cs-directory-group">
+          <h3>작업 가이드</h3>
+          <ul>
+            <li><a href="./Playbooks/">문제 해결 Playbook <span>→</span></a></li>
+            <li><a href="./Playbooks/safe-work-cycle.html">안전한 작업 흐름 <span>→</span></a></li>
+            <li><a href="./Playbooks/project-setup.html">프로젝트 준비하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/difficult-problem-solving.html">어려운 문제 풀기 <span>→</span></a></li>
+            <li><a href="./Playbooks/feature-development.html">새로운 기능 만들기 <span>→</span></a></li>
+            <li><a href="./Playbooks/planning-and-implementation.html">계획하고 구현하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/analysis-and-testing.html">분석하고 테스트하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/architecture-transition.html">구조 전환하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/workflow-automation.html">작업 방식 자동화하기 <span>→</span></a></li>
+          </ul>
+        </section>
 
-실행할 AI를 정한 뒤 [Codex](./Platforms/Codex/) 또는 [Claude Code](./Platforms/ClaudeCode/) 연결 문서에서 Skill과 명령을 확인한다.
+        <section class="cs-directory-group">
+          <h3>Git</h3>
+          <ul>
+            <li><a href="./Git/">Git 필수 가이드 <span>→</span></a></li>
+            <li><a href="./Git/git_01_worktree_guide.html">상태와 변경 확인 <span>→</span></a></li>
+            <li><a href="./Git/git_02_apply_guide.html">변경 확인과 커밋 <span>→</span></a></li>
+            <li><a href="./Git/git_04_branch_remote_guide.html">브랜치와 원격 협업 <span>→</span></a></li>
+            <li><a href="./Git/git_05_integration_conflict_guide.html">변경 통합과 충돌 해결 <span>→</span></a></li>
+            <li><a href="./Git/git_03_reset_rebase_revert_guide.html">되돌리기와 복구 <span>→</span></a></li>
+          </ul>
+        </section>
 
-## Masters
+        <section class="cs-directory-group">
+          <h3>Python</h3>
+          <ul>
+            <li><a href="./Python/">Python 개발 가이드 <span>→</span></a></li>
+            <li><a href="./Python/python_01_ecosystem_overview.html">생태계 지도 <span>→</span></a></li>
+            <li><a href="./Python/python_02_runtime_environment_guide.html">실행 환경과 가상환경 <span>→</span></a></li>
+            <li><a href="./Python/python_03_packaging_dependency_guide.html">패키징과 의존성 관리 <span>→</span></a></li>
+            <li><a href="./Python/python_04_quality_tools_guide.html">코드 품질 도구 <span>→</span></a></li>
+            <li><a href="./Python/python_05_web_backend_structure_guide.html">웹 백엔드 구조 선택 <span>→</span></a></li>
+            <li><a href="./Python/python_06_web_data_access_guide.html">데이터 접근과 마이그레이션 <span>→</span></a></li>
+            <li><a href="./Python/python_07_web_api_contract_guide.html">API 계약과 인증 <span>→</span></a></li>
+            <li><a href="./Python/python_08_web_runtime_operations_guide.html">실행과 운영 <span>→</span></a></li>
+          </ul>
+        </section>
+      </div>
+    </section>
+  </main>
 
-Masters는 AI 제품과 관계없이 같은 이름과 역할로 사용한다.
+  <footer class="cs-footer">
+    <span>CodeStream</span>
+    <nav aria-label="공통 안내">
+      <a href="./README.html">저장소 안내</a>
+      <a href="./LICENSE">MIT License</a>
+      <a href="./NOTICE.html">권리 고지</a>
+    </nav>
+  </footer>
+</div>
 
-| Master | 전문 분야 | 문서 |
-| --- | --- | --- |
-| 잡스형 | 서비스·제품 기획 | [열기](./Masters/jobs/product-planning.html) |
-| 대부님 | 쿼리 튜닝 | [열기](./Masters/godfather/query-tuning.html) |
-| 로드형 | Spring 개발 | [열기](./Masters/rod/) |
-| 로드형 | Spring Data JPA | [열기](./Masters/rod/jpa.html) |
-| 로드형 | Spring Security | [열기](./Masters/rod/security.html) |
-| 로드형 | Spring MVC·REST API | [열기](./Masters/rod/mvc-rest-api.html) |
-| 로드형 | Spring MyBatis | [열기](./Masters/rod/mybatis.html) |
-| 호페형 | 외부 연동 설계 | [열기](./Masters/hoppe/external-integration.html) |
-| 루신 | QA와 회귀 검증 | [열기](./Masters/lucin/quality-assurance.html) |
+<style>
+  #codestream-docs {
+    --cs-ink: light-dark(#141716, #f2f5f3);
+    --cs-muted: light-dark(#66706b, #9ca7a1);
+    --cs-line: light-dark(#dfe5e1, #303833);
+    --cs-paper: light-dark(#f8faf8, #111412);
+    --cs-panel: light-dark(#ffffff, #191d1a);
+    --cs-accent: light-dark(#087f5b, #42d9a1);
+    --cs-accent-soft: light-dark(#e6f4ef, #15352a);
+    color: var(--cs-ink);
+    background: var(--cs-paper);
+    font-family: Inter, Pretendard, "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    width: 100%;
+    min-width: 0;
+  }
+  #codestream-docs, #codestream-docs * { box-sizing: border-box; }
+  #codestream-docs a { color: inherit; text-decoration: none; }
+  #codestream-docs a:focus-visible { outline: 3px solid var(--cs-accent); outline-offset: 4px; border-radius: 4px; }
+  #codestream-docs .cs-header { min-height: 66px; padding: 0 max(24px, calc((100% - 1120px) / 2)); display: flex; align-items: center; border-bottom: 1px solid var(--cs-line); gap: 36px; }
+  #codestream-docs .cs-logo { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; font-size: 15px; font-weight: 780; letter-spacing: -.02em; }
+  #codestream-docs .cs-logo-mark { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--cs-ink); color: var(--cs-paper); font-size: 13px; }
+  #codestream-docs .cs-header nav { display: flex; gap: 26px; font-size: 13px; color: var(--cs-muted); }
+  #codestream-docs .cs-header nav a:hover, #codestream-docs .cs-footer a:hover { color: var(--cs-ink); }
+  #codestream-docs .cs-all-link { margin-left: auto; flex: 0 0 auto; font-size: 13px; font-weight: 700; }
+  #codestream-docs main { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  #codestream-docs .cs-hero { padding: 100px 0 88px; border-bottom: 1px solid var(--cs-line); }
+  #codestream-docs .cs-eyebrow, #codestream-docs .cs-kicker { margin: 0 0 18px; color: var(--cs-accent); font-size: 11px; font-weight: 800; letter-spacing: .15em; }
+  #codestream-docs h1 { margin: 0; max-width: 780px; font-size: clamp(42px, 6vw, 72px); line-height: 1.08; letter-spacing: -.055em; }
+  #codestream-docs .cs-lead { margin: 28px 0 0; color: var(--cs-muted); font-size: 16px; line-height: 1.75; }
+  #codestream-docs .cs-hero-actions { display: flex; gap: 12px; margin-top: 36px; }
+  #codestream-docs .cs-primary, #codestream-docs .cs-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 20px; border-radius: 9px; font-size: 14px; font-weight: 700; }
+  #codestream-docs .cs-primary { background: var(--cs-ink); color: var(--cs-paper); }
+  #codestream-docs .cs-secondary { border: 1px solid var(--cs-line); gap: 18px; background: var(--cs-panel); }
+  #codestream-docs .cs-section { padding: 78px 0; border-bottom: 1px solid var(--cs-line); scroll-margin-top: 20px; }
+  #codestream-docs .cs-section-heading { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 32px; }
+  #codestream-docs .cs-section-heading .cs-kicker { margin-bottom: 9px; }
+  #codestream-docs h2 { margin: 0; font-size: 32px; letter-spacing: -.04em; }
+  #codestream-docs .cs-section-heading > p { margin: 0; color: var(--cs-muted); font-size: 13px; line-height: 1.65; }
+  #codestream-docs .cs-platform-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  #codestream-docs .cs-platform { position: relative; min-height: 224px; padding: 26px; border: 1px solid var(--cs-line); border-radius: 15px; background: var(--cs-panel); display: flex; flex-direction: column; transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+  #codestream-docs .cs-platform:hover, #codestream-docs .cs-development-card:hover { border-color: var(--cs-accent); transform: translateY(-2px); box-shadow: 0 10px 30px light-dark(rgba(20, 23, 22, .07), rgba(0, 0, 0, .2)); }
+  #codestream-docs .cs-platform-icon { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--cs-line); border-radius: 9px; font-size: 16px; font-weight: 800; background: var(--cs-paper); }
+  #codestream-docs .cs-codex { color: var(--cs-accent); }
+  #codestream-docs .cs-claude { color: #c56d46; }
+  #codestream-docs .cs-pi { color: #6b6fd2; }
+  #codestream-docs .cs-platform-meta { margin-top: 32px; color: var(--cs-muted); font-size: 9px; letter-spacing: .12em; }
+  #codestream-docs .cs-platform strong { margin-top: 5px; font-size: 21px; letter-spacing: -.025em; }
+  #codestream-docs .cs-platform-copy { margin-top: 8px; padding-right: 24px; color: var(--cs-muted); font-size: 12px; line-height: 1.55; }
+  #codestream-docs .cs-arrow { position: absolute; right: 24px; bottom: 22px; font-size: 18px; }
+  #codestream-docs .cs-guides { padding-bottom: 72px; }
+  #codestream-docs .cs-guide-list { border-top: 1px solid var(--cs-line); }
+  #codestream-docs .cs-guide-list a { display: grid; grid-template-columns: 54px minmax(150px, 210px) 1fr 24px; align-items: center; min-height: 70px; border-bottom: 1px solid var(--cs-line); transition: padding .18s ease, color .18s ease; }
+  #codestream-docs .cs-guide-list a:hover { padding-left: 8px; color: var(--cs-accent); }
+  #codestream-docs .cs-guide-number { color: var(--cs-muted); font-size: 10px; }
+  #codestream-docs .cs-guide-list strong { font-size: 15px; }
+  #codestream-docs .cs-guide-list a > span:nth-child(3) { color: var(--cs-muted); font-size: 12px; }
+  #codestream-docs .cs-guide-list b { font-size: 16px; font-weight: 400; }
+  #codestream-docs .cs-more-link { display: inline-flex; align-items: center; gap: 18px; margin-top: 24px; font-size: 13px; font-weight: 700; }
+  #codestream-docs .cs-development-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  #codestream-docs .cs-development-card { position: relative; min-height: 178px; padding: 28px; border: 1px solid var(--cs-line); border-radius: 15px; background: var(--cs-panel); display: flex; flex-direction: column; transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+  #codestream-docs .cs-card-index { color: var(--cs-accent); font-size: 10px; font-weight: 800; letter-spacing: .1em; }
+  #codestream-docs .cs-development-card strong { margin-top: 28px; font-size: 23px; }
+  #codestream-docs .cs-development-card > span:nth-child(3) { margin-top: 8px; padding-right: 36px; color: var(--cs-muted); font-size: 12px; }
+  #codestream-docs .cs-development-card b { position: absolute; right: 28px; bottom: 28px; font-size: 18px; font-weight: 400; }
+  #codestream-docs .cs-directory-section { padding: 78px 0 88px; scroll-margin-top: 20px; }
+  #codestream-docs .cs-directory-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  #codestream-docs .cs-directory-group { margin: 0; padding: 26px; border: 1px solid var(--cs-line); border-radius: 15px; background: var(--cs-panel); }
+  #codestream-docs .cs-directory-group h3 { margin: 0 0 16px; font-size: 17px; letter-spacing: -.02em; }
+  #codestream-docs .cs-directory-group ul { margin: 0; padding: 0; list-style: none; }
+  #codestream-docs .cs-directory-group li { margin: 0; border-top: 1px solid var(--cs-line); }
+  #codestream-docs .cs-directory-group a { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; color: var(--cs-muted); font-size: 12px; line-height: 1.4; }
+  #codestream-docs .cs-directory-group a:hover { color: var(--cs-accent); }
+  #codestream-docs .cs-footer { min-height: 70px; padding: 20px max(24px, calc((100% - 1120px) / 2)); display: flex; align-items: center; justify-content: space-between; gap: 24px; border-top: 1px solid var(--cs-line); color: var(--cs-muted); font-size: 11px; }
+  #codestream-docs .cs-footer > span { color: var(--cs-ink); font-weight: 750; }
+  #codestream-docs .cs-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 20px; }
 
-## 문제 해결 Playbooks
+  @media (max-width: 760px) {
+    #codestream-docs .cs-header { min-height: 62px; padding: 0 20px; gap: 18px; }
+    #codestream-docs .cs-header nav { margin-left: auto; gap: 16px; overflow-x: auto; white-space: nowrap; font-size: 11px; scrollbar-width: none; }
+    #codestream-docs .cs-header nav::-webkit-scrollbar { display: none; }
+    #codestream-docs .cs-all-link { display: none; }
+    #codestream-docs main { padding: 0 20px; }
+    #codestream-docs .cs-hero { padding: 68px 0 58px; }
+    #codestream-docs h1 { font-size: clamp(38px, 11vw, 52px); }
+    #codestream-docs .cs-lead br { display: none; }
+    #codestream-docs .cs-section, #codestream-docs .cs-directory-section { padding: 56px 0; }
+    #codestream-docs .cs-section-heading { display: block; }
+    #codestream-docs .cs-section-heading > p { margin-top: 12px; }
+    #codestream-docs .cs-platform-grid, #codestream-docs .cs-development-grid, #codestream-docs .cs-directory-grid { grid-template-columns: 1fr; }
+    #codestream-docs .cs-platform { min-height: 188px; }
+    #codestream-docs .cs-guide-list a { grid-template-columns: 38px 1fr 20px; min-height: 72px; }
+    #codestream-docs .cs-guide-list a > span:nth-child(3) { display: none; }
+    #codestream-docs .cs-footer { padding: 22px 20px; align-items: flex-start; }
+  }
 
-Playbook은 Codex와 Claude Code에서 공통으로 사용하는 작업 순서다.
+  @media (max-width: 520px) {
+    #codestream-docs .cs-header nav a { display: none; }
+    #codestream-docs .cs-header nav::after { content: "문서 허브"; color: var(--cs-muted); }
+    #codestream-docs .cs-hero-actions { flex-direction: column; align-items: stretch; }
+    #codestream-docs .cs-footer { display: block; }
+    #codestream-docs .cs-footer nav { justify-content: flex-start; margin-top: 12px; gap: 14px; }
+  }
 
-| 목적 | 문서 |
-| --- | --- |
-| 안전하게 조사하고 수정한다 | [안전한 작업 흐름](./Playbooks/safe-work-cycle.html) |
-| 프로젝트 작업 기준을 준비한다 | [프로젝트 준비하기](./Playbooks/project-setup.html) |
-| 복잡한 문제의 담당과 결과를 정한다 | [어려운 문제 풀기](./Playbooks/difficult-problem-solving.html) |
-| 아이디어를 기능으로 구현하고 검증한다 | [새로운 기능 만들기](./Playbooks/feature-development.html) |
-| 개선 우선순위부터 실제 구현까지 연결한다 | [계획하고 구현하기](./Playbooks/planning-and-implementation.html) |
-| 호출 흐름을 테스트로 연결한다 | [분석하고 테스트하기](./Playbooks/analysis-and-testing.html) |
-| 레거시와 외부 의존을 단계적으로 바꾼다 | [구조 전환하기](./Playbooks/architecture-transition.html) |
-| 반복 작업을 AI별 Skill·Agent로 구현한다 | [작업 방식 자동화하기](./Playbooks/workflow-automation.html) |
-
-## Codex
-
-Codex 문서는 현재 작업에 필요한 사용자 Skill과 실행 환경을 안내한다.
-
-| 문서 | 링크 |
-| --- | --- |
-| Codex 가이드 | [열기](./Platforms/Codex/) |
-| 환경 설정 | [열기](./Platforms/Codex/setup.html) |
-| 사용자 Skill | [열기](./Platforms/Codex/skills.html) |
-| 작업 흐름 | [열기](./Platforms/Codex/workflows.html) |
-| 확장 기능 | [열기](./Platforms/Codex/extensions.html) |
-| 명령 확인 | [열기](./Platforms/Codex/commands.html) |
-
-## Claude Code
-
-Claude Code 문서는 현재 적용된 Command와 앞으로 적용할 Skill을 구분한다.
-
-| 문서 | 링크 |
-| --- | --- |
-| Claude Code 사용 안내 | [열기](./Platforms/ClaudeCode/) |
-| Claude Code 시작하기 | [열기](./Platforms/ClaudeCode/getting-started.html) |
-| 프로젝트 설정 | [열기](./Platforms/ClaudeCode/project-configuration.html) |
-| Master 연결표와 적용 상태 | [열기](./Platforms/ClaudeCode/master-bindings.html) |
-| Skill·Command 연결 | [열기](./Platforms/ClaudeCode/skill-usage.html) |
-| 확장 기능 | [열기](./Platforms/ClaudeCode/extensions.html) |
-| CLI 명령 참조 | [열기](./Platforms/ClaudeCode/cli-reference.html) |
-
-## Pi
-
-Pi는 기존 학습 과정을 유지한다.
-
-| 번호 | 문서 | 링크 |
-| --- | --- | --- |
-| 안내 | Pi 학습 가이드 | [열기](./PI/) |
-| 01 | Pi 시작하기 | [열기](./PI/01-getting-started-and-key-concepts.html) |
-| 02 | Pi 기본 개념 | [열기](./PI/02-understanding-core-concepts.html) |
-| 03 | Pi 확장과 자동화 | [열기](./PI/03-applying-core-concepts.html) |
-| 04 | 프로젝트 시작 | [열기](./PI/04-starting-a-project.html) |
-| 05 | 프로젝트 코딩 | [열기](./PI/05-project-cooking.html) |
-| 06 | Pi 기본 명령 | [열기](./PI/06-basic-commands.html) |
-| 07 | Spring·Java 분석과 테스트 | [열기](./PI/07-analysis-and-testing.html) |
-
-## Git
-
-Git 문서는 플랫폼과 관계없이 코드 변경과 협업에 사용한다.
-
-| 번호 | 문서 | 링크 |
-| --- | --- | --- |
-| 안내 | 개발자를 위한 Git 필수 가이드 | [열기](./Git/) |
-| 01 | 상태와 변경 확인 | [열기](./Git/git_01_worktree_guide.html) |
-| 02 | 변경 확인과 커밋 | [열기](./Git/git_02_apply_guide.html) |
-| 03 | 되돌리기와 복구 | [열기](./Git/git_03_reset_rebase_revert_guide.html) |
-| 04 | 브랜치와 원격 협업 | [열기](./Git/git_04_branch_remote_guide.html) |
-| 05 | 변경 통합과 충돌 해결 | [열기](./Git/git_05_integration_conflict_guide.html) |
-
-## Python
-
-Python 문서는 생태계 기반을 먼저 다루고 웹 백엔드 구현으로 이어진다.
-
-| 번호 | 문서 | 링크 |
-| --- | --- | --- |
-| 안내 | 개발자를 위한 Python 개발 가이드 | [열기](./Python/) |
-| 01 | Python 생태계 지도 | [열기](./Python/python_01_ecosystem_overview.html) |
-| 02 | 실행 환경과 가상환경 | [열기](./Python/python_02_runtime_environment_guide.html) |
-| 03 | 패키징과 의존성 관리 | [열기](./Python/python_03_packaging_dependency_guide.html) |
-| 04 | 코드 품질 도구 | [열기](./Python/python_04_quality_tools_guide.html) |
-| 05 | 웹 백엔드 구조 선택 | [열기](./Python/python_05_web_backend_structure_guide.html) |
-| 06 | 데이터 접근과 마이그레이션 | [열기](./Python/python_06_web_data_access_guide.html) |
-| 07 | API 계약과 인증 | [열기](./Python/python_07_web_api_contract_guide.html) |
-| 08 | 실행과 운영 | [열기](./Python/python_08_web_runtime_operations_guide.html) |
-
-## 공통 안내
-
-- [저장소 사용 안내](https://github.com/codestreamkr/docs/blob/main/README.md)
-- [라이선스 원문](./LICENSE)
-- [제3자 권리와 브랜드 자산 고지](./NOTICE.html)
+  @media (prefers-reduced-motion: reduce) {
+    #codestream-docs * { scroll-behavior: auto !important; transition: none !important; }
+  }
+</style>
