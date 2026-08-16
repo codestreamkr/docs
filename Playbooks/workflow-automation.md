@@ -79,7 +79,7 @@ Codex와 Claude Code의 결과가 같은 공통 기준을 충족하는지 확인
 
 ## 플랫폼별 문서
 
-- [Codex Skill 사용](../Platforms/Codex/skill-usage.md)
+- [Codex 사용자 Skill](../Platforms/Codex/skills.md)
 - [Claude Code Skill·Command 사용](../Platforms/ClaudeCode/skill-usage.md)
 
 ## 이력관리

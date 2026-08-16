@@ -66,7 +66,7 @@ AI가 저장소 안에서 일관되게 작업하려면 구조, 코드 스타일�
 
 ## 플랫폼별 적용
 
-- [Codex 프로젝트 설정](../Platforms/Codex/project-configuration.md)
+- [Codex 환경 설정](../Platforms/Codex/setup.md)
 - [Claude Code 프로젝트 설정](../Platforms/ClaudeCode/project-configuration.md)
 
 ## 이력관리

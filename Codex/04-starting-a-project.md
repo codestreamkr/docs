@@ -1,9 +1,5 @@
-# Codex 프로젝트 시작 문서 이동 안내
+# Codex 환경 설정 문서 이동
 
-<meta http-equiv="refresh" content="0; url=../Platforms/Codex/project-configuration.html">
+<meta http-equiv="refresh" content="0; url=../Platforms/Codex/setup.html">
 
-이 문서는 [Codex 프로젝트 설정](../Platforms/Codex/project-configuration.md)으로 이동했다.
-
-## 이력관리
-
-- 2026-07-13: 기존 공개 URL을 유지하기 위한 이동 안내로 전환
+이 문서는 [Codex 환경 설정](../Platforms/Codex/setup.md)으로 이동했다.

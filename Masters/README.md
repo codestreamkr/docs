@@ -77,7 +77,7 @@ SQL과 실행 계획을 보고 원인을 찾아줘.
 
 플랫폼 문서에는 Master를 실제 Skill이나 Agent에 연결하는 방법만 둔다.
 
-- [Codex에서 Masters 사용하기](../Platforms/Codex/master-bindings.md)
+- [Codex 사용자 Skill](../Platforms/Codex/skills.md)
 - [Claude Code에서 Masters 사용하기](../Platforms/ClaudeCode/master-bindings.md)
 
 ## 문서 관리 기준

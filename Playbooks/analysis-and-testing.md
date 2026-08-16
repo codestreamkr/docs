@@ -95,7 +95,7 @@ getter, 로깅과 단순 DTO 필드 설정은 기본 흐름에서 제외한다.
 
 ## 플랫폼별 연결
 
-- [Codex Skill 사용](../Platforms/Codex/skill-usage.md)
+- [Codex 사용자 Skill](../Platforms/Codex/skills.md)
 - [Claude Code Skill·Command 사용](../Platforms/ClaudeCode/skill-usage.md)
 
 ## 이력관리

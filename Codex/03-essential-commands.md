@@ -1,9 +1,5 @@
-# Codex 주요 명령 문서 이동 안내
+# Codex 명령 문서 이동
 
-<meta http-equiv="refresh" content="0; url=../Platforms/Codex/cli-reference.html">
+<meta http-equiv="refresh" content="0; url=../Platforms/Codex/commands.html">
 
-이 문서는 [Codex CLI 명령 참조](../Platforms/Codex/cli-reference.md)로 이동했다.
-
-## 이력관리
-
-- 2026-07-13: 기존 공개 URL을 유지하기 위한 이동 안내로 전환
+이 문서는 [Codex 명령 확인](../Platforms/Codex/commands.md)으로 이동했다.

@@ -64,17 +64,16 @@ Playbook은 Codex와 Claude Code에서 공통으로 사용하는 작업 순서�
 
 ## Codex
 
-Codex 문서는 공통 활용 방식을 Codex 기능에 연결한다.
+Codex 문서는 현재 작업에 필요한 사용자 Skill과 실행 환경을 안내한다.
 
 | 문서 | 링크 |
 | --- | --- |
-| Codex 사용 안내 | [열기](./Platforms/Codex/) |
-| Codex 시작하기 | [열기](./Platforms/Codex/getting-started.html) |
-| 프로젝트 설정 | [열기](./Platforms/Codex/project-configuration.html) |
-| Master 연결표 | [열기](./Platforms/Codex/master-bindings.html) |
-| `ct-*` Skill 사용 | [열기](./Platforms/Codex/skill-usage.html) |
+| Codex 가이드 | [열기](./Platforms/Codex/) |
+| 환경 설정 | [열기](./Platforms/Codex/setup.html) |
+| 사용자 Skill | [열기](./Platforms/Codex/skills.html) |
+| 작업 흐름 | [열기](./Platforms/Codex/workflows.html) |
 | 확장 기능 | [열기](./Platforms/Codex/extensions.html) |
-| CLI 명령 참조 | [열기](./Platforms/Codex/cli-reference.html) |
+| 명령 확인 | [열기](./Platforms/Codex/commands.html) |
 
 ## Claude Code
 
@@ -139,11 +138,3 @@ Python 문서는 생태계 기반을 먼저 다루고 웹 백엔드 구현으로
 - [저장소 사용 안내](https://github.com/codestreamkr/docs/blob/main/README.md)
 - [라이선스 원문](./LICENSE)
 - [제3자 권리와 브랜드 자산 고지](./NOTICE.html)
-
-## 이력관리
-
-- 2026-08-09: Python 개발 가이드 목차와 문제별 시작 경로 추가
-- 2026-07-13: Pi·Git 탐색 구조를 유지하고 Masters, Playbooks와 AI별 플랫폼 문서를 분리했으며 문제별 Master·Playbook 시작 경로를 추가하고 폴더 README의 GitHub Pages 링크 수정
-- 2026-05-19: GitHub Pages 문서 링크를 HTML 렌더링 경로로 수정
-- 2026-05-11: Codex 섹션 추가 및 레이아웃 개선
-- 2026-04-09: 최초 생성

@@ -1,9 +1,5 @@
-# Codex Skill 목록 이동 안내
+# Codex Skill 문서 이동
 
-<meta http-equiv="refresh" content="0; url=../../Platforms/Codex/skill-usage.html">
+<meta http-equiv="refresh" content="0; url=../../Platforms/Codex/skills.html">
 
-이 문서는 [Codex Skill 사용하기](../../Platforms/Codex/skill-usage.md)로 이동했다.
-
-## 이력관리
-
-- 2026-07-13: 기존 공개 URL을 유지하기 위한 이동 안내 추가
+이 문서는 [Codex 사용자 Skill](../../Platforms/Codex/skills.md)로 이동했다.

@@ -1,41 +1,48 @@
-# Codex 사용 안내
+# Codex 가이드
 
-이 폴더는 공통 Master와 Playbook을 Codex에서 실행하는 방법만 다룬다.
+프로젝트에서 할 일을 고르고 필요한 사용자 Skill을 직접 호출한다.
 
-업무 역할과 결과 기준은 [Masters](../../Masters/README.md), 여러 단계의 공통 작업 순서는 [Playbooks](../../Playbooks/README.md)를 정본으로 사용한다.
+업무 역할과 결과 기준은 [Masters](../../Masters/README.md), 공통 작업 흐름은 [Playbooks](../../Playbooks/README.md)를 참고한다. 이 가이드는 Codex의 설정, Skill 호출과 확장 기능만 다룬다.
 
-## 시작 순서
+## 바로 시작
 
-Codex를 처음 사용하는 경우 필요한 문서만 순서대로 본다.
+1. 프로젝트 루트에서 Codex를 실행한다.
+2. 입력창의 `/skills`에서 사용할 수 있는 Skill을 확인한다.
+3. `$ct-<name> ?`로 지원 작업과 예제를 확인한다.
+4. 작업과 대상을 지정해 실행한다.
 
-| 단계 | 문서 | 완료 결과 |
+```text
+$ct-plan ?
+$ct-plan impl 주문 취소의 중복 요청 방지 기능
+```
+
+## 무엇을 하려나요?
+
+| 목적 | Skill | 시작 예제 |
 | --- | --- | --- |
-| 실행 | [Codex 시작하기](./getting-started.md) | 프로젝트에서 Codex를 실행한다 |
-| 프로젝트 적용 | [프로젝트 설정](./project-configuration.md) | `AGENTS.md`와 Config의 책임을 나눈다 |
-| Master 연결 | [Master 연결표](./master-bindings.md) | 자연어 호출을 Skill에 연결한다 |
-| 팀 Skill | [Skill 사용](./skill-usage.md) | 공통 Playbook을 `ct-*` Skill로 실행한다 |
-| 확장 | [확장 기능](./extensions.md) | Skill, MCP, Subagent와 Plugin을 구분한다 |
-| 명령 조회 | [CLI 명령 참조](./cli-reference.md) | 현재 작업에 필요한 명령을 찾는다 |
+| 제품·설계·구현·개선 계획 | `ct-plan` | `$ct-plan ?` |
+| Spring 구현과 검토 | `ct-spring` | `$ct-spring ?` |
+| 호출 흐름 분석·전환·테스트 | `ct-calltree` | `$ct-calltree ?` |
+| QA와 회귀 검증 | `ct-qa-lucin` | `$ct-qa-lucin ?` |
+| SQL 성능 분석 | `ct-query-tuner` | `$ct-query-tuner ?` |
+| 외부 서비스 연동과 이관 설계 | `ct-external-architect` | `$ct-external-architect ?` |
+| 실행 스크립트 생성과 검증 | `ct-script-run` | `$ct-script-run ?` |
+| Confluence REST API 작업 | `ct-wiki-api` | `$ct-wiki-api ?` |
+| 프로젝트 Markdown 위키 운영 | `ct-wiki-ops` | `$ct-wiki-ops ?` |
 
-## 문서 책임
+## 필요한 문서
 
-Codex 문서는 제품 전용 정보만 관리한다.
+| 알고 싶은 것 | 문서 |
+| --- | --- |
+| Skill 위치, `AGENTS.md`와 Config의 책임 | [환경 설정](./setup.md) |
+| 9개 Skill의 입력, 작업과 결과 | [Skill 안내](./skills.md) |
+| 여러 Skill을 연결하는 실제 예제 | [작업 흐름](./workflows.md) |
+| Skill, MCP, Subagent와 Plugin의 차이 | [확장 기능](./extensions.md) |
+| 현재 환경에서 명령을 찾는 방법 | [명령 확인](./commands.md) |
 
-- Codex 설치와 실행 환경
-- `AGENTS.md`와 `.codex/config.toml`
-- Codex Skill 위치와 호출 방법
-- CLI와 슬래시 명령
-- MCP, Subagent, Hook과 Plugin
-- Master와 `ct-*` Skill 연결 상태
+## 사용 기준
 
-문제 해결 방법과 결과 형식은 이 폴더에 반복하지 않는다.
-
-## 공식 문서 기준
-
-- [Codex 개발자 명령](https://developers.openai.com/codex/cli/reference/)
-- [AGENTS.md 설정](https://developers.openai.com/codex/guides/agents-md/)
-- [Skill 만들기](https://developers.openai.com/codex/skills/)
-
-## 이력관리
-
-- 2026-07-13: 공통 Master·Playbook과 분리된 Codex 플랫폼 안내로 재구성
+- 사용자 Skill은 `$ct-*` 이름으로 직접 호출한다.
+- Skill은 현재 프로젝트의 `AGENTS.md`, 코드와 설정에서 필요한 근거를 수집한다.
+- 작업별 입력과 결과는 실제 Skill 안내를 기준으로 한다.
+- 제품 기능과 명령은 현재 환경과 [OpenAI 공식 문서](https://learn.chatgpt.com/)에서 확인한다.

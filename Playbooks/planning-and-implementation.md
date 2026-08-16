@@ -90,7 +90,7 @@
 
 공통 단계를 플랫폼의 Skill이나 Command에 연결한다.
 
-- [Codex Skill 사용](../Platforms/Codex/skill-usage.md)
+- [Codex 사용자 Skill](../Platforms/Codex/skills.md)
 - [Claude Code Skill·Command 사용](../Platforms/ClaudeCode/skill-usage.md)
 
 ## 이력관리

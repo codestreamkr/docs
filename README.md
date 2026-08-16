@@ -24,7 +24,7 @@
 | --- | --- | --- |
 | Masters | 친근한 전문가의 역할, 입력, 결과와 완료 기준 | [누구를 찾을까](./Masters/README.md) |
 | Playbooks | 여러 Master와 작업 단계를 연결하는 공통 순서 | [문제 해결 Playbook](./Playbooks/README.md) |
-| Codex | Codex 설치, `AGENTS.md`, Skill과 명령 | [Codex 사용 안내](./Platforms/Codex/README.md) |
+| Codex | 환경 설정, 사용자 Skill, 작업 흐름과 명령 확인 | [Codex 가이드](./Platforms/Codex/README.md) |
 | Claude Code | Claude Code 설치, `CLAUDE.md`, Skill·Agent와 명령 | [Claude Code 사용 안내](./Platforms/ClaudeCode/README.md) |
 | Pi | Pi 설치, 세션, 프로젝트 적용과 확장 | [Pi 학습 가이드](./PI/README.md) |
 | Git | 변경 확인, 커밋, 복구, 브랜치와 충돌 해결 | [Git 필수 가이드](./Git/README.md) |
@@ -99,10 +99,3 @@ Python 과정은 생태계 기반 문서를 먼저 읽고 웹 백엔드 문서�
 저장소에서 직접 작성한 문서와 예제는 [MIT License](./LICENSE)를 따른다.
 
 외부 서비스명, 상표, 브랜드 자산에는 각 권리자의 정책이 적용된다. 상세 범위는 [NOTICE.md](./NOTICE.md)를 확인한다.
-
-## 이력관리
-
-- 2026-08-09: Python 개발 가이드 영역을 추가하고 시작 경로, 문서 구성과 활용 순서 연결
-- 2026-07-13: 저장소 시작 절차와 Git·Pi 안내를 정리하고 Masters·Playbooks·Codex·Claude Code의 공통 활용 및 플랫폼 구현 구조로 개편
-- 2026-05-11: Codex, 고수 가이드, Git 섹션과 라이선스 안내 추가
-- 2026-04-09: 최초 생성
