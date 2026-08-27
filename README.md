@@ -12,6 +12,7 @@
 2. 현재 AI에서 실행 방법을 확인한다: [Codex](./Platforms/Codex/README.md), [Claude Code](./Platforms/ClaudeCode/README.md), [Grok Build](./Platforms/GrokBuild/README.md) 또는 [Pi](./Platforms/Pi/README.md)
 3. 코드 변경과 협업이 필요하면 [Git 필수 가이드](./Git/README.md)를 연결한다.
 4. Python 프로젝트를 맡으면 [Python 개발 가이드](./Python/README.md)에서 환경과 구현 기준을 확인한다.
+5. 개발용 Mac의 상주 프로세스와 저장공간을 정리하려면 [macOS 개발 머신 관리 가이드](./Macos/README.md)를 사용한다.
 
 웹 목차에서 전체 문서를 찾으려면 [CodeStream 기술문서 목록](./index.md)을 사용한다.
 
@@ -28,6 +29,7 @@
 | Pi | 환경 설정, 사용자 Skill, Extension과 모델 연결 | [Pi 가이드](./Platforms/Pi/README.md) |
 | Git | 변경 확인, 커밋, 복구, 브랜치와 충돌 해결 | [Git 필수 가이드](./Git/README.md) |
 | Python | Python 생태계 이해와 웹 백엔드 구현 기준 | [Python 개발 가이드](./Python/README.md) |
+| Macos | 개발용 Mac의 상주 프로세스와 저장공간 관리 | [macOS 개발 머신 관리 가이드](./Macos/README.md) |
 
 ## 지금 필요한 일
 
@@ -71,6 +73,15 @@ Python 과정은 생태계 기반 문서를 먼저 읽고 웹 백엔드 문서�
 - ORM 세션과 스키마 변경: [데이터 접근과 마이그레이션](./Python/python_06_web_data_access_guide.md)
 - 요청 검증, 예외와 인증: [API 계약과 인증](./Python/python_07_web_api_contract_guide.md)
 - 실행 모델, 테스트와 배포: [실행과 운영](./Python/python_08_web_runtime_operations_guide.md)
+
+## macOS 문서 활용
+
+개발 머신을 대상으로 하는 작업은 되돌릴 수 있는 순서로 진행한다.
+
+- 전체 원칙과 상태 확인 명령: [macOS 개발 머신 관리 가이드](./Macos/README.md)
+- 자동 실행 항목 정리와 캐시 비우기: [백그라운드 프로세스와 캐시 정리](./Macos/macos_01_background_cleanup_guide.md)
+
+프로젝트의 빌드·실행 절차는 [09 실행 환경을 준비한다](./Playbooks/09-prepare-runtime.md)에서 다룬다.
 
 ## 문서 사용 기준
 

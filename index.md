@@ -103,6 +103,12 @@
           <span>실행 환경, 의존성, 품질 도구와 웹 백엔드</span>
           <b aria-hidden="true">→</b>
         </a>
+        <a class="cs-development-card" href="./Macos/">
+          <span class="cs-card-index">03</span>
+          <strong>macOS</strong>
+          <span>상주 프로세스, 자동 실행 항목과 저장공간 정리</span>
+          <b aria-hidden="true">→</b>
+        </a>
       </div>
     </section>
 
@@ -206,6 +212,14 @@
             <li><a href="./Python/python_06_web_data_access_guide.html">데이터 접근과 마이그레이션 <span>→</span></a></li>
             <li><a href="./Python/python_07_web_api_contract_guide.html">API 계약과 인증 <span>→</span></a></li>
             <li><a href="./Python/python_08_web_runtime_operations_guide.html">실행과 운영 <span>→</span></a></li>
+          </ul>
+        </section>
+
+        <section class="cs-directory-group">
+          <h3>macOS</h3>
+          <ul>
+            <li><a href="./Macos/">macOS 개발 머신 관리 가이드 <span>→</span></a></li>
+            <li><a href="./Macos/macos_01_background_cleanup_guide.html">백그라운드 프로세스와 캐시 정리 <span>→</span></a></li>
           </ul>
         </section>
       </div>
