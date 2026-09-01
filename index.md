@@ -39,19 +39,19 @@
         <a class="cs-platform" href="./Platforms/Codex/">
           <strong><img class="cs-mark" src="./assets/brand/openai-logo.svg" alt="" width="18" height="18">Codex</strong>
           <span class="cs-spec">
-            <span>AGENTS.md로 프로젝트 기준 고정</span>
-            <span>사용자 Skill 등록과 호출</span>
-            <span>Rules로 명령 허용 정책</span>
-            <span>App·Connector로 외부 연결</span>
+            <span>AGENTS.md 기준 고정</span>
+            <span>사용자 Skill 호출</span>
+            <span>Rules로 명령 정책</span>
+            <span>App·Connector 연결</span>
           </span>
           <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-platform" href="./Platforms/ClaudeCode/">
           <strong><img class="cs-mark" src="./assets/brand/claudecode-icon.png" alt="" width="18" height="18">Claude Code</strong>
           <span class="cs-spec">
-            <span>CLAUDE.md와 경로별 규칙 분리</span>
-            <span>Skill과 Subagent 구성</span>
-            <span>Hook으로 실행 전후 검사</span>
+            <span>CLAUDE.md 기준 고정</span>
+            <span>Skill·Subagent 구성</span>
+            <span>Hook으로 사전 검사</span>
             <span>MCP로 외부 연결</span>
           </span>
           <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
@@ -59,9 +59,9 @@
         <a class="cs-platform" href="./Platforms/GrokBuild/">
           <strong><svg class="cs-mark cs-grok" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 3L6 13.5h5L10.5 21 18 10.5h-5z"></path></svg>Grok Build</strong>
           <span class="cs-spec">
-            <span>AGENTS.md로 프로젝트 기준 고정</span>
-            <span>Agent Profile로 세션 구성</span>
-            <span>Custom Model로 모델 교체</span>
+            <span>AGENTS.md 기준 고정</span>
+            <span>Agent Profile 구성</span>
+            <span>Custom Model 교체</span>
             <span>Subagent 병렬 실행</span>
           </span>
           <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
@@ -69,10 +69,10 @@
         <a class="cs-platform" href="./Platforms/Pi/">
           <strong><svg class="cs-mark cs-pi" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9z"></path></svg>Pi</strong>
           <span class="cs-spec">
-            <span>AGENTS.md로 프로젝트 기준 고정</span>
-            <span>Extension으로 도구와 UI 확장</span>
-            <span>Prompt Template 단축 입력</span>
-            <span>Custom Provider로 모델 연결</span>
+            <span>AGENTS.md 기준 고정</span>
+            <span>Extension으로 확장</span>
+            <span>Prompt Template 입력</span>
+            <span>Custom Provider 연결</span>
           </span>
           <span class="cs-card-foot">문서 6<b aria-hidden="true">→</b></span>
         </a>
@@ -299,7 +299,7 @@
   #codestream-docs .cs-grok { color: light-dark(#4a5361, #98a4b4); }
   #codestream-docs .cs-pi { color: light-dark(#6b6fd2, #9ba0ea); }
   #codestream-docs .cs-spec { display: flex; flex-direction: column; margin-top: 14px; }
-  #codestream-docs .cs-spec > span { display: flex; gap: 8px; padding: 6px 0; color: var(--cs-muted); font-size: 12px; line-height: 1.5; }
+  #codestream-docs .cs-spec > span { display: flex; gap: 8px; padding: 6px 0; color: var(--cs-muted); font-size: 12px; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #codestream-docs .cs-spec > span::before { content: ""; flex: 0 0 3px; height: 3px; margin-top: 8px; border-radius: 50%; background: var(--cs-accent); }
   #codestream-docs .cs-card-foot { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 14px; color: var(--cs-muted); font-size: 11px; }
   #codestream-docs .cs-platform .cs-card-foot, #codestream-docs .cs-development-card .cs-card-foot { margin-top: 18px; border-top: 1px solid var(--cs-line); }
