@@ -37,35 +37,43 @@
       </div>
       <div class="cs-platform-grid">
         <a class="cs-platform" href="./Platforms/Codex/">
-          <span class="cs-platform-icon cs-codex" aria-hidden="true">C</span>
-          <span class="cs-platform-meta">AI CODING AGENT</span>
-          <strong>Codex</strong>
-          <span class="cs-platform-copy">설정, Skill, 명령과 작업 흐름</span>
-          <span class="cs-tags"><span>설정</span><span>Skill</span><span>흐름</span></span>
+          <strong><img class="cs-mark" src="./assets/brand/openai-logo.svg" alt="" width="18" height="18">Codex</strong>
+          <span class="cs-spec">
+            <span>AGENTS.md로 프로젝트 기준 고정</span>
+            <span>사용자 Skill 등록과 호출</span>
+            <span>Rules로 명령 허용 정책</span>
+            <span>App·Connector로 외부 연결</span>
+          </span>
           <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-platform" href="./Platforms/ClaudeCode/">
-          <span class="cs-platform-icon cs-claude" aria-hidden="true">A</span>
-          <span class="cs-platform-meta">AI CODING AGENT</span>
-          <strong>Claude Code</strong>
-          <span class="cs-platform-copy">설정, Skill, 명령과 작업 흐름</span>
-          <span class="cs-tags"><span>설정</span><span>Skill</span><span>흐름</span></span>
+          <strong><img class="cs-mark" src="./assets/brand/claudecode-icon.png" alt="" width="18" height="18">Claude Code</strong>
+          <span class="cs-spec">
+            <span>CLAUDE.md와 경로별 규칙 분리</span>
+            <span>Skill과 Subagent 구성</span>
+            <span>Hook으로 실행 전후 검사</span>
+            <span>MCP로 외부 연결</span>
+          </span>
           <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-platform" href="./Platforms/GrokBuild/">
-          <span class="cs-platform-icon cs-grok" aria-hidden="true">G</span>
-          <span class="cs-platform-meta">AI CODING AGENT</span>
-          <strong>Grok Build</strong>
-          <span class="cs-platform-copy">설정, Skill, 모델 연결과 확장</span>
-          <span class="cs-tags"><span>설정</span><span>모델</span><span>확장</span></span>
+          <strong><svg class="cs-mark cs-grok" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 3L6 13.5h5L10.5 21 18 10.5h-5z"></path></svg>Grok Build</strong>
+          <span class="cs-spec">
+            <span>AGENTS.md로 프로젝트 기준 고정</span>
+            <span>Agent Profile로 세션 구성</span>
+            <span>Custom Model로 모델 교체</span>
+            <span>Subagent 병렬 실행</span>
+          </span>
           <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-platform" href="./Platforms/Pi/">
-          <span class="cs-platform-icon cs-pi" aria-hidden="true">π</span>
-          <span class="cs-platform-meta">AI CODING AGENT</span>
-          <strong>Pi</strong>
-          <span class="cs-platform-copy">설정, Skill, Extension과 모델 연결</span>
-          <span class="cs-tags"><span>설정</span><span>Extension</span><span>심화</span></span>
+          <strong><svg class="cs-mark cs-pi" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9z"></path></svg>Pi</strong>
+          <span class="cs-spec">
+            <span>AGENTS.md로 프로젝트 기준 고정</span>
+            <span>Extension으로 도구와 UI 확장</span>
+            <span>Prompt Template 단축 입력</span>
+            <span>Custom Provider로 모델 연결</span>
+          </span>
           <span class="cs-card-foot">문서 6<b aria-hidden="true">→</b></span>
         </a>
       </div>
@@ -103,20 +111,17 @@
       </div>
       <div class="cs-development-grid">
         <a class="cs-development-card" href="./Git/">
-          <span class="cs-card-index">01</span>
-          <strong>Git</strong>
+          <strong><img class="cs-mark" src="./assets/brand/git-icon.svg" alt="" width="18" height="18">Git</strong>
           <span>변경 확인과 커밋, 브랜치 협업, 안전한 복구</span>
           <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-development-card" href="./Python/">
-          <span class="cs-card-index">02</span>
-          <strong>Python</strong>
+          <strong><svg class="cs-mark cs-python" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c-3 0-4 1.3-4 3v2h4"></path><path d="M8 8H6.5C4.6 8 4 9.4 4 12s.6 4 2.5 4H10v-2.5A2.5 2.5 0 0 1 12.5 11H15"></path><path d="M12 21c3 0 4-1.3 4-3v-2h-4"></path><path d="M16 16h1.5c1.9 0 2.5-1.4 2.5-4s-.6-4-2.5-4H14v2.5A2.5 2.5 0 0 1 11.5 13H9"></path></svg>Python</strong>
           <span>실행 환경과 의존성, 품질 도구, 웹 백엔드</span>
           <span class="cs-card-foot">문서 8<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-development-card" href="./Macos/">
-          <span class="cs-card-index">03</span>
-          <strong>macOS</strong>
+          <strong><svg class="cs-mark cs-macos" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M2 20h20"></path></svg>macOS</strong>
           <span>상주 프로세스와 자동 실행 항목, 저장공간 정리</span>
           <span class="cs-card-foot">문서 1<b aria-hidden="true">→</b></span>
         </a>
@@ -182,7 +187,7 @@
           </ul>
         </section>
 
-        <section class="cs-directory-group cs-directory-wide">
+        <section class="cs-directory-group">
           <h3>Playbook</h3>
           <ul>
             <li><a href="./Playbooks/">Playbook 안내 <span>→</span></a></li>
@@ -289,53 +294,53 @@
   #codestream-docs .cs-platform-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
   #codestream-docs .cs-platform, #codestream-docs .cs-development-card { padding: 22px; border: 1px solid var(--cs-line); border-radius: 15px; background: var(--cs-panel); display: flex; flex-direction: column; transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
   #codestream-docs .cs-platform:hover, #codestream-docs .cs-development-card:hover { border-color: var(--cs-accent); transform: translateY(-2px); box-shadow: 0 10px 30px light-dark(rgba(20, 23, 22, .07), rgba(0, 0, 0, .2)); }
-  #codestream-docs .cs-platform-icon { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--cs-line); border-radius: 9px; font-size: 15px; font-weight: 800; background: var(--cs-paper); }
-  #codestream-docs .cs-codex { color: var(--cs-accent); }
-  #codestream-docs .cs-claude { color: light-dark(#c56d46, #e09a76); }
+  #codestream-docs .cs-platform strong { display: flex; align-items: center; gap: 8px; font-size: 20px; letter-spacing: -.025em; }
+  #codestream-docs .cs-mark { flex: 0 0 auto; border-radius: 4px; }
   #codestream-docs .cs-grok { color: light-dark(#4a5361, #98a4b4); }
   #codestream-docs .cs-pi { color: light-dark(#6b6fd2, #9ba0ea); }
-  #codestream-docs .cs-platform-meta { margin-top: 18px; color: var(--cs-muted); font-size: 9px; letter-spacing: .12em; }
-  #codestream-docs .cs-platform strong { margin-top: 5px; font-size: 20px; letter-spacing: -.025em; }
-  #codestream-docs .cs-platform-copy { margin-top: 7px; color: var(--cs-muted); font-size: 12px; line-height: 1.55; }
-  #codestream-docs .cs-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
-  #codestream-docs .cs-tags span { padding: 3px 8px; border-radius: 6px; background: var(--cs-accent-soft); color: var(--cs-accent); font-size: 10px; font-weight: 700; }
+  #codestream-docs .cs-spec { display: flex; flex-direction: column; margin-top: 14px; }
+  #codestream-docs .cs-spec > span { display: flex; gap: 8px; padding: 6px 0; color: var(--cs-muted); font-size: 12px; line-height: 1.5; }
+  #codestream-docs .cs-spec > span::before { content: ""; flex: 0 0 3px; height: 3px; margin-top: 8px; border-radius: 50%; background: var(--cs-accent); }
   #codestream-docs .cs-card-foot { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 14px; color: var(--cs-muted); font-size: 11px; }
   #codestream-docs .cs-platform .cs-card-foot, #codestream-docs .cs-development-card .cs-card-foot { margin-top: 18px; border-top: 1px solid var(--cs-line); }
   #codestream-docs .cs-card-foot b { font-size: 16px; font-weight: 400; }
-  #codestream-docs .cs-guide-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; border-top: 1px solid var(--cs-line); }
-  #codestream-docs .cs-guide-list a { display: grid; grid-template-columns: 40px minmax(140px, 200px) 1fr 20px; align-items: center; gap: 12px; min-height: 62px; border-bottom: 1px solid var(--cs-line); transition: padding .18s ease, color .18s ease; }
+  #codestream-docs .cs-guide-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 44px; border-top: 1px solid var(--cs-line); }
+  #codestream-docs .cs-guide-list a { display: grid; grid-template-columns: 30px minmax(0, auto) 1fr 16px; align-items: center; gap: 12px; min-height: 46px; border-bottom: 1px solid var(--cs-line); transition: padding .18s ease, color .18s ease; }
   #codestream-docs .cs-guide-list a:hover { padding-left: 8px; color: var(--cs-accent); }
   #codestream-docs .cs-guide-number { color: var(--cs-muted); font-size: 10px; font-weight: 700; }
   #codestream-docs .cs-guide-list strong { font-size: 14px; }
-  #codestream-docs .cs-guide-list a > span:nth-child(3) { color: var(--cs-muted); font-size: 12px; }
+  #codestream-docs .cs-guide-list a > span:nth-child(3) { justify-self: end; color: var(--cs-muted); font-size: 11.5px; white-space: nowrap; }
   #codestream-docs .cs-guide-list b { font-size: 16px; font-weight: 400; }
   #codestream-docs .cs-development-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
   #codestream-docs .cs-development-card { padding: 24px; }
-  #codestream-docs .cs-card-index { color: var(--cs-accent); font-size: 10px; font-weight: 800; letter-spacing: .1em; }
-  #codestream-docs .cs-development-card strong { margin-top: 20px; font-size: 22px; letter-spacing: -.03em; }
-  #codestream-docs .cs-development-card > span:nth-child(3) { margin-top: 7px; color: var(--cs-muted); font-size: 12px; line-height: 1.55; }
+  #codestream-docs .cs-development-card strong { display: flex; align-items: center; gap: 9px; font-size: 22px; letter-spacing: -.03em; }
+  #codestream-docs .cs-python { color: light-dark(#3b6fa0, #7fb3e0); }
+  #codestream-docs .cs-macos { color: light-dark(#4a5361, #98a4b4); }
+  #codestream-docs .cs-development-card > span:nth-child(2) { margin-top: 7px; color: var(--cs-muted); font-size: 12px; line-height: 1.55; }
   #codestream-docs .cs-directory-section { padding: 48px 0 56px; scroll-margin-top: 20px; }
-  #codestream-docs .cs-directory-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: start; }
-  #codestream-docs .cs-directory-group { margin: 0; padding: 20px 22px; border: 1px solid var(--cs-line); border-radius: 15px; background: var(--cs-panel); }
-  #codestream-docs .cs-directory-wide { grid-column: span 2; }
-  #codestream-docs .cs-directory-wide ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
-  #codestream-docs .cs-directory-group h3 { margin: 0 0 12px; font-size: 15px; letter-spacing: -.02em; }
+  #codestream-docs .cs-directory-grid { column-count: 4; column-gap: 44px; }
+  #codestream-docs .cs-directory-group { break-inside: avoid; margin: 0 0 30px; padding: 0; }
+  #codestream-docs .cs-directory-group h3 { margin: 0 0 4px; padding-bottom: 8px; border-bottom: 2px solid var(--cs-ink); font-size: 13px; font-weight: 800; letter-spacing: -.01em; }
   #codestream-docs .cs-directory-group ul { margin: 0; padding: 0; list-style: none; }
   #codestream-docs .cs-directory-group li { margin: 0; border-top: 1px solid var(--cs-line); }
-  #codestream-docs .cs-directory-group a { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; color: var(--cs-muted); font-size: 12px; line-height: 1.4; }
+  #codestream-docs .cs-directory-group a { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; color: var(--cs-muted); font-size: 12.5px; line-height: 1.45; }
   #codestream-docs .cs-directory-group a:hover { color: var(--cs-accent); }
+  #codestream-docs .cs-directory-group a span { opacity: 0; transition: opacity .15s ease; }
+  #codestream-docs .cs-directory-group a:hover span { opacity: 1; }
   #codestream-docs .cs-footer { min-height: 68px; padding: 20px max(24px, calc((100% - 1360px) / 2)); display: flex; align-items: center; justify-content: space-between; gap: 24px; border-top: 1px solid var(--cs-line); color: var(--cs-muted); font-size: 11px; }
   #codestream-docs .cs-footer > span { color: var(--cs-ink); font-weight: 750; }
   #codestream-docs .cs-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 20px; }
 
   @media (max-width: 1180px) {
-    #codestream-docs .cs-directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    #codestream-docs .cs-directory-wide { grid-column: span 2; }
+    #codestream-docs .cs-directory-grid { column-count: 3; column-gap: 36px; }
+    #codestream-docs .cs-guide-list a > span:nth-child(3) { display: none; }
+    #codestream-docs .cs-guide-list a { grid-template-columns: 30px 1fr 16px; }
   }
 
   @media (max-width: 980px) {
     #codestream-docs .cs-platform-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     #codestream-docs .cs-development-grid { grid-template-columns: 1fr; }
+    #codestream-docs .cs-directory-grid { column-count: 2; column-gap: 32px; }
     #codestream-docs .cs-guide-list { grid-template-columns: 1fr; gap: 0; }
   }
 
@@ -351,9 +356,9 @@
     #codestream-docs .cs-section-heading { display: block; }
     #codestream-docs .cs-section-heading > p { margin-top: 12px; }
     #codestream-docs .cs-section-heading > p br { display: none; }
-    #codestream-docs .cs-platform-grid, #codestream-docs .cs-directory-grid { grid-template-columns: 1fr; }
-    #codestream-docs .cs-directory-wide, #codestream-docs .cs-directory-wide ul { grid-column: auto; grid-template-columns: 1fr; }
-    #codestream-docs .cs-guide-list a { grid-template-columns: 34px 1fr 20px; min-height: 64px; }
+    #codestream-docs .cs-platform-grid { grid-template-columns: 1fr; }
+    #codestream-docs .cs-directory-grid { column-count: 1; }
+    #codestream-docs .cs-guide-list a { grid-template-columns: 28px 1fr 16px; min-height: 50px; }
     #codestream-docs .cs-guide-list a > span:nth-child(3) { display: none; }
     #codestream-docs .cs-footer { padding: 22px 20px; align-items: flex-start; }
   }
