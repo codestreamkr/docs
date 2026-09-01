@@ -37,13 +37,13 @@
 
 | 필요한 일 | Playbook |
 | --- | --- |
-| 아이디어를 기능 범위와 완료 조건으로 구체화한다 | [01 무엇을 만들지 정한다](./Playbooks/01-define-scope.md) |
-| 확정된 계획을 코드로 반영하고 검증한다 | [02 기능을 구현하고 검증한다](./Playbooks/02-implement-and-verify.md) |
-| 낯선 코드의 실제 동작을 파악한다 | [03 낯선 코드를 파악한다](./Playbooks/03-understand-code.md) |
-| 느린 SQL의 원인을 찾고 개선한다 | [04 느린 SQL을 개선한다](./Playbooks/04-tune-sql.md) |
-| 레거시 구조를 안전한 순서로 바꾼다 | [05 구조를 전환한다](./Playbooks/05-transition-structure.md) |
-| 결제·인증·메시징을 연동하거나 공급자를 바꾼다 | [06 외부 서비스를 연동한다](./Playbooks/06-integrate-external.md) |
-| 기능의 결함과 위험을 검증한다 | [08 오픈 전 품질을 검증한다](./Playbooks/08-verify-before-release.md) |
+| 아이디어를 기능 범위와 완료 조건으로 구체화한다 | [01 무엇을 만들지 정하기](./Playbooks/01-define-scope.md) |
+| 확정된 계획을 코드로 반영하고 검증한다 | [02 기능 구현하고 검증하기](./Playbooks/02-implement-and-verify.md) |
+| 낯선 코드의 실제 동작을 파악한다 | [03 낯선 코드 파악하기](./Playbooks/03-understand-code.md) |
+| 느린 SQL의 원인을 찾고 개선한다 | [04 느린 SQL 개선하기](./Playbooks/04-tune-sql.md) |
+| 레거시 구조를 안전한 순서로 바꾼다 | [05 구조 전환하기](./Playbooks/05-transition-structure.md) |
+| 결제·인증·메시징을 연동하거나 공급자를 바꾼다 | [06 외부 서비스 연동하기](./Playbooks/06-integrate-external.md) |
+| 기능의 결함과 위험을 검증한다 | [08 오픈 전 품질 검증하기](./Playbooks/08-verify-before-release.md) |
 
 ## AI별 구현 기준
 
@@ -81,7 +81,7 @@ Python 과정은 생태계 기반 문서를 먼저 읽고 웹 백엔드 문서�
 - 전체 원칙과 상태 확인 명령: [macOS 개발 머신 관리 가이드](./Macos/README.md)
 - 자동 실행 항목 정리와 캐시 비우기: [백그라운드 프로세스와 캐시 정리](./Macos/macos_01_background_cleanup_guide.md)
 
-프로젝트의 빌드·실행 절차는 [09 실행 환경을 준비한다](./Playbooks/09-prepare-runtime.md)에서 다룬다.
+프로젝트의 빌드·실행 절차는 [09 실행 환경 준비하기](./Playbooks/09-prepare-runtime.md)에서 다룬다.
 
 ## 문서 사용 기준
 

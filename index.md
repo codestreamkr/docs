@@ -72,12 +72,12 @@
         <p>제품이 아닌 문제 유형을 기준으로<br>어떤 결과를 어떤 순서로 만들지 찾습니다.</p>
       </div>
       <div class="cs-guide-list">
-        <a href="./Playbooks/01-define-scope.html"><span class="cs-guide-number">01</span><strong>무엇을 만들지 정한다</strong><span>범위, 흐름과 완료 조건을 구현 전에 확정합니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/02-implement-and-verify.html"><span class="cs-guide-number">02</span><strong>구현하고 검증한다</strong><span>확정된 계획을 반영하고 실패 경로까지 확인합니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/03-understand-code.html"><span class="cs-guide-number">03</span><strong>낯선 코드를 파악한다</strong><span>실제 호출 흐름과 외부 경계를 먼저 확인합니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/04-tune-sql.html"><span class="cs-guide-number">04</span><strong>느린 SQL을 개선한다</strong><span>측정 근거를 확보한 뒤에 변경을 연결합니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/05-transition-structure.html"><span class="cs-guide-number">05</span><strong>구조를 전환한다</strong><span>되돌릴 수 있는 단계로 나눠 옮깁니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/06-integrate-external.html"><span class="cs-guide-number">06</span><strong>외부 서비스를 연동한다</strong><span>공급자 계약과 내부 영향을 분리해 설계합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/01-define-scope.html"><span class="cs-guide-number">01</span><strong>무엇을 만들지 정하기</strong><span>범위, 흐름과 완료 조건을 구현 전에 확정합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/02-implement-and-verify.html"><span class="cs-guide-number">02</span><strong>구현하고 검증하기</strong><span>확정된 계획을 반영하고 실패 경로까지 확인합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/03-understand-code.html"><span class="cs-guide-number">03</span><strong>낯선 코드 파악하기</strong><span>실제 호출 흐름과 외부 경계를 먼저 확인합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/04-tune-sql.html"><span class="cs-guide-number">04</span><strong>느린 SQL 개선하기</strong><span>측정 근거를 확보한 뒤에 변경을 연결합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/05-transition-structure.html"><span class="cs-guide-number">05</span><strong>구조 전환하기</strong><span>되돌릴 수 있는 단계로 나눠 옮깁니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/06-integrate-external.html"><span class="cs-guide-number">06</span><strong>외부 서비스 연동하기</strong><span>공급자 계약과 내부 영향을 분리해 설계합니다.</span><b aria-hidden="true">→</b></a>
       </div>
       <a class="cs-more-link" href="./Playbooks/">Playbook 10개 전체 보기 <span aria-hidden="true">→</span></a>
     </section>
@@ -175,16 +175,16 @@
           <h3>Playbook</h3>
           <ul>
             <li><a href="./Playbooks/">Playbook 안내 <span>→</span></a></li>
-            <li><a href="./Playbooks/01-define-scope.html">01 무엇을 만들지 정한다 <span>→</span></a></li>
-            <li><a href="./Playbooks/02-implement-and-verify.html">02 기능을 구현하고 검증한다 <span>→</span></a></li>
-            <li><a href="./Playbooks/03-understand-code.html">03 낯선 코드를 파악한다 <span>→</span></a></li>
-            <li><a href="./Playbooks/04-tune-sql.html">04 느린 SQL을 개선한다 <span>→</span></a></li>
-            <li><a href="./Playbooks/05-transition-structure.html">05 구조를 전환한다 <span>→</span></a></li>
-            <li><a href="./Playbooks/06-integrate-external.html">06 외부 서비스를 연동한다 <span>→</span></a></li>
-            <li><a href="./Playbooks/07-improve-module.html">07 개선 과제를 정리해 반영한다 <span>→</span></a></li>
-            <li><a href="./Playbooks/08-verify-before-release.html">08 오픈 전 품질을 검증한다 <span>→</span></a></li>
-            <li><a href="./Playbooks/09-prepare-runtime.html">09 실행 환경을 준비한다 <span>→</span></a></li>
-            <li><a href="./Playbooks/10-operate-wiki.html">10 지식을 위키로 남긴다 <span>→</span></a></li>
+            <li><a href="./Playbooks/01-define-scope.html">01 무엇을 만들지 정하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/02-implement-and-verify.html">02 기능 구현하고 검증하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/03-understand-code.html">03 낯선 코드 파악하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/04-tune-sql.html">04 느린 SQL 개선하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/05-transition-structure.html">05 구조 전환하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/06-integrate-external.html">06 외부 서비스 연동하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/07-improve-module.html">07 개선 과제 정리해 반영하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/08-verify-before-release.html">08 오픈 전 품질 검증하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/09-prepare-runtime.html">09 실행 환경 준비하기 <span>→</span></a></li>
+            <li><a href="./Playbooks/10-operate-wiki.html">10 지식 위키로 남기기 <span>→</span></a></li>
           </ul>
         </section>
 

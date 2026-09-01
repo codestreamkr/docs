@@ -73,10 +73,10 @@ uv run uvicorn app.main:app --reload
 
 작업 단계는 공통 Playbook을 따른다.
 
-- [09 실행 환경을 준비한다](../Playbooks/09-prepare-runtime.md)
-- [02 기능을 구현하고 검증한다](../Playbooks/02-implement-and-verify.md)
-- [03 낯선 코드를 파악한다](../Playbooks/03-understand-code.md)
-- [07 개선 과제를 정리해 반영한다](../Playbooks/07-improve-module.md)
+- [09 실행 환경 준비하기](../Playbooks/09-prepare-runtime.md)
+- [02 기능 구현하고 검증하기](../Playbooks/02-implement-and-verify.md)
+- [03 낯선 코드 파악하기](../Playbooks/03-understand-code.md)
+- [07 개선 과제 정리해 반영하기](../Playbooks/07-improve-module.md)
 - [Git 필수 가이드](../Git/README.md)
 
 ## 앞으로 추가할 문서

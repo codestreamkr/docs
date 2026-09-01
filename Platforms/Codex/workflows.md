@@ -29,16 +29,16 @@ $ct-qa-lucin 주문 취소의 정상·중복·외부 실패 흐름을 검증해�
 
 | 필요한 결과 | Playbook |
 | --- | --- |
-| 만들 것의 범위와 완료 조건을 정한다 | [01 무엇을 만들지 정한다](../../Playbooks/01-define-scope.md) |
-| 확정된 계획을 코드로 반영하고 검증한다 | [02 기능을 구현하고 검증한다](../../Playbooks/02-implement-and-verify.md) |
-| 기존 코드의 실제 동작을 파악한다 | [03 낯선 코드를 파악한다](../../Playbooks/03-understand-code.md) |
-| 느린 조회의 원인을 찾고 개선한다 | [04 느린 SQL을 개선한다](../../Playbooks/04-tune-sql.md) |
-| 기존 구조를 유지하면서 새 구조로 옮긴다 | [05 구조를 전환한다](../../Playbooks/05-transition-structure.md) |
-| 외부 서비스를 붙이거나 공급자를 바꾼다 | [06 외부 서비스를 연동한다](../../Playbooks/06-integrate-external.md) |
-| 무엇부터 손볼지 정하고 순서대로 반영한다 | [07 개선 과제를 정리해 반영한다](../../Playbooks/07-improve-module.md) |
-| 배포 전에 위험한 흐름을 검증한다 | [08 오픈 전 품질을 검증한다](../../Playbooks/08-verify-before-release.md) |
-| 빌드와 실행 절차를 재현 가능하게 만든다 | [09 실행 환경을 준비한다](../../Playbooks/09-prepare-runtime.md) |
-| 흩어진 지식을 위키로 정리한다 | [10 지식을 위키로 남긴다](../../Playbooks/10-operate-wiki.md) |
+| 만들 것의 범위와 완료 조건을 정한다 | [01 무엇을 만들지 정하기](../../Playbooks/01-define-scope.md) |
+| 확정된 계획을 코드로 반영하고 검증한다 | [02 기능 구현하고 검증하기](../../Playbooks/02-implement-and-verify.md) |
+| 기존 코드의 실제 동작을 파악한다 | [03 낯선 코드 파악하기](../../Playbooks/03-understand-code.md) |
+| 느린 조회의 원인을 찾고 개선한다 | [04 느린 SQL 개선하기](../../Playbooks/04-tune-sql.md) |
+| 기존 구조를 유지하면서 새 구조로 옮긴다 | [05 구조 전환하기](../../Playbooks/05-transition-structure.md) |
+| 외부 서비스를 붙이거나 공급자를 바꾼다 | [06 외부 서비스 연동하기](../../Playbooks/06-integrate-external.md) |
+| 무엇부터 손볼지 정하고 순서대로 반영한다 | [07 개선 과제 정리해 반영하기](../../Playbooks/07-improve-module.md) |
+| 배포 전에 위험한 흐름을 검증한다 | [08 오픈 전 품질 검증하기](../../Playbooks/08-verify-before-release.md) |
+| 빌드와 실행 절차를 재현 가능하게 만든다 | [09 실행 환경 준비하기](../../Playbooks/09-prepare-runtime.md) |
+| 흩어진 지식을 위키로 정리한다 | [10 지식 위키로 남기기](../../Playbooks/10-operate-wiki.md) |
 
 ## 확인
 

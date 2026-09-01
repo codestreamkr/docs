@@ -136,7 +136,7 @@ def find_by_customer(
 - 선택 기준: 일대다 관계는 `selectinload`, 다대일 단일 관계는 `joinedload`를 기본으로 한다.
 - Django ORM은 같은 문제를 `select_related`(정방향 FK)와 `prefetch_related`(역방향·다대다)로 해결한다.
 
-질의 실행 계획 분석과 인덱스 판단이 필요하면 [04 느린 SQL을 개선한다](../Playbooks/04-tune-sql.md)를 연결한다.
+질의 실행 계획 분석과 인덱스 판단이 필요하면 [04 느린 SQL 개선하기](../Playbooks/04-tune-sql.md)를 연결한다.
 
 ## 비동기 데이터 접근
 
