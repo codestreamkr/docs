@@ -16,7 +16,7 @@
     <section class="cs-hero" aria-labelledby="hero-title">
       <div>
         <p class="cs-eyebrow">TECH DOCUMENTATION</p>
-        <h1 id="hero-title">AI 도구부터 개발 환경까지,<br>한곳에 모았어요.</h1>
+        <h1 id="hero-title">AI 도구부터 개발 환경까지, 한곳에 모았어요.</h1>
       </div>
       <div class="cs-hero-side">
         <p class="cs-lead">플랫폼 설정, 문제 유형별 진행 순서, Git·Python·macOS 기준까지. 판단이 필요할 때 여기서 찾아요.</p>
@@ -272,12 +272,12 @@
   #codestream-docs .cs-header nav a:hover, #codestream-docs .cs-footer a:hover { color: var(--cs-ink); }
   #codestream-docs .cs-all-link { margin-left: auto; flex: 0 0 auto; font-size: 13px; font-weight: 700; }
   #codestream-docs main { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
-  #codestream-docs .cs-hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 64px; align-items: end; padding: 68px 0 60px; border-bottom: 1px solid var(--cs-line); }
-  #codestream-docs .cs-hero-side { padding-bottom: 6px; }
+  #codestream-docs .cs-hero { padding: 56px 0 48px; border-bottom: 1px solid var(--cs-line); }
+  #codestream-docs .cs-hero-side { margin-top: 22px; }
   #codestream-docs .cs-eyebrow, #codestream-docs .cs-kicker { margin: 0 0 18px; color: var(--cs-accent); font-size: 11px; font-weight: 800; letter-spacing: .15em; }
-  #codestream-docs h1 { margin: 0; font-size: clamp(38px, 4.4vw, 62px); font-weight: 700; line-height: 1.14; letter-spacing: -.045em; }
-  #codestream-docs .cs-lead { margin: 0; color: var(--cs-muted); font-size: 15px; line-height: 1.8; }
-  #codestream-docs .cs-hero-actions { display: flex; gap: 10px; margin-top: 24px; }
+  #codestream-docs h1 { margin: 0; font-size: clamp(28px, 3vw, 40px); font-weight: 700; line-height: 1.2; letter-spacing: -.045em; text-wrap: balance; }
+  #codestream-docs .cs-lead { margin: 0; max-width: 780px; color: var(--cs-muted); font-size: 16px; line-height: 1.75; }
+  #codestream-docs .cs-hero-actions { display: flex; gap: 10px; margin-top: 28px; }
   #codestream-docs .cs-primary, #codestream-docs .cs-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 20px; border-radius: 9px; font-size: 14px; font-weight: 700; }
   #codestream-docs .cs-primary { background: var(--cs-ink); color: var(--cs-paper); }
   #codestream-docs .cs-secondary { border: 1px solid var(--cs-line); gap: 16px; background: var(--cs-panel); }
@@ -334,8 +334,6 @@
   }
 
   @media (max-width: 980px) {
-    #codestream-docs .cs-hero { display: block; }
-    #codestream-docs .cs-hero-side { margin-top: 24px; padding-bottom: 0; }
     #codestream-docs .cs-platform-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     #codestream-docs .cs-development-grid { grid-template-columns: 1fr; }
     #codestream-docs .cs-guide-list { grid-template-columns: 1fr; gap: 0; }
