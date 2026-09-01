@@ -14,12 +14,16 @@
 
   <main id="top">
     <section class="cs-hero" aria-labelledby="hero-title">
-      <p class="cs-eyebrow">AI WORK DOCUMENTATION</p>
-      <h1 id="hero-title">AI와 함께 일하는 방법을<br>한곳에서 찾으세요.</h1>
-      <p class="cs-lead">플랫폼별 사용법부터 계획·구현·검증 절차까지.<br>필요한 문서로 바로 이동할 수 있는 CodeStream 가이드입니다.</p>
-      <div class="cs-hero-actions">
-        <a class="cs-primary" href="#platforms">가이드 살펴보기</a>
-        <a class="cs-secondary" href="#work-guides">문제 유형으로 찾기 <span aria-hidden="true">→</span></a>
+      <div>
+        <p class="cs-eyebrow">TECH DOCUMENTATION</p>
+        <h1 id="hero-title">AI 도구부터 개발 환경까지,<br>한곳에 모았어요.</h1>
+      </div>
+      <div class="cs-hero-side">
+        <p class="cs-lead">플랫폼 설정, 문제 유형별 진행 순서, Git·Python·macOS 기준까지. 판단이 필요할 때 여기서 찾아요.</p>
+        <div class="cs-hero-actions">
+          <a class="cs-primary" href="#platforms">플랫폼 문서 보기</a>
+          <a class="cs-secondary" href="#work-guides">문제 유형으로 찾기 <span aria-hidden="true">→</span></a>
+        </div>
       </div>
     </section>
 
@@ -29,57 +33,64 @@
           <p class="cs-kicker">PLATFORMS</p>
           <h2 id="platforms-title">AI 플랫폼</h2>
         </div>
-        <p>현재 사용하는 도구에 맞는<br>설정과 실행 방법을 확인하세요.</p>
+        <p>지금 쓰는 도구의 설정과 실행 방법이에요.</p>
       </div>
       <div class="cs-platform-grid">
         <a class="cs-platform" href="./Platforms/Codex/">
           <span class="cs-platform-icon cs-codex" aria-hidden="true">C</span>
           <span class="cs-platform-meta">AI CODING AGENT</span>
           <strong>Codex</strong>
-          <span class="cs-platform-copy">환경 설정, Skill, 명령과 작업 흐름</span>
-          <span class="cs-arrow" aria-hidden="true">→</span>
+          <span class="cs-platform-copy">설정, Skill, 명령과 작업 흐름</span>
+          <span class="cs-tags"><span>설정</span><span>Skill</span><span>흐름</span></span>
+          <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-platform" href="./Platforms/ClaudeCode/">
           <span class="cs-platform-icon cs-claude" aria-hidden="true">A</span>
           <span class="cs-platform-meta">AI CODING AGENT</span>
           <strong>Claude Code</strong>
-          <span class="cs-platform-copy">환경 설정, Skill, 명령과 작업 흐름</span>
-          <span class="cs-arrow" aria-hidden="true">→</span>
+          <span class="cs-platform-copy">설정, Skill, 명령과 작업 흐름</span>
+          <span class="cs-tags"><span>설정</span><span>Skill</span><span>흐름</span></span>
+          <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-platform" href="./Platforms/GrokBuild/">
           <span class="cs-platform-icon cs-grok" aria-hidden="true">G</span>
           <span class="cs-platform-meta">AI CODING AGENT</span>
           <strong>Grok Build</strong>
-          <span class="cs-platform-copy">환경 설정, Skill, 모델 연결과 확장 기능</span>
-          <span class="cs-arrow" aria-hidden="true">→</span>
+          <span class="cs-platform-copy">설정, Skill, 모델 연결과 확장</span>
+          <span class="cs-tags"><span>설정</span><span>모델</span><span>확장</span></span>
+          <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-platform" href="./Platforms/Pi/">
           <span class="cs-platform-icon cs-pi" aria-hidden="true">π</span>
           <span class="cs-platform-meta">AI CODING AGENT</span>
           <strong>Pi</strong>
-          <span class="cs-platform-copy">환경 설정, Skill, Extension과 모델 연결</span>
-          <span class="cs-arrow" aria-hidden="true">→</span>
+          <span class="cs-platform-copy">설정, Skill, Extension과 모델 연결</span>
+          <span class="cs-tags"><span>설정</span><span>Extension</span><span>심화</span></span>
+          <span class="cs-card-foot">문서 6<b aria-hidden="true">→</b></span>
         </a>
       </div>
     </section>
 
-    <section class="cs-section cs-guides" id="work-guides" aria-labelledby="work-guides-title">
+    <section class="cs-section" id="work-guides" aria-labelledby="work-guides-title">
       <div class="cs-section-heading">
         <div>
           <p class="cs-kicker">PLAYBOOK</p>
           <h2 id="work-guides-title">지금 필요한 결과는?</h2>
         </div>
-        <p>제품이 아닌 문제 유형을 기준으로<br>어떤 결과를 어떤 순서로 만들지 찾습니다.</p>
+        <p>도구가 아니라 문제 유형으로 찾아요.<br>어떤 결과를 어떤 순서로 만들지 알려줘요.</p>
       </div>
       <div class="cs-guide-list">
-        <a href="./Playbooks/01-define-scope.html"><span class="cs-guide-number">01</span><strong>무엇을 만들지 정하기</strong><span>범위, 흐름과 완료 조건을 구현 전에 확정합니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/02-implement-and-verify.html"><span class="cs-guide-number">02</span><strong>구현하고 검증하기</strong><span>확정된 계획을 반영하고 실패 경로까지 확인합니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/03-understand-code.html"><span class="cs-guide-number">03</span><strong>낯선 코드 파악하기</strong><span>실제 호출 흐름과 외부 경계를 먼저 확인합니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/04-tune-sql.html"><span class="cs-guide-number">04</span><strong>느린 SQL 개선하기</strong><span>측정 근거를 확보한 뒤에 변경을 연결합니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/05-transition-structure.html"><span class="cs-guide-number">05</span><strong>구조 전환하기</strong><span>되돌릴 수 있는 단계로 나눠 옮깁니다.</span><b aria-hidden="true">→</b></a>
-        <a href="./Playbooks/06-integrate-external.html"><span class="cs-guide-number">06</span><strong>외부 서비스 연동하기</strong><span>공급자 계약과 내부 영향을 분리해 설계합니다.</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/01-define-scope.html"><span class="cs-guide-number">01</span><strong>무엇을 만들지 정하기</strong><span>범위와 완료 조건부터 정해요</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/02-implement-and-verify.html"><span class="cs-guide-number">02</span><strong>구현하고 검증하기</strong><span>계획을 반영하고 실패 경로까지 확인해요</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/03-understand-code.html"><span class="cs-guide-number">03</span><strong>낯선 코드 파악하기</strong><span>실제 호출 흐름과 외부 경계를 확인해요</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/04-tune-sql.html"><span class="cs-guide-number">04</span><strong>느린 SQL 개선하기</strong><span>측정 근거를 확보하고 나서 바꿔요</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/05-transition-structure.html"><span class="cs-guide-number">05</span><strong>구조 전환하기</strong><span>되돌릴 수 있게 나눠서 옮겨요</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/06-integrate-external.html"><span class="cs-guide-number">06</span><strong>외부 서비스 연동하기</strong><span>공급자 계약과 내부 영향을 나눠요</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/07-improve-module.html"><span class="cs-guide-number">07</span><strong>개선 과제 반영하기</strong><span>손볼 순서를 정하고 차례로 반영해요</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/08-verify-before-release.html"><span class="cs-guide-number">08</span><strong>오픈 전 품질 검증하기</strong><span>배포 전에 위험한 흐름을 검증해요</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/09-prepare-runtime.html"><span class="cs-guide-number">09</span><strong>실행 환경 준비하기</strong><span>빌드와 실행을 재현 가능하게 만들어요</span><b aria-hidden="true">→</b></a>
+        <a href="./Playbooks/10-operate-wiki.html"><span class="cs-guide-number">10</span><strong>지식 위키로 남기기</strong><span>흩어진 지식을 위키로 정리해요</span><b aria-hidden="true">→</b></a>
       </div>
-      <a class="cs-more-link" href="./Playbooks/">Playbook 10개 전체 보기 <span aria-hidden="true">→</span></a>
     </section>
 
     <section class="cs-section" id="development" aria-labelledby="development-title">
@@ -88,26 +99,26 @@
           <p class="cs-kicker">DEVELOPMENT</p>
           <h2 id="development-title">개발 가이드</h2>
         </div>
-        <p>플랫폼과 관계없이 사용하는<br>개발 환경과 협업 기준입니다.</p>
+        <p>플랫폼이 바뀌어도 그대로 쓰는 기준이에요.</p>
       </div>
       <div class="cs-development-grid">
         <a class="cs-development-card" href="./Git/">
           <span class="cs-card-index">01</span>
           <strong>Git</strong>
-          <span>변경 확인, 커밋, 브랜치 협업과 안전한 복구</span>
-          <b aria-hidden="true">→</b>
+          <span>변경 확인과 커밋, 브랜치 협업, 안전한 복구</span>
+          <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-development-card" href="./Python/">
           <span class="cs-card-index">02</span>
           <strong>Python</strong>
-          <span>실행 환경, 의존성, 품질 도구와 웹 백엔드</span>
-          <b aria-hidden="true">→</b>
+          <span>실행 환경과 의존성, 품질 도구, 웹 백엔드</span>
+          <span class="cs-card-foot">문서 8<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-development-card" href="./Macos/">
           <span class="cs-card-index">03</span>
           <strong>macOS</strong>
-          <span>상주 프로세스, 자동 실행 항목과 저장공간 정리</span>
-          <b aria-hidden="true">→</b>
+          <span>상주 프로세스와 자동 실행 항목, 저장공간 정리</span>
+          <span class="cs-card-foot">문서 1<b aria-hidden="true">→</b></span>
         </a>
       </div>
     </section>
@@ -118,7 +129,7 @@
           <p class="cs-kicker">DIRECTORY</p>
           <h2 id="directory-title">전체 문서</h2>
         </div>
-        <p>분야별 세부 문서로<br>바로 이동하세요.</p>
+        <p>찾는 문서가 정해져 있다면<br>여기서 바로 가요.</p>
       </div>
 
       <div class="cs-directory-grid">
@@ -171,7 +182,7 @@
           </ul>
         </section>
 
-        <section class="cs-directory-group">
+        <section class="cs-directory-group cs-directory-wide">
           <h3>Playbook</h3>
           <ul>
             <li><a href="./Playbooks/">Playbook 안내 <span>→</span></a></li>
@@ -218,7 +229,7 @@
         <section class="cs-directory-group">
           <h3>macOS</h3>
           <ul>
-            <li><a href="./Macos/">macOS 개발 머신 관리 가이드 <span>→</span></a></li>
+            <li><a href="./Macos/">macOS 개발 머신 관리 <span>→</span></a></li>
             <li><a href="./Macos/macos_01_background_cleanup_guide.html">백그라운드 프로세스와 캐시 정리 <span>→</span></a></li>
           </ul>
         </section>
@@ -254,84 +265,97 @@
   #codestream-docs, #codestream-docs * { box-sizing: border-box; }
   #codestream-docs a { color: inherit; text-decoration: none; }
   #codestream-docs a:focus-visible { outline: 3px solid var(--cs-accent); outline-offset: 4px; border-radius: 4px; }
-  #codestream-docs .cs-header { min-height: 66px; padding: 0 max(24px, calc((100% - 1120px) / 2)); display: flex; align-items: center; border-bottom: 1px solid var(--cs-line); gap: 36px; }
-  #codestream-docs .cs-logo { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; font-size: 15px; font-weight: 780; letter-spacing: -.02em; }
+  #codestream-docs .cs-header { min-height: 62px; padding: 0 max(24px, calc((100% - 1360px) / 2)); display: flex; align-items: center; border-bottom: 1px solid var(--cs-line); gap: 32px; }
+  #codestream-docs .cs-logo { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; font-size: 15px; font-weight: 800; letter-spacing: -.02em; }
   #codestream-docs .cs-logo-mark { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--cs-ink); color: var(--cs-paper); font-size: 13px; }
-  #codestream-docs .cs-header nav { display: flex; gap: 26px; font-size: 13px; color: var(--cs-muted); }
+  #codestream-docs .cs-header nav { display: flex; gap: 24px; font-size: 13px; color: var(--cs-muted); }
   #codestream-docs .cs-header nav a:hover, #codestream-docs .cs-footer a:hover { color: var(--cs-ink); }
   #codestream-docs .cs-all-link { margin-left: auto; flex: 0 0 auto; font-size: 13px; font-weight: 700; }
-  #codestream-docs main { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-  #codestream-docs .cs-hero { padding: 100px 0 88px; border-bottom: 1px solid var(--cs-line); }
+  #codestream-docs main { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+  #codestream-docs .cs-hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 64px; align-items: end; padding: 68px 0 60px; border-bottom: 1px solid var(--cs-line); }
+  #codestream-docs .cs-hero-side { padding-bottom: 6px; }
   #codestream-docs .cs-eyebrow, #codestream-docs .cs-kicker { margin: 0 0 18px; color: var(--cs-accent); font-size: 11px; font-weight: 800; letter-spacing: .15em; }
-  #codestream-docs h1 { margin: 0; max-width: 780px; font-size: clamp(42px, 6vw, 72px); line-height: 1.08; letter-spacing: -.055em; }
-  #codestream-docs .cs-lead { margin: 28px 0 0; color: var(--cs-muted); font-size: 16px; line-height: 1.75; }
-  #codestream-docs .cs-hero-actions { display: flex; gap: 12px; margin-top: 36px; }
+  #codestream-docs h1 { margin: 0; font-size: clamp(38px, 4.4vw, 62px); font-weight: 700; line-height: 1.14; letter-spacing: -.045em; }
+  #codestream-docs .cs-lead { margin: 0; color: var(--cs-muted); font-size: 15px; line-height: 1.8; }
+  #codestream-docs .cs-hero-actions { display: flex; gap: 10px; margin-top: 24px; }
   #codestream-docs .cs-primary, #codestream-docs .cs-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 20px; border-radius: 9px; font-size: 14px; font-weight: 700; }
   #codestream-docs .cs-primary { background: var(--cs-ink); color: var(--cs-paper); }
-  #codestream-docs .cs-secondary { border: 1px solid var(--cs-line); gap: 18px; background: var(--cs-panel); }
-  #codestream-docs .cs-section { padding: 78px 0; border-bottom: 1px solid var(--cs-line); scroll-margin-top: 20px; }
-  #codestream-docs .cs-section-heading { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 32px; }
+  #codestream-docs .cs-secondary { border: 1px solid var(--cs-line); gap: 16px; background: var(--cs-panel); }
+  #codestream-docs .cs-section { padding: 48px 0; border-bottom: 1px solid var(--cs-line); scroll-margin-top: 20px; }
+  #codestream-docs .cs-section-heading { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 22px; }
   #codestream-docs .cs-section-heading .cs-kicker { margin-bottom: 9px; }
-  #codestream-docs h2 { margin: 0; font-size: 32px; letter-spacing: -.04em; }
+  #codestream-docs h2 { margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -.035em; }
   #codestream-docs .cs-section-heading > p { margin: 0; color: var(--cs-muted); font-size: 13px; line-height: 1.65; }
   #codestream-docs .cs-platform-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-  #codestream-docs .cs-platform { position: relative; min-height: 224px; padding: 26px; border: 1px solid var(--cs-line); border-radius: 15px; background: var(--cs-panel); display: flex; flex-direction: column; transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+  #codestream-docs .cs-platform, #codestream-docs .cs-development-card { padding: 22px; border: 1px solid var(--cs-line); border-radius: 15px; background: var(--cs-panel); display: flex; flex-direction: column; transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
   #codestream-docs .cs-platform:hover, #codestream-docs .cs-development-card:hover { border-color: var(--cs-accent); transform: translateY(-2px); box-shadow: 0 10px 30px light-dark(rgba(20, 23, 22, .07), rgba(0, 0, 0, .2)); }
-  #codestream-docs .cs-platform-icon { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--cs-line); border-radius: 9px; font-size: 16px; font-weight: 800; background: var(--cs-paper); }
+  #codestream-docs .cs-platform-icon { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--cs-line); border-radius: 9px; font-size: 15px; font-weight: 800; background: var(--cs-paper); }
   #codestream-docs .cs-codex { color: var(--cs-accent); }
-  #codestream-docs .cs-claude { color: #c56d46; }
-  #codestream-docs .cs-grok { color: #4a5361; }
-  #codestream-docs .cs-pi { color: #6b6fd2; }
-  #codestream-docs .cs-platform-meta { margin-top: 32px; color: var(--cs-muted); font-size: 9px; letter-spacing: .12em; }
-  #codestream-docs .cs-platform strong { margin-top: 5px; font-size: 21px; letter-spacing: -.025em; }
-  #codestream-docs .cs-platform-copy { margin-top: 8px; padding-right: 24px; color: var(--cs-muted); font-size: 12px; line-height: 1.55; }
-  #codestream-docs .cs-arrow { position: absolute; right: 24px; bottom: 22px; font-size: 18px; }
-  #codestream-docs .cs-guides { padding-bottom: 72px; }
-  #codestream-docs .cs-guide-list { border-top: 1px solid var(--cs-line); }
-  #codestream-docs .cs-guide-list a { display: grid; grid-template-columns: 54px minmax(150px, 210px) 1fr 24px; align-items: center; min-height: 70px; border-bottom: 1px solid var(--cs-line); transition: padding .18s ease, color .18s ease; }
+  #codestream-docs .cs-claude { color: light-dark(#c56d46, #e09a76); }
+  #codestream-docs .cs-grok { color: light-dark(#4a5361, #98a4b4); }
+  #codestream-docs .cs-pi { color: light-dark(#6b6fd2, #9ba0ea); }
+  #codestream-docs .cs-platform-meta { margin-top: 18px; color: var(--cs-muted); font-size: 9px; letter-spacing: .12em; }
+  #codestream-docs .cs-platform strong { margin-top: 5px; font-size: 20px; letter-spacing: -.025em; }
+  #codestream-docs .cs-platform-copy { margin-top: 7px; color: var(--cs-muted); font-size: 12px; line-height: 1.55; }
+  #codestream-docs .cs-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  #codestream-docs .cs-tags span { padding: 3px 8px; border-radius: 6px; background: var(--cs-accent-soft); color: var(--cs-accent); font-size: 10px; font-weight: 700; }
+  #codestream-docs .cs-card-foot { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 14px; color: var(--cs-muted); font-size: 11px; }
+  #codestream-docs .cs-platform .cs-card-foot, #codestream-docs .cs-development-card .cs-card-foot { margin-top: 18px; border-top: 1px solid var(--cs-line); }
+  #codestream-docs .cs-card-foot b { font-size: 16px; font-weight: 400; }
+  #codestream-docs .cs-guide-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; border-top: 1px solid var(--cs-line); }
+  #codestream-docs .cs-guide-list a { display: grid; grid-template-columns: 40px minmax(140px, 200px) 1fr 20px; align-items: center; gap: 12px; min-height: 62px; border-bottom: 1px solid var(--cs-line); transition: padding .18s ease, color .18s ease; }
   #codestream-docs .cs-guide-list a:hover { padding-left: 8px; color: var(--cs-accent); }
-  #codestream-docs .cs-guide-number { color: var(--cs-muted); font-size: 10px; }
-  #codestream-docs .cs-guide-list strong { font-size: 15px; }
+  #codestream-docs .cs-guide-number { color: var(--cs-muted); font-size: 10px; font-weight: 700; }
+  #codestream-docs .cs-guide-list strong { font-size: 14px; }
   #codestream-docs .cs-guide-list a > span:nth-child(3) { color: var(--cs-muted); font-size: 12px; }
   #codestream-docs .cs-guide-list b { font-size: 16px; font-weight: 400; }
-  #codestream-docs .cs-more-link { display: inline-flex; align-items: center; gap: 18px; margin-top: 24px; font-size: 13px; font-weight: 700; }
-  #codestream-docs .cs-development-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-  #codestream-docs .cs-development-card { position: relative; min-height: 178px; padding: 28px; border: 1px solid var(--cs-line); border-radius: 15px; background: var(--cs-panel); display: flex; flex-direction: column; transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+  #codestream-docs .cs-development-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  #codestream-docs .cs-development-card { padding: 24px; }
   #codestream-docs .cs-card-index { color: var(--cs-accent); font-size: 10px; font-weight: 800; letter-spacing: .1em; }
-  #codestream-docs .cs-development-card strong { margin-top: 28px; font-size: 23px; }
-  #codestream-docs .cs-development-card > span:nth-child(3) { margin-top: 8px; padding-right: 36px; color: var(--cs-muted); font-size: 12px; }
-  #codestream-docs .cs-development-card b { position: absolute; right: 28px; bottom: 28px; font-size: 18px; font-weight: 400; }
-  #codestream-docs .cs-directory-section { padding: 78px 0 88px; scroll-margin-top: 20px; }
-  #codestream-docs .cs-directory-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-  #codestream-docs .cs-directory-group { margin: 0; padding: 26px; border: 1px solid var(--cs-line); border-radius: 15px; background: var(--cs-panel); }
-  #codestream-docs .cs-directory-group h3 { margin: 0 0 16px; font-size: 17px; letter-spacing: -.02em; }
+  #codestream-docs .cs-development-card strong { margin-top: 20px; font-size: 22px; letter-spacing: -.03em; }
+  #codestream-docs .cs-development-card > span:nth-child(3) { margin-top: 7px; color: var(--cs-muted); font-size: 12px; line-height: 1.55; }
+  #codestream-docs .cs-directory-section { padding: 48px 0 56px; scroll-margin-top: 20px; }
+  #codestream-docs .cs-directory-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: start; }
+  #codestream-docs .cs-directory-group { margin: 0; padding: 20px 22px; border: 1px solid var(--cs-line); border-radius: 15px; background: var(--cs-panel); }
+  #codestream-docs .cs-directory-wide { grid-column: span 2; }
+  #codestream-docs .cs-directory-wide ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+  #codestream-docs .cs-directory-group h3 { margin: 0 0 12px; font-size: 15px; letter-spacing: -.02em; }
   #codestream-docs .cs-directory-group ul { margin: 0; padding: 0; list-style: none; }
   #codestream-docs .cs-directory-group li { margin: 0; border-top: 1px solid var(--cs-line); }
-  #codestream-docs .cs-directory-group a { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; color: var(--cs-muted); font-size: 12px; line-height: 1.4; }
+  #codestream-docs .cs-directory-group a { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; color: var(--cs-muted); font-size: 12px; line-height: 1.4; }
   #codestream-docs .cs-directory-group a:hover { color: var(--cs-accent); }
-  #codestream-docs .cs-footer { min-height: 70px; padding: 20px max(24px, calc((100% - 1120px) / 2)); display: flex; align-items: center; justify-content: space-between; gap: 24px; border-top: 1px solid var(--cs-line); color: var(--cs-muted); font-size: 11px; }
+  #codestream-docs .cs-footer { min-height: 68px; padding: 20px max(24px, calc((100% - 1360px) / 2)); display: flex; align-items: center; justify-content: space-between; gap: 24px; border-top: 1px solid var(--cs-line); color: var(--cs-muted); font-size: 11px; }
   #codestream-docs .cs-footer > span { color: var(--cs-ink); font-weight: 750; }
   #codestream-docs .cs-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 20px; }
 
+  @media (max-width: 1180px) {
+    #codestream-docs .cs-directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #codestream-docs .cs-directory-wide { grid-column: span 2; }
+  }
+
   @media (max-width: 980px) {
+    #codestream-docs .cs-hero { display: block; }
+    #codestream-docs .cs-hero-side { margin-top: 24px; padding-bottom: 0; }
     #codestream-docs .cs-platform-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #codestream-docs .cs-development-grid { grid-template-columns: 1fr; }
+    #codestream-docs .cs-guide-list { grid-template-columns: 1fr; gap: 0; }
   }
 
   @media (max-width: 760px) {
-    #codestream-docs .cs-header { min-height: 62px; padding: 0 20px; gap: 18px; }
+    #codestream-docs .cs-header { min-height: 58px; padding: 0 20px; gap: 18px; }
     #codestream-docs .cs-header nav { margin-left: auto; gap: 16px; overflow-x: auto; white-space: nowrap; font-size: 11px; scrollbar-width: none; }
     #codestream-docs .cs-header nav::-webkit-scrollbar { display: none; }
     #codestream-docs .cs-all-link { display: none; }
     #codestream-docs main { padding: 0 20px; }
-    #codestream-docs .cs-hero { padding: 68px 0 58px; }
-    #codestream-docs h1 { font-size: clamp(38px, 11vw, 52px); }
+    #codestream-docs .cs-hero { padding: 44px 0 40px; }
     #codestream-docs .cs-lead br { display: none; }
-    #codestream-docs .cs-section, #codestream-docs .cs-directory-section { padding: 56px 0; }
+    #codestream-docs .cs-section, #codestream-docs .cs-directory-section { padding: 40px 0; }
     #codestream-docs .cs-section-heading { display: block; }
     #codestream-docs .cs-section-heading > p { margin-top: 12px; }
-    #codestream-docs .cs-platform-grid, #codestream-docs .cs-development-grid, #codestream-docs .cs-directory-grid { grid-template-columns: 1fr; }
-    #codestream-docs .cs-platform { min-height: 188px; }
-    #codestream-docs .cs-guide-list a { grid-template-columns: 38px 1fr 20px; min-height: 72px; }
+    #codestream-docs .cs-section-heading > p br { display: none; }
+    #codestream-docs .cs-platform-grid, #codestream-docs .cs-directory-grid { grid-template-columns: 1fr; }
+    #codestream-docs .cs-directory-wide, #codestream-docs .cs-directory-wide ul { grid-column: auto; grid-template-columns: 1fr; }
+    #codestream-docs .cs-guide-list a { grid-template-columns: 34px 1fr 20px; min-height: 64px; }
     #codestream-docs .cs-guide-list a > span:nth-child(3) { display: none; }
     #codestream-docs .cs-footer { padding: 22px 20px; align-items: flex-start; }
   }
