@@ -1,8 +1,9 @@
 # 07. [중급] Spring/Java 프로젝트 분석과 테스트
 
-Spring + Java 프로젝트에서 Pi로 분석과 테스트를 진행하는 방법을 정리한다.
+Spring + Java 프로젝트에서 Pi로 분석과 테스트를 진행하는 방법을 정리해요.
 
-기본 흐름은 자연어 요청, 파일 참조, bash 실행, 세션 기능을 사용한다. 반복되는 테스트 로그 처리는 Extension이나 Pi package로 하네스에 옮길 수 있다.
+기본 흐름은 자연어 요청, 파일 참조, bash 실행, 세션 기능을 사용해요.  
+반복되는 테스트 로그 처리는 Extension이나 Pi package로 하네스에 옮길 수 있어요.
 
 ## 목차
 
@@ -20,20 +21,20 @@ Spring + Java 프로젝트에서 Pi로 분석과 테스트를 진행하는 방�
 
 ## 사전작업
 
-작업 전 아래를 확인한다.
+작업 전 아래를 확인해요.
 
 ```text
 !!git status
 ```
 
-프로젝트의 빌드 도구를 확인한다.
+프로젝트의 빌드 도구를 확인해요.
 
 | 빌드 도구 | 대표 명령 |
 |---|---|
 | Gradle | `./gradlew test` |
 | Maven | `./mvnw test` 또는 `mvn test` |
 
-Pi에게 먼저 확인시킬 수 있다.
+Pi에게 먼저 확인시킬 수 있어요.
 
 ```text
 이 Spring Java 프로젝트의 빌드 도구와 테스트 실행 명령을 찾아줘.
@@ -45,7 +46,7 @@ README, build.gradle, pom.xml, gradlew/mvnw 파일을 기준으로 확인해줘.
 
 ## 프로젝트 구조 분석
 
-처음에는 전체 구조를 요약시킨다.
+처음에는 전체 구조를 요약시켜요.
 
 ```text
 이 프로젝트의 패키지 구조를 분석해줘.
@@ -72,7 +73,7 @@ Controller, Service, Repository, DTO, Entity, Config 위치를 구분해서 정�
 
 ## 호출 흐름 분석
 
-특정 기능을 분석할 때는 진입점을 지정한다.
+특정 기능을 분석할 때는 진입점을 지정해요.
 
 ```text
 OrderController의 주문 취소 API에서 시작해서 Service, Repository, 외부 연동까지 호출 흐름을 추적해줘.
@@ -80,14 +81,14 @@ OrderController의 주문 취소 API에서 시작해서 Service, Repository, 외
 아직 파일은 수정하지 마.
 ```
 
-메서드를 좁혀서 요청할 수도 있다.
+메서드를 좁혀서 요청할 수도 있어요.
 
 ```text
 OrderService.cancelOrder 메서드 기준으로 내부 호출 흐름을 분석해줘.
 트랜잭션 경계, 예외 처리, 외부 API 호출 여부를 표시해줘.
 ```
 
-파일을 직접 지정할 수도 있다.
+파일을 직접 지정할 수도 있어요.
 
 ```text
 @src/main/java/com/example/order/OrderService.java
@@ -98,7 +99,7 @@ OrderService.cancelOrder 메서드 기준으로 내부 호출 흐름을 분석�
 
 ## 테스트 후보 찾기
 
-테스트를 바로 작성시키기 전에 후보를 먼저 찾게 한다.
+테스트를 바로 작성시키기 전에 후보를 먼저 찾게 해요.
 
 ```text
 OrderService.cancelOrder에 대해 테스트해야 할 케이스를 정리해줘.
@@ -106,7 +107,7 @@ OrderService.cancelOrder에 대해 테스트해야 할 케이스를 정리해줘
 아직 테스트 코드는 작성하지 마.
 ```
 
-테스트 우선순위를 요청한다.
+테스트 우선순위를 요청해요.
 
 ```text
 위 테스트 후보 중 회귀 위험이 큰 순서대로 우선순위를 정해줘.
@@ -120,14 +121,14 @@ OrderService.cancelOrder에 대해 테스트해야 할 케이스를 정리해줘
 | 정상 케이스 | 기본 성공 흐름 |
 | 예외 케이스 | 잘못된 상태, 권한 없음, 데이터 없음 |
 | 경계 케이스 | 수량 0, 빈 값, 날짜 경계 등 |
-| Mock 대상 | Repository, 외부 API Client, Clock 등 |
+| Mock 대상 | Repository, 외부 API Client,<br>Clock 등 |
 | 검증 대상 | 반환값, 상태 변경, 예외, 호출 여부 |
 
 ---
 
 ## 테스트 작성
 
-기존 테스트 스타일을 먼저 확인하게 한다.
+기존 테스트 스타일을 먼저 확인하게 해요.
 
 ```text
 OrderService 관련 기존 테스트를 찾아서 스타일을 분석해줘.
@@ -135,14 +136,14 @@ JUnit 버전, Mockito 사용 방식, AssertJ 사용 여부, 네이밍 규칙을 
 아직 새 테스트는 작성하지 마.
 ```
 
-그 다음 범위를 좁혀 작성시킨다.
+그 다음 범위를 좁혀 작성시켜요.
 
 ```text
 OrderService.cancelOrder의 "이미 취소된 주문이면 예외" 케이스 테스트만 먼저 추가해줘.
 기존 테스트 스타일을 유지해줘.
 ```
 
-한 번에 너무 많은 테스트를 만들지 않는 것이 좋다.
+한 번에 너무 많은 테스트를 만들지 않는 것이 좋아요.
 
 좋은 요청:
 
@@ -160,7 +161,7 @@ OrderService.cancelOrder의 "이미 취소된 주문이면 예외" 케이스 테
 
 ## 테스트 실행과 실패 분석
 
-테스트 실행은 `!`를 사용한다.
+테스트 실행은 `!`를 사용해요.
 
 ```text
 !./gradlew test --tests "com.example.order.OrderServiceTest"
@@ -172,7 +173,7 @@ Maven 프로젝트라면:
 !./mvnw -Dtest=OrderServiceTest test
 ```
 
-실패하면 로그가 모델에 전달된다.
+실패하면 로그가 모델에 전달돼요.
 
 ```text
 방금 테스트 실패 로그를 분석해줘.
@@ -180,14 +181,14 @@ Maven 프로젝트라면:
 수정안을 제안하고 아직 파일은 수정하지 마.
 ```
 
-수정 승인 후 반영한다.
+수정 승인 후 반영해요.
 
 ```text
 좋아. 테스트 코드 문제로 보이는 부분만 수정해줘.
 운영 코드는 건드리지 마.
 ```
 
-수정 후 다시 실행한다.
+수정 후 다시 실행해요.
 
 ```text
 !./gradlew test --tests "com.example.order.OrderServiceTest"
@@ -197,20 +198,21 @@ Maven 프로젝트라면:
 
 ## 테스트 로그 처리 자동화
 
-테스트 로그가 길면 모델이 핵심 원인을 찾기 전에 컨텍스트를 많이 사용한다.
+테스트 로그가 길면 모델이 핵심 원인을 찾기 전에 컨텍스트를 많이 사용해요.
 
-반복해서 긴 로그를 분석한다면 `tool_result` Extension으로 bash 결과를 모델에 전달하기 전에 줄인다.
+반복해서 긴 로그를 분석한다면  
+`tool_result` Extension으로 bash 결과를 모델에 전달하기 전에 줄여요.
 
 ### 적용 기준
 
-- 테스트 로그가 수천 줄 이상 나온다.
-- 실패 원인보다 환경 로그가 많다.
-- 매번 실패 테스트명, 에러 메시지, 관련 파일만 필요하다.
-- 같은 로그 정리 요청을 반복한다.
+- 테스트 로그가 수천 줄 이상 나와요.
+- 실패 원인보다 환경 로그가 많아요.
+- 매번 실패 테스트명, 에러 메시지, 관련 파일만 필요해요.
+- 같은 로그 정리 요청을 반복해요.
 
 ### Extension 예시
 
-`.pi/extensions/test-log-summary.ts`를 만든다.
+`.pi/extensions/test-log-summary.ts`를 만들어요.
 
 ```typescript
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
@@ -253,7 +255,7 @@ export default function (pi: ExtensionAPI) {
 }
 ```
 
-Pi에서 다시 로드한다.
+Pi에서 다시 로드해요.
 
 ```text
 /reload
@@ -265,7 +267,7 @@ Pi에서 다시 로드한다.
 !./gradlew test --tests "com.example.order.OrderServiceTest"
 ```
 
-또는 Maven 프로젝트에서 실행한다.
+또는 Maven 프로젝트에서 실행해요.
 
 ```text
 !./mvnw -Dtest=OrderServiceTest test
@@ -273,13 +275,15 @@ Pi에서 다시 로드한다.
 
 ### 확인할 결과
 
-- bash 결과가 모델에 전달되기 전에 핵심 라인으로 줄어든다.
-- 모델은 실패 테스트명, 예외, assertion 차이를 중심으로 분석한다.
-- 같은 로그 요약 요청을 매번 입력하지 않아도 된다.
+- bash 결과가 모델에 전달되기 전에 핵심 라인으로 줄어들어요.
+- 모델은 실패 테스트명, 예외, assertion 차이를 중심으로 분석해요.
+- 같은 로그 요약 요청을 매번 입력하지 않아도 돼요.
 
 ### package로 옮기기
 
-여러 프로젝트에서 같은 로그 처리를 쓰면 Pi package로 묶는다. 아래 `my-test-tools`는 구조 설명용 placeholder이며 현재 저장소에 포함된 package가 아니다.
+여러 프로젝트에서 같은 로그 처리를 쓰면 Pi package로 묶어요.  
+아래 `my-test-tools`는 구조 설명용 placeholder이며  
+현재 저장소에 포함된 package가 아니에요.
 
 ```text
 my-test-tools/
@@ -288,7 +292,7 @@ my-test-tools/
     └── test-log-summary.ts
 ```
 
-`package.json`에는 Extension 경로를 등록한다.
+`package.json`에는 Extension 경로를 등록해요.
 
 ```json
 {
@@ -302,35 +306,38 @@ my-test-tools/
 }
 ```
 
-실제 package를 만든 뒤 placeholder를 해당 경로로 바꿔 설치한다.
+실제 package를 만든 뒤 placeholder를 해당 경로로 바꿔 설치해요.
 
 ```bash
 pi install -l ./path/to/my-test-tools
 ```
 
-기본 package 설치와 prompt·skill 호출은 [basic-pi-package](../examples/basic-pi-package/)와 [Pi 확장과 자동화](./03-applying-core-concepts.md)의 package 실습을 따른다.
+기본 package 설치와 prompt·skill 호출은  
+[basic-pi-package](../examples/basic-pi-package/)와  
+[Pi 확장과 자동화](./03-applying-core-concepts.md)의 package 실습을 따라요.
 
 ---
 
 ## 긴 작업 관리
 
-분석과 테스트 작성은 컨텍스트가 길어지기 쉽다.
+분석과 테스트 작성은 컨텍스트가 길어지기 쉬워요.
 
-세션 이름을 붙인다.
+세션 이름을 붙여요.
 
 ```text
 /name OrderService cancelOrder 테스트 작성
 ```
 
-중간 요약을 남긴다.
+중간 요약을 남겨요.
 
 ```text
 /compact 현재 분석한 호출 흐름, 추가한 테스트, 남은 실패만 중심으로 요약해줘.
 ```
 
-다른 테스트 전략을 시도하려면 `/clone`이나 `/tree`를 사용한다.
+다른 테스트 전략을 시도하려면 `/clone`이나 `/tree`를 사용해요.
 
-테스트 전략을 바꿔 비교할 때는 새 세션을 만들기보다 먼저 `/clone`으로 현재 흐름을 복제한다.
+테스트 전략을 바꿔 비교할 때는 새 세션을 만들기보다  
+먼저 `/clone`으로 현재 흐름을 복제해요.
 
 | 상황 | 명령어 |
 |---|---|
@@ -342,10 +349,9 @@ pi install -l ./path/to/my-test-tools
 
 ## 알아두면 좋은 것
 
-- 로그 분석이 필요하면 `!`로 실행한다.
-- 단순 상태 확인은 `!!`로 실행해 컨텍스트 낭비를 줄인다.
-- 테스트를 만들기 전 기존 테스트 스타일을 먼저 읽게 한다.
-- 운영 코드와 테스트 코드 중 무엇을 수정할지 명확히 지시한다.
-- 큰 테스트 묶음보다 작은 케이스를 순서대로 추가하는 편이 안전하다.
-- 반복되는 로그 요약은 Extension이나 Pi package로 옮긴다.
-
+- 로그 분석이 필요하면 `!`로 실행해요.
+- 단순 상태 확인은 `!!`로 실행해 컨텍스트 낭비를 줄여요.
+- 테스트를 만들기 전 기존 테스트 스타일을 먼저 읽게 해요.
+- 운영 코드와 테스트 코드 중 무엇을 수정할지 명확히 지시해요.
+- 큰 테스트 묶음보다 작은 케이스를 순서대로 추가하는 편이 안전해요.
+- 반복되는 로그 요약은 Extension이나 Pi package로 옮겨요.

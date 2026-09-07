@@ -1,6 +1,7 @@
 # 무엇을 만들지 정하기
 
-구현을 시작하기 전에 범위, 흐름과 완료 조건을 확정한다.
+구현을 시작하기 전에  
+범위, 흐름과 완료 조건을 확정해요.
 
 ## 흐름
 
@@ -12,7 +13,8 @@ ct-plan review    작성한 기획의 근거, 대안과 결정 항목       ← 
 ct-plan impl      변경 대상, 영향, 구현 순서와 검증 기준
 ```
 
-`impl`의 결과는 [02 기능 구현하고 검증하기](./02-implement-and-verify.md)의 입력이 된다.
+`impl`의 결과는  
+[02 기능 구현하고 검증하기](./02-implement-and-verify.md)의 입력이 돼요.
 
 ## 단계별로 확정할 것
 
@@ -24,11 +26,12 @@ ct-plan impl      변경 대상, 영향, 구현 순서와 검증 기준
 - 예외 상황과 적용할 정책
 - 완료를 판정할 기준
 
-정책이 결정되지 않은 항목은 임의로 채우지 않고 결정 대기로 남긴다.
+정책이 결정되지 않은 항목은 임의로 채우지 않고  
+결정 대기로 남겨요.
 
 ### ct-plan review
 
-기획의 어느 부분이 결과를 바꾸는지 확인한다.
+기획의 어느 부분이 결과를 바꾸는지 확인해요.
 
 - 근거가 없는 가정
 - 검토하지 않은 대안
@@ -51,10 +54,14 @@ ct-plan impl      변경 대상, 영향, 구현 순서와 검증 기준
 
 ## 이 Playbook을 벗어나는 경우
 
-- 정책과 계약이 이미 분명하면 기획을 건너뛰고 [02](./02-implement-and-verify.md)로 간다.
-- 무엇을 만들지가 아니라 무엇부터 고칠지가 문제라면 [07](./07-improve-module.md)을 사용한다.
-- 기존 코드의 동작을 모르는 상태라면 [03](./03-understand-code.md)을 먼저 진행한다.
+- 정책과 계약이 이미 분명하면 기획을 건너뛰고  
+  [02](./02-implement-and-verify.md)로 가요.
+- 무엇을 만들지가 아니라 무엇부터 고칠지가 문제라면  
+  [07](./07-improve-module.md)을 사용해요.
+- 기존 코드의 동작을 모르는 상태라면  
+  [03](./03-understand-code.md)을 먼저 진행해요.
 
 ## 실행
 
-호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md), [Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인한다.
+호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md),  
+[Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.

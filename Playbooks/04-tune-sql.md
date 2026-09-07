@@ -1,6 +1,7 @@
 # 느린 SQL 개선하기
 
-측정 근거를 먼저 확보하고, 코드 변경이 필요한 경우에만 구현을 연결한다.
+측정 근거를 먼저 확보하고,  
+코드 변경이 필요한 경우에만 구현을 연결해요.
 
 ## 흐름
 
@@ -23,21 +24,26 @@ ct-qa-lucin      결과 동등성과 회귀 범위 검증
 - 개선안과 각각의 적용 비용
 - 변경 전 수치
 
-추정 원인이 아니라 실행 근거를 받는다. 근거 없이 인덱스부터 추가하지 않는다.
+추정 원인이 아니라 실행 근거를 받아요.  
+근거 없이 인덱스부터 추가하지 않아요.
 
 ### ct-plan impl
 
-개선안이 여러 개면 무엇을 먼저 적용할지와 각각의 위험을 확정한다.
+개선안이 여러 개면  
+무엇을 먼저 적용할지와 각각의 위험을 확정해요.
 
 - 인덱스 추가: 쓰기 비용과 저장 공간
 - 쿼리 재작성: 결과 동등성
 - 스키마 변경: 배포 순서와 되돌리기
 
-쿼리나 인덱스 변경만으로 끝나면 이 단계와 다음 단계를 사용하지 않는다.
+쿼리나 인덱스 변경만으로 끝나면  
+이 단계와 다음 단계를 사용하지 않아요.
 
 ### ct-spring
 
-확정된 개선안만 반영한다. 이 단계에서 새 개선안이 나오면 되돌아가 근거부터 확인한다.
+확정된 개선안만 반영해요.  
+이 단계에서 새 개선안이 나오면  
+되돌아가 근거부터 확인해요.
 
 ### ct-qa-lucin
 
@@ -54,9 +60,12 @@ ct-qa-lucin      결과 동등성과 회귀 범위 검증
 
 ## 이 Playbook을 벗어나는 경우
 
-- 병목이 쿼리가 아니라 호출 구조에 있으면 [03](./03-understand-code.md)으로 이동한다.
-- 개선 대상이 여러 모듈에 걸쳐 있으면 [07](./07-improve-module.md)에서 우선순위부터 정한다.
+- 병목이 쿼리가 아니라 호출 구조에 있으면  
+  [03](./03-understand-code.md)으로 이동해요.
+- 개선 대상이 여러 모듈에 걸쳐 있으면  
+  [07](./07-improve-module.md)에서 우선순위부터 정해요.
 
 ## 실행
 
-호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md), [Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인한다.
+호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md),  
+[Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.

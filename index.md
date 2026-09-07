@@ -19,7 +19,7 @@
         <h1 id="hero-title">AI 도구부터 개발 환경까지, 한곳에 모았어요.</h1>
       </div>
       <div class="cs-hero-side">
-        <p class="cs-lead">플랫폼 설정, 문제 유형별 진행 순서, Git·Python·macOS 기준까지. 판단이 필요할 때 여기서 찾아요.</p>
+        <p class="cs-lead">플랫폼 설정, 문제 유형별 진행 순서, Git·Python·macOS 기준까지.<br>판단이 필요할 때 여기서 찾아요.</p>
         <div class="cs-hero-actions">
           <a class="cs-primary" href="#platforms">플랫폼 문서 보기</a>
           <a class="cs-secondary" href="#work-guides">문제 유형으로 찾기 <span aria-hidden="true">→</span></a>
@@ -112,17 +112,17 @@
       <div class="cs-development-grid">
         <a class="cs-development-card" href="./Git/">
           <strong><img class="cs-mark" src="./assets/brand/git-icon.svg" alt="" width="18" height="18">Git</strong>
-          <span>변경 확인과 커밋, 브랜치 협업, 안전한 복구</span>
+          <span>변경 확인과 커밋, 브랜치 협업,<br>안전한 복구</span>
           <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-development-card" href="./Python/">
           <strong><svg class="cs-mark cs-python" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c-3 0-4 1.3-4 3v2h4"></path><path d="M8 8H6.5C4.6 8 4 9.4 4 12s.6 4 2.5 4H10v-2.5A2.5 2.5 0 0 1 12.5 11H15"></path><path d="M12 21c3 0 4-1.3 4-3v-2h-4"></path><path d="M16 16h1.5c1.9 0 2.5-1.4 2.5-4s-.6-4-2.5-4H14v2.5A2.5 2.5 0 0 1 11.5 13H9"></path></svg>Python</strong>
-          <span>실행 환경과 의존성, 품질 도구, 웹 백엔드</span>
+          <span>실행 환경과 의존성, 품질 도구,<br>웹 백엔드</span>
           <span class="cs-card-foot">문서 8<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-development-card" href="./Macos/">
           <strong><svg class="cs-mark cs-macos" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M2 20h20"></path></svg>macOS</strong>
-          <span>상주 프로세스와 자동 실행 항목, 저장공간 정리</span>
+          <span>상주 프로세스와 자동 실행 항목,<br>저장공간 정리</span>
           <span class="cs-card-foot">문서 1<b aria-hidden="true">→</b></span>
         </a>
       </div>

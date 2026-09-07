@@ -1,10 +1,13 @@
 # Claude Code 명령 확인
 
-Claude Code 명령은 버전과 실행 환경에 따라 달라질 수 있다. 전체 목록을 문서에 복제하지 않고 현재 입력창과 공식 문서를 기준으로 확인한다.
+Claude Code 명령은 버전과 실행 환경에 따라 달라질 수 있어요.  
+전체 목록을 문서에 복제하지 않고  
+현재 입력창과 공식 문서를 기준으로 확인해요.
 
 ## 현재 명령 찾기
 
-입력창에 `/`를 입력해 현재 환경에서 제공하는 명령과 Skill을 확인한다.
+입력창에 `/`를 입력해  
+현재 환경에서 제공하는 명령과 Skill을 확인해요.
 
 작업을 시작할 때 자주 확인하는 명령:
 
@@ -35,11 +38,13 @@ Claude Code 명령은 버전과 실행 환경에 따라 달라질 수 있다. �
 | `/config` | 설정 확인과 변경 |
 | `/doctor` | 설치와 설정 상태 진단 |
 
-사용자 Skill은 `/ct-*`로 호출한다. 명령이 보이지 않으면 현재 설치 버전과 실행 환경에서 제공되는 목록을 따른다.
+사용자 Skill은 `/ct-*`로 호출해요.  
+명령이 보이지 않으면 현재 설치 버전과  
+실행 환경에서 제공되는 목록을 따라요.
 
 ## CLI에서 확인
 
-설치된 CLI의 기본 명령과 옵션을 확인한다.
+설치된 CLI의 기본 명령과 옵션을 확인해요.
 
 ```bash
 claude --help
@@ -66,17 +71,16 @@ claude --help
 | `--output-format` | 비대화형 출력 형식 지정 |
 | `--append-system-prompt` | 시스템 프롬프트에 지침 추가 |
 
-권한 확인을 건너뛰는 옵션은 격리된 실행 환경에서만 사용한다.
+권한 확인을 건너뛰는 옵션은 격리된 실행 환경에서만 사용해요.
 
 ## 확인 순서
 
-1. 입력창의 `/` 목록에서 현재 명령과 Skill을 찾는다.
-2. CLI 옵션은 설치된 `claude --help`에서 확인한다.
-3. 동작과 지원 범위는 Claude Code 공식 문서에서 확인한다.
+1. 입력창의 `/` 목록에서 현재 명령과 Skill을 찾아요.
+2. CLI 옵션은 설치된 `claude --help`에서 확인해요.
+3. 동작과 지원 범위는 Claude Code 공식 문서에서 확인해요.
 
 ## 공식 문서
 
 - [Slash commands](https://code.claude.com/docs/en/commands)
 - [CLI reference](https://code.claude.com/docs/en/cli-reference)
 - [Skills](https://code.claude.com/docs/en/skills)
-

@@ -1,8 +1,12 @@
 # 개발자를 위한 Python 개발 가이드
 
-Python 생태계를 이해하고 웹 백엔드 프로젝트를 운영하는 데 필요한 기준을 모았어요.
+Python 생태계를 이해하고 웹 백엔드 프로젝트를 운영하는 데  
+필요한 기준을 모았어요.
 
-Java·Spring 경험이 있는 개발자가 Python 프로젝트에 투입될 때 필요한 판단 기준을 담았어요. 언어 문법은 다루지 않고, 무엇을 선택하고 어떤 기준으로 유지할지에 집중해요.
+Java·Spring 경험이 있는 개발자가 Python 프로젝트에 투입될 때  
+필요한 판단 기준을 담았어요.  
+언어 문법은 다루지 않고,  
+무엇을 선택하고 어떤 기준으로 유지할지에 집중해요.
 
 ## 학습 순서
 
@@ -10,14 +14,14 @@ Java·Spring 경험이 있는 개발자가 Python 프로젝트에 투입될 때 
 
 | 순서 | 문서 | 익혀야 할 내용 |
 | --- | --- | --- |
-| 1 | [Python 생태계 지도](./python_01_ecosystem_overview.md) | 인터프리터, 표준 라이브러리, PyPI, PEP, 버전 정책 |
-| 2 | [실행 환경과 가상환경](./python_02_runtime_environment_guide.md) | 버전 고정, 가상환경, 인터프리터 분리 |
-| 3 | [패키징과 의존성 관리](./python_03_packaging_dependency_guide.md) | `pyproject.toml`, uv·pip·Poetry, lock 파일, 재현성 |
+| 1 | [Python 생태계 지도](./python_01_ecosystem_overview.md) | 인터프리터, 표준 라이브러리,<br>PyPI, PEP, 버전 정책 |
+| 2 | [실행 환경과 가상환경](./python_02_runtime_environment_guide.md) | 버전 고정, 가상환경,<br>인터프리터 분리 |
+| 3 | [패키징과 의존성 관리](./python_03_packaging_dependency_guide.md) | `pyproject.toml`, uv·pip·Poetry,<br>lock 파일, 재현성 |
 | 4 | [코드 품질 도구](./python_04_quality_tools_guide.md) | Ruff, 타입 검사, pytest, pre-commit |
-| 5 | [웹 백엔드 구조 선택](./python_05_web_backend_structure_guide.md) | FastAPI·Django·Flask 선택 기준, 계층 구조, 설정 |
-| 6 | [데이터 접근과 마이그레이션](./python_06_web_data_access_guide.md) | SQLAlchemy, Django ORM, 세션·트랜잭션, 스키마 변경 |
-| 7 | [API 계약과 인증](./python_07_web_api_contract_guide.md) | 요청 검증, 응답 형식, 예외 처리, 인증·인가 |
-| 8 | [실행과 운영](./python_08_web_runtime_operations_guide.md) | 동기·비동기 실행 모델, 테스트, 로깅, 배포 |
+| 5 | [웹 백엔드 구조 선택](./python_05_web_backend_structure_guide.md) | FastAPI·Django·Flask 선택 기준,<br>계층 구조, 설정 |
+| 6 | [데이터 접근과 마이그레이션](./python_06_web_data_access_guide.md) | SQLAlchemy, Django ORM,<br>세션·트랜잭션, 스키마 변경 |
+| 7 | [API 계약과 인증](./python_07_web_api_contract_guide.md) | 요청 검증, 응답 형식,<br>예외 처리, 인증·인가 |
+| 8 | [실행과 운영](./python_08_web_runtime_operations_guide.md) | 동기·비동기 실행 모델,<br>테스트, 로깅, 배포 |
 
 ## 매일 사용하는 작업 흐름
 
@@ -38,24 +42,32 @@ uv run pytest
 uv run uvicorn app.main:app --reload
 ```
 
-`uv`를 쓰지 않는 프로젝트는 3번 문서의 pip·Poetry 대응 명령을 사용한다. 실행 명령, 대상 경로와 검증 범위는 프로젝트 규칙을 따른다.
+`uv`를 쓰지 않는 프로젝트는  
+3번 문서의 pip·Poetry 대응 명령을 사용해요.  
+실행 명령, 대상 경로와 검증 범위는 프로젝트 규칙을 따라요.
 
 ## 개발자 필수 완료 기준
 
 다음 항목을 설명하고 직접 할 수 있으면 돼요.
 
-- 프로젝트가 요구하는 Python 버전을 확인하고 같은 버전으로 실행 환경을 만든다.
-- 가상환경을 만들고 활성화 여부를 확인한다.
-- `pyproject.toml`에서 의존성, 개발 의존성과 도구 설정을 읽는다.
-- lock 파일 기준으로 동일한 의존성 집합을 재현한다.
-- 새 의존성을 추가하고 lock 파일까지 함께 커밋한다.
-- 포맷, 린트, 타입 검사, 테스트를 각각 실행하고 실패 원인을 구분한다.
-- 프로젝트가 사용하는 웹 프레임워크의 요청 처리 흐름을 설명한다.
-- 요청 모델과 응답 모델을 정의하고 검증 실패 응답을 확인한다.
-- ORM 세션과 트랜잭션 경계가 어디서 열리고 닫히는지 설명한다.
-- 스키마 변경을 마이그레이션 파일로 남기고 적용·롤백한다.
-- 동기 처리와 비동기 처리 중 어느 경로에서 실행되는 코드인지 구분한다.
-- 로컬 실행 명령과 배포 실행 명령의 차이를 설명한다.
+- 프로젝트가 요구하는 Python 버전을 확인하고  
+  같은 버전으로 실행 환경을 만들어요.
+- 가상환경을 만들고 활성화 여부를 확인해요.
+- `pyproject.toml`에서 의존성, 개발 의존성과 도구 설정을 읽어요.
+- lock 파일 기준으로 동일한 의존성 집합을 재현해요.
+- 새 의존성을 추가하고 lock 파일까지 함께 커밋해요.
+- 포맷, 린트, 타입 검사, 테스트를 각각 실행하고  
+  실패 원인을 구분해요.
+- 프로젝트가 사용하는 웹 프레임워크의  
+  요청 처리 흐름을 설명해요.
+- 요청 모델과 응답 모델을 정의하고  
+  검증 실패 응답을 확인해요.
+- ORM 세션과 트랜잭션 경계가  
+  어디서 열리고 닫히는지 설명해요.
+- 스키마 변경을 마이그레이션 파일로 남기고 적용·롤백해요.
+- 동기 처리와 비동기 처리 중  
+  어느 경로에서 실행되는 코드인지 구분해요.
+- 로컬 실행 명령과 배포 실행 명령의 차이를 설명해요.
 
 ## 팀에서 별도로 정할 기준
 
@@ -81,10 +93,12 @@ uv run uvicorn app.main:app --reload
 
 ## 앞으로 추가할 문서
 
-지금은 공통 생태계와 웹 백엔드만 다뤄요. 다음 영역은 이후에 채워요.
+지금은 공통 생태계와 웹 백엔드만 다뤄요.  
+다음 영역은 이후에 채워요.
 
-- TODO: 데이터·AI 영역(pandas, NumPy, Jupyter, 학습·추론 라이브러리, 데이터 파이프라인)
-- TODO: 컨테이너·배포 심화(Docker 이미지 구성, 멀티스테이지 빌드, CI 파이프라인)
+- TODO: 데이터·AI 영역(pandas, NumPy, Jupyter,  
+  학습·추론 라이브러리, 데이터 파이프라인)
+- TODO: 컨테이너·배포 심화(Docker 이미지 구성,  
+  멀티스테이지 빌드, CI 파이프라인)
 - TODO: 비동기 작업 처리(Celery, 스케줄러, 메시지 큐 연동)
 - TODO: 라이브러리 배포(PyPI 배포, 버전 정책, 사내 인덱스 운영)
-

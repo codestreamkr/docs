@@ -1,6 +1,7 @@
 # 기능 구현하고 검증하기
 
-확정된 계획을 현재 프로젝트 관례에 맞춰 반영하고 실패 경로까지 검증한다.
+확정된 계획을 현재 프로젝트 관례에 맞춰 반영하고  
+실패 경로까지 검증해요.
 
 ## 흐름
 
@@ -16,7 +17,8 @@ ct-qa-lucin      검증 범위, 위험별 시나리오와 실행 결과
 
 ### ct-plan impl
 
-계획 문서가 이미 있으면 이 단계를 생략하고 해당 문서를 구현 입력으로 사용한다.
+계획 문서가 이미 있으면 이 단계를 생략하고  
+그 문서를 구현 입력으로 사용해요.
 
 - 변경할 파일과 계층
 - 유지할 API와 데이터 계약
@@ -30,7 +32,8 @@ ct-qa-lucin      검증 범위, 위험별 시나리오와 실행 결과
 - 변경한 파일과 영향 범위
 - 실행한 빌드와 테스트, 그 결과
 
-계획에 없던 변경이 필요해지면 임의로 확장하지 않고 범위를 다시 확정한다.
+계획에 없던 변경이 필요해지면 임의로 확장하지 않고  
+범위를 다시 확정해요.
 
 ### ct-qa-lucin
 
@@ -49,10 +52,14 @@ ct-qa-lucin      검증 범위, 위험별 시나리오와 실행 결과
 
 ## 이 Playbook을 벗어나는 경우
 
-- 무엇을 만들지가 아직 흐릿하면 [01](./01-define-scope.md)로 돌아간다.
-- 변경 대상 코드의 호출 관계를 모르면 [03](./03-understand-code.md)을 먼저 진행한다.
-- 배포 직전 전체 위험을 훑어야 하면 [08](./08-verify-before-release.md)을 사용한다.
+- 무엇을 만들지가 아직 흐릿하면  
+  [01](./01-define-scope.md)로 돌아가요.
+- 변경 대상 코드의 호출 관계를 모르면  
+  [03](./03-understand-code.md)을 먼저 진행해요.
+- 배포 직전 전체 위험을 훑어야 하면  
+  [08](./08-verify-before-release.md)을 사용해요.
 
 ## 실행
 
-호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md), [Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인한다.
+호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md),  
+[Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.
