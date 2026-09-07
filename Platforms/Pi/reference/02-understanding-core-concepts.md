@@ -19,14 +19,13 @@ pi
 | 영역 | 설명 |
 |---|---|
 | Startup header | 단축키, 로드된 지침 파일, 리소스 정보 표시 |
-| Messages | 사용자 메시지, assistant 응답,<br>도구 실행 결과 표시 |
+| Messages | 사용자 메시지, assistant 응답, 도구 실행 결과 표시 |
 | Editor | 사용자가 입력하는 영역 |
-| Footer | 현재 경로, 세션명, 토큰/비용,<br>컨텍스트 사용량, 모델 표시 |
+| Footer | 현재 경로, 세션명, 토큰/비용, 컨텍스트 사용량, 모델 표시 |
 
 Footer의 컨텍스트 사용량은 현재 모델의 context window 기준으로 표시돼요.
 
-실제 입력 단축키와 slash command는  
-[Pi 기본 명령](./06-basic-commands.md)에서 확인해요.
+실제 입력 단축키와 slash command는 [Pi 기본 명령](./06-basic-commands.md)에서 확인해요.
 
 ## 2. Editor
 
@@ -35,7 +34,7 @@ Editor는 Pi에 요청을 입력하는 곳이에요.
 | 기능 | 사용법 |
 |---|---|
 | 입력 제출 | Enter |
-| 여러 줄 입력 | Shift+Enter,<br>Windows Terminal에서는 설정에 따라 Ctrl+Enter 가능 |
+| 여러 줄 입력 | Shift+Enter, Windows Terminal에서는 설정에 따라 Ctrl+Enter 가능 |
 | 파일 참조 | `@` 입력 후 파일 검색 |
 | 경로 자동완성 | Tab |
 | 이미지 붙여넣기 | Ctrl+V, Windows에서는 Alt+V |
@@ -106,8 +105,7 @@ Pi에서 사용하는 값은 아래와 같아요.
 - `max`
 
 `max`는 `xhigh`보다 높은 opt-in 단계예요.  
-모든 모델이 모든 thinking level을 지원하는 것은 아니므로  
-모델 선택 화면에서 지원 여부를 확인해요.
+모든 모델이 모든 thinking level을 지원하는 것은 아니므로 모델 선택 화면에서 지원 여부를 확인해요.
 
 ## 6. Session
 
@@ -121,13 +119,10 @@ Pi의 대화는 자동으로 세션에 저장돼요.
 
 세션은 단순한 로그가 아니라 트리 구조예요.
 
-그래서 이전 지점으로 이동해 다른 방향으로 이어가거나,  
-새 세션 파일로 분기할 수 있어요.
+그래서 이전 지점으로 이동해 다른 방향으로 이어가거나, 새 세션 파일로 분기할 수 있어요.
 
-세션 이름은 목록에 표시할 작업명이고,  
-세션 ID는 자동화에서 같은 프로젝트 세션을 정확히 지정하는 식별자예요.  
-CLI의 `--name`, `--session`, `--session-id` 사용 기준은  
-[Pi 기본 명령](./06-basic-commands.md)에서 확인해요.
+세션 이름은 목록에 표시할 작업명이고, 세션 ID는 자동화에서 같은 프로젝트 세션을 정확히 지정하는 식별자예요.
+CLI의 `--name`, `--session`, `--session-id` 사용 기준은 [Pi 기본 명령](./06-basic-commands.md)에서 확인해요.
 
 주요 명령은 아래와 같아요.
 
@@ -140,15 +135,13 @@ CLI의 `--name`, `--session`, `--session-id` 사용 기준은
 | `/fork` | 이전 사용자 메시지에서 새 세션 생성 |
 | `/clone` | 현재 활성 브랜치를 새 세션으로 복제 |
 
-세션을 실제 작업에서 쓰는 흐름은  
-[프로젝트 코딩](./05-project-cooking.md)의 긴 작업 관리 항목을 따라요.
+세션을 실제 작업에서 쓰는 흐름은 [프로젝트 코딩](./05-project-cooking.md)의 긴 작업 관리 항목을 따라요.
 
 ## 7. Context
 
 모델은 무한히 긴 대화를 볼 수 없어요.
 
-각 모델에는 context window가 있고,  
-Pi footer에는 현재 사용량이 표시돼요.
+각 모델에는 context window가 있고, Pi footer에는 현재 사용량이 표시돼요.
 
 예:
 
@@ -187,9 +180,7 @@ contextTokens > contextWindow - reserveTokens
 | `compaction.reserveTokens` | `16384` | 응답을 위해 남겨둘 토큰 |
 | `compaction.keepRecentTokens` | `20000` | 요약하지 않고 유지할 최근 토큰 |
 
-긴 작업 중 compaction 실행 예시는  
-[프로젝트 코딩](./05-project-cooking.md)과  
-[Spring/Java 프로젝트 분석과 테스트](./07-analysis-and-testing.md)에서 확인해요.
+긴 작업 중 compaction 실행 예시는 [프로젝트 코딩](./05-project-cooking.md)과 [Spring/Java 프로젝트 분석과 테스트](./07-analysis-and-testing.md)에서 확인해요.
 
 ## 9. Settings
 
@@ -202,8 +193,7 @@ Pi 설정은 JSON 파일로 관리돼요.
 
 프로젝트 설정은 전역 설정을 덮어써요.
 
-프로젝트에 `.pi/settings.json`이나 `.pi` 리소스가 있으면  
-Project Trust 결정 후 해당 설정과 리소스를 불러와요.  
+프로젝트에 `.pi/settings.json`이나 `.pi` 리소스가 있으면 Project Trust 결정 후 해당 설정과 리소스를 불러와요.
 `/trust`로 저장한 결정은 다음 실행부터 적용돼요.
 
 자주 보는 항목은 아래와 같아요.
@@ -219,26 +209,24 @@ Project Trust 결정 후 해당 설정과 리소스를 불러와요.
 
 일반 설정은 `/settings`, package 리소스 활성화 여부는 `pi config`로 관리해요.  
 `pi config -l`은 프로젝트 설정 화면에서 시작해요.  
-세부 명령은 [Pi 기본 명령](./06-basic-commands.md),  
-프로젝트 설정 생성 기준은 [프로젝트 시작](./04-starting-a-project.md)에서 확인해요.
+세부 명령은 [Pi 기본 명령](./06-basic-commands.md), 프로젝트 설정 생성 기준은 [프로젝트 시작](./04-starting-a-project.md)에서 확인해요.
 
 ## 10. Customization 구성 요소
 
 Pi는 기능을 목적별 리소스로 나눠 확장해요.
 
-Customization은 단순 설정이 아니라,  
-모델이 일하는 방식과 실행 환경을 조정하는 구조예요.  
+Customization은 단순 설정이 아니라, 모델이 일하는 방식과 실행 환경을 조정하는 구조예요.  
 기능별 역할을 구분하면 어떤 작업을 어디에 넣을지 빠르게 정할 수 있어요.
 
 | 구성 요소 | 역할 | 활용 예 |
 |---|---|---|
-| Extensions | Pi 실행 흐름과 도구를<br>TypeScript로 확장 | Jira, Wiki, 배포 API,<br>로그 조회 도구 |
-| Skills | 특정 작업 절차와<br>판단 기준 제공 | 장애 분석 절차, 코드 리뷰 기준,<br>문서 작성 규칙 |
-| Prompt Templates | 반복 프롬프트를<br>명령처럼 재사용 | PR 설명 작성, 릴리스 노트 초안,<br>이슈 요약 |
-| Themes | TUI 색상과<br>표시 스타일 조정 | 다크/라이트 테마, diff 색상,<br>오류 강조 |
-| Pi Packages | extension, skill, prompt,<br>theme를 묶어 배포 | 팀 공통 개발 도구 패키지 |
-| Custom Models | 로컬 또는 사내 모델을<br>설정 파일로 추가 | Ollama, LM Studio, vLLM,<br>사내 OpenAI 호환 서버 |
-| Custom Providers | 모델 제공자 연결 방식을<br>코드로 등록 | 사내 LLM Gateway, 프록시,<br>SSO/OAuth, 비표준 API |
+| Extensions | Pi 실행 흐름과 도구를 TypeScript로 확장 | Jira, Wiki, 배포 API, 로그 조회 도구 |
+| Skills | 특정 작업 절차와 판단 기준 제공 | 장애 분석 절차, 코드 리뷰 기준, 문서 작성 규칙 |
+| Prompt Templates | 반복 프롬프트를 명령처럼 재사용 | PR 설명 작성, 릴리스 노트 초안, 이슈 요약 |
+| Themes | TUI 색상과 표시 스타일 조정 | 다크/라이트 테마, diff 색상, 오류 강조 |
+| Pi Packages | extension, skill, prompt, theme를 묶어 배포 | 팀 공통 개발 도구 패키지 |
+| Custom Models | 로컬 또는 사내 모델을 설정 파일로 추가 | Ollama, LM Studio, vLLM, 사내 OpenAI 호환 서버 |
+| Custom Providers | 모델 제공자 연결 방식을 코드로 등록 | 사내 LLM Gateway, 프록시, SSO/OAuth, 비표준 API |
 
 ### 10.1 Extensions
 
@@ -365,8 +353,7 @@ Custom Providers는 모델 제공자 연결을 Extension 코드로 등록해요.
 Pi는 AI가 일하는 실행 흐름을 조정하기 좋은 코딩 에이전트 하네스예요.
 
 Pi의 강점은 요청 문장을 잘 쓰는 데서 끝나지 않아요.  
-Extension, custom tool, custom provider, SDK/RPC를 사용하면  
-AI가 작업하기 전후의 흐름을 코드로 조정할 수 있어요.
+Extension, custom tool, custom provider, SDK/RPC를 사용하면 AI가 작업하기 전후의 흐름을 코드로 조정할 수 있어요.
 
 ### 11.1 실행 흐름 앞단에 개입
 
@@ -379,13 +366,11 @@ Extension은 사용자 입력, 모델 호출, 도구 실행 전후에 들어갈 
 - 특정 요청을 LLM 없이 Extension에서 직접 처리
 - 긴 테스트 로그를 요약해서 모델에 전달
 
-핵심은 AI에게 설명해서 따르게 하는 것이 아니라,  
-AI 앞단과 중간 단계에서 코드가 먼저 처리한다는 점이에요.
+핵심은 AI에게 설명해서 따르게 하는 것이 아니라, AI 앞단과 중간 단계에서 코드가 먼저 처리한다는 점이에요.
 
 ### 11.2 도구 호출 전후 제어
 
-Pi는 모델이 `read`, `bash`, `edit`, `write` 같은 도구를 호출할 때  
-전후 이벤트에 개입할 수 있어요.
+Pi는 모델이 `read`, `bash`, `edit`, `write` 같은 도구를 호출할 때 전후 이벤트에 개입할 수 있어요.
 
 - `bash` 실행 전 명령 검사
 - `read` 전에 파일 경로 검사
@@ -393,9 +378,7 @@ Pi는 모델이 `read`, `bash`, `edit`, `write` 같은 도구를 호출할 때
 - `bash` 결과를 모델에 전달하기 전에 요약
 - 실패한 테스트 로그에서 핵심 정보 추출
 
-예를 들어 테스트 로그가 길면  
-Extension이 실패 테스트명, 에러 메시지, 관련 파일만 추려서  
-모델에 전달할 수 있어요.
+예를 들어 테스트 로그가 길면 Extension이 실패 테스트명, 에러 메시지, 관련 파일만 추려서 모델에 전달할 수 있어요.
 
 ### 11.3 모델이 쓸 도구 추가
 
@@ -410,8 +393,7 @@ Extension으로 모델이 호출할 수 있는 custom tool을 붙일 수 있어�
 - 테스트 결과 파싱
 - 보안 점검 실행
 
-이 방식은 도구 사용법을 프롬프트로 설명하는 것이 아니라,  
-모델이 호출 가능한 도구로 하네스에 등록하는 방식이에요.
+이 방식은 도구 사용법을 프롬프트로 설명하는 것이 아니라, 모델이 호출 가능한 도구로 하네스에 등록하는 방식이에요.
 
 ### 11.4 모델 연결 방식 조정
 
@@ -443,8 +425,7 @@ Pi는 CLI뿐 아니라 SDK와 RPC 모드를 제공해요.
 
 ### 11.6 만들어진 하네스 리소스 설치
 
-Pi는 직접 Extension이나 Skill을 만들지 않고,  
-이미 만들어진 Pi package를 설치해서 쓸 수 있어요.
+Pi는 직접 Extension이나 Skill을 만들지 않고, 이미 만들어진 Pi package를 설치해서 쓸 수 있어요.
 
 Pi package는 extension, skill, prompt template, theme를 묶어 배포하는 단위예요.  
 npm, git, 로컬 경로에서 설치할 수 있어요.
@@ -468,8 +449,7 @@ pi install -l npm:@scope/pi-package
 - prompt template: 반복 프롬프트 재사용
 - theme: 터미널 UI 스타일 적용
 
-이 방식은 하네스 조정을 직접 구현하지 않고,  
-검증된 리소스를 가져와 현재 작업 환경에 붙이는 방법이에요.
+이 방식은 하네스 조정을 직접 구현하지 않고, 검증된 리소스를 가져와 현재 작업 환경에 붙이는 방법이에요.
 
 ### 11.7 트리 구조 세션 활용
 
@@ -482,5 +462,4 @@ Pi 세션은 선형 기록이 아니라 트리 구조로 저장돼요.
 - JSONL 세션 파일을 외부 도구에서 분석
 - SDK에서 세션, 분기, compaction 제어
 
-이 구조는 긴 작업에서 여러 해결 방식을 비교하거나,  
-세션 로그를 평가 데이터로 다룰 때 유리해요.
+이 구조는 긴 작업에서 여러 해결 방식을 비교하거나, 세션 로그를 평가 데이터로 다룰 때 유리해요.

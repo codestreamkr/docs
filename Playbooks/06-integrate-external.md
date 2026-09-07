@@ -1,7 +1,6 @@
 # 외부 서비스 연동하기
 
-공급자 계약과 내부 영향을 먼저 분리하고,  
-적용 단계가 확정된 뒤 구현해요.
+공급자 계약과 내부 영향을 먼저 분리하고, 적용 단계가 확정된 뒤 구현해요.
 
 ## 흐름
 
@@ -19,8 +18,7 @@ ct-qa-lucin             병행 운영, 중복 요청과 공급자 지연 검증
 
 ### ct-external-architect
 
-공급자 API의 현재 계약은 추정하지 않고  
-공식 자료에서 확인해요.
+공급자 API의 현재 계약은 추정하지 않고 공식 자료에서 확인해요.
 
 - 인증 방식과 자격 증명 관리
 - 요청·응답 필드와 내부 모델의 매핑
@@ -37,8 +35,7 @@ ct-qa-lucin             병행 운영, 중복 요청과 공급자 지연 검증
 
 ### ct-spring
 
-한 번에 전부 바꾸지 않고  
-확정된 첫 단계만 구현해요.
+한 번에 전부 바꾸지 않고 확정된 첫 단계만 구현해요.
 
 ### ct-qa-lucin
 
@@ -56,12 +53,9 @@ ct-qa-lucin             병행 운영, 중복 요청과 공급자 지연 검증
 
 ## 이 Playbook을 벗어나는 경우
 
-- 외부 공급자는 그대로이고 내부 구조만 바꾸면  
-  [05](./05-transition-structure.md)를 사용해요.
-- 연동 대상이 아직 정해지지 않았으면  
-  [01](./01-define-scope.md)에서 범위부터 정해요.
+- 외부 공급자는 그대로이고 내부 구조만 바꾸면 [05](./05-transition-structure.md)를 사용해요.
+- 연동 대상이 아직 정해지지 않았으면 [01](./01-define-scope.md)에서 범위부터 정해요.
 
 ## 실행
 
-호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md),  
-[Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.
+호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md), [Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.

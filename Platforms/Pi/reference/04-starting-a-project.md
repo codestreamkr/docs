@@ -2,8 +2,7 @@
 
 새 프로젝트에서 Pi를 처음 적용할 때의 기본 흐름이에요.
 
-프로젝트 시작 단계에서는 작업 기준을 확인한 뒤  
-지침 파일, 프로젝트 설정, 로컬 Extension, Pi package를 구성해요.
+프로젝트 시작 단계에서는 작업 기준을 확인한 뒤 지침 파일, 프로젝트 설정, 로컬 Extension, Pi package를 구성해요.
 
 이 문서는 Pi `0.80.6`을 기준으로 해요.
 
@@ -15,15 +14,15 @@
 |---|---|---|
 | 1 | 프로젝트 루트 | `pwd`, `git rev-parse --show-toplevel` |
 | 2 | Git 기준 상태 | `git status --short --branch` |
-| 3 | 기준 검증 명령 | README, build 파일, `package.json`,<br>Gradle/Maven 설정 확인 |
+| 3 | 기준 검증 명령 | README, build 파일, `package.json`, Gradle/Maven 설정 확인 |
 | 4 | Pi 설치 | `pi --version` |
-| 5 | Project Trust 대상 | `.pi/settings.json`, `.pi` 리소스,<br>`.agents/skills`과 package 소스 확인 |
+| 5 | Project Trust 대상 | `.pi/settings.json`, `.pi` 리소스, `.agents/skills`과 package 소스 확인 |
 | 6 | 인증 | `/login` 또는 API 키 환경 변수 |
-| 7 | 기본 모델 | `/model` 또는<br>`~/.pi/agent/settings.json` 확인 |
+| 7 | 기본 모델 | `/model` 또는 `~/.pi/agent/settings.json` 확인 |
 | 8 | 터미널 키 입력 | Shift+Enter, Alt+Enter 동작 확인 |
 | 9 | 프로젝트 Pi 설정 | `.pi/settings.json` 사용 여부 확인 |
-| 10 | 프로젝트 설정 우선순위 | `.pi/settings.json`이<br>전역 설정을 덮어쓰는지 확인 |
-| 11 | 세션 저장 기준 | 기본 저장 또는 `--no-session`,<br>`sessionDir` 사용 여부 확인 |
+| 10 | 프로젝트 설정 우선순위 | `.pi/settings.json`이 전역 설정을 덮어쓰는지 확인 |
+| 11 | 세션 저장 기준 | 기본 저장 또는 `--no-session`, `sessionDir` 사용 여부 확인 |
 | 12 | 프로젝트 Extension | `.pi/extensions` 사용 여부 확인 |
 | 13 | 공통 package | 설치할 Pi package 목록 확인 |
 
@@ -58,8 +57,7 @@ git status --short --branch
 - 새로 생성된 파일
 - staged 상태
 
-Git 저장소가 아니면 현재 파일 목록과  
-별도 백업 또는 snapshot을 기준 상태로 남겨요.
+Git 저장소가 아니면 현재 파일 목록과 별도 백업 또는 snapshot을 기준 상태로 남겨요.
 
 별도 브랜치가 필요한 작업은 프로젝트 기준에 맞게 생성해요.
 
@@ -76,8 +74,7 @@ Pi 설정을 추가하기 전에 프로젝트의 현재 검증 기준을 확인�
 - `build.gradle`, `settings.gradle`, `pom.xml`의 빌드 구성
 - CI workflow가 실행하는 검증 명령
 
-아래 예시 중 프로젝트 build 설정에 실제로 정의된  
-최소 명령만 선택해 실행하고 결과를 기록해요.
+아래 예시 중 프로젝트 build 설정에 실제로 정의된 최소 명령만 선택해 실행하고 결과를 기록해요.
 
 ```bash
 npm test
@@ -110,16 +107,13 @@ npm test
 pi
 ```
 
-저장된 결정이 없고 신뢰 대상 리소스가 있으면  
-대화형 시작 화면에서 신뢰 여부를 물어요.
+저장된 결정이 없고 신뢰 대상 리소스가 있으면 대화형 시작 화면에서 신뢰 여부를 물어요.
 
 - 신뢰: 프로젝트 설정과 리소스를 불러오고 프로젝트 Extension을 실행해요.
 - 신뢰하지 않음: 보호 대상 프로젝트 리소스를 제외해요.
-- `AGENTS.md`, `CLAUDE.md`: 컨텍스트 파일 로드를 끄지 않은 경우  
-  신뢰 결정과 관계없이 불러와요.
+- `AGENTS.md`, `CLAUDE.md`: 컨텍스트 파일 로드를 끄지 않은 경우 신뢰 결정과 관계없이 불러와요.
 
-결정을 변경하거나 이후 세션에 사용할 결정을 저장하려면  
-아래 명령을 사용해요.
+결정을 변경하거나 이후 세션에 사용할 결정을 저장하려면 아래 명령을 사용해요.
 
 ```text
 /trust
@@ -139,8 +133,7 @@ pi --no-approve -p "프로젝트 로컬 리소스를 제외하고 구조를 분�
 - `--approve`, `-a`: 이번 실행에서 프로젝트 로컬 리소스를 신뢰해요.
 - `--no-approve`, `-na`: 이번 실행에서 프로젝트 로컬 리소스를 제외해요.
 
-Project Trust는 프로젝트 입력 리소스의 로드를 제어하며  
-sandbox를 제공하지 않아요.  
+Project Trust는 프로젝트 입력 리소스의 로드를 제어하며 sandbox를 제공하지 않아요.  
 격리가 필요한 저장소는 container, VM 또는 별도 sandbox에서 실행해요.
 
 ## Step 5. 프로젝트 분석
@@ -153,8 +146,7 @@ sandbox를 제공하지 않아요.
 아직 파일은 수정하지 마.
 ```
 
-Step 3에서 확인한 명령과 Pi 분석 결과가 다르면  
-실제 build 파일과 CI 설정을 기준으로 다시 확인해요.
+Step 3에서 확인한 명령과 Pi 분석 결과가 다르면 실제 build 파일과 CI 설정을 기준으로 다시 확인해요.
 
 ## Step 6. 프로젝트 지침 작성
 
@@ -233,8 +225,7 @@ mkdir -p .pi
 - 팀과 공유할 package는 프로젝트 설정에 둬요.
 - 민감한 키나 개인 인증 정보는 프로젝트 설정에 넣지 않아요.
 
-처음으로 신뢰 대상 리소스를 만들었다면  
-`/trust`로 현재 프로젝트의 결정을 저장하고 Pi를 재시작해요.
+처음으로 신뢰 대상 리소스를 만들었다면 `/trust`로 현재 프로젝트의 결정을 저장하고 Pi를 재시작해요.
 
 ## Step 8. 프로젝트 Extension 위치 만들기
 
@@ -269,8 +260,7 @@ pi install -l npm:@scope/pi-package
 pi install -l git:github.com/user/pi-package
 ```
 
-이 문서 저장소 자체에서 예제 리소스를 확인할 때만  
-아래 로컬 경로를 사용해요.
+이 문서 저장소 자체에서 예제 리소스를 확인할 때만 아래 로컬 경로를 사용해요.
 
 ```bash
 pi install -l ./Platforms/Pi/examples/basic-pi-package
@@ -314,9 +304,9 @@ pi list
 | 작업 | 권장 방향 |
 |---|---|
 | 단순 문서 요약 | 빠른 모델, thinking 낮음 |
-| 코드 구조 분석 | 성능 좋은 모델,<br>thinking medium 이상 |
-| 복잡한 리팩토링 계획 | reasoning 지원 모델,<br>thinking high 이상 |
-| 테스트 실패 로그 분석 | 로그 이해가 좋은 모델,<br>thinking medium 이상 |
+| 코드 구조 분석 | 성능 좋은 모델, thinking medium 이상 |
+| 복잡한 리팩토링 계획 | reasoning 지원 모델, thinking high 이상 |
+| 테스트 실패 로그 분석 | 로그 이해가 좋은 모델, thinking medium 이상 |
 
 thinking level은 `Shift+Tab`으로 순환할 수 있어요.
 
@@ -336,8 +326,7 @@ OrderService의 cancelOrder 흐름을 읽고, 외부 연동과 트랜잭션 경�
 아직 코드는 수정하지 마.
 ```
 
-작업 후 Step 2의 Git 상태와 Step 3의 검증 결과를 기준으로  
-변경 영향을 확인해요.
+작업 후 Step 2의 Git 상태와 Step 3의 검증 결과를 기준으로 변경 영향을 확인해요.
 
 ## 실행 순서 요약
 

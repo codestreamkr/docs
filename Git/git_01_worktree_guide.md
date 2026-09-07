@@ -37,8 +37,7 @@ git status --short --branch
 | `A  app.js` | 새로 추가해 Staging area에 올린 파일 |
 | `D  app.js` | 삭제한 파일 |
 
-앞쪽 열은 Staging area,  
-뒤쪽 열은 Working tree 상태를 나타내요.
+앞쪽 열은 Staging area, 뒤쪽 열은 Working tree 상태를 나타내요.
 
 ## 변경 내용 확인
 
@@ -76,8 +75,7 @@ git log --oneline --decorate --graph -n 12
 | `git reset --mixed <커밋>` | 유지 | 지정 커밋 기준으로 복원 | 지정 커밋으로 이동 |
 | `git reset --hard <커밋>` | 지정 커밋 기준으로 복원 | 지정 커밋 기준으로 복원 | 지정 커밋으로 이동 |
 
-`reset --hard`는 추적 중인 로컬 변경을 제거하므로  
-실행 전에 상태와 대상 커밋을 확인해요.
+`reset --hard`는 추적 중인 로컬 변경을 제거하므로 실행 전에 상태와 대상 커밋을 확인해요.
 
 ## 작업 시작 확인 순서
 
@@ -94,5 +92,4 @@ git diff --staged
 
 - 현재 브랜치를 설명할 수 있어요.
 - 수정한 변경과 커밋할 변경을 구분할 수 있어요.
-- 명령이 Working tree, Staging area, HEAD 중  
-  어디를 바꾸는지 확인할 수 있어요.
+- 명령이 Working tree, Staging area, HEAD 중 어디를 바꾸는지 확인할 수 있어요.

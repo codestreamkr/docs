@@ -2,8 +2,7 @@
 
 Pi로 실제 프로젝트 코딩을 진행할 때의 기본 흐름이에요.
 
-코딩 작업은 기본 흐름으로 시작하고,  
-반복되는 절차는 Extension, custom tool, Pi package로 옮겨요.
+코딩 작업은 기본 흐름으로 시작하고, 반복되는 절차는 Extension, custom tool, Pi package로 옮겨요.
 
 ## 이 문서는 언제 보나요
 
@@ -198,8 +197,7 @@ README의 로컬 실행 방법이 현재 프로젝트와 맞는지 확인하고 
 
 필요한 기능이 이미 만들어져 있으면 Pi package로 설치해요.
 
-이 문서 저장소 자체에서 예제 package의 `package.json`, prompt, skill을 검토한 뒤  
-프로젝트 전용으로 설치해요.  
+이 문서 저장소 자체에서 예제 package의 `package.json`, prompt, skill을 검토한 뒤 프로젝트 전용으로 설치해요.
 `--approve`는 현재 명령에서 검토한 프로젝트 로컬 리소스를 승인해요.
 
 ```bash
@@ -226,16 +224,14 @@ Pi를 종료하고 저장소 루트에서 다시 시작해요.
 /skill:project-check
 ```
 
-외부 package를 설치할 때는 placeholder를  
-실제 package 이름이나 repository로 바꿔요.
+외부 package를 설치할 때는 placeholder를 실제 package 이름이나 repository로 바꿔요.
 
 ```bash
 pi install -l npm:@scope/pi-package
 pi install -l git:github.com/organization/pi-package
 ```
 
-예제 호출이 보이지 않으면 저장소 루트에서 설치했는지,  
-`/trust` 저장 후 Pi를 재시작했는지 확인해요.
+예제 호출이 보이지 않으면 저장소 루트에서 설치했는지, `/trust` 저장 후 Pi를 재시작했는지 확인해요.
 
 package 사용 기준은 아래와 같아요.
 

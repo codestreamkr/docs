@@ -1,7 +1,6 @@
 # 낯선 코드 파악하기
 
-변경하기 전에 실제 호출 흐름과 외부 경계를 확인하고,  
-필요하면 현재 동작을 테스트로 고정해요.
+변경하기 전에 실제 호출 흐름과 외부 경계를 확인하고, 필요하면 현재 동작을 테스트로 고정해요.
 
 ## 흐름
 
@@ -45,8 +44,7 @@ getter, 로깅과 단순 DTO 필드 설정은 흐름에서 제외해요.
 - 외부 시스템과 상호작용해요
 
 단순 위임은 상위 테스트에서 이미 검증되는지 확인해요.  
-분석 문서만으로 테스트를 만들지 않고  
-현재 시그니처, 실제 분기와 기존 테스트 스타일을 대조해요.
+분석 문서만으로 테스트를 만들지 않고 현재 시그니처, 실제 분기와 기존 테스트 스타일을 대조해요.
 
 ## 다음 단계로 넘길 것
 
@@ -57,14 +55,10 @@ getter, 로깅과 단순 DTO 필드 설정은 흐름에서 제외해요.
 
 ## 이 Playbook을 벗어나는 경우
 
-- 파악한 구조를 바꿀 계획이면  
-  [05](./05-transition-structure.md)로 이어가요.
-- 파악 목적이 조회 성능이면  
-  [04](./04-tune-sql.md)를 사용해요.
-- 빌드와 실행 방법 자체를 모르면  
-  [09](./09-prepare-runtime.md)를 먼저 진행해요.
+- 파악한 구조를 바꿀 계획이면 [05](./05-transition-structure.md)로 이어가요.
+- 파악 목적이 조회 성능이면 [04](./04-tune-sql.md)를 사용해요.
+- 빌드와 실행 방법 자체를 모르면 [09](./09-prepare-runtime.md)를 먼저 진행해요.
 
 ## 실행
 
-호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md),  
-[Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.
+호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md), [Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.

@@ -2,11 +2,8 @@
 
 Pi의 하네스 강점을 서로 다른 방식으로 직접 확인해요.
 
-이 문서는 [Pi 기본 개념](./02-understanding-core-concepts.md)의  
-`Pi가 잘하는 작업 방식`을 실습으로 연결해요.  
-같은 형태의 Extension 예제를 반복하지 않고,  
-설치해서 쓰기, 명령으로 쓰기, 도구로 쓰기, provider 연결,  
-SDK/RPC 내장, 세션 분기까지 다른 패턴으로 나눠 확인해요.
+이 문서는 [Pi 기본 개념](./02-understanding-core-concepts.md)의 `Pi가 잘하는 작업 방식`을 실습으로 연결해요.  
+같은 형태의 Extension 예제를 반복하지 않고, 설치해서 쓰기, 명령으로 쓰기, 도구로 쓰기, provider 연결, SDK/RPC 내장, 세션 분기까지 다른 패턴으로 나눠 확인해요.
 
 ## 1. 실습 전 준비
 
@@ -33,8 +30,7 @@ Extension이나 package를 추가한 뒤에는 Pi 안에서 다시 로드해요.
 
 - 처음에는 프로젝트 로컬 설정만 사용해요.
 - 설치형 리소스는 `-l`로 프로젝트에만 적용해요.
-- 직접 구현은 한 번만 해보고,  
-  나머지는 설치와 내장 흐름을 확인해요.
+- 직접 구현은 한 번만 해보고, 나머지는 설치와 내장 흐름을 확인해요.
 - 외부 package는 신뢰할 수 있는 출처만 사용해요.
 
 ## 2. 패턴 1: Extension 하나로 실행 흐름에 개입하기
@@ -131,8 +127,7 @@ Pi에서 다시 로드해요.
 이미 만들어진 하네스 리소스는 package로 설치해서 써요.
 
 package는 extension, skill, prompt template, theme를 묶어 배포하는 단위예요.  
-사내 공통 기능이 많아지면 전역 파일로 흩어두기보다  
-package로 묶는 방식을 검토해요.
+사내 공통 기능이 많아지면 전역 파일로 흩어두기보다 package로 묶는 방식을 검토해요.
 
 ### 목표
 
@@ -142,8 +137,7 @@ package로 묶는 방식을 검토해요.
 
 ### 설치
 
-저장소 루트에 `Platforms/Pi/examples/basic-pi-package/package.json`,  
-`prompts/ready-pr.md`, `skills/project-check/SKILL.md`가 있는지 먼저 확인해요.
+저장소 루트에 `Platforms/Pi/examples/basic-pi-package/package.json`, `prompts/ready-pr.md`, `skills/project-check/SKILL.md`가 있는지 먼저 확인해요.
 
 ```bash
 test -f Platforms/Pi/examples/basic-pi-package/package.json
@@ -196,17 +190,14 @@ pi
 
 - `/ready-pr`가 변경 상태, 검증 상태, PR 초안을 요청하는 프롬프트로 확장돼요.
 - `/skill:project-check`가 읽기 전용 프로젝트 점검 절차를 불러와요.
-- `pi list --approve`의 `Project packages`에  
-  `../Platforms/Pi/examples/basic-pi-package`와 실제 package 경로가 표시돼요.
+- `pi list --approve`의 `Project packages`에 `../Platforms/Pi/examples/basic-pi-package`와 실제 package 경로가 표시돼요.
 
 ### 실패 점검
 
 - `No such file`이 나오면 저장소 루트에서 실행했는지 확인해요.
-- `Project is not trusted`가 나오면  
-  소스를 검토한 뒤 명령에 `--approve`를 붙였는지 확인해요.
+- `Project is not trusted`가 나오면 소스를 검토한 뒤 명령에 `--approve`를 붙였는지 확인해요.
 - 명령이 보이지 않으면 `/trust` 저장 후 Pi를 재시작했는지 확인해요.
-- 같은 이름의 전역 prompt나 skill이 있으면  
-  충돌을 피하도록 기존 리소스를 비활성화해요.
+- 같은 이름의 전역 prompt나 skill이 있으면 충돌을 피하도록 기존 리소스를 비활성화해요.
 
 전역, npm, git 설치 형식은 실제 배포 package를 사용할 때 적용해요.
 
@@ -220,8 +211,7 @@ pi install git:github.com/organization/pi-package
 
 반복 프롬프트는 prompt template로 실행해요.
 
-예를 들어 `ready-pr-local.md`를 만들면  
-Pi 안에서 `/ready-pr-local`로 호출할 수 있어요.
+예를 들어 `ready-pr-local.md`를 만들면 Pi 안에서 `/ready-pr-local`로 호출할 수 있어요.
 
 ### 목표
 
@@ -285,8 +275,7 @@ description: 현재 변경 상태를 읽고 로컬 PR 준비 결과를 정리한
 
 작업 절차와 참고 기준은 skill로 불러와요.
 
-예를 들어 `project-check-local` skill을 만들면  
-`/skill:project-check-local`로 호출할 수 있어요.
+예를 들어 `project-check-local` skill을 만들면 `/skill:project-check-local`로 호출할 수 있어요.
 
 ### 목표
 
@@ -361,8 +350,7 @@ description: 현재 프로젝트의 실행 명령과 검증 명령을 읽기 전
 
 custom tool은 모델이 직접 호출할 수 있는 실행 기능이에요.
 
-예를 들어 `package_scripts` 도구를 만들면  
-`package.json`의 scripts를 모델이 직접 조회하게 할 수 있어요.
+예를 들어 `package_scripts` 도구를 만들면 `package.json`의 scripts를 모델이 직접 조회하게 할 수 있어요.
 
 ### 목표
 
@@ -445,17 +433,14 @@ package_scripts 도구를 사용해서 테스트와 빌드에 쓸 수 있는 명
 ### 실패 점검
 
 - 도구가 보이지 않으면 Extension 파일 위치와 `/reload` 결과를 확인해요.
-- `package.json 조회 실패`가 나오면  
-  현재 작업 디렉터리와 JSON 문법을 확인해요.
-- `scripts`가 빈 객체라면  
-  `package.json`에 실행 script가 정의되어 있는지 확인해요.
+- `package.json 조회 실패`가 나오면 현재 작업 디렉터리와 JSON 문법을 확인해요.
+- `scripts`가 빈 객체라면 `package.json`에 실행 script가 정의되어 있는지 확인해요.
 
 ### 사내 Jira 예시
 
 Jira 이슈 조회는 custom tool로 만들기 좋은 작업이에요.
 
-모델에게 Jira 사용법을 설명하는 대신,  
-모델이 호출할 수 있는 도구를 하네스에 붙여요.
+모델에게 Jira 사용법을 설명하는 대신, 모델이 호출할 수 있는 도구를 하네스에 붙여요.
 
 예시 도구:
 
@@ -505,15 +490,13 @@ Confluence 문서 검색도 custom tool로 만들기 좋아요.
 
 - 사람이 매번 브라우저에서 찾아 붙여넣는 정보는 custom tool 후보로 봐요.
 - API 토큰, 사내망 접근, 권한 처리는 Extension 내부에서 다뤄요.
-- 여러 팀이나 프로젝트에서 반복되면  
-  Jira/Confluence 도구를 Pi package로 묶어요.
+- 여러 팀이나 프로젝트에서 반복되면 Jira/Confluence 도구를 Pi package로 묶어요.
 
 ## 7. 패턴 6: provider 연결 방식을 코드로 등록하기
 
 Custom Provider는 모델 실행 계층을 프로젝트 환경에 맞춰요.
 
-초급 단계에서는 실제 서버를 만들지 않고,  
-로컬 OpenAI 호환 서버를 등록하는 형태만 확인해요.
+초급 단계에서는 실제 서버를 만들지 않고, 로컬 OpenAI 호환 서버를 등록하는 형태만 확인해요.
 
 ### 목표
 
@@ -584,8 +567,7 @@ pi --list-models local-openai
 
 SDK는 Pi를 다른 Node.js 프로그램 안에 넣을 때 사용해요.
 
-이 패턴은 대화형 CLI가 아니라  
-CI, 내부 도구, 개인 자동화에서 Pi agent를 실행하는 방식이에요.
+이 패턴은 대화형 CLI가 아니라 CI, 내부 도구, 개인 자동화에서 Pi agent를 실행하는 방식이에요.
 
 ### 목표
 
@@ -595,8 +577,7 @@ CI, 내부 도구, 개인 자동화에서 Pi agent를 실행하는 방식이에�
 
 ### 준비
 
-Pi에서 `/login`을 완료했거나  
-사용할 provider의 API 키 환경 변수가 설정되어 있어야 해요.  
+Pi에서 `/login`을 완료했거나 사용할 provider의 API 키 환경 변수가 설정되어 있어야 해요.  
 `/model`에서 기본 모델을 선택한 뒤 임시 폴더에서 진행해요.
 
 ```bash
@@ -665,13 +646,11 @@ node scripts/pi-check.mjs
 
 - 인증 오류가 나오면 `/login` 상태 또는 provider API 키 환경 변수를 확인해요.
 - 모델 오류가 나오면 Pi의 `/model`에서 기본 모델을 다시 선택해요.
-- `scripts/pi-check.mjs`를 찾지 못하면  
-  `scripts` 디렉터리와 실행 위치를 확인해요.
+- `scripts/pi-check.mjs`를 찾지 못하면 `scripts` 디렉터리와 실행 위치를 확인해요.
 
 ## 9. 패턴 8: RPC 모드로 다른 언어에서 붙이기
 
-RPC 모드는 Pi를 별도 프로세스로 실행하고  
-외부 프로그램에서 제어할 때 사용해요.
+RPC 모드는 Pi를 별도 프로세스로 실행하고 외부 프로그램에서 제어할 때 사용해요.
 
 ### 목표
 
@@ -681,8 +660,7 @@ RPC 모드는 Pi를 별도 프로세스로 실행하고
 
 ### 사전 조건
 
-Pi 0.80.6 이상에서 `/login`을 완료했거나  
-provider API 키 환경 변수를 설정해요.  
+Pi 0.80.6 이상에서 `/login`을 완료했거나 provider API 키 환경 변수를 설정해요.  
 요청 파일을 둘 디렉터리를 만들어요.
 
 ```bash
@@ -705,8 +683,7 @@ JSON 객체 한 개를 한 줄에 작성하고 마지막에 줄바꿈을 둬요.
 pi --mode rpc --no-session < scripts/pi-rpc-request.jsonl
 ```
 
-RPC를 계속 제어하는 프로그램은  
-같은 형식의 JSON 객체를 stdin에 한 줄씩 보내고 stdout의 JSONL을 읽어요.
+RPC를 계속 제어하는 프로그램은 같은 형식의 JSON 객체를 stdin에 한 줄씩 보내고 stdout의 JSONL을 읽어요.
 
 ### 확인할 결과
 
@@ -716,17 +693,14 @@ RPC를 계속 제어하는 프로그램은
 {"id":"req-1","type":"response","command":"prompt","success":true}
 ```
 
-이후 모델 응답이 이벤트로 이어지고  
-작업이 끝나면 종료 이벤트가 출력돼요.
+이후 모델 응답이 이벤트로 이어지고 작업이 끝나면 종료 이벤트가 출력돼요.
 
 ### 실패 점검
 
-- JSON 파싱 오류가 나오면  
-  요청이 한 줄짜리 JSON인지와 마지막 줄바꿈을 확인해요.
+- JSON 파싱 오류가 나오면 요청이 한 줄짜리 JSON인지와 마지막 줄바꿈을 확인해요.
 - `success:false`가 나오면 같은 `id`의 응답에 포함된 오류 내용을 확인해요.
 - 인증·모델 오류가 나오면 `/login`, API 키, 기본 모델 설정을 확인해요.
-- 프로세스가 계속 실행되면  
-  RPC는 지속 통신 모드이므로 stdin을 닫거나 프로세스를 종료해요.
+- 프로세스가 계속 실행되면 RPC는 지속 통신 모드이므로 stdin을 닫거나 프로세스를 종료해요.
 
 ### 활용 기준
 
@@ -738,8 +712,7 @@ RPC를 계속 제어하는 프로그램은
 
 JSON 이벤트 스트림 모드는 한 번 실행한 Pi 작업의 이벤트를 JSON Lines로 출력해요.
 
-RPC처럼 계속 명령을 주고받는 방식이 아니라,  
-단일 실행 결과와 이벤트를 수집하는 방식이에요.
+RPC처럼 계속 명령을 주고받는 방식이 아니라, 단일 실행 결과와 이벤트를 수집하는 방식이에요.
 
 ### 실행
 
@@ -871,13 +844,13 @@ Customization 리소스는 목적에 맞게 나눠 써요.
 | 목적 | 우선 선택 | 기준 |
 |---|---|---|
 | 외부 시스템 API 호출 | Extensions | 인증, 요청, 응답 가공이 필요할 때 |
-| 모델이 직접 쓸 실행 기능 | Custom tool | Extension 안에서<br>`registerTool`로 등록 |
+| 모델이 직접 쓸 실행 기능 | Custom tool | Extension 안에서 `registerTool`로 등록 |
 | 반복 업무 절차 표준화 | Skills | 순서, 판단 기준, 참고 문서가 중요할 때 |
 | 반복 요청 단축 | Prompt Templates | 실행 코드 없이 프롬프트만 재사용할 때 |
 | 화면 색상 조정 | Themes | TUI 시인성을 바꿀 때 |
 | 여러 리소스 묶음 배포 | Pi Packages | 팀 공통 기능을 설치형으로 배포할 때 |
 | 로컬/사내 모델 추가 | Custom Models | 설정만으로 OpenAI 호환 모델을 붙일 때 |
-| 모델 연결 로직 구현 | Custom Providers | 프록시, SSO, 동적 모델 조회,<br>비표준 API가 필요할 때 |
+| 모델 연결 로직 구현 | Custom Providers | 프록시, SSO, 동적 모델 조회, 비표준 API가 필요할 때 |
 
 전역과 프로젝트 적용 기준은 아래와 같아요.
 
@@ -898,7 +871,7 @@ Customization 리소스는 목적에 맞게 나눠 써요.
 | 반복 프롬프트 실행하기 | prompt template |
 | 작업 절차와 참고 문서 불러오기 | skill |
 | 로컬/외부 정보를 모델이 조회하게 하기 | custom tool |
-| Jira 이슈나 Confluence 문서를<br>함께 조회하기 | custom tool 또는 Pi package |
+| Jira 이슈나 Confluence 문서를 함께 조회하기 | custom tool 또는 Pi package |
 | 모델 endpoint나 인증 방식 바꾸기 | custom provider |
 | 이미 있는 기능 가져오기 | Pi package 설치 |
 | 여러 프로젝트에 배포하기 | Pi package 제작 |

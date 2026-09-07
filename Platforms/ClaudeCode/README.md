@@ -1,7 +1,6 @@
 # Claude Code 가이드
 
-프로젝트에서 할 일을 고르고  
-필요한 사용자 Skill을 직접 호출해요.
+프로젝트에서 할 일을 고르고 필요한 사용자 Skill을 직접 호출해요.
 
 문제 유형별 작업 흐름은 [Playbook](../../Playbooks/README.md)에서 관리해요.  
 이 가이드는 Claude Code의 설정, Skill 호출과 확장 기능만 다뤄요.
@@ -36,20 +35,16 @@
 
 | 알고 싶은 것 | 문서 |
 | --- | --- |
-| 설치, Skill 위치와<br>`CLAUDE.md`·Settings의 책임 | [환경 설정](./setup.md) |
+| 설치, Skill 위치와 `CLAUDE.md`·Settings의 책임 | [환경 설정](./setup.md) |
 | 9개 Skill의 입력, 작업과 결과 | [Skill 안내](./skills.md) |
 | 여러 Skill을 연결하는 실제 예제 | [작업 흐름](./workflows.md) |
-| Skill, Subagent, MCP와<br>Hook의 차이 | [확장 기능](./extensions.md) |
+| Skill, Subagent, MCP와 Hook의 차이 | [확장 기능](./extensions.md) |
 | 현재 환경에서 명령을 찾는 방법 | [명령 확인](./commands.md) |
 
 ## 사용 기준
 
-- CodeStream 사용자 Skill은  
-  [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요.  
-  이 도구에서 보이는 위치는 [환경 설정](./setup.md)을 봐요.
+- CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요. 이 도구에서 보이는 위치는 [환경 설정](./setup.md)을 봐요.
 - 사용자 Skill은 `/ct-*` 이름으로 직접 호출해요.
-- Skill은 현재 프로젝트의 지침 문서, 코드와 설정에서  
-  필요한 근거를 모아요.
+- Skill은 현재 프로젝트의 지침 문서, 코드와 설정에서 필요한 근거를 모아요.
 - 작업별 입력과 결과는 실제 Skill 안내를 기준으로 해요.
-- 제품 기능과 명령은 현재 환경과  
-  [Claude Code 공식 문서](https://code.claude.com/docs/en/overview)에서 확인해요.
+- 제품 기능과 명령은 현재 환경과 [Claude Code 공식 문서](https://code.claude.com/docs/en/overview)에서 확인해요.

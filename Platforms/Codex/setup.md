@@ -1,7 +1,6 @@
 # Codex 환경 설정
 
-사용자 공통 확장, 프로젝트 작업 기준과  
-Codex 실행 설정을 역할에 맞는 위치에 둬요.
+사용자 공통 확장, 프로젝트 작업 기준과 Codex 실행 설정을 역할에 맞는 위치에 둬요.
 
 ## 설치와 실행
 
@@ -42,18 +41,16 @@ codex --version
 | --- | --- |
 | `~/.agents/skills/` | 여러 프로젝트에서 개인적으로 사용하는 Skill |
 | `<repo>/.agents/skills/` | 저장소에서 공유하는 프로젝트 Skill |
-| `<repo>/AGENTS.md` | 프로젝트 작업 기준과<br>정본 문서 안내 |
+| `<repo>/AGENTS.md` | 프로젝트 작업 기준과 정본 문서 안내 |
 | 하위 `AGENTS.md` | 특정 폴더와 모듈에 추가로 적용할 기준 |
-| `~/.codex/config.toml` | 사용자 Codex 실행 설정과<br>MCP 연결 |
+| `~/.codex/config.toml` | 사용자 Codex 실행 설정과 MCP 연결 |
 | `<repo>/.codex/config.toml` | 신뢰된 저장소의 프로젝트 실행 설정 |
 
-Codex가 제공하는 시스템 Skill은 제품이 관리하는 위치에 두고  
-사용자 Skill과 나눠요.
+Codex가 제공하는 시스템 Skill은 제품이 관리하는 위치에 두고 사용자 Skill과 나눠요.
 
 ## 사용자 Skill 확인
 
-CodeStream 사용자 Skill(`ct-*`)은  
-[ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요.  
+CodeStream 사용자 Skill(`ct-*`)은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요.  
 clone과 배치 절차는 해당 저장소를 따라요.
 
 Codex는 `~/.agents/skills/`에서 인식해요.
@@ -76,8 +73,7 @@ Codex는 `~/.agents/skills/`에서 인식해요.
 
 ## 프로젝트 AGENTS.md
 
-프로젝트에 계속 적용할 짧은 기준과  
-정본 위치를 적어요.
+프로젝트에 계속 적용할 짧은 기준과 정본 위치를 적어요.
 
 ```markdown
 # 프로젝트 작업 기준
@@ -94,8 +90,7 @@ Codex는 `~/.agents/skills/`에서 인식해요.
 ```
 
 프로젝트마다 필요한 내용만 작성해요.  
-프레임워크 일반 지식이나 Codex가 현재 환경에서 확인할 수 있는  
-기능 목록은 반복하지 않아요.
+프레임워크 일반 지식이나 Codex가 현재 환경에서 확인할 수 있는 기능 목록은 반복하지 않아요.
 
 ## Config
 
@@ -106,10 +101,8 @@ Codex는 `~/.agents/skills/`에서 인식해요.
 - MCP 서버와 인증 환경변수 이름
 - UI와 지원되는 기능 설정
 
-프로젝트의 코드 규칙과 문서 책임은 Config가 아니라  
-프로젝트 `AGENTS.md`에서 관리해요.  
-비밀값은 설정 본문에 적지 않고  
-환경변수나 지원되는 인증 저장소를 사용해요.
+프로젝트의 코드 규칙과 문서 책임은 Config가 아니라 프로젝트 `AGENTS.md`에서 관리해요.  
+비밀값은 설정 본문에 적지 않고 환경변수나 지원되는 인증 저장소를 사용해요.
 
 ## 적용 확인
 

@@ -1,7 +1,6 @@
 # 오픈 전 품질 검증하기
 
-배포 전에 위험이 높은 흐름부터 검증하고,  
-검증하지 못한 범위를 남겨요.
+배포 전에 위험이 높은 흐름부터 검증하고, 검증하지 못한 범위를 남겨요.
 
 ## 흐름
 
@@ -45,14 +44,10 @@ ct-spring            발견한 결함 수정                      ← 수정 대
 
 ## 이 Playbook을 벗어나는 경우
 
-- 검증 대상 흐름을 모르면  
-  [03](./03-understand-code.md)에서 호출 흐름부터 확인해요.
-- 구현과 검증을 이어서 진행 중이면  
-  [02](./02-implement-and-verify.md)에 이미 포함돼요.
-- 검증 환경 자체가 없으면  
-  [09](./09-prepare-runtime.md)를 먼저 진행해요.
+- 검증 대상 흐름을 모르면 [03](./03-understand-code.md)에서 호출 흐름부터 확인해요.
+- 구현과 검증을 이어서 진행 중이면 [02](./02-implement-and-verify.md)에 이미 포함돼요.
+- 검증 환경 자체가 없으면 [09](./09-prepare-runtime.md)를 먼저 진행해요.
 
 ## 실행
 
-호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md),  
-[Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.
+호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md), [Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.

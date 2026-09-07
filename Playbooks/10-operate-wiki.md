@@ -1,7 +1,6 @@
 # 지식 위키로 남기기
 
-원격 위키의 원문과  
-저장소 안의 Markdown 위키를 분리해 운영해요.
+원격 위키의 원문과 저장소 안의 Markdown 위키를 분리해 운영해요.
 
 ## 흐름
 
@@ -44,8 +43,7 @@ ct-wiki-ops verify     근거, 현재성과 링크 점검
 - 현재도 유효한 내용인지
 - 구조와 링크가 깨지지 않았는지
 
-중복이 쌓이면 `prune`으로 정리 후보를 확인하고,  
-기간별 정리가 필요하면 `log`와 `daily`를 사용해요.
+중복이 쌓이면 `prune`으로 정리 후보를 확인하고, 기간별 정리가 필요하면 `log`와 `daily`를 사용해요.
 
 ## 다음 단계로 넘길 것
 
@@ -55,11 +53,9 @@ ct-wiki-ops verify     근거, 현재성과 링크 점검
 
 ## 이 Playbook을 벗어나는 경우
 
-- 코드에서 사실을 확인해야 하면  
-  [03](./03-understand-code.md)을 먼저 진행해요.
+- 코드에서 사실을 확인해야 하면 [03](./03-understand-code.md)을 먼저 진행해요.
 - 위키 기준 자체가 없으면 `init`으로 구조부터 준비해요.
 
 ## 실행
 
-호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md),  
-[Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.
+호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md), [Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.

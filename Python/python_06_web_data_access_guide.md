@@ -1,11 +1,9 @@
 # 데이터 접근과 마이그레이션
 
-이 문서는 Python 웹 백엔드에서 ORM 세션과 트랜잭션 경계를 정하고  
-스키마 변경을 관리하는 기준을 안내해요.
+이 문서는 Python 웹 백엔드에서 ORM 세션과 트랜잭션 경계를 정하고 스키마 변경을 관리하는 기준을 안내해요.
 
 FastAPI·Flask는 SQLAlchemy를, Django는 내장 ORM을 사용해요.  
-세션 수명과 트랜잭션 경계를 명시하지 않으면  
-커넥션 누수와 예상 못 한 커밋이 발생해요.
+세션 수명과 트랜잭션 경계를 명시하지 않으면 커넥션 누수와 예상 못 한 커밋이 발생해요.
 
 ## 도구 선택
 
@@ -15,7 +13,7 @@ FastAPI·Flask는 SQLAlchemy를, Django는 내장 ORM을 사용해요.
 | --- | --- | --- |
 | FastAPI, Flask | SQLAlchemy 2.x | Alembic |
 | Django | Django ORM | `manage.py makemigrations`·`migrate` |
-| 쿼리를 직접 쓰는 프로젝트 | SQLAlchemy Core,<br>드라이버 직접 사용 | Alembic 또는 SQL 스크립트 관리 |
+| 쿼리를 직접 쓰는 프로젝트 | SQLAlchemy Core, 드라이버 직접 사용 | Alembic 또는 SQL 스크립트 관리 |
 
 ## 모델 정의
 
@@ -48,8 +46,7 @@ class Order(Base):
 
 적용 기준은 다음과 같아요.
 
-- 금액은 `Decimal`로 매핑해요.  
-  부동소수 타입을 쓰지 않아요.
+- 금액은 `Decimal`로 매핑해요. 부동소수 타입을 쓰지 않아요.
 - 생성·수정 시각은 DB 기본값(`server_default`)으로 채워요.
 - 조회 조건으로 자주 쓰는 컬럼에 인덱스를 선언해요.
 - 테이블명과 컬럼명은 DB 명명 규칙을 그대로 써요.
@@ -91,15 +88,11 @@ def session_scope() -> Iterator[Session]:
         session.close()
 ```
 
-- 커밋은 한 요청에서 한 번만 수행해요.  
-  리포지토리 안에서 커밋하지 않아요.
-- 예외가 발생하면 롤백하고 그대로 전파해요.  
-  여기서 응답을 만들지 않아요.
+- 커밋은 한 요청에서 한 번만 수행해요. 리포지토리 안에서 커밋하지 않아요.
+- 예외가 발생하면 롤백하고 그대로 전파해요. 여기서 응답을 만들지 않아요.
 - `pool_pre_ping`으로 끊긴 커넥션을 사용하기 전에 확인해요.
-- 커넥션 풀 크기는 워커 수를 곱한 값이  
-  DB 최대 연결 수를 넘지 않게 정해요.
-- `expire_on_commit=False`로 두면  
-  커밋 후 객체 속성 접근 시 추가 질의가 발생하지 않아요.
+- 커넥션 풀 크기는 워커 수를 곱한 값이 DB 최대 연결 수를 넘지 않게 정해요.
+- `expire_on_commit=False`로 두면 커밋 후 객체 속성 접근 시 추가 질의가 발생하지 않아요.
 
 ## 조회 패턴
 
@@ -132,10 +125,8 @@ def find_by_customer(
 ```
 
 - 목록 조회에는 항상 정렬과 개수 제한을 함께 지정해요.
-- 연관 데이터를 함께 쓰면  
-  `selectinload` 또는 `joinedload`로 미리 적재해요.
-- 단건 조회는 `one_or_none()`을 사용하고  
-  없음을 예외 대신 `None`으로 다뤄요.
+- 연관 데이터를 함께 쓰면 `selectinload` 또는 `joinedload`로 미리 적재해요.
+- 단건 조회는 `one_or_none()`을 사용하고 없음을 예외 대신 `None`으로 다뤄요.
 
 ## N+1 질의
 
@@ -143,25 +134,19 @@ def find_by_customer(
 
 - 증상: 목록 크기에 비례해 질의 수가 늘어나요.
 - 확인: `create_engine(..., echo=True)` 또는 로깅으로 실행 질의 수를 세요.
-- 조치: 조회 시점에 `selectinload`(별도 IN 질의) 또는  
-  `joinedload`(조인)로 적재해요.
-- 선택 기준: 일대다 관계는 `selectinload`,  
-  다대일 단일 관계는 `joinedload`를 기본으로 해요.
-- Django ORM은 같은 문제를 `select_related`(정방향 FK)와  
-  `prefetch_related`(역방향·다대다)로 해결해요.
+- 조치: 조회 시점에 `selectinload`(별도 IN 질의) 또는 `joinedload`(조인)로 적재해요.
+- 선택 기준: 일대다 관계는 `selectinload`, 다대일 단일 관계는 `joinedload`를 기본으로 해요.
+- Django ORM은 같은 문제를 `select_related`(정방향 FK)와 `prefetch_related`(역방향·다대다)로 해결해요.
 
-질의 실행 계획 분석과 인덱스 판단이 필요하면  
-[04 느린 SQL 개선하기](../Playbooks/04-tune-sql.md)를 연결해요.
+질의 실행 계획 분석과 인덱스 판단이 필요하면 [04 느린 SQL 개선하기](../Playbooks/04-tune-sql.md)를 연결해요.
 
 ## 비동기 데이터 접근
 
 FastAPI에서 `async def` 엔드포인트를 쓰면 DB 접근도 비동기여야 해요.
 
-- 동기 드라이버(`psycopg2`)를 `async def` 안에서 호출하면  
-  이벤트 루프가 멈춰요.
+- 동기 드라이버(`psycopg2`)를 `async def` 안에서 호출하면 이벤트 루프가 멈춰요.
 - 비동기로 가려면 `asyncpg` 드라이버와 `AsyncSession`을 함께 사용해요.
-- 동기 ORM을 유지할 때는 엔드포인트를 `def`로 선언해요.  
-  FastAPI가 별도 스레드에서 실행해요.
+- 동기 ORM을 유지할 때는 엔드포인트를 `def`로 선언해요. FastAPI가 별도 스레드에서 실행해요.
 - 한 프로젝트 안에서 동기·비동기 접근을 섞지 않아요.
 
 ```python
@@ -204,14 +189,11 @@ uv run python manage.py sqlmigrate orders 0003   # 실행될 SQL 확인
 
 작성 기준은 다음과 같아요.
 
-- 자동 생성 결과를 그대로 쓰지 않고  
-  생성된 SQL을 확인한 뒤 커밋해요.
+- 자동 생성 결과를 그대로 쓰지 않고 생성된 SQL을 확인한 뒤 커밋해요.
 - 하나의 마이그레이션에는 하나의 목적만 담아요.
-- 되돌리기 경로를 정의해요.  
-  되돌릴 수 없는 변경은 문서에 명시해요.
+- 되돌리기 경로를 정의해요. 되돌릴 수 없는 변경은 문서에 명시해요.
 - 데이터 이전이 필요하면 스키마 변경과 데이터 이전을 분리해요.
-- 대상 테이블이 크면 잠금 시간을 확인하고  
-  인덱스 생성 방식을 DB별로 조정해요.
+- 대상 테이블이 크면 잠금 시간을 확인하고 인덱스 생성 방식을 DB별로 조정해요.
 
 ## 무중단 배포용 변경 순서
 

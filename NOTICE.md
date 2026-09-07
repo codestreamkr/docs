@@ -1,12 +1,10 @@
 # 저작권과 제3자 권리 고지
 
-이 문서는 저장소의 MIT License 적용 범위와  
-외부 권리 항목을 나눠 안내해요.
+이 문서는 저장소의 MIT License 적용 범위와 외부 권리 항목을 나눠 안내해요.
 
 ## MIT License 적용 범위
 
-CodeStream이 직접 작성하고 배포할 권리를 가진 아래 항목에는  
-저장소의 [MIT License](./LICENSE)가 적용돼요.
+CodeStream이 직접 작성하고 배포할 권리를 가진 아래 항목에는 저장소의 [MIT License](./LICENSE)가 적용돼요.
 
 - Playbook, 플랫폼, Git, Python, macOS 영역의 Markdown 문서 본문
 - 문서 안의 자체 작성 코드 예제, 설정 예제, 작업 절차
@@ -28,19 +26,17 @@ MIT License 원문과 저작권 표시는 재배포할 때 함께 유지해요.
 | `Anthropic`, `Claude`, `Claude Code` | Anthropic | [Anthropic 상표 가이드](https://www.anthropic.com/legal/trademark-guidelines) |
 | `xAI`, `SpaceXAI`, `Grok`, `Grok Build` | SpaceXAI | [SpaceXAI 브랜드 가이드](https://x.ai/legal/brand-guidelines) |
 | `Pi` | Earendil Works | [Pi 공식 사이트](https://pi.dev) |
-| `Git` | Git Project,<br>Software Freedom Conservancy | [Git 상표 정책](https://git-scm.com/about/trademark.html) |
+| `Git` | Git Project, Software Freedom Conservancy | [Git 상표 정책](https://git-scm.com/about/trademark.html) |
 | `Python` | Python Software Foundation | [PSF 상표 사용 정책](https://www.python.org/psf/trademarks/) |
 | `Apple`, `macOS` | Apple Inc. | [Apple 상표·저작권 가이드](https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html) |
 
-문서에서 추가로 언급하는 외부 제품명, 도구명, 서비스명에도  
-같은 기준이 적용돼요.
+문서에서 추가로 언급하는 외부 제품명, 도구명, 서비스명에도 같은 기준이 적용돼요.
 
 - 외부 제품의 상표, 로고, 아이콘, 화면 요소
 - 외부 공식 문서에서 인용한 문구와 자료
 - 외부 사이트와 저장소에 연결된 콘텐츠
 
-이 저장소의 MIT License는  
-제3자 상표권, 저작권, 서비스 이용 권한을 주지 않아요.
+이 저장소의 MIT License는 제3자 상표권, 저작권, 서비스 이용 권한을 주지 않아요.
 
 ## 브랜드 자산
 
@@ -53,8 +49,7 @@ MIT License 원문과 저작권 표시는 재배포할 때 함께 유지해요.
 | `assets/brand/claudecode-icon.png` | Claude Code | [Anthropic 상표 가이드](https://www.anthropic.com/legal/trademark-guidelines) |
 | `assets/brand/git-icon.svg` | Git | [Git 상표 정책](https://git-scm.com/about/trademark.html) |
 
-브랜드 자산을 다시 쓸 때는  
-해당 권리자의 최신 정책과 허용 범위를 직접 확인해요.
+브랜드 자산을 다시 쓸 때는 해당 권리자의 최신 정책과 허용 범위를 직접 확인해요.
 
 ## 외부 자료 사용 기준
 
@@ -63,13 +58,11 @@ MIT License 원문과 저작권 표시는 재배포할 때 함께 유지해요.
 - 공식 문서는 원문 링크로 연결해요.
 - 인용이 필요하면 출처와 권리자를 표시해요.
 - 제품 기능과 명령은 해당 제품의 최신 공식 문서를 우선해요.
-- 외부 코드나 자료를 추가할 때는  
-  원본 라이선스와 고지 조건을 함께 기록해요.
+- 외부 코드나 자료를 추가할 때는 원본 라이선스와 고지 조건을 함께 기록해요.
 
 ## 문의 기준
 
-권리 범위가 불분명한 항목은  
-재배포 전에 원본 출처와 라이선스를 확인해요.
+권리 범위가 불분명한 항목은 재배포 전에 원본 출처와 라이선스를 확인해요.
 
 - 저장소 자체 문서의 라이선스: `LICENSE`
 - 외부 제품과 브랜드 사용: 각 권리자의 공식 정책

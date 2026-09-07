@@ -16,7 +16,7 @@ Pi에서 자주 쓰는 기본 슬래시 명령어와 단축키를 정리해요.
 |---|---|---|
 | Enter | 입력 제출 | 요청 실행 |
 | Shift+Enter | 줄바꿈 | 여러 줄 프롬프트 작성 |
-| Ctrl+Enter | Windows Terminal 등에서<br>줄바꿈으로 설정 가능 | 터미널 설정에 따라 사용 |
+| Ctrl+Enter | Windows Terminal 등에서 줄바꿈으로 설정 가능 | 터미널 설정에 따라 사용 |
 | Ctrl+G | 외부 편집기 열기 | 긴 프롬프트 작성 |
 | Ctrl+C | 에디터 비우기 또는 선택 복사 | 입력 초기화 |
 | Ctrl+D | 빈 에디터에서 종료 | Pi 종료 |
@@ -25,8 +25,7 @@ Pi에서 자주 쓰는 기본 슬래시 명령어와 단축키를 정리해요.
 | Alt+Enter | follow-up message queue | 현재 작업 뒤에 이어질 메시지 예약 |
 | Alt+Up | queued message를 에디터로 복원 | 예약 메시지 수정 |
 
-Windows Terminal에서는 Alt+Enter가 기본적으로  
-전체화면 전환에 묶여 있으므로 별도 설정이 필요할 수 있어요.
+Windows Terminal에서는 Alt+Enter가 기본적으로 전체화면 전환에 묶여 있으므로 별도 설정이 필요할 수 있어요.
 
 ## 모델·설정
 
@@ -36,8 +35,8 @@ Windows Terminal에서는 Alt+Enter가 기본적으로
 | `/logout` | 로그인 정보 제거 | 계정 전환 또는 인증 초기화 |
 | `/model` | 모델 선택 | 작업에 맞는 모델 선택 |
 | `/scoped-models` | Ctrl+P 순환 모델 선택 | 자주 쓰는 모델 목록 제한 |
-| `/settings` | 주요 설정 UI | thinking, theme,<br>message delivery 등 변경 |
-| `/reload` | 실행 리소스 다시 로드 | keybindings, extensions, skills,<br>prompts, themes, context files 수정 후 반영 |
+| `/settings` | 주요 설정 UI | thinking, theme, message delivery 등 변경 |
+| `/reload` | 실행 리소스 다시 로드 | keybindings, extensions, skills, prompts, themes, context files 수정 후 반영 |
 
 모델 선택 단축키:
 
@@ -48,7 +47,7 @@ Windows Terminal에서는 Alt+Enter가 기본적으로
 | Shift+Ctrl+P | 이전 scoped model |
 | Shift+Tab | thinking level 순환 |
 | Ctrl+T | thinking block 접기/펼치기 |
-| Ctrl+X | 마지막 assistant 메시지 복사,<br>`/tree`에서는 선택한 메시지 복사 |
+| Ctrl+X | 마지막 assistant 메시지 복사, `/tree`에서는 선택한 메시지 복사 |
 
 Thinking level은 `off`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max`를 사용해요.  
 `max`는 지원 모델에서만 선택할 수 있어요.
@@ -69,8 +68,7 @@ Project Trust는 프로젝트 설정과 리소스를 불러올지 결정해요.
 | `--approve`, `-a` | 이번 실행에서 프로젝트를 신뢰 | 비대화형 모드와 package 명령에 사용 |
 | `--no-approve`, `-na` | 이번 실행에서 프로젝트 리소스를 무시 | 비대화형 모드와 package 명령에 사용 |
 
-`/trust`는 `~/.pi/agent/trust.json`에 결정을 저장하며  
-현재 세션을 다시 불러오지 않아요.  
+`/trust`는 `~/.pi/agent/trust.json`에 결정을 저장하며 현재 세션을 다시 불러오지 않아요.  
 저장 후 Pi를 재시작해요.
 
 ## 세션 관리
@@ -107,7 +105,7 @@ pi --fork <path|id>    # 특정 세션에서 분기
 |---|---|---|
 | `/copy` | 마지막 assistant 메시지 복사 | 답변 재사용 |
 | `/export [file]` | 세션을 HTML로 내보내기 | 공유/보관 |
-| `/share` | private GitHub gist로<br>공유 링크 생성 | 세션 공유 |
+| `/share` | private GitHub gist로 공유 링크 생성 | 세션 공유 |
 | `/changelog` | 버전 변경 내역 표시 | 업데이트 내용 확인 |
 | `/quit` | Pi 종료 | 종료 |
 
@@ -133,7 +131,7 @@ pi @src/app.ts @src/app.test.ts "같이 리뷰해줘"
 | 입력 | 설명 |
 |---|---|
 | `!command` | 명령 실행 후 출력을 모델 컨텍스트에 포함 |
-| `!!command` | 명령 실행 후 출력을<br>모델 컨텍스트에 포함하지 않음 |
+| `!!command` | 명령 실행 후 출력을 모델 컨텍스트에 포함하지 않음 |
 
 예시:
 
@@ -157,14 +155,13 @@ Pi package는 extension, skill, prompt template, theme를 묶어 설치하는 �
 | `pi update --extensions` | package만 업데이트 | 설치 리소스 갱신 |
 | `pi update <source>` | 지정한 package 업데이트 | package 하나만 갱신 |
 | `pi config` | package 리소스 활성화 상태 관리 | 전역 설정 화면에서 시작 |
-| `pi config -l` | 프로젝트 package 리소스<br>활성화 상태 관리 | `.pi/settings.json` 화면에서 시작 |
+| `pi config -l` | 프로젝트 package 리소스 활성화 상태 관리 | `.pi/settings.json` 화면에서 시작 |
 | `pi -e <source>` | 설치 없이 현재 실행에만 package 사용 | 임시 테스트 |
 
 `pi config` 화면에서는 Tab으로 전역 설정과 프로젝트 설정을 전환해요.  
 `pi config -l`로 시작하면 전역에서 상속한 리소스는 흐리게 표시돼요.
 
-프로젝트 package를 다루는 `install`, `remove`, `list`, `update`, `config`에는  
-`--approve` 또는 `--no-approve`를 사용할 수 있어요.  
+프로젝트 package를 다루는 `install`, `remove`, `list`, `update`, `config`에는 `--approve` 또는 `--no-approve`를 사용할 수 있어요.
 승인은 소스 검토 결과에 따라 명령 단위로 적용해요.
 
 설치 source는 npm, git, 로컬 경로를 사용할 수 있어요.
@@ -183,9 +180,7 @@ pi install -l ./Platforms/Pi/examples/basic-pi-package --approve
 ```
 
 `--approve`는 소스를 검토한 뒤 현재 명령에만 사용해요.  
-설치 상태는 `pi list --approve`로 확인하며,  
-출력의 `Project packages`에는 package 이름이 아니라  
-등록한 source 경로가 표시돼요.
+설치 상태는 `pi list --approve`로 확인하며, 출력의 `Project packages`에는 package 이름이 아니라 등록한 source 경로가 표시돼요.
 
 설치하지 않고 한 번만 확인하려면 `-e`를 사용해요.
 
@@ -193,8 +188,7 @@ pi install -l ./Platforms/Pi/examples/basic-pi-package --approve
 pi -e ./Platforms/Pi/examples/basic-pi-package
 ```
 
-설치 후 Pi에서 `/trust`로 신뢰 결정을 저장하고 재시작하면  
-예시 package의 prompt template과 skill을 읽어요.
+설치 후 Pi에서 `/trust`로 신뢰 결정을 저장하고 재시작하면 예시 package의 prompt template과 skill을 읽어요.
 
 ```text
 /reload
@@ -227,10 +221,9 @@ pi --exclude-tools bash,write,edit -p "코드를 리뷰해줘"
 | 모드 | 용도 |
 |---|---|
 | `--mode json` | 단일 실행의 이벤트를 JSON Lines로 출력 |
-| `--mode rpc` | 외부 프로그램이 stdin/stdout JSONL로<br>Pi를 제어 |
+| `--mode rpc` | 외부 프로그램이 stdin/stdout JSONL로 Pi를 제어 |
 
-자세한 활용 예시는  
-[Pi 확장과 자동화](./03-applying-core-concepts.md)에서 확인해요.
+자세한 활용 예시는 [Pi 확장과 자동화](./03-applying-core-concepts.md)에서 확인해요.
 
 ## 자주 쓰는 조합
 
@@ -280,8 +273,7 @@ Pi 안에서 신뢰 결정을 저장해요.
 /trust
 ```
 
-Pi를 종료하고 저장소 루트에서 다시 시작한 뒤  
-prompt template과 skill을 각각 실행해요.
+Pi를 종료하고 저장소 루트에서 다시 시작한 뒤 prompt template과 skill을 각각 실행해요.
 
 ```text
 /ready-pr

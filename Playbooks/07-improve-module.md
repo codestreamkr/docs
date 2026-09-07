@@ -1,7 +1,6 @@
 # 개선 과제 정리해 반영하기
 
-무엇부터 손볼지 정한 다음,  
-확정된 범위만 코드로 반영해요.
+무엇부터 손볼지 정한 다음, 확정된 범위만 코드로 반영해요.
 
 ## 흐름
 
@@ -39,13 +38,11 @@ ct-qa-lucin       회귀 범위 검증                          ← 영향 범�
 ### ct-spring
 
 보류 범위는 반영하지 않아요.  
-구현 중 새 과제가 보이면 목록에 추가하고  
-이번 범위는 유지해요.
+구현 중 새 과제가 보이면 목록에 추가하고 이번 범위는 유지해요.
 
 ### ct-qa-lucin
 
-여러 모듈을 건드렸다면 변경 지점이 아니라  
-영향 지점을 기준으로 회귀 범위를 정해요.
+여러 모듈을 건드렸다면 변경 지점이 아니라 영향 지점을 기준으로 회귀 범위를 정해요.
 
 ## 다음 단계로 넘길 것
 
@@ -56,14 +53,10 @@ ct-qa-lucin       회귀 범위 검증                          ← 영향 범�
 
 ## 이 Playbook을 벗어나는 경우
 
-- 개선 대상이 조회 성능 한 가지면  
-  [04](./04-tune-sql.md)로 바로 가요.
-- 개선이 아니라 구조 자체를 바꾸는 일이면  
-  [05](./05-transition-structure.md)를 사용해요.
-- 새로 만드는 기능이면  
-  [01](./01-define-scope.md)에서 시작해요.
+- 개선 대상이 조회 성능 한 가지면 [04](./04-tune-sql.md)로 바로 가요.
+- 개선이 아니라 구조 자체를 바꾸는 일이면 [05](./05-transition-structure.md)를 사용해요.
+- 새로 만드는 기능이면 [01](./01-define-scope.md)에서 시작해요.
 
 ## 실행
 
-호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md),  
-[Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.
+호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md), [Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.

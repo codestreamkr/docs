@@ -1,7 +1,6 @@
 # 구조 전환하기
 
-기존 동작을 유지하면서  
-현재 흐름, 목표 책임과 단계별 적용 순서를 함께 정해요.
+기존 동작을 유지하면서 현재 흐름, 목표 책임과 단계별 적용 순서를 함께 정해요.
 
 ## 흐름
 
@@ -15,8 +14,7 @@ ct-calltree test         전환 전후를 비교할 테스트
 ct-spring                단계별 구현                     ← 코드 반영이 필요할 때
 ```
 
-기존 구조를 유지한 채 테스트만 필요하면  
-`analyze` 다음에 바로 `test`를 사용해요.
+기존 구조를 유지한 채 테스트만 필요하면 `analyze` 다음에 바로 `test`를 사용해요.
 
 ## 단계별로 확정할 것
 
@@ -37,8 +35,7 @@ ct-spring                단계별 구현                     ← 코드 반영�
 | 전용 상태 | 내부 공통 상태 | 변환 규칙 정의 |
 | 운영 재처리 | 공통 운영 도구 | 이관과 권한 기준 정의 |
 
-각 단계는 독립적으로 검증되고  
-되돌릴 수 있어야 해요.
+각 단계는 독립적으로 검증되고 되돌릴 수 있어야 해요.
 
 1. 공통 계약과 관측 기준을 준비해요.
 2. 신규 구조를 기존 흐름 옆에 추가해요.
@@ -54,8 +51,7 @@ ct-spring                단계별 구현                     ← 코드 반영�
 ### ct-spring
 
 확정된 단계만 반영해요.  
-병행 운영 기간에는  
-두 구조가 같은 상태를 공유하는지 확인해요.
+병행 운영 기간에는 두 구조가 같은 상태를 공유하는지 확인해요.
 
 ## 다음 단계로 넘길 것
 
@@ -67,14 +63,10 @@ ct-spring                단계별 구현                     ← 코드 반영�
 
 ## 이 Playbook을 벗어나는 경우
 
-- 바뀌는 대상이 외부 공급자면  
-  [06](./06-integrate-external.md)에서 계약부터 설계해요.
-- 전환 범위를 아직 못 정했으면  
-  [07](./07-improve-module.md)에서 우선순위를 먼저 정해요.
-- 단계별 회귀 검증이 커지면  
-  [08](./08-verify-before-release.md)을 함께 사용해요.
+- 바뀌는 대상이 외부 공급자면 [06](./06-integrate-external.md)에서 계약부터 설계해요.
+- 전환 범위를 아직 못 정했으면 [07](./07-improve-module.md)에서 우선순위를 먼저 정해요.
+- 단계별 회귀 검증이 커지면 [08](./08-verify-before-release.md)을 함께 사용해요.
 
 ## 실행
 
-호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md),  
-[Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.
+호출 표기는 [Codex](../Platforms/Codex/workflows.md), [Claude Code](../Platforms/ClaudeCode/workflows.md), [Grok Build](../Platforms/GrokBuild/workflows.md), [Pi](../Platforms/Pi/workflows.md) 문서에서 확인해요.

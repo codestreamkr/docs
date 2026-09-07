@@ -121,7 +121,7 @@ OrderService.cancelOrder에 대해 테스트해야 할 케이스를 정리해줘
 | 정상 케이스 | 기본 성공 흐름 |
 | 예외 케이스 | 잘못된 상태, 권한 없음, 데이터 없음 |
 | 경계 케이스 | 수량 0, 빈 값, 날짜 경계 등 |
-| Mock 대상 | Repository, 외부 API Client,<br>Clock 등 |
+| Mock 대상 | Repository, 외부 API Client, Clock 등 |
 | 검증 대상 | 반환값, 상태 변경, 예외, 호출 여부 |
 
 ---
@@ -200,8 +200,7 @@ Maven 프로젝트라면:
 
 테스트 로그가 길면 모델이 핵심 원인을 찾기 전에 컨텍스트를 많이 사용해요.
 
-반복해서 긴 로그를 분석한다면  
-`tool_result` Extension으로 bash 결과를 모델에 전달하기 전에 줄여요.
+반복해서 긴 로그를 분석한다면 `tool_result` Extension으로 bash 결과를 모델에 전달하기 전에 줄여요.
 
 ### 적용 기준
 
@@ -282,8 +281,7 @@ Pi에서 다시 로드해요.
 ### package로 옮기기
 
 여러 프로젝트에서 같은 로그 처리를 쓰면 Pi package로 묶어요.  
-아래 `my-test-tools`는 구조 설명용 placeholder이며  
-현재 저장소에 포함된 package가 아니에요.
+아래 `my-test-tools`는 구조 설명용 placeholder이며 현재 저장소에 포함된 package가 아니에요.
 
 ```text
 my-test-tools/
@@ -312,9 +310,7 @@ my-test-tools/
 pi install -l ./path/to/my-test-tools
 ```
 
-기본 package 설치와 prompt·skill 호출은  
-[basic-pi-package](../examples/basic-pi-package/)와  
-[Pi 확장과 자동화](./03-applying-core-concepts.md)의 package 실습을 따라요.
+기본 package 설치와 prompt·skill 호출은 [basic-pi-package](../examples/basic-pi-package/)와 [Pi 확장과 자동화](./03-applying-core-concepts.md)의 package 실습을 따라요.
 
 ---
 
@@ -336,8 +332,7 @@ pi install -l ./path/to/my-test-tools
 
 다른 테스트 전략을 시도하려면 `/clone`이나 `/tree`를 사용해요.
 
-테스트 전략을 바꿔 비교할 때는 새 세션을 만들기보다  
-먼저 `/clone`으로 현재 흐름을 복제해요.
+테스트 전략을 바꿔 비교할 때는 새 세션을 만들기보다 먼저 `/clone`으로 현재 흐름을 복제해요.
 
 | 상황 | 명령어 |
 |---|---|
