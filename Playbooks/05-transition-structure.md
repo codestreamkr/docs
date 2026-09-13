@@ -5,26 +5,26 @@
 ## 흐름
 
 ```text
-ct-calltree analyze      현재 호출과 데이터 흐름
+ct-code-tree               현재 호출과 데이터 흐름
       ↓
-ct-calltree transition   현재·목표 구조와 전환 계획
+ct-plan-work               현재·목표 구조와 전환 계획
       ↓
-ct-calltree test         전환 전후를 비교할 테스트
+ct-code-tree-test          전환 전후를 비교할 테스트
       ↓
-ct-spring                단계별 구현                     ← 코드 반영이 필요할 때
+ct-code-spring             단계별 구현                  ← 코드 반영이 필요할 때
 ```
 
-기존 구조를 유지한 채 테스트만 필요하면 `analyze` 다음에 바로 `test`를 사용해요.
+기존 구조를 유지한 채 테스트만 필요하면 `ct-code-tree` 다음에 바로 `ct-code-tree-test`를 사용해요.
 
 ## 단계별로 확정할 것
 
-### ct-calltree analyze
+### ct-code-tree
 
 - 호출 시작점부터 저장과 외부 호출까지
 - 실패, 재시도와 운영 재처리 경로
 - 사용자와 다른 시스템에 노출된 계약
 
-### ct-calltree transition
+### ct-plan-work — 구조 전환 계획
 
 현재 구성요소가 어디로 이동하는지 표시해요.
 
@@ -44,11 +44,11 @@ ct-spring                단계별 구현                     ← 코드 반영�
 5. 적용 대상을 넓혀요.
 6. 기존 구조를 제거하고 운영 문서를 갱신해요.
 
-### ct-calltree test
+### ct-code-tree-test
 
 전환 전후에 같은 입력이 같은 결과를 만드는지 고정해요.
 
-### ct-spring
+### ct-code-spring
 
 확정된 단계만 반영해요.  
 병행 운영 기간에는 두 구조가 같은 상태를 공유하는지 확인해요.

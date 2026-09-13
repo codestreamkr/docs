@@ -57,13 +57,15 @@ Codex는 `~/.agents/skills/`에서 인식해요.
 
 ```text
 ~/.agents/skills/
-├── ct-calltree/
-├── ct-external-architect/
-├── ct-plan/
-├── ct-qa-lucin/
-├── ct-query-tuner/
-├── ct-script-run/
-├── ct-spring/
+├── ct-code-spring/
+├── ct-code-tree/
+├── ct-code-tree-test/
+├── ct-data-query/
+├── ct-docs-impl/
+├── ct-plan-ext/
+├── ct-plan-work/
+├── ct-qa-flow/
+├── ct-run-script/
 ├── ct-wiki-api/
 └── ct-wiki-ops/
 ```

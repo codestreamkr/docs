@@ -5,18 +5,18 @@
 ## 흐름
 
 ```text
-ct-external-architect   현재·목표 구조, 인터페이스와 데이터 매핑, 오류 처리, 이관 순서
+ct-plan-ext            현재·목표 구조, 인터페이스와 데이터 매핑, 오류 처리, 이관 순서
       ↓
-ct-plan impl            확정된 설계의 단계별 구현 계획
+ct-plan-work           확정된 설계의 단계별 구현 계획
       ↓
-ct-spring               첫 단계 구현
+ct-code-spring         첫 단계 구현
       ↓
-ct-qa-lucin             병행 운영, 중복 요청과 공급자 지연 검증
+ct-qa-flow             병행 운영, 중복 요청과 공급자 지연 검증
 ```
 
 ## 단계별로 확정할 것
 
-### ct-external-architect
+### ct-plan-ext
 
 공급자 API의 현재 계약은 추정하지 않고 공식 자료에서 확인해요.
 
@@ -27,17 +27,17 @@ ct-qa-lucin             병행 운영, 중복 요청과 공급자 지연 검증
 - 웹훅과 비동기 통지 처리
 - 이관 순서와 병행 운영 조건
 
-### ct-plan impl
+### ct-plan-work — 구현 계획
 
 - 단계별 적용 범위와 각 단계의 완료 조건
 - 유지할 내부 계약
 - 되돌릴 수 있는 지점
 
-### ct-spring
+### ct-code-spring
 
 한 번에 전부 바꾸지 않고 확정된 첫 단계만 구현해요.
 
-### ct-qa-lucin
+### ct-qa-flow
 
 - 중복 요청과 재시도에서 결과가 하나로 유지되는지
 - 공급자 지연과 타임아웃에서의 동작

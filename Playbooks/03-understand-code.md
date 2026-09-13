@@ -5,14 +5,14 @@
 ## 흐름
 
 ```text
-ct-calltree analyze   진입점부터의 호출과 데이터 흐름
+ct-code-tree            진입점부터의 호출과 데이터 흐름
       ↓
-ct-calltree test      호출 흐름을 근거로 한 테스트와 검증 결과   ← 현재 동작을 고정할 때
+ct-code-tree-test       호출 흐름을 근거로 한 테스트와 검증 결과   ← 현재 동작을 고정할 때
 ```
 
 ## 단계별로 확정할 것
 
-### ct-calltree analyze
+### ct-code-tree
 
 먼저 분석 단위를 정해요.  
 실제 업무가 시작되는 지점으로 잡아요.
@@ -33,7 +33,7 @@ ct-calltree test      호출 흐름을 근거로 한 테스트와 검증 결과 
 
 getter, 로깅과 단순 DTO 필드 설정은 흐름에서 제외해요.
 
-### ct-calltree test
+### ct-code-tree-test
 
 행동과 결과가 있는 노드만 테스트 대상으로 삼아요.
 

@@ -89,9 +89,10 @@ grok inspect
 
 ```text
 Skills (31)
-└ ct-calltree                 user
-└ ct-external-architect       user
-└ ct-plan                     user
+└ ct-code-spring    user
+└ ct-code-tree      user
+└ ct-code-tree-test user
+└ ct-data-query     user
 ...
 ```
 

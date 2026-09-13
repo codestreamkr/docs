@@ -5,143 +5,150 @@ CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-
 ## 공통 호출 형식
 
 ```text
-$ct-<name> ?
 $ct-<name> <요청>
-$ct-<name> <작업> ?
-$ct-<name> <작업> <대상>
 ```
 
-- `$ct-<name> ?`: 입력, 결과와 대표 예제를 확인해요.
-- 작업이 있는 Skill은 `<작업> ?`로 해당 작업의 사용법을 확인해요.
+- Skill만 호출하면 역할, 필요한 입력과 대표 예제를 안내해요.
 - 실행할 때는 대상, 원하는 결과와 필요한 범위를 함께 지정해요.
 
 ## 계획
 
-### ct-plan
+### ct-plan-work
 
-제품 기획, 설계 검토, 구현 계획과 개선 계획을 작성해요.
+제품 기획, 설계 검토, 구현·구조 전환 계획과 개선 계획을 작성해요.
 
-| 작업 | 결과 | 예제 |
-| --- | --- | --- |
-| `pd` | 목표, 사용자, 요구사항, 흐름과 성공 기준 | `$ct-plan pd 주문 취소 기능` |
-| `review` | 근거, 발견 사항, 대안과 결정 항목 | `$ct-plan review .docs/payment-design.md` |
-| `impl` | 변경 대상, 영향, 구현 순서와 검증 기준 | `$ct-plan impl 쿠폰 중복 적용 방지` |
-| `improve` | 현황, 개선 과제, 우선순위와 기대 효과 | `$ct-plan improve 회원 모듈` |
+```text
+$ct-plan-work 주문 취소 기능의 사용자 흐름과 성공 기준을 정리해줘
+$ct-plan-work .docs/payment-design.md의 근거와 위험을 검토해줘
+$ct-plan-work 회원 모듈의 구조 전환 계획을 작성해줘
+```
 
 ## 구현과 실행
 
-### ct-spring
+### ct-code-spring
 
 현재 프로젝트의 Spring 버전, 구성과 코드 관례를 조사해 구현하거나 검토해요.
 
 ```text
-$ct-spring 주문 취소 트랜잭션을 구현해줘
-$ct-spring Security 설정을 검토해줘
-$ct-spring component API 예외 응답 처리를 추가해줘
+$ct-code-spring 주문 취소 트랜잭션을 구현해줘
+$ct-code-spring Security 설정을 읽기 전용으로 검토해줘
+$ct-code-spring 기존 방식에 맞는 API 예외 응답 컴포넌트를 추가해줘
 ```
 
 결과에는 확인한 환경, 변경 또는 검토 내용, 영향 범위와 검증 결과가 포함돼요.
 
-### ct-script-run
+### ct-run-script
 
 프로젝트의 실제 명령과 환경 구성을 조사해 요청한 운영체제용 실행 스크립트를 생성하고 검증해요.
 
 ```text
-$ct-script-run macOS 개발 실행 스크립트를 만들어줘
-$ct-script-run Windows에서 API와 프론트를 함께 실행하게 해줘
+$ct-run-script macOS 개발 실행 스크립트를 만들어줘
+$ct-run-script Windows에서 API와 프론트를 함께 실행하게 해줘
 ```
 
 결과에는 스크립트, 필요한 환경변수 이름, 실행 방법과 검증 결과가 포함돼요.
 
 ## 분석과 검증
 
-### ct-calltree
+### ct-code-tree
 
-코드의 호출 흐름을 분석하고 전환 계획 또는 테스트를 만들어요.
+현재 코드의 실제 호출과 데이터 흐름을 읽기 전용으로 분석해요.
 
-| 작업 | 결과 | 예제 |
-| --- | --- | --- |
-| `analyze` | 호출과 데이터 흐름 | `$ct-calltree analyze OrderController.cancel` |
-| `transition` | 현재·목표 구조와 전환 계획 | `$ct-calltree transition OrderService.cancel` |
-| `test` | 호출 흐름 기반 테스트와 검증 | `$ct-calltree test .docs/order-cancel-calltree.md` |
+```text
+$ct-code-tree OrderController.cancel의 호출 흐름을 분석해줘
+```
 
-### ct-qa-lucin
+### ct-code-tree-test
+
+호출 흐름과 현재 코드를 근거로 동작을 고정하는 테스트를 작성하고 검증해요.
+
+```text
+$ct-code-tree-test .docs/callTree-OrderController-cancel.md를 근거로 테스트를 작성해줘
+```
+
+### ct-qa-flow
 
 기능 흐름, 테스트 구성과 실행 환경을 조사해 QA 범위를 설계하고 가능한 검증을 수행해요.
 
 ```text
-$ct-qa-lucin 주문 취소 기능을 오픈 전 검증해줘
-$ct-qa-lucin 로그인 API와 화면 흐름의 회귀 범위를 정리해줘
+$ct-qa-flow 주문 취소 기능을 오픈 전 검증해줘
+$ct-qa-flow 로그인 API와 화면 흐름의 회귀 범위를 정리해줘
 ```
 
 결과에는 검증 범위, 위험별 시나리오, 실행 결과, 재현 방법과 미검증 범위가 포함돼요.
 
-### ct-query-tuner
+### ct-data-query
 
 데이터베이스 환경, 스키마와 실행 근거를 모아 SQL 성능 원인을 분석하고 개선안을 검증해요.
 
 ```text
-$ct-query-tuner 주문 조회 쿼리가 느린 원인을 분석해줘
-$ct-query-tuner src/main/resources/mapper/OrderMapper.xml의 findOrders
+$ct-data-query 주문 조회 쿼리가 느린 원인을 분석해줘
+$ct-data-query src/main/resources/mapper/OrderMapper.xml의 findOrders
 ```
 
 결과에는 분석 조건, 병목 근거, 우선순위가 있는 개선안과 변경 전후 검증이 포함돼요.
 
 ## 외부 연동과 지식 운영
 
-### ct-external-architect
+### ct-plan-ext
 
 현재 프로젝트와 공급자의 최신 공식 자료를 조사해 외부 서비스 연동 또는 이관 구조를 설계해요.
 
 ```text
-$ct-external-architect 기존 PG 연동을 새 공급자로 이관하는 계획을 작성해줘
-$ct-external-architect 결제 승인·취소 연동 구조를 검토해줘
+$ct-plan-ext 기존 PG 연동을 새 공급자로 이관하는 계획을 작성해줘
+$ct-plan-ext 결제 승인·취소 연동 구조를 검토해줘
 ```
 
 결과에는 현재·목표 구조, 인터페이스와 데이터 매핑, 오류 처리, 이관 순서와 검증 기준이 포함돼요.
+
+### ct-docs-impl
+
+코드와 설정을 정본으로 구현·조회·검증에 필요한 내용만 담은 Markdown 문서를 만들어요.
+
+```text
+$ct-docs-impl OrderService.cancel의 현재 구현 문서를 만들어줘
+$ct-docs-impl .docs/order-cancel.md를 현재 코드에 맞춰줘
+$ct-docs-impl .docs/order-*.md를 하나의 구현 문서로 합쳐줘
+```
+
+미반영 변경은 기존 문서를 고치지 않고 신규 문서에만 둬요.
 
 ### ct-wiki-api
 
 포함된 PowerShell 도구로 Confluence REST API 호환 위키를 검색, 조회, 저장하거나 명시된 변경을 수행해요.
 
 ```text
-$ct-wiki-api 333 페이지를 조회해줘
+$ct-wiki-api 필요한 환경변수가 설정됐는지 확인해줘
 $ct-wiki-api 결제 개편 문서를 검색해줘
-$ct-wiki-api 333 페이지 수정안을 dry-run으로 확인해줘
+$ct-wiki-api 333 페이지와 댓글을 조회해줘
+$ct-wiki-api 333 페이지의 승인 정책 문단을 수정해줘
 ```
 
-조회·검색·저장과 변경 작업은 `$ct-wiki-api <도구 작업> ?`에서 필요한 인자를 확인할 수 있어요.
+`write`의 첫 호출은 항상 dry-run이고, 반영 범위를 지정한 뒤에만 실제로 반영해요.
 
 ### ct-wiki-ops
 
 프로젝트의 `LLM-WIKI.md`와 Markdown 위키 구조를 기준으로 위키를 운영해요.
 
-| 작업 | 용도 |
-| --- | --- |
-| `init` | 위키 기준과 기본 구조 준비 |
-| `capture`, `ingest` | 원문 저장과 위키 반영 |
-| `search`, `synthesis` | 조회와 주제 종합 |
-| `log`, `daily` | 기간별 작업 요약 |
-| `verify`, `lint` | 근거, 현재성, 구조와 링크 점검 |
-| `prune` | 중복·오래된 문서의 정리 후보 제안 |
-
 ```text
-$ct-wiki-ops search 결제 개편 결정 사항은?
-$ct-wiki-ops verify .wiki/payment.md
-$ct-wiki-ops lint
+$ct-wiki-ops 결제 개편의 결정 사항을 위키 근거로 알려줘
+$ct-wiki-ops .wiki/payment.md의 근거와 현재성을 검증해줘
+$ct-wiki-ops 지난 7일의 변경과 남은 작업을 정리해줘
 ```
 
 ## 선택 기준
 
 | 필요한 결과 | 선택 |
 | --- | --- |
-| 실행 전 계획이나 설계 검토 | `ct-plan` |
-| Spring 코드 구현 또는 검토 | `ct-spring` |
-| 특정 심볼의 실제 호출 관계 | `ct-calltree` |
-| 사용자 흐름과 실패 위험 검증 | `ct-qa-lucin` |
-| SQL 실행 성능의 원인과 개선 | `ct-query-tuner` |
-| 외부 공급자 계약을 포함한 연동 설계 | `ct-external-architect` |
-| 로컬 실행 스크립트 | `ct-script-run` |
+| 실행 전 계획이나 설계 검토 | `ct-plan-work` |
+| Spring 코드 구현 또는 검토 | `ct-code-spring` |
+| 특정 심볼의 실제 호출 관계 | `ct-code-tree` |
+| 호출 흐름을 고정하는 테스트 | `ct-code-tree-test` |
+| 사용자 흐름과 실패 위험 검증 | `ct-qa-flow` |
+| SQL 실행 성능의 원인과 개선 | `ct-data-query` |
+| 외부 공급자 계약을 포함한 연동 설계 | `ct-plan-ext` |
+| 로컬 실행 스크립트 | `ct-run-script` |
+| 코드 정본의 구현 문서 작성과 갱신 | `ct-docs-impl` |
 | 원격 Confluence API 작업 | `ct-wiki-api` |
 | 저장소 안의 Markdown 위키 운영 | `ct-wiki-ops` |
 
