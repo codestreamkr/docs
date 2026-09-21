@@ -15,6 +15,7 @@
 4. 코드 변경과 협업이 필요하면 [Git 필수 가이드](./Git/README.md)를 연결해요.
 5. Python 프로젝트를 맡으면 [Python 개발 가이드](./Python/README.md)에서 환경과 구현 기준을 확인해요.
 6. 개발용 Mac의 상주 프로세스와 저장공간을 정리하려면 [macOS 개발 머신 관리 가이드](./Macos/README.md)를 사용해요.
+7. IntelliJ IDEA에서 JVM/JS 런타임을 검증하려면 [IntelliJ IDEA 개발 가이드](./IntelliJ/README.md)를 사용해요.
 
 웹 목차에서 전체 문서를 찾으려면 [CodeStream 기술문서 목록](./index.md)을 사용해요.
 
@@ -32,6 +33,7 @@
 | Git | 변경 확인, 커밋, 복구, 브랜치와 충돌 해결 | [Git 필수 가이드](./Git/README.md) |
 | Python | Python 생태계 이해와 웹 백엔드 구현 기준 | [Python 개발 가이드](./Python/README.md) |
 | Macos | 개발용 Mac의 상주 프로세스와 저장공간 관리 | [macOS 개발 머신 관리 가이드](./Macos/README.md) |
+| IntelliJ | IntelliJ IDEA 세션 기준으로 JVM/JS 런타임 검증 | [IntelliJ IDEA 개발 가이드](./IntelliJ/README.md) |
 
 ## 지금 필요한 일
 
@@ -86,6 +88,12 @@ Python 과정은 생태계 기반 문서를 먼저 읽고, 웹 백엔드 문서�
 - 자동 실행 항목 정리와 캐시 비우기: [백그라운드 프로세스와 캐시 정리](./Macos/macos_01_background_cleanup_guide.md)
 
 프로젝트의 빌드·실행 절차는 [09 실행 환경 준비하기](./Playbooks/09-prepare-runtime.md)에서 다뤄요.
+
+## IntelliJ 문서 활용
+
+IntelliJ IDEA에서 실행 중인 디버거를 기준으로 확인하고, Codex는 필요한 경우에만 붙여요.
+
+- 범위·방식, 요청 문구, 화이트리스트: [IntelliJ IDEA 개발 가이드](./IntelliJ/README.md)
 
 ## 문서 사용 기준
 

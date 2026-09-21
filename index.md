@@ -19,7 +19,7 @@
         <h1 id="hero-title">AI 도구부터 개발 환경까지, 한곳에 모았어요.</h1>
       </div>
       <div class="cs-hero-side">
-        <p class="cs-lead">플랫폼 설정, 문제 유형별 진행 순서, Git·Python·macOS 기준까지. 판단이 필요할 때 여기서 찾아요.</p>
+        <p class="cs-lead">플랫폼 설정, 문제 유형별 진행 순서, Git·Python·IntelliJ·macOS 기준까지. 판단이 필요할 때 여기서 찾아요.</p>
         <div class="cs-hero-actions">
           <a class="cs-primary" href="#platforms">플랫폼 문서 보기</a>
           <a class="cs-secondary" href="#work-guides">문제 유형으로 찾기 <span aria-hidden="true">→</span></a>
@@ -123,6 +123,11 @@
         <a class="cs-development-card" href="./Macos/">
           <strong><svg class="cs-mark cs-macos" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M2 20h20"></path></svg>macOS</strong>
           <span>상주 프로세스와 자동 실행 항목, 저장공간 정리</span>
+          <span class="cs-card-foot">문서 1<b aria-hidden="true">→</b></span>
+        </a>
+        <a class="cs-development-card" href="./IntelliJ/">
+          <strong><svg class="cs-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8"></path><path d="M8 12h5"></path><path d="M8 16h6"></path></svg>IntelliJ</strong>
+          <span>JVM·JS와 변경 세트·호출 경로를 골라 검증</span>
           <span class="cs-card-foot">문서 1<b aria-hidden="true">→</b></span>
         </a>
       </div>
@@ -236,6 +241,13 @@
           <ul>
             <li><a href="./Macos/">macOS 개발 머신 관리 <span>→</span></a></li>
             <li><a href="./Macos/macos_01_background_cleanup_guide.html">백그라운드 프로세스와 캐시 정리 <span>→</span></a></li>
+          </ul>
+        </section>
+
+        <section class="cs-directory-group">
+          <h3>IntelliJ</h3>
+          <ul>
+            <li><a href="./IntelliJ/">IntelliJ IDEA 개발 가이드 <span>→</span></a></li>
           </ul>
         </section>
       </div>

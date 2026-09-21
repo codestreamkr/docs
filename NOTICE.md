@@ -6,7 +6,7 @@
 
 CodeStream이 직접 작성하고 배포할 권리를 가진 아래 항목에는 저장소의 [MIT License](./LICENSE)가 적용돼요.
 
-- Playbook, 플랫폼, Git, Python, macOS 영역의 Markdown 문서 본문
+- Playbook, 플랫폼, Git, Python, macOS, IntelliJ 영역의 Markdown 문서 본문
 - 문서 안의 자체 작성 코드 예제, 설정 예제, 작업 절차
 - `Platforms/Pi/examples/`의 로컬 예제 package
 - CodeStream이 직접 제작한 표, 구성, 설명 자료, 인라인 도형
@@ -29,6 +29,7 @@ MIT License 원문과 저작권 표시는 재배포할 때 함께 유지해요.
 | `Git` | Git Project, Software Freedom Conservancy | [Git 상표 정책](https://git-scm.com/about/trademark.html) |
 | `Python` | Python Software Foundation | [PSF 상표 사용 정책](https://www.python.org/psf/trademarks/) |
 | `Apple`, `macOS` | Apple Inc. | [Apple 상표·저작권 가이드](https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html) |
+| `JetBrains`, `IntelliJ`, `IntelliJ IDEA` | JetBrains s.r.o. | [JetBrains 브랜드 가이드](https://www.jetbrains.com/company/brand/) |
 
 문서에서 추가로 언급하는 외부 제품명, 도구명, 서비스명에도 같은 기준이 적용돼요.
 

@@ -41,6 +41,13 @@ $ct-qa-flow 주문 취소의 정상·중복·외부 실패 흐름을 검증해�
 | 빌드와 실행 절차를 재현 가능하게 만들어요 | [09 실행 환경 준비하기](../../Playbooks/09-prepare-runtime.md) |
 | 흩어진 지식을 위키로 정리해요 | [10 지식 위키로 남기기](../../Playbooks/10-operate-wiki.md) |
 
+## IntelliJ JavaScript Debug
+
+브라우저에서 도는 JS 변경을 런타임으로 확인해야 하면 IntelliJ 영역의 [IntelliJ IDEA 개발 가이드](../../IntelliJ/README.md)를 따라요.
+
+Codex는 IntelliJ MCP 클라이언트로만 붙어요.  
+세션과 소스 매핑의 기준은 IntelliJ IDEA예요.
+
 ## 확인
 
 각 Skill의 입력과 결과는 [사용자 Skill](./skills.md)에서, 세션 명령은 [명령 확인](./commands.md)에서 확인해요.
