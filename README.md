@@ -93,7 +93,8 @@ Python 과정은 생태계 기반 문서를 먼저 읽고, 웹 백엔드 문서�
 
 IntelliJ IDEA에서 실행 중인 디버거를 기준으로 확인하고, Codex는 필요한 경우에만 붙여요.
 
-- 범위·방식, 요청 문구, 화이트리스트: [IntelliJ IDEA 개발 가이드](./IntelliJ/README.md)
+- 환경 준비와 공통 원칙: [IntelliJ IDEA 개발 가이드](./IntelliJ/README.md)
+- 범위·대상, 요청 문구, 화이트리스트: [IntelliJ 런타임 디버깅](./IntelliJ/intellij_01_runtime_debug_guide.md)
 
 ## 문서 사용 기준
 

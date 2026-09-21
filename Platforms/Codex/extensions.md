@@ -34,7 +34,7 @@ Skill은 반복 가능한 작업의 입력, 절차, 결과와 필요한 자원�
 - 설정 후 `/mcp` 또는 현재 도구 목록에서 사용 가능 상태를 확인해요.
 
 IntelliJ IDEA MCP로 디버거를 붙이면 Codex가 실행 중인 JavaScript Debug 세션을 읽고 브레이크포인트를 다룰 수 있어요.  
-연결 준비와 런타임 검증은 [IntelliJ IDEA 개발 가이드](../../IntelliJ/README.md)에서 확인해요.
+연결 준비는 [IntelliJ IDEA 개발 가이드](../../IntelliJ/README.md)에서, 런타임 검증은 [IntelliJ 런타임 디버깅](../../IntelliJ/intellij_01_runtime_debug_guide.md)에서 확인해요.
 
 ## Subagent
 

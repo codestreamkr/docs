@@ -248,6 +248,7 @@
           <h3>IntelliJ</h3>
           <ul>
             <li><a href="./IntelliJ/">IntelliJ IDEA 개발 가이드 <span>→</span></a></li>
+            <li><a href="./IntelliJ/intellij_01_runtime_debug_guide.html">런타임 디버깅 <span>→</span></a></li>
           </ul>
         </section>
       </div>

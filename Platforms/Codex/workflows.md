@@ -43,7 +43,7 @@ $ct-qa-flow 주문 취소의 정상·중복·외부 실패 흐름을 검증해�
 
 ## IntelliJ JavaScript Debug
 
-브라우저에서 도는 JS 변경을 런타임으로 확인해야 하면 IntelliJ 영역의 [IntelliJ IDEA 개발 가이드](../../IntelliJ/README.md)를 따라요.
+브라우저에서 도는 JS 변경을 런타임으로 확인해야 하면 IntelliJ 영역의 [IntelliJ 런타임 디버깅](../../IntelliJ/intellij_01_runtime_debug_guide.md)을 따라요.
 
 Codex는 IntelliJ MCP 클라이언트로만 붙어요.  
 세션과 소스 매핑의 기준은 IntelliJ IDEA예요.
