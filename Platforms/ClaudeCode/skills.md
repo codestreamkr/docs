@@ -1,6 +1,7 @@
 # Claude Code 사용자 Skill
 
-CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요. 필요한 작업은 `/ct-*`로 직접 호출해요. 이 도구에서 보이는 위치는 [환경 설정](./setup.md)을 봐요.
+CodeStream 사용자 Skill은 필요한 작업에서 `/ct-*`로 직접 호출해요.  
+설치와 이 도구에서 보이는 위치는 [환경 설정](./setup.md)을 봐요.
 
 ## 공통 호출 형식
 
@@ -113,6 +114,17 @@ CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-
 
 미반영 변경은 기존 문서를 고치지 않고 신규 문서에만 둬요.
 
+### ct-docs-md-format
+
+Markdown 문서의 문장, 목록, 표, 코드 블록과 줄바꿈만 정리해요.  
+사실, 요구사항, 경로는 바꾸지 않아요.
+
+```text
+/ct-docs-md-format Platforms/ClaudeCode/README.md의 표현만 정리해줘
+```
+
+내용 검토나 사실 수정, 새 요구사항 추가는 이 Skill의 범위가 아니에요.
+
 ### ct-wiki-api
 
 포함된 PowerShell 도구로 Confluence REST API 호환 위키를 검색, 조회, 저장하거나 명시된 변경을 수행해요.
@@ -138,23 +150,29 @@ CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-
 
 ## 선택 기준
 
-| 필요한 결과 | 선택 |
-| --- | --- |
-| 실행 전 계획이나 설계 검토 | `ct-plan-work` |
-| Spring 코드 구현 또는 검토 | `ct-code-spring` |
-| 특정 심볼의 실제 호출 관계 | `ct-code-tree` |
-| 호출 흐름을 고정하는 테스트 | `ct-code-tree-test` |
-| 사용자 흐름과 실패 위험 검증 | `ct-qa-flow` |
-| SQL 실행 성능의 원인과 개선 | `ct-data-query` |
-| 외부 공급자 계약을 포함한 연동 설계 | `ct-plan-ext` |
-| 로컬 실행 스크립트 | `ct-run-script` |
-| 코드 정본의 구현 문서 작성과 갱신 | `ct-docs-impl` |
-| 원격 Confluence API 작업 | `ct-wiki-api` |
-| 저장소 안의 Markdown 위키 운영 | `ct-wiki-ops` |
-
+목적별 Skill은 [Claude Code 가이드](./README.md)의 표를 봐요.  
 Skill을 고정 순서로 모두 실행하지 않아요.  
 현재 필요한 결과를 만드는 Skill만 선택해요.
 
+## 번들 Skill과 겹칠 때
+
+Claude Code가 기본 제공하는 번들 Skill도 `/` 목록에 함께 보여요.  
+역할이 겹치면 프로젝트 관례를 근거로 삼는 `ct-*`를 먼저 써요.
+
+| 하려는 일 | 번들 Skill | 사용자 Skill | 기준 |
+| --- | --- | --- | --- |
+| 코드 검토 | `/code-review` | `ct-code-spring` | Spring 관례와 구성까지 보려면 `ct-code-spring` |
+| 변경 검증 | `/verify` | `ct-qa-flow` | 사용자 흐름과 회귀 범위까지 보려면 `ct-qa-flow` |
+| 보안 점검 | `/security-review` | 없음 | 번들 Skill을 그대로 사용 |
+
+번들 Skill은 프로젝트 관례를 따로 조사하지 않고 변경 내용을 중심으로 판단해요.  
+빠른 1차 확인에는 번들 Skill, 근거가 필요한 판단에는 `ct-*`가 맞아요.
+
+## 확인 기준
+
+2026-09-23에 Claude Code 2.1.280과 설치된 `~/.claude/skills/`로 확인했어요.  
+Skill의 실제 입력과 결과는 호출했을 때 나오는 안내를 우선해요.
+
 ## 공식 문서
 
-- [Skills](https://code.claude.com/docs/en/skills)
+- [Skills](https://code.claude.com/docs/ko/skills)

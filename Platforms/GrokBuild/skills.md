@@ -1,6 +1,8 @@
 # Grok Build 사용자 Skill
 
-CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요. 필요한 작업은 `/ct-*`로 직접 호출해요. 이 도구에서 보이는 위치는 [환경 설정](./setup.md)을 봐요.
+CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요.  
+필요한 작업은 `/ct-*`로 직접 호출해요.  
+이 도구에서 보이는 위치는 [환경 설정](./setup.md)을 봐요.
 
 ## 공통 호출 형식
 
@@ -113,6 +115,17 @@ CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-
 
 미반영 변경은 기존 문서를 고치지 않고 신규 문서에만 둬요.
 
+### ct-docs-md-format
+
+Markdown 문서의 문장, 목록, 표, 코드 블록과 줄바꿈만 정리해요.  
+사실, 요구사항, 경로는 바꾸지 않아요.
+
+```text
+/ct-docs-md-format Platforms/GrokBuild/README.md의 표현만 정리해줘
+```
+
+내용 검토나 사실 수정, 새 요구사항 추가는 이 Skill의 범위가 아니에요.
+
 ### ct-wiki-api
 
 포함된 PowerShell 도구로 Confluence REST API 호환 위키를 검색, 조회, 저장하거나 명시된 변경을 수행해요.
@@ -149,6 +162,7 @@ CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-
 | 외부 공급자 계약을 포함한 연동 설계 | `ct-plan-ext` |
 | 로컬 실행 스크립트 | `ct-run-script` |
 | 코드 정본의 구현 문서 작성과 갱신 | `ct-docs-impl` |
+| Markdown 문서의 형식만 정리 | `ct-docs-md-format` |
 | 원격 Confluence API 작업 | `ct-wiki-api` |
 | 저장소 안의 Markdown 위키 운영 | `ct-wiki-ops` |
 

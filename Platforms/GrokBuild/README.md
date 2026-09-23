@@ -5,7 +5,7 @@
 어떤 순서로 진행할지는 [Playbook](../../Playbooks/README.md)을 봐요.  
 여기선 Grok Build에서 어떻게 실행하는지만 다뤄요.
 
-## 이렇게 시작해요
+## 바로 시작
 
 프로젝트 폴더에서 이렇게 실행해요.  
 필요할 때만 승인을 물어요.
@@ -14,12 +14,7 @@
 grok --permission-mode auto
 ```
 
-매번 옵션을 붙이기 번거로우면 `~/.grok/config.toml`에 넣어 두어요.
-
-```toml
-[ui]
-permission_mode = "auto"
-```
+매번 옵션을 붙이기 번거로우면 [환경 설정](./setup.md)에서 기본값으로 저장해요.
 
 켜지면 Skill을 확인하고 바로 불러요.
 
@@ -41,7 +36,7 @@ permission_mode = "auto"
 지금 필요한 결과만 만들면 돼요.  
 처음부터 끝까지 다 돌릴 필요는 없어요.
 
-| 이런 일이면 | 이 Skill | 이렇게 시작해요 |
+| 목적 | Skill | 시작 예제 |
 | --- | --- | --- |
 | 제품·설계·구현·구조 전환·개선 계획 | `ct-plan-work` | `/ct-plan-work` |
 | Spring 구현과 검토 | `ct-code-spring` | `/ct-code-spring` |
@@ -52,6 +47,7 @@ permission_mode = "auto"
 | 외부 서비스 연동과 이관 설계 | `ct-plan-ext` | `/ct-plan-ext` |
 | 실행 스크립트 생성과 검증 | `ct-run-script` | `/ct-run-script` |
 | 코드 정본의 구현 문서 작성과 갱신 | `ct-docs-impl` | `/ct-docs-impl` |
+| Markdown 문서의 형식만 정리 | `ct-docs-md-format` | `/ct-docs-md-format` |
 | Confluence REST API 작업 | `ct-wiki-api` | `/ct-wiki-api` |
 | 프로젝트 Markdown 위키 운영 | `ct-wiki-ops` | `/ct-wiki-ops` |
 
@@ -65,37 +61,33 @@ permission_mode = "auto"
 
 입력과 결과는 [Skill 안내](./skills.md), 이어 붙이는 방법은 [작업 흐름](./workflows.md)에 있어요.
 
-## 자주 쓰는 명령
+## 필요한 문서
 
-| 명령 | 이럴 때 써요 |
-| --- | --- |
-| `/skills` | 쓸 수 있는 Skill을 볼 때 |
-| `/model` | 모델을 고를 때 |
-| `/compact` | 대화가 길어져서 요약이 필요할 때 |
-| `/new` | 앞 일과 상관없는 새 작업을 시작할 때 |
-| `/resume` | 이전 세션을 다시 열 때 |
-| `/rewind` | 이전 요청으로 대화를 되돌릴 때. 파일은 그대로 둬요 |
-| `/always-approve` | 지금 세션을 자동 승인으로 바꿀 때 |
-
-나머지 명령은 입력창에 `/`를 치거나 [명령 확인](./commands.md)에서 찾아요.
-
-## 더 알고 싶다면
-
-| 궁금한 것 | 문서 |
+| 알고 싶은 것 | 문서 |
 | --- | --- |
 | 설치, Skill 위치, `AGENTS.md`와 Config | [환경 설정](./setup.md) |
-| 11개 Skill의 입력과 결과 | [Skill 안내](./skills.md) |
+| 12개 Skill의 입력과 결과 | [Skill 안내](./skills.md) |
 | 여러 Skill을 이어 붙이는 예제 | [작업 흐름](./workflows.md) |
 | Subagent, 모델 연결, MCP와 Plugin | [확장 기능](./extensions.md) |
 | 현재 환경에서 명령을 찾는 방법 | [명령 확인](./commands.md) |
 
-프로젝트에 계속 남길 기준은 `AGENTS.md`에, 실행 설정은 `config.toml`에 둬요.  
-Agent Profile, Subagent, MCP, Hook, Plugin은 [확장 기능](./extensions.md)을 봐요.
+프로젝트에 계속 남길 기준은 `AGENTS.md`에, 실행 설정은 `~/.grok/config.toml`에 둬요.  
+Agent Profile, Subagent, MCP, Hook, Plugin의 선택은 [확장 기능](./extensions.md)을 봐요.  
+권한, 세션 분리, Workflow 실행은 [심화 학습 자료](#심화-학습-자료)를 봐요.
 
-## 이것만 기억해요
+## 사용 기준
 
-- CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요. 이 도구에서 보이는 위치는 [환경 설정](./setup.md)을 봐요.
 - Skill은 `/ct-*`로 직접 불러요.
 - Skill은 지금 프로젝트의 `AGENTS.md`, 코드와 설정에서 근거를 모아요.
 - 입력과 결과는 [Skill 안내](./skills.md)를 따라요.
 - 제품 기능과 명령은 지금 환경과 `~/.grok/README.md`, `~/.grok/docs/user-guide/`, [xAI 공식 자료](https://x.ai/news/grok-build-cli)에서 확인해요.
+
+## 심화 학습 자료
+
+권한, 세션과 Workflow를 자세히 다룰 때는 `reference/` 문서를 사용해요.
+
+| 주제 | 문서 |
+| --- | --- |
+| 권한 모드, Plan 모드, Sandbox | [권한과 Plan 모드](./reference/01-permissions-and-plan-mode.md) |
+| 세션, Subagent, Dashboard | [세션과 Subagent](./reference/02-sessions-and-subagents.md) |
+| Workflow, Goal, Agent Profile | [Workflow와 Agent Profile](./reference/03-workflows-and-profiles.md) |

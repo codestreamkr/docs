@@ -7,14 +7,14 @@
 이 순서대로 읽으면 상태 확인부터 협업과 복구까지 이어져요.
 
 | 순서 | 문서 | 익혀야 할 내용 |
-|---|---|---|
+| --- | --- | --- |
 | 1 | [Git 상태와 변경 확인](./git_01_worktree_guide.md) | Working tree, Staging area, HEAD, `status`, `diff` |
 | 2 | [Git 변경 확인과 커밋](./git_02_apply_guide.md) | 커밋 범위, `add -p`, staged diff, 커밋 메시지 |
 | 3 | [Git 브랜치와 원격 협업](./git_04_branch_remote_guide.md) | branch, upstream, `fetch`, `pull`, `push`, stash |
 | 4 | [Git 변경 통합과 충돌 해결](./git_05_integration_conflict_guide.md) | merge, rebase, cherry-pick, 충돌 해결 |
 | 5 | [Git 되돌리기와 복구](./git_03_reset_rebase_revert_guide.md) | restore, reset, revert, reflog |
 
-## 매일 사용하는 안전한 흐름
+## 매일 사용하는 작업 흐름
 
 작업 전, 커밋 전, push 전에 같은 기준으로 상태를 확인해요.
 
@@ -40,7 +40,7 @@ git push -u origin <작업브랜치>
 작업 중인 변경은 커밋하거나 `git stash`로 보관한 뒤 기준 브랜치로 전환해요.  
 기준 브랜치, 브랜치 이름, 검증 명령, PR 병합 방식은 프로젝트 규칙을 따라요.
 
-## 개발자 필수 완료 기준
+## 완료 기준
 
 다음 작업을 설명하고 직접 할 수 있으면 돼요.
 
@@ -55,7 +55,7 @@ git push -u origin <작업브랜치>
 - `reflog`에서 잃어버린 로컬 커밋을 찾아 복구 브랜치를 만들어요.
 - 민감정보와 불필요한 생성 파일을 커밋에서 제외해요.
 
-## 팀에서 별도로 정할 기준
+## 팀에서 정할 것
 
 프로젝트마다 다음 항목을 정해두세요.
 

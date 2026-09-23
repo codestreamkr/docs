@@ -27,6 +27,22 @@ Grok Build 명령은 버전과 실행 환경에 따라 달라질 수 있어요.
 | `/rewind` | 이전 요청 지점으로 대화를 되돌리기. 디스크의 파일은 그대로 둬요 |
 | `/always-approve` | 자동 승인 모드 전환 |
 
+Grok에서 실행 방식이 달라지는 명령:
+
+| 명령 | 용도 |
+| --- | --- |
+| `Shift+Tab` | Normal, Plan, Auto, Always-approve 순환이에요. Auto가 꺼져 있으면 그 단계는 빠져요. |
+| `/auto` | 안전 분류를 통과한 도구를 자동 승인. 이미 켜져 있으면 `ask`로 돌아와요. |
+| `/plan`, `/view-plan` | 코드 수정 전 계획 모드, 저장된 계획 다시 보기 |
+| `/effort` | 현재 모델의 reasoning 수준 |
+| `/context` | 컨텍스트 사용량 |
+| `/dashboard` | 이 터미널의 세션 목록. minimal 모드에서는 숨겨져요. |
+| `/fork` | 현재 시점까지의 세션 분기 |
+| `/config-agents` | Agent와 Persona 관리 |
+| `/workflow`, `/goal` | 저장된 워크플로와 목표 실행 |
+
+동작은 [권한과 Plan 모드](./reference/01-permissions-and-plan-mode.md), [세션과 Subagent](./reference/02-sessions-and-subagents.md), [Workflow와 Agent Profile](./reference/03-workflows-and-profiles.md)을 봐요.
+
 사용자 Skill은 `/ct-*`로 호출해요.  
 명령이 보이지 않으면 현재 설치 버전에서 제공되는 목록을 따라요.
 
@@ -62,7 +78,9 @@ grok <command> --help
 | `--output-format` | 헤드리스 출력 형식 지정 |
 | `--no-subagents` | Subagent 실행 차단 |
 
-자동 승인과 권한 우회 옵션은 격리된 실행 환경에서만 사용해요.
+일상 작업은 `--permission-mode auto`예요.  
+`always-approve`와 `--dangerously-skip-permissions`는 격리된 실행 환경에서만 사용해요.  
+비대화형 `auto`에서 안전 분류를 통과하지 못한 호출은 다시 묻지 않고 실패로 보고돼요.
 
 ## 확인 순서
 

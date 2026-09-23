@@ -17,7 +17,7 @@ pi
 화면은 크게 네 영역으로 나뉘어요.
 
 | 영역 | 설명 |
-|---|---|
+| --- | --- |
 | Startup header | 단축키, 로드된 지침 파일, 리소스 정보 표시 |
 | Messages | 사용자 메시지, assistant 응답, 도구 실행 결과 표시 |
 | Editor | 사용자가 입력하는 영역 |
@@ -32,7 +32,7 @@ Footer의 컨텍스트 사용량은 현재 모델의 context window 기준으로
 Editor는 Pi에 요청을 입력하는 곳이에요.
 
 | 기능 | 사용법 |
-|---|---|
+| --- | --- |
 | 입력 제출 | Enter |
 | 여러 줄 입력 | Shift+Enter, Windows Terminal에서는 설정에 따라 Ctrl+Enter 가능 |
 | 파일 참조 | `@` 입력 후 파일 검색 |
@@ -76,7 +76,7 @@ Pi는 여러 제공자와 모델을 지원해요.
 또는 단축키를 써요.
 
 | 단축키 | 동작 |
-|---|---|
+| --- | --- |
 | Ctrl+L | 모델 선택 |
 | Ctrl+P | scoped model 다음 모델로 전환 |
 | Shift+Ctrl+P | scoped model 이전 모델로 전환 |
@@ -121,13 +121,13 @@ Pi의 대화는 자동으로 세션에 저장돼요.
 
 그래서 이전 지점으로 이동해 다른 방향으로 이어가거나, 새 세션 파일로 분기할 수 있어요.
 
-세션 이름은 목록에 표시할 작업명이고, 세션 ID는 자동화에서 같은 프로젝트 세션을 정확히 지정하는 식별자예요.
+세션 이름은 목록에 표시할 작업명이고, 세션 ID는 자동화에서 같은 프로젝트 세션을 정확히 지정하는 식별자예요.  
 CLI의 `--name`, `--session`, `--session-id` 사용 기준은 [Pi 기본 명령](./06-basic-commands.md)에서 확인해요.
 
 주요 명령은 아래와 같아요.
 
 | 명령어 | 설명 |
-|---|---|
+| --- | --- |
 | `/resume` | 이전 세션 선택 |
 | `/new` | 새 세션 시작 |
 | `/session` | 현재 세션 정보 확인 |
@@ -175,7 +175,7 @@ contextTokens > contextWindow - reserveTokens
 기본 설정은 아래와 같아요.
 
 | 설정 | 기본값 | 설명 |
-|---|---:|---|
+| --- | ---: | --- |
 | `compaction.enabled` | `true` | 자동 compaction 사용 |
 | `compaction.reserveTokens` | `16384` | 응답을 위해 남겨둘 토큰 |
 | `compaction.keepRecentTokens` | `20000` | 요약하지 않고 유지할 최근 토큰 |
@@ -187,7 +187,7 @@ contextTokens > contextWindow - reserveTokens
 Pi 설정은 JSON 파일로 관리돼요.
 
 | 위치 | 범위 |
-|---|---|
+| --- | --- |
 | `~/.pi/agent/settings.json` | 전역 |
 | `.pi/settings.json` | 프로젝트 |
 
@@ -219,7 +219,7 @@ Customization은 단순 설정이 아니라, 모델이 일하는 방식과 실�
 기능별 역할을 구분하면 어떤 작업을 어디에 넣을지 빠르게 정할 수 있어요.
 
 | 구성 요소 | 역할 | 활용 예 |
-|---|---|---|
+| --- | --- | --- |
 | Extensions | Pi 실행 흐름과 도구를 TypeScript로 확장 | Jira, Wiki, 배포 API, 로그 조회 도구 |
 | Skills | 특정 작업 절차와 판단 기준 제공 | 장애 분석 절차, 코드 리뷰 기준, 문서 작성 규칙 |
 | Prompt Templates | 반복 프롬프트를 명령처럼 재사용 | PR 설명 작성, 릴리스 노트 초안, 이슈 요약 |

@@ -43,7 +43,7 @@ Django에서 API를 제공할 때는 Django REST Framework 또는 Django Ninja�
 
 기능이 늘어나도 경계가 유지되도록 계층을 나눠요.
 
-```
+```text
 src/order_api/
 ├── main.py              # 앱 생성과 라우터 등록
 ├── config.py            # 설정 정의와 로딩
@@ -72,7 +72,7 @@ src/order_api/
 
 Django 프로젝트는 앱 단위 구조를 따르되 같은 원칙을 적용해요.
 
-```
+```text
 src/order_api/
 ├── settings/
 │   ├── base.py

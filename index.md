@@ -36,6 +36,16 @@
         <p>지금 쓰는 도구의 설정과 실행 방법이에요.</p>
       </div>
       <div class="cs-platform-grid">
+        <a class="cs-platform" href="./Platforms/Antigravity/">
+          <strong><svg class="cs-mark cs-antigravity" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>Antigravity</strong>
+          <span class="cs-spec">
+            <span>GEMINI·AGENTS.md 기준</span>
+            <span>사용자 Skill 호출</span>
+            <span>Plugin·Hook 자동 검사</span>
+            <span>MCP로 도구 확장</span>
+          </span>
+          <span class="cs-card-foot">문서 6<b aria-hidden="true">→</b></span>
+        </a>
         <a class="cs-platform" href="./Platforms/Codex/">
           <strong><img class="cs-mark" src="./assets/brand/openai-logo.svg" alt="" width="18" height="18">Codex</strong>
           <span class="cs-spec">
@@ -44,7 +54,7 @@
             <span>Rules로 명령 정책</span>
             <span>App·Connector 연결</span>
           </span>
-          <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
+          <span class="cs-card-foot">문서 6<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-platform" href="./Platforms/ClaudeCode/">
           <strong><img class="cs-mark" src="./assets/brand/claudecode-icon.png" alt="" width="18" height="18">Claude Code</strong>
@@ -60,11 +70,11 @@
           <strong><svg class="cs-mark cs-grok" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 3L6 13.5h5L10.5 21 18 10.5h-5z"></path></svg>Grok Build</strong>
           <span class="cs-spec">
             <span>AGENTS.md 기준 고정</span>
-            <span>Agent Profile 구성</span>
-            <span>Custom Model 교체</span>
-            <span>Subagent 병렬 실행</span>
+            <span>Plan·Auto 권한</span>
+            <span>Subagent·Dashboard</span>
+            <span>Workflow 실행</span>
           </span>
-          <span class="cs-card-foot">문서 5<b aria-hidden="true">→</b></span>
+          <span class="cs-card-foot">문서 6<b aria-hidden="true">→</b></span>
         </a>
         <a class="cs-platform" href="./Platforms/Pi/">
           <strong><svg class="cs-mark cs-pi" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9z"></path></svg>Pi</strong>
@@ -144,6 +154,19 @@
 
       <div class="cs-directory-grid">
         <section class="cs-directory-group">
+          <h3>Antigravity</h3>
+          <ul>
+            <li><a href="./Platforms/Antigravity/">Antigravity 가이드 <span>→</span></a></li>
+            <li><a href="./Platforms/Antigravity/setup.html">환경 설정 <span>→</span></a></li>
+            <li><a href="./Platforms/Antigravity/skills.html">Skill <span>→</span></a></li>
+            <li><a href="./Platforms/Antigravity/workflows.html">작업 흐름 <span>→</span></a></li>
+            <li><a href="./Platforms/Antigravity/extensions.html">확장 기능 <span>→</span></a></li>
+            <li><a href="./Platforms/Antigravity/commands.html">명령 확인 <span>→</span></a></li>
+            <li><a href="./Platforms/Antigravity/reference/01-sandbox-and-permissions.html">심화 학습 자료 <span>→</span></a></li>
+          </ul>
+        </section>
+
+        <section class="cs-directory-group">
           <h3>Codex</h3>
           <ul>
             <li><a href="./Platforms/Codex/">Codex 가이드 <span>→</span></a></li>
@@ -152,6 +175,7 @@
             <li><a href="./Platforms/Codex/workflows.html">작업 흐름 <span>→</span></a></li>
             <li><a href="./Platforms/Codex/extensions.html">확장 기능 <span>→</span></a></li>
             <li><a href="./Platforms/Codex/commands.html">명령 확인 <span>→</span></a></li>
+            <li><a href="./Platforms/Codex/automation.html">자동화 <span>→</span></a></li>
           </ul>
         </section>
 
@@ -176,6 +200,7 @@
             <li><a href="./Platforms/GrokBuild/workflows.html">작업 흐름 <span>→</span></a></li>
             <li><a href="./Platforms/GrokBuild/extensions.html">확장 기능 <span>→</span></a></li>
             <li><a href="./Platforms/GrokBuild/commands.html">명령 확인 <span>→</span></a></li>
+            <li><a href="./Platforms/GrokBuild/reference/01-permissions-and-plan-mode.html">심화 학습 자료 <span>→</span></a></li>
           </ul>
         </section>
 
@@ -259,6 +284,7 @@
     <span>CodeStream</span>
     <nav aria-label="공통 안내">
       <a href="./README.html">저장소 안내</a>
+      <a href="./DOC_FORMAT.html">문서 포맷 기준</a>
       <a href="./LICENSE">MIT License</a>
       <a href="./NOTICE.html">권리 고지</a>
     </nav>

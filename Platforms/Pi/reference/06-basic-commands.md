@@ -13,7 +13,7 @@ Pi에서 자주 쓰는 기본 슬래시 명령어와 단축키를 정리해요.
 ## 입력 단축키
 
 | 단축키 | 설명 | 용도 |
-|---|---|---|
+| --- | --- | --- |
 | Enter | 입력 제출 | 요청 실행 |
 | Shift+Enter | 줄바꿈 | 여러 줄 프롬프트 작성 |
 | Ctrl+Enter | Windows Terminal 등에서 줄바꿈으로 설정 가능 | 터미널 설정에 따라 사용 |
@@ -30,7 +30,7 @@ Windows Terminal에서는 Alt+Enter가 기본적으로 전체화면 전환에 �
 ## 모델·설정
 
 | 명령어 | 설명 | 용도 |
-|---|---|---|
+| --- | --- | --- |
 | `/login` | OAuth 또는 API 키 로그인 | 인증 설정 |
 | `/logout` | 로그인 정보 제거 | 계정 전환 또는 인증 초기화 |
 | `/model` | 모델 선택 | 작업에 맞는 모델 선택 |
@@ -41,7 +41,7 @@ Windows Terminal에서는 Alt+Enter가 기본적으로 전체화면 전환에 �
 모델 선택 단축키:
 
 | 단축키 | 설명 |
-|---|---|
+| --- | --- |
 | Ctrl+L | 모델 선택 |
 | Ctrl+P | 다음 scoped model |
 | Shift+Ctrl+P | 이전 scoped model |
@@ -63,7 +63,7 @@ pi --thinking max "복잡한 문제를 분석해줘"
 Project Trust는 프로젝트 설정과 리소스를 불러올지 결정해요.
 
 | 명령어·옵션 | 설명 | 적용 기준 |
-|---|---|---|
+| --- | --- | --- |
 | `/trust` | 현재 프로젝트의 신뢰 결정을 저장 | 다음 Pi 실행부터 적용 |
 | `--approve`, `-a` | 이번 실행에서 프로젝트를 신뢰 | 비대화형 모드와 package 명령에 사용 |
 | `--no-approve`, `-na` | 이번 실행에서 프로젝트 리소스를 무시 | 비대화형 모드와 package 명령에 사용 |
@@ -74,7 +74,7 @@ Project Trust는 프로젝트 설정과 리소스를 불러올지 결정해요.
 ## 세션 관리
 
 | 명령어 | 설명 | 용도 |
-|---|---|---|
+| --- | --- | --- |
 | `/resume` | 이전 세션 선택 | 중단한 작업 이어가기 |
 | `/new` | 새 세션 시작 | 새 주제 시작 |
 | `/name <name>` | 현재 세션 이름 지정 | 세션 찾기 쉽게 만들기 |
@@ -102,7 +102,7 @@ pi --fork <path|id>    # 특정 세션에서 분기
 ## 정보 확인·내보내기
 
 | 명령어 | 설명 | 용도 |
-|---|---|---|
+| --- | --- | --- |
 | `/copy` | 마지막 assistant 메시지 복사 | 답변 재사용 |
 | `/export [file]` | 세션을 HTML로 내보내기 | 공유/보관 |
 | `/share` | private GitHub gist로 공유 링크 생성 | 세션 공유 |
@@ -129,7 +129,7 @@ pi @src/app.ts @src/app.test.ts "같이 리뷰해줘"
 ### Shell 명령
 
 | 입력 | 설명 |
-|---|---|
+| --- | --- |
 | `!command` | 명령 실행 후 출력을 모델 컨텍스트에 포함 |
 | `!!command` | 명령 실행 후 출력을 모델 컨텍스트에 포함하지 않음 |
 
@@ -145,7 +145,7 @@ pi @src/app.ts @src/app.test.ts "같이 리뷰해줘"
 Pi package는 extension, skill, prompt template, theme를 묶어 설치하는 단위예요.
 
 | 명령어 | 설명 | 용도 |
-|---|---|---|
+| --- | --- | --- |
 | `pi install <source>` | package 설치 | 전역 하네스 리소스 추가 |
 | `pi install -l <source>` | 프로젝트 로컬 package 설치 | 현재 프로젝트에만 리소스 추가 |
 | `pi list` | 설치된 package 확인 | 설치 상태 점검 |
@@ -161,7 +161,7 @@ Pi package는 extension, skill, prompt template, theme를 묶어 설치하는 �
 `pi config` 화면에서는 Tab으로 전역 설정과 프로젝트 설정을 전환해요.  
 `pi config -l`로 시작하면 전역에서 상속한 리소스는 흐리게 표시돼요.
 
-프로젝트 package를 다루는 `install`, `remove`, `list`, `update`, `config`에는 `--approve` 또는 `--no-approve`를 사용할 수 있어요.
+프로젝트 package를 다루는 `install`, `remove`, `list`, `update`, `config`에는 `--approve` 또는 `--no-approve`를 사용할 수 있어요.  
 승인은 소스 검토 결과에 따라 명령 단위로 적용해요.
 
 설치 source는 npm, git, 로컬 경로를 사용할 수 있어요.
@@ -219,7 +219,7 @@ pi --exclude-tools bash,write,edit -p "코드를 리뷰해줘"
 자동화나 외부 시스템 연동이 필요하면 아래 모드를 사용해요.
 
 | 모드 | 용도 |
-|---|---|
+| --- | --- |
 | `--mode json` | 단일 실행의 이벤트를 JSON Lines로 출력 |
 | `--mode rpc` | 외부 프로그램이 stdin/stdout JSONL로 Pi를 제어 |
 

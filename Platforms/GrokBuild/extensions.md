@@ -33,30 +33,22 @@ Skill은 반복 가능한 작업의 입력, 절차, 결과와 필요한 자원�
 
 ## Agent Profile
 
-세션의 시스템 프롬프트, 도구 구성과 동작을 바꿔요.
+세션의 시스템 프롬프트와 도구 구성을 고정해요.
 
 - 위치: `<repo>/.grok/agents/`, `~/.grok/agents/`
 - 형식: YAML frontmatter가 있는 `.md` 파일
-- 지정: `--agent <이름 또는 경로>`, Config의 `[agent]`, `GROK_AGENT` 환경 변수
+- 프로젝트 공통 기준은 `AGENTS.md`에 남겨요.
 
-역할이 고정된 검토나 조사에 사용하고, 프로젝트 공통 기준은 `AGENTS.md`에 남겨요.
+지정과 `/goal`과의 차이는 [Workflow와 Agent Profile](./reference/03-workflows-and-profiles.md)을 봐요.
 
 ## Subagent
 
-서로 독립된 조사, 검증이나 구현을 병렬로 나눌 때 사용해요.  
-기본으로 활성화되어 있어요.
-
-```toml
-[subagents.toggle]
-plan = false
-
-[subagents.models]
-explore = "grok-build"
-```
-
-- 각 Subagent는 별도 컨텍스트를 사용해요.
-- Role로 기본 권한과 모델을, Persona로 응답 방식을 지정해요.
-- 세션 전체에서 끄려면 `--no-subagents`를 사용해요.
+서로 독립된 조사, 검증이나 구현을 별도 컨텍스트에서 병렬로 실행해요.  
+기본으로 켜져 있어요.  
+Agent Type이 도구와 권한을 정해요.  
+Persona는 서브에이전트 프롬프트 위의 행동 레이어예요.  
+`model`과 `reasoning_effort`를 덮어쓸 수 있어요.  
+실행 방법과 세션 명령은 [세션과 Subagent](./reference/02-sessions-and-subagents.md)를 봐요.
 
 ## Custom Model
 
@@ -71,8 +63,9 @@ context_window = 128000
 env_key = "LOCAL_API_KEY"
 ```
 
+- `[model.*]`는 `~/.grok/config.toml`에 둬요. 저장소 설정은 이 항목을 읽지 않아요.
 - OpenAI 호환 엔드포인트를 연결해요.
-- 인증값은 `api_key`, `env_key` 또는 회전 토큰용 `auth_provider`로 지정해요.
+- 인증값은 `env_key` 또는 회전 토큰용 `auth_provider`로 지정해요. `api_key`는 사용자 파일에만 두고 저장소에는 넣지 않아요.
 - 내장 모델은 바꿀 필드만 다시 적어 덮어써요.
 - 확인은 `grok models` 또는 `/model`에서 해요.
 
@@ -88,7 +81,7 @@ enabled = true
 ```
 
 - 사용자 범위는 `~/.grok/config.toml`, 저장소 범위는 `<repo>/.grok/config.toml`에 둬요.
-- 같은 이름의 서버는 프로젝트 설정이 전체를 대체해요.
+- 같은 이름의 서버는 현재 디렉터리, 저장소 루트, 사용자 순으로 대체해요.
 - Claude 호환으로 `.mcp.json`과 `~/.claude.json`도 함께 읽어요.
 - 관리는 `grok mcp` 또는 세션의 `/mcps`에서 해요.
 

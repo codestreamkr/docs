@@ -64,8 +64,10 @@ Playbook이 정한 단계를 코드로 옮길 때 언어 문서를 함께 써요
 
 ## 실행
 
-CodeStream 사용자 Skill(`ct-*`)은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요. clone과 배치 절차는 그 저장소를 따르고, 호출 표기는 쓰는 제품의 문서에서 확인해요.
+CodeStream 사용자 Skill(`ct-*`)은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요.  
+clone과 배치 절차는 그 저장소를 따르고, 호출 표기는 쓰는 제품의 문서에서 확인해요.
 
+- [Antigravity](../Platforms/Antigravity/workflows.md)
 - [Codex](../Platforms/Codex/workflows.md)
 - [Claude Code](../Platforms/ClaudeCode/workflows.md)
 - [Grok Build](../Platforms/GrokBuild/workflows.md)

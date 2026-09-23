@@ -5,7 +5,7 @@ Git 작업은 현재 상태를 정확히 읽는 것부터 시작해요.
 ## 먼저 알아야 할 구성
 
 | 구성 | 의미 | 확인 예시 |
-|---|---|---|
+| --- | --- | --- |
 | Working tree | 파일 시스템에 있는 현재 작업 내용 | 수정했지만 아직 `add`하지 않은 파일 |
 | Staging area | 다음 커밋에 포함하기로 선택한 변경 | `git add`로 올린 변경 |
 | HEAD | 현재 체크아웃한 커밋 | 보통 현재 브랜치의 마지막 커밋 |
@@ -29,7 +29,7 @@ git status --short --branch
 자주 보는 파일 상태는 다음과 같아요.
 
 | 표시 | 의미 |
-|---|---|
+| --- | --- |
 | `?? app.js` | Git이 아직 추적하지 않는 파일 |
 | ` M app.js` | Working tree에서 수정한 파일 |
 | `M  app.js` | Staging area에 올린 파일 |
@@ -66,7 +66,7 @@ git log --oneline --decorate --graph -n 12
 ## 명령별 변경 범위
 
 | 명령 | Working tree | Staging area | HEAD |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `git add <파일>` | 유지 | 변경 반영 | 유지 |
 | `git restore <파일>` | Staging area 기준으로 복원 | 유지 | 유지 |
 | `git restore --staged <파일>` | 유지 | HEAD 기준으로 복원 | 유지 |

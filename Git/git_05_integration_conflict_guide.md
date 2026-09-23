@@ -5,7 +5,7 @@
 ## 통합 방법 선택
 
 | 목적 | 명령 | 결과 |
-|---|---|---|
+| --- | --- | --- |
 | 브랜치 작업 흐름을 유지해 합치기 | `git merge <브랜치>` | fast-forward 또는 merge commit |
 | 개인 작업 브랜치를 최신 기준 위로 재배치 | `git rebase <기준브랜치>` | 커밋 해시를 새로 생성 |
 | 특정 커밋만 가져오기 | `git cherry-pick <커밋>` | 선택한 변경을 새 커밋으로 적용 |
@@ -89,7 +89,7 @@ git diff --name-only --diff-filter=U
 진행 중인 명령과 같은 종류의 명령으로 마무리해요.
 
 | 작업 | 계속 | 전체 중단 |
-|---|---|---|
+| --- | --- | --- |
 | merge | `git commit` | `git merge --abort` |
 | rebase | `git rebase --continue` | `git rebase --abort` |
 | cherry-pick | `git cherry-pick --continue` | `git cherry-pick --abort` |

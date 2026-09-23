@@ -1,6 +1,8 @@
 # Pi 사용자 Skill
 
-CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요. 필요한 작업은 `/skill:ct-*`로 직접 호출해요. 이 도구에서 보이는 위치는 [환경 설정](./setup.md)을 봐요.
+CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요.  
+필요한 작업은 `/skill:ct-*`로 직접 호출해요.  
+이 도구에서 보이는 위치는 [환경 설정](./setup.md)을 봐요.
 
 ## 공통 호출 형식
 
@@ -10,6 +12,8 @@ CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-
 
 - Skill만 호출하면 역할, 필요한 입력과 대표 예제를 안내해요.
 - 실행할 때는 대상, 원하는 결과와 필요한 범위를 함께 지정해요.
+- 명령 목록에 Skill이 보이지 않으면 Settings의 `enableSkillCommands`를 확인해요. 꺼도 `/skill:이름`을 직접 입력하면 동작해요.
+- Skill을 추가하거나 고친 뒤에는 `/reload`로 다시 읽어요.
 
 ## 계획
 
@@ -113,6 +117,17 @@ CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-
 
 미반영 변경은 기존 문서를 고치지 않고 신규 문서에만 둬요.
 
+### ct-docs-md-format
+
+Markdown 문서의 문장, 목록, 표, 코드 블록과 줄바꿈만 정리해요.  
+사실, 요구사항, 경로는 바꾸지 않아요.
+
+```text
+/skill:ct-docs-md-format Platforms/Pi/README.md의 표현만 정리해줘
+```
+
+내용 검토나 사실 수정, 새 요구사항 추가는 이 Skill의 범위가 아니에요.
+
 ### ct-wiki-api
 
 포함된 PowerShell 도구로 Confluence REST API 호환 위키를 검색, 조회, 저장하거나 명시된 변경을 수행해요.
@@ -141,7 +156,8 @@ CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-
 | 필요한 결과 | 선택 |
 | --- | --- |
 | 실행 전 계획이나 설계 검토 | `ct-plan-work` |
-| Spring 코드 구현 또는 검토 | `ct-code-spring` |
+| Spring 코드 구현 또는 관례 검토 | `ct-code-spring` |
+| Git 변경의 문제만 지적 | [변경 검토](./workflows.md#구현한-변경-검토하기) |
 | 특정 심볼의 실제 호출 관계 | `ct-code-tree` |
 | 호출 흐름을 고정하는 테스트 | `ct-code-tree-test` |
 | 사용자 흐름과 실패 위험 검증 | `ct-qa-flow` |
@@ -149,12 +165,31 @@ CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-
 | 외부 공급자 계약을 포함한 연동 설계 | `ct-plan-ext` |
 | 로컬 실행 스크립트 | `ct-run-script` |
 | 코드 정본의 구현 문서 작성과 갱신 | `ct-docs-impl` |
+| Markdown 문서의 형식만 정리 | `ct-docs-md-format` |
 | 원격 Confluence API 작업 | `ct-wiki-api` |
 | 저장소 안의 Markdown 위키 운영 | `ct-wiki-ops` |
 
 Skill을 고정 순서로 모두 실행하지 않아요.  
 현재 필요한 결과를 만드는 Skill만 선택해요.
 
+## 다른 도구와 같은 파일을 써요
+
+`ct-*` Skill은 `~/.agents/skills/`에 두고 Pi, Claude Code, Codex, Grok Build가 같은 `SKILL.md`를 읽어요.  
+도구마다 달라지는 건 호출 표기뿐이에요.
+
+| 도구 | 호출 |
+| --- | --- |
+| Pi | `/skill:ct-plan-work` |
+| Claude Code, Antigravity | `/ct-plan-work` |
+| Codex | `$ct-plan-work` |
+
+Skill 내용을 고치면 모든 도구에 함께 반영돼요.
+
+## 확인 기준
+
+2026-09-23에 공식 문서와 설치된 `~/.agents/skills/`로 확인했어요.  
+Skill의 실제 입력과 결과는 호출했을 때 나오는 안내를 우선해요.
+
 ## 공식 문서
 
-- [Skills](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/skills.md)
+- [Skills](https://pi.dev/docs/latest/skills)

@@ -3,7 +3,8 @@
 여러 결과가 필요한 작업에서는 앞 단계의 확정된 결과를 다음 Skill의 입력으로 연결해요.
 
 문제 유형별 흐름과 단계별 판단 기준은 [Playbook](../../Playbooks/README.md)에서 관리해요.  
-이 문서는 Grok Build에서의 호출과 연결 방법만 다뤄요.
+이 문서는 `/ct-*`를 사람이 잇는 방법만 다뤄요.  
+저장된 오케스트레이션인 `/workflow`와 `/goal`은 [Workflow와 Agent Profile](./reference/03-workflows-and-profiles.md)을 봐요.  
 
 ## 호출과 연결
 
