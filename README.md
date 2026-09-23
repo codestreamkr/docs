@@ -2,14 +2,15 @@
 
 새로운 기능을 만들고 어려운 문제를 푸는 공통 작업 방식과, AI별 실행 방법을 안내해요.
 
-먼저 필요한 결과에 맞는 Playbook을 골라요.  
-플랫폼 문서는 같은 작업을 각 도구에서 실행하는 설정, Skill과 명령만 다뤄요.
+여러 Skill의 결과를 연결할 때는 Playbook을 골라요.
+
+단일 작업의 Skill 선택과 제품별 실행 방법은 플랫폼 문서에서 확인해요.
 
 ## 처음 시작하기
 
 지금 목적에 맞는 경로를 골라요.
 
-1. 필요한 결과에 맞는 흐름을 골라요: [Playbook](./Playbooks/README.md)
+1. 여러 Skill을 이어야 한다면 흐름을 골라요: [Playbook](./Playbooks/README.md)
 2. CodeStream 사용자 Skill(`ct-*`)은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요. clone과 배치 절차는 해당 저장소를 따라요.
 3. 지금 쓰는 AI의 실행 방법을 확인해요: [Antigravity](./Platforms/Antigravity/README.md), [Codex](./Platforms/Codex/README.md), [Claude Code](./Platforms/ClaudeCode/README.md), [Grok Build](./Platforms/GrokBuild/README.md) 또는 [Pi](./Platforms/Pi/README.md)
 
@@ -22,7 +23,7 @@ Git, Python, macOS, IntelliJ 가이드는 아래 [문서 구성](#문서-구성)
 
 | 영역 | 책임 | 시작 문서 |
 | --- | --- | --- |
-| Playbooks | 문제 유형별로 어떤 결과를 어떤 순서로 만들지 | [Playbook](./Playbooks/README.md) |
+| Playbooks | 여러 Skill을 연결하는 작업의 순서와 판단 기준 | [Playbook](./Playbooks/README.md) |
 | Antigravity | 환경 설정, 사용자 Skill, 작업 흐름과 명령 확인 | [Antigravity 가이드](./Platforms/Antigravity/README.md) |
 | Codex | 환경 설정, 사용자 Skill, 작업 흐름과 명령 확인 | [Codex 가이드](./Platforms/Codex/README.md) |
 | Claude Code | 환경 설정, 사용자 Skill, 작업 흐름과 명령 확인 | [Claude Code 가이드](./Platforms/ClaudeCode/README.md) |

@@ -17,32 +17,19 @@ Skill 이름 앞에 `/`를 붙이고, 앞 단계가 만든 결과를 다음 호�
 /ct-qa-flow 주문 취소의 정상·중복·외부 실패 흐름을 검증해줘
 ```
 
-다음 Skill을 호출할 때 앞 단계의 결과 중 필요한 항목을 지정해요.
-
-- 확정된 범위와 제외 범위
-- 변경 대상과 유지할 계약
-- 근거 문서 또는 코드 경로
-- 검증 기준과 미확인 사항
-
-대화만으로 대상을 구분하기 어렵다면 앞 단계가 만든 문서나 파일 경로를 함께 전달해요.
+다음 단계에 넘길 항목은 [Playbook 공통 기준](../../Playbooks/README.md#공통-기준)을 따르고, 대화만으로 대상을 구분하기 어려우면 결과 파일 경로를 함께 지정해요.
 
 ## 문제 유형별 Antigravity 특화 흐름
 
 Antigravity는 자율 에이전트 워크플로와 슬래시 명령을 내장하고 있어요.  
-Playbook 단계에 Antigravity 특화 기능을 결합하면 작업 품질을 크게 높일 수 있어요.
+여러 Skill을 연결하는 Playbook 단계에 Antigravity 특화 기능을 결합할 수 있어요.
 
 | 필요한 결과 | Playbook | 권장 Antigravity 특화 명령 | 활용 효과 |
 | --- | --- | --- | --- |
-| 만들 것의 범위와 완료 조건을 정해요 | [01 무엇을 만들지 정하기](../../Playbooks/01-define-scope.md) | `/grill-me` → `/plan` | 대화형 인터뷰로 누락 요구사항을 먼저 파헤친 후 실행 계획을 확정해요 |
 | 확정된 계획을 코드로 반영하고 검증해요 | [02 기능 구현하고 검증하기](../../Playbooks/02-implement-and-verify.md) | `/goal` | 테스트 통과와 목표 달성까지 멈추지 않고 자율 수정 루프를 돌려요 |
-| 기존 코드의 실제 동작을 파악해요 | [03 낯선 코드 파악하기](../../Playbooks/03-understand-code.md) | `ct-code-tree` + Subagent | 대규모 호출 트리를 별도 서브에이전트에 위임해 메인 컨텍스트를 아껴요 |
 | 느린 조회의 원인을 찾고 개선해요 | [04 느린 SQL 개선하기](../../Playbooks/04-tune-sql.md) | `agy --effort high` | 심층 추론(Reasoning)을 최대로 투입해 복잡한 실행 계획과 인덱스를 분석해요 |
 | 기존 구조를 유지하면서 새 구조로 옮겨요 | [05 구조 전환하기](../../Playbooks/05-transition-structure.md) | `/plan` + `agy --mode plan` | 코드 수정 없이 설계 및 영향 평가 아티팩트를 먼저 안전하게 검토해요 |
 | 외부 서비스를 붙이거나 공급자를 바꿔요 | [06 외부 서비스 연동하기](../../Playbooks/06-integrate-external.md) | `/browser` + `ct-plan-ext` | 최신 외부 API 포털 문서와 스펙 변경 사항을 브라우저로 실시간 교차 검증해요 |
-| 무엇부터 손볼지 정하고 순서대로 반영해요 | [07 개선 과제 정리해 반영하기](../../Playbooks/07-improve-module.md) | `/grill-me` | 과제 우선순위와 부작용 위험을 사전문답으로 명확히 걸러내요 |
-| 배포 전에 위험한 흐름을 검증해요 | [08 오픈 전 품질 검증하기](../../Playbooks/08-verify-before-release.md) | `/teamwork-preview` | 보안, 성능, 예외 흐름을 독립된 복수 에이전트가 병렬로 전방위 검증해요 |
-| 빌드와 실행 절차를 재현 가능하게 만들어요 | [09 실행 환경 준비하기](../../Playbooks/09-prepare-runtime.md) | `ct-run-script` + `--sandbox` | 터미널 샌드박스 안에서 안전하게 빌드 스크립트 실행과 부작용을 검증해요 |
-| 흩어진 지식을 위키로 정리해요 | [10 지식 위키로 남기기](../../Playbooks/10-operate-wiki.md) | `/learn` + `ct-wiki-ops` | 세션에서 교정된 규칙을 영속화하고 팀 위키에 정본으로 기록해요 |
 
 ## Antigravity 고유 작업 방식: 아티팩트(Artifacts)와 피드백
 

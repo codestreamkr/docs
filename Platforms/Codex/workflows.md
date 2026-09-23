@@ -160,7 +160,7 @@ $ct-qa-flow 주문 취소 변경의 정상·중복·외부 실패 흐름을 검�
 계획의 완료 조건별 결과와 실행하지 못한 검증을 알려줘.
 ```
 
-다음 요청에는 확정된 범위, 유지할 계약, 근거 파일과 남은 검증을 전달해요.
+다음 요청에는 [Playbook 공통 기준](../../Playbooks/README.md#공통-기준)에 따라 확정된 결과와 근거 파일 경로를 전달해요.
 
 ## 연결된 도구로 런타임 확인하기
 
@@ -178,21 +178,6 @@ IntelliJ MCP의 실행 중인 JavaScript Debug 세션에서 주문 취소 버튼
 
 - 확인할 결과: 실행 세션, 소스 위치, 관찰한 값과 검증 조건의 충족 여부
 - 세션·소스 매핑의 기준은 IntelliJ IDEA이고 Codex는 MCP 클라이언트로 연결해요.
-
-## 문제 유형별 흐름
-
-| 필요한 결과 | Playbook |
-| --- | --- |
-| 만들 것의 범위와 완료 조건을 정해요 | [01 무엇을 만들지 정하기](../../Playbooks/01-define-scope.md) |
-| 확정된 계획을 코드로 반영하고 검증해요 | [02 기능 구현하고 검증하기](../../Playbooks/02-implement-and-verify.md) |
-| 기존 코드의 실제 동작을 파악해요 | [03 낯선 코드 파악하기](../../Playbooks/03-understand-code.md) |
-| 느린 조회의 원인을 찾고 개선해요 | [04 느린 SQL 개선하기](../../Playbooks/04-tune-sql.md) |
-| 기존 구조를 유지하면서 새 구조로 옮겨요 | [05 구조 전환하기](../../Playbooks/05-transition-structure.md) |
-| 외부 서비스를 붙이거나 공급자를 바꿔요 | [06 외부 서비스 연동하기](../../Playbooks/06-integrate-external.md) |
-| 무엇부터 손볼지 정하고 순서대로 반영해요 | [07 개선 과제 정리해 반영하기](../../Playbooks/07-improve-module.md) |
-| 배포 전에 위험한 흐름을 검증해요 | [08 오픈 전 품질 검증하기](../../Playbooks/08-verify-before-release.md) |
-| 빌드와 실행 절차를 재현 가능하게 만들어요 | [09 실행 환경 준비하기](../../Playbooks/09-prepare-runtime.md) |
-| 흩어진 지식을 위키로 정리해요 | [10 지식 위키로 남기기](../../Playbooks/10-operate-wiki.md) |
 
 ## 반복 실행으로 옮기기
 

@@ -73,12 +73,9 @@ uv run uvicorn app.main:app --reload
 
 ## 함께 사용하는 문서
 
-작업 단계는 공통 Playbook을 따라요.
+여러 Skill을 연결하는 작업은 [Playbook](../Playbooks/README.md)을, 단일 작업의 Skill 선택은 사용하는 플랫폼의 `skills.md`를 확인해요.
 
-- [09 실행 환경 준비하기](../Playbooks/09-prepare-runtime.md)
 - [02 기능 구현하고 검증하기](../Playbooks/02-implement-and-verify.md)
-- [03 낯선 코드 파악하기](../Playbooks/03-understand-code.md)
-- [07 개선 과제 정리해 반영하기](../Playbooks/07-improve-module.md)
 - [Git 필수 가이드](../Git/README.md)
 
 ## 앞으로 추가할 문서
