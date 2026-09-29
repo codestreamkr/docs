@@ -132,7 +132,7 @@
         <a class="cs-development-card" href="./IntelliJ/">
           <strong><svg class="cs-mark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8"></path><path d="M8 12h5"></path><path d="M8 16h6"></path></svg>IntelliJ</strong>
           <span>JVM·JS와 변경 세트·호출 경로를 골라 검증</span>
-          <span class="cs-card-foot">문서 1<b aria-hidden="true">→</b></span>
+          <span class="cs-card-foot">문서 2<b aria-hidden="true">→</b></span>
         </a>
       </div>
     </section>
@@ -262,6 +262,7 @@
           <ul>
             <li><a href="./IntelliJ/">IntelliJ IDEA 개발 가이드 <span>→</span></a></li>
             <li><a href="./IntelliJ/intellij_01_runtime_debug_guide.html">런타임 디버깅 <span>→</span></a></li>
+            <li><a href="./IntelliJ/intellij_02_ssl_cert_guide.html">사내 SSL 인증서 설정 <span>→</span></a></li>
           </ul>
         </section>
       </div>
