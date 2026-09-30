@@ -43,7 +43,7 @@ permission_mode = "auto"
 프로젝트 `.grok/config.toml`의 `[permission]`은 사용자 규칙과 합쳐져요.  
 `deny`가 `ask`, `allow`보다 우선해요.  
 
-## Plan 모드와 ct-plan-work
+## Plan 모드와 ct-plan
 
 `/plan`은 다음 프롬프트부터 세션을 계획 모드로 바꿔요.  
 `/plan 설명`은 그 설명으로 바로 시작해요.  
@@ -54,9 +54,13 @@ permission_mode = "auto"
 Subagent는 부모의 Plan 제한을 받지 않아요.  
 쓰기 가능한 타입은 부모가 Plan 모드여도 파일을 수정할 수 있어요.  
 
-`ct-plan-work`는 계획 문서를 만드는 Skill이에요.  
-Playbook에서 수정 전에 범위 합의가 필요하면 Plan 모드에서 이 Skill을 호출해요.  
-확정된 계획을 구현할 때는 Plan 모드를 끄고 `ct-code-spring`으로 넘어가요.  
+`ct-plan`은 구현 작업과 완료·검증 조건을 연결한 계획 문서만 작성하거나 갱신해요.
+
+계획을 `plan.md`에 저장할 때는 Plan 모드에서 `ct-plan`을 호출해요.
+
+다른 위치에 저장하려면 Plan 모드를 종료하고 `ct-plan`을 호출해요.
+
+확정된 계획을 구현·검증할 때는 Plan 모드를 끄고 `ct-apply`로 넘어가요.
 
 ## Sandbox
 

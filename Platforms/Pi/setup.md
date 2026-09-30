@@ -220,14 +220,14 @@ Pi는 `~/.agents/skills/`를 별도 설정 없이 찾고, 프로젝트의 `.agen
 
 ```text
 ~/.agents/skills/
+├── ct-apply/
 ├── ct-code-spring/
 ├── ct-code-tree/
 ├── ct-code-tree-test/
 ├── ct-data-query/
 ├── ct-docs-impl/
 ├── ct-docs-md-format/
-├── ct-plan-ext/
-├── ct-plan-work/
+├── ct-plan/
 ├── ct-qa-flow/
 ├── ct-run-script/
 ├── ct-wiki-api/

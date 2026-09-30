@@ -11,7 +11,7 @@ Claude Code 명령은 버전과 실행 환경에 따라 달라질 수 있어요.
 | --- | --- | --- |
 | 내장 명령 | 제품이 고정 동작으로 제공 | `/context`, `/permissions`, `/clear` |
 | 번들 Skill | 제품이 제공하지만 Claude가 도구로 수행 | `/code-review`, `/security-review`, `/verify` |
-| 사용자 Skill | CodeStream이 관리 | `/ct-plan-work`, `/ct-code-spring` |
+| 사용자 Skill | CodeStream이 관리 | `/ct-plan`, `/ct-apply` |
 
 역할이 겹칠 때 무엇을 고를지는 [사용자 Skill](./skills.md)의 번들 Skill 비교를 봐요.
 

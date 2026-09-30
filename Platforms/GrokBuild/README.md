@@ -20,8 +20,8 @@ grok --permission-mode auto
 
 ```text
 /skills
-/ct-plan-work
-/ct-plan-work 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
+/ct-plan
+/ct-plan 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
 ```
 
 - Skill은 `/ct-*`로 불러요. 원하는 결과와 대상을 자연어로 이어서 적어요.
@@ -38,13 +38,13 @@ grok --permission-mode auto
 
 | 목적 | Skill | 시작 예제 |
 | --- | --- | --- |
-| 제품·설계·구현·구조 전환·개선 계획 | `ct-plan-work` | `/ct-plan-work` |
+| 개발 요구사항의 계획 문서 | `ct-plan` | `/ct-plan` |
+| 확정된 작업의 구현·검증 | `ct-apply` | `/ct-apply` |
 | Spring 구현과 검토 | `ct-code-spring` | `/ct-code-spring` |
 | 호출과 데이터 흐름 분석 | `ct-code-tree` | `/ct-code-tree` |
 | 호출 흐름 기반 테스트 | `ct-code-tree-test` | `/ct-code-tree-test` |
 | QA와 회귀 검증 | `ct-qa-flow` | `/ct-qa-flow` |
 | SQL 성능 분석 | `ct-data-query` | `/ct-data-query` |
-| 외부 서비스 연동과 이관 설계 | `ct-plan-ext` | `/ct-plan-ext` |
 | 실행 스크립트 생성과 검증 | `ct-run-script` | `/ct-run-script` |
 | 코드 정본의 구현 문서 작성과 갱신 | `ct-docs-impl` | `/ct-docs-impl` |
 | Markdown 문서의 형식만 정리 | `ct-docs-md-format` | `/ct-docs-md-format` |
@@ -54,8 +54,8 @@ grok --permission-mode auto
 일이 이어지면, 앞에서 정한 범위와 문서 경로를 다음 호출에 넘겨요.
 
 ```text
-/ct-plan-work 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
-/ct-code-spring 확정된 계획을 기준으로 구현하고 관련 테스트를 실행해줘
+/ct-plan 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
+/ct-apply 확정된 계획의 남은 작업을 구현·검증하고 완료 상태를 기록해줘
 /ct-qa-flow 주문 취소의 정상·중복·외부 실패 흐름을 검증해줘
 ```
 

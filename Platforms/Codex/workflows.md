@@ -143,13 +143,13 @@ Subagent를 사용할 수 있는 입력창에서 분담 범위와 결과 형식�
 앞 단계의 결과를 다음 Skill 입력에서 구체적으로 지정해요.
 
 ```text
-$ct-plan-work 주문 취소의 중복 요청 방지 계획을 .docs/order-cancel-plan.md에 작성해줘
+$ct-plan 주문 취소의 중복 요청 방지 계획을 .docs/order-cancel-plan.md에 작성해줘
 ```
 
 계획의 범위와 완료 조건을 확정한 뒤 구현 요청으로 이어가요.
 
 ```text
-$ct-code-spring .docs/order-cancel-plan.md의 확정된 범위를 구현해줘.
+$ct-apply .docs/order-cancel-plan.md의 남은 작업을 구현·검증하고 완료 상태를 기록해줘.
 기존 API 계약을 유지하고 관련 테스트를 실행해줘.
 ```
 

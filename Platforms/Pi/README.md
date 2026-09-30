@@ -13,21 +13,21 @@
 4. 원하는 결과와 대상을 자연어로 이어서 실행해요.
 
 ```text
-/skill:ct-plan-work
-/skill:ct-plan-work 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
+/skill:ct-plan
+/skill:ct-plan 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
 ```
 
 ## 무엇을 하려나요?
 
 | 목적 | Skill | 시작 예제 |
 | --- | --- | --- |
-| 제품·설계·구현·구조 전환·개선 계획 | `ct-plan-work` | `/skill:ct-plan-work` |
+| 개발 요구사항의 계획 문서 | `ct-plan` | `/skill:ct-plan` |
+| 확정된 작업의 구현·검증 | `ct-apply` | `/skill:ct-apply` |
 | Spring 구현과 검토 | `ct-code-spring` | `/skill:ct-code-spring` |
 | 호출과 데이터 흐름 분석 | `ct-code-tree` | `/skill:ct-code-tree` |
 | 호출 흐름 기반 테스트 | `ct-code-tree-test` | `/skill:ct-code-tree-test` |
 | QA와 회귀 검증 | `ct-qa-flow` | `/skill:ct-qa-flow` |
 | SQL 성능 분석 | `ct-data-query` | `/skill:ct-data-query` |
-| 외부 서비스 연동과 이관 설계 | `ct-plan-ext` | `/skill:ct-plan-ext` |
 | 실행 스크립트 생성과 검증 | `ct-run-script` | `/skill:ct-run-script` |
 | 코드 정본의 구현 문서 작성과 갱신 | `ct-docs-impl` | `/skill:ct-docs-impl` |
 | Markdown 문서의 형식만 정리 | `ct-docs-md-format` | `/skill:ct-docs-md-format` |

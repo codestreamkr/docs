@@ -10,7 +10,7 @@ Pi 명령은 버전과 설치된 Extension에 따라 달라질 수 있어요.
 | 구분 | 누가 관리 | 예 |
 | --- | --- | --- |
 | 내장 명령 | Pi가 제공 | `/model`, `/session`, `/trust` |
-| Skill | 사용자와 프로젝트 | `/skill:ct-plan-work` |
+| Skill | 사용자와 프로젝트 | `/skill:ct-plan` |
 | Prompt Template | 사용자와 프로젝트 | 만든 `.md` 파일 이름. 기본 제공 없음 |
 | Extension 명령 | 설치한 Extension | Extension마다 달라요 |
 
