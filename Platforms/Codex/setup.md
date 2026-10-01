@@ -37,7 +37,7 @@ codex -C /path/to/project
 3. CLI 입력창에서 `/skills`를 열고 필요한 Skill을 선택해요.
 4. `$ct-plan`처럼 이름만 호출해 사용 안내를 확인해요.
 
-12개 목록과 선택 기준은 [사용자 Skill](./skills.md)에서 관리해요.  
+8개 목록과 선택 기준은 [사용자 Skill](./skills.md)에서 관리해요.  
 설치한 Skill이 보이지 않으면 Codex를 다시 시작해요.
 
 ## 승인과 샌드박스

@@ -138,7 +138,7 @@ def test_수량이_0이면_검증에_실패한다(client, auth_headers):
 - 비동기 테스트: `pytest-asyncio`와 `httpx.AsyncClient`를 사용해요.
 - 데이터 준비: 테스트마다 독립적으로 만들고 실행 순서에 의존하지 않아요.
 
-테스트 설계와 회귀 검증은 사용하는 플랫폼의 `ct-qa-flow` 안내를 확인해요.
+테스트 작성은 `ct-apply`, 요구사항별 회귀 검증은 `ct-verify` 안내를 확인해요.
 
 ## 로깅
 

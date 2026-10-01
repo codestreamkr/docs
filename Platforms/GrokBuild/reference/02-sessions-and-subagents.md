@@ -11,9 +11,9 @@ Subagent는 기본으로 켜져 있어요.
 
 | Agent Type | 하는 일 | 맞는 작업 |
 | --- | --- | --- |
-| `explore` | 검색, 읽기, 셸 명령을 해요. 파일은 수정하지 않아요. | `ct-code-tree`, 낯선 코드 파악 |
+| `explore` | 검색, 읽기, 셸 명령을 해요. 파일은 수정하지 않아요. | `ct-analyze`, 낯선 코드 파악 |
 | `plan` | 코드를 수정하지 않고 구현 계획을 만들어요. | 수정 전 계획. 세션 Plan 모드는 [권한과 Plan 모드](./01-permissions-and-plan-mode.md)를 봐요. |
-| `general-purpose` | 구현과 검증을 포함한 일반 작업을 해요. | `ct-code-spring`, `ct-qa-flow` |
+| `general-purpose` | 구현과 검증을 포함한 일반 작업을 해요. | `ct-apply`, `ct-verify` |
 
 Persona는 서브에이전트 프롬프트 위의 행동 레이어예요.  
 `model`과 `reasoning_effort`를 덮어쓸 수 있어요.  

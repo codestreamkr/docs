@@ -150,16 +150,12 @@ Claude Code는 `~/.claude/skills/`에서 인식해요.
 
 ```text
 ~/.claude/skills/
+├── ct-analyze/
 ├── ct-apply/
-├── ct-code-spring/
-├── ct-code-tree/
-├── ct-code-tree-test/
-├── ct-data-query/
-├── ct-docs-impl/
 ├── ct-docs-md-format/
+├── ct-docs-weekly-report/
 ├── ct-plan/
-├── ct-qa-flow/
-├── ct-run-script/
+├── ct-verify/
 ├── ct-wiki-api/
 └── ct-wiki-ops/
 ```

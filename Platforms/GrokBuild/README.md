@@ -38,16 +38,12 @@ grok --permission-mode auto
 
 | 목적 | Skill | 시작 예제 |
 | --- | --- | --- |
-| 개발 요구사항의 계획 문서 | `ct-plan` | `/ct-plan` |
-| 확정된 작업의 구현·검증 | `ct-apply` | `/ct-apply` |
-| Spring 구현과 검토 | `ct-code-spring` | `/ct-code-spring` |
-| 호출과 데이터 흐름 분석 | `ct-code-tree` | `/ct-code-tree` |
-| 호출 흐름 기반 테스트 | `ct-code-tree-test` | `/ct-code-tree-test` |
-| QA와 회귀 검증 | `ct-qa-flow` | `/ct-qa-flow` |
-| SQL 성능 분석 | `ct-data-query` | `/ct-data-query` |
-| 실행 스크립트 생성과 검증 | `ct-run-script` | `/ct-run-script` |
-| 코드 정본의 구현 문서 작성과 갱신 | `ct-docs-impl` | `/ct-docs-impl` |
-| Markdown 문서의 형식만 정리 | `ct-docs-md-format` | `/ct-docs-md-format` |
+| 현재 코드 동작과 영향 범위 분석 | `ct-analyze` | `/ct-analyze` |
+| 개발 문제 탐색과 실행 계획 | `ct-plan` | `/ct-plan` |
+| 확정된 계획의 실행과 완료 기록 | `ct-apply` | `/ct-apply` |
+| 요구사항별 독립 검증 | `ct-verify` | `/ct-verify` |
+| Markdown 생성과 형식 정리 | `ct-docs-md-format` | `/ct-docs-md-format` |
+| Git 이력 기반 주간·월간 보고 | `ct-docs-weekly-report` | `/ct-docs-weekly-report` |
 | Confluence REST API 작업 | `ct-wiki-api` | `/ct-wiki-api` |
 | 프로젝트 Markdown 위키 운영 | `ct-wiki-ops` | `/ct-wiki-ops` |
 
@@ -56,7 +52,7 @@ grok --permission-mode auto
 ```text
 /ct-plan 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
 /ct-apply 확정된 계획의 남은 작업을 구현·검증하고 완료 상태를 기록해줘
-/ct-qa-flow 주문 취소의 정상·중복·외부 실패 흐름을 검증해줘
+/ct-verify 주문 취소의 정상·중복·외부 실패 흐름이 계획의 요구사항을 충족하는지 검증해줘
 ```
 
 입력과 결과는 [Skill 안내](./skills.md), 이어 붙이는 방법은 [작업 흐름](./workflows.md)에 있어요.
@@ -66,7 +62,7 @@ grok --permission-mode auto
 | 알고 싶은 것 | 문서 |
 | --- | --- |
 | 설치, Skill 위치, `AGENTS.md`와 Config | [환경 설정](./setup.md) |
-| 12개 Skill의 입력과 결과 | [Skill 안내](./skills.md) |
+| 8개 Skill의 입력과 결과 | [Skill 안내](./skills.md) |
 | 여러 Skill을 이어 붙이는 예제 | [작업 흐름](./workflows.md) |
 | Subagent, 모델 연결, MCP와 Plugin | [확장 기능](./extensions.md) |
 | 현재 환경에서 명령을 찾는 방법 | [명령 확인](./commands.md) |

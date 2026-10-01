@@ -22,16 +22,12 @@ Codex의 세션, Worktree, 코드 검토와 병렬 작업 기능으로 개발하
 
 | 목적 | Skill | 시작 예제 |
 | --- | --- | --- |
-| 개발 요구사항의 계획 문서 | `ct-plan` | `$ct-plan` |
-| 확정된 작업의 구현·검증 | `ct-apply` | `$ct-apply` |
-| Spring 구현과 검토 | `ct-code-spring` | `$ct-code-spring` |
-| 호출과 데이터 흐름 분석 | `ct-code-tree` | `$ct-code-tree` |
-| 호출 흐름 기반 테스트 | `ct-code-tree-test` | `$ct-code-tree-test` |
-| QA와 회귀 검증 | `ct-qa-flow` | `$ct-qa-flow` |
-| SQL 성능 분석 | `ct-data-query` | `$ct-data-query` |
-| 실행 스크립트 생성과 검증 | `ct-run-script` | `$ct-run-script` |
-| 코드 정본의 구현 문서 작성과 갱신 | `ct-docs-impl` | `$ct-docs-impl` |
-| Markdown 문서의 형식만 정리 | `ct-docs-md-format` | `$ct-docs-md-format` |
+| 현재 코드의 동작과 영향 분석 | `ct-analyze` | `$ct-analyze` |
+| 개발 문제 탐색과 작업 계획 | `ct-plan` | `$ct-plan` |
+| 확정된 작업의 실행·검증과 완료 기록 | `ct-apply` | `$ct-apply` |
+| 요구사항별 독립 검증 | `ct-verify` | `$ct-verify` |
+| Markdown 문서 생성과 형식 정리 | `ct-docs-md-format` | `$ct-docs-md-format` |
+| Git 이력의 월별·주차별 업무 보고 | `ct-docs-weekly-report` | `$ct-docs-weekly-report` |
 | Confluence REST API 작업 | `ct-wiki-api` | `$ct-wiki-api` |
 | 프로젝트 Markdown 위키 운영 | `ct-wiki-ops` | `$ct-wiki-ops` |
 
@@ -55,7 +51,7 @@ $ct-plan 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해
 | 여러 모듈을 나누어 조사해요 | [병렬 조사](./workflows.md#큰-코드베이스-병렬-조사하기) |
 | 권한 요청이나 파일 접근 문제를 해결해요 | [승인과 샌드박스](./setup.md#승인과-샌드박스) |
 | MCP·Plugin을 연결하고 활용해요 | [확장 기능](./extensions.md) |
-| 계획·구현·QA에 맞는 사용자 Skill을 골라요 | [Skill 안내](./skills.md#선택-기준) |
+| 분석·계획·실행·검증에 맞는 사용자 Skill을 골라요 | [Skill 안내](./skills.md#선택-기준) |
 | 반복 작업을 스크립트나 CI에서 실행해요 | [자동화](./automation.md) |
 | 필요한 명령을 빠르게 찾아요 | [명령 확인](./commands.md) |
 

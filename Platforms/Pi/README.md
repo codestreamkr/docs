@@ -21,16 +21,12 @@
 
 | 목적 | Skill | 시작 예제 |
 | --- | --- | --- |
-| 개발 요구사항의 계획 문서 | `ct-plan` | `/skill:ct-plan` |
-| 확정된 작업의 구현·검증 | `ct-apply` | `/skill:ct-apply` |
-| Spring 구현과 검토 | `ct-code-spring` | `/skill:ct-code-spring` |
-| 호출과 데이터 흐름 분석 | `ct-code-tree` | `/skill:ct-code-tree` |
-| 호출 흐름 기반 테스트 | `ct-code-tree-test` | `/skill:ct-code-tree-test` |
-| QA와 회귀 검증 | `ct-qa-flow` | `/skill:ct-qa-flow` |
-| SQL 성능 분석 | `ct-data-query` | `/skill:ct-data-query` |
-| 실행 스크립트 생성과 검증 | `ct-run-script` | `/skill:ct-run-script` |
-| 코드 정본의 구현 문서 작성과 갱신 | `ct-docs-impl` | `/skill:ct-docs-impl` |
-| Markdown 문서의 형식만 정리 | `ct-docs-md-format` | `/skill:ct-docs-md-format` |
+| 현재 코드의 동작과 영향 범위 분석 | `ct-analyze` | `/skill:ct-analyze` |
+| 개발 요구사항의 탐색과 계획 | `ct-plan` | `/skill:ct-plan` |
+| 확정된 계획의 실행과 검증 | `ct-apply` | `/skill:ct-apply` |
+| 요구사항별 독립 검증 | `ct-verify` | `/skill:ct-verify` |
+| Markdown 파일 생성과 형식 정리 | `ct-docs-md-format` | `/skill:ct-docs-md-format` |
+| Git 이력 기반 주간·월간 보고서 | `ct-docs-weekly-report` | `/skill:ct-docs-weekly-report` |
 | Confluence REST API 작업 | `ct-wiki-api` | `/skill:ct-wiki-api` |
 | 프로젝트 Markdown 위키 운영 | `ct-wiki-ops` | `/skill:ct-wiki-ops` |
 
@@ -73,7 +69,7 @@
 | 알고 싶은 것 | 문서 |
 | --- | --- |
 | 설치, 인증, 프로젝트 신뢰와 `AGENTS.md`·Settings의 책임 | [환경 설정](./setup.md) |
-| 12개 Skill의 입력과 결과 | [Skill 안내](./skills.md) |
+| 사용자 Skill의 입력과 결과 | [Skill 안내](./skills.md) |
 | 여러 Skill을 연결하는 실제 예제 | [작업 흐름](./workflows.md) |
 | Extension, Prompt Template, Provider, Package와 격리 실행의 차이 | [확장 기능](./extensions.md) |
 | 현재 환경에서 명령을 찾는 방법 | [명령 확인](./commands.md) |

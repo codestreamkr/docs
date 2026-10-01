@@ -92,14 +92,17 @@ grok inspect
 ```
 
 ```text
-Skills (31)
-└ ct-code-spring    user
-└ ct-code-tree      user
-└ ct-code-tree-test user
-└ ct-data-query     user
-...
+ct-analyze
+ct-apply
+ct-docs-md-format
+ct-docs-weekly-report
+ct-plan
+ct-verify
+ct-wiki-api
+ct-wiki-ops
 ```
 
+`grok inspect`의 Skill 목록에서 이 이름을 확인해요.  
 세션에서는 `/skills`로 현재 목록을 확인해요.  
 사용자 Skill은 `/ct-*`로 직접 호출해요.
 
