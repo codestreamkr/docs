@@ -1,122 +1,99 @@
 # Claude Code 명령 확인
 
-Claude Code 명령은 버전과 실행 환경에 따라 달라질 수 있어요.  
-전체 목록을 문서에 복제하지 않고 현재 입력창과 공식 문서를 기준으로 확인해요.
+Claude Code는 세션 입력창의 명령과 터미널에서 세션을 여는 명령을 구분해요.  
+목록은 버전, 계정과 실행 환경에 따라 달라지므로 현재 세션과 설치된 CLI를 우선해요.
 
-## 세 가지가 같은 목록에 보여요
+## 입력창에서 사용
 
-입력창에 `/`를 입력하면 성격이 다른 셋이 한 목록에 섞여 나와요.
+세션을 연 뒤 입력창에 자연어 요청을 보내요.  
+`/`로 현재 사용할 수 있는 내장 명령과 Skill을 찾아 선택할 수 있어요.
 
-| 구분 | 누가 관리 | 예 |
+`/` 목록에는 세 종류가 함께 보여요.
+
+| 구분 | 관리 주체 | 예 |
 | --- | --- | --- |
-| 내장 명령 | 제품이 고정 동작으로 제공 | `/context`, `/permissions`, `/clear` |
-| 번들 Skill | 제품이 제공하지만 Claude가 도구로 수행 | `/code-review`, `/security-review`, `/verify` |
-| 사용자 Skill | CodeStream이 관리 | `/ct-plan`, `/ct-apply` |
+| 내장 명령 | Claude Code | `/context`, `/permissions`, `/clear` |
+| 번들 Skill | Claude Code | `/code-review`, `/security-review` |
+| 사용자 Skill | CodeStream 또는 프로젝트 | `/ct-plan`, `/ct-apply` |
 
-역할이 겹칠 때 무엇을 고를지는 [사용자 Skill](./skills.md)의 번들 Skill 비교를 봐요.
+내장 명령이 없거나 이름이 달라 보이면 목록에 표시된 항목을 사용해요.  
+번들 Skill과 CodeStream Skill의 선택은 [사용자 Skill](./skills.md)을 봐요.
 
-## 현재 명령 찾기
-
-아래는 `ct-*` 작업 중에 자주 쓰는 것만 추렸어요.  
-전체 목록은 공식 문서를 봐요.
-
-작업을 시작할 때:
+### 작업 준비와 설정
 
 | 명령 | 용도 |
 | --- | --- |
-| `/help` | 현재 사용할 수 있는 명령 확인 |
-| `/status` | 현재 세션 상태 확인 |
-| `/context` | 컨텍스트 사용량과 적용된 지침 파일 확인 |
-| `/permissions` | 도구 권한 확인과 조정 |
-| `/mcp` | 연결된 MCP 서버와 도구 확인 |
-| `/diff` | 현재 변경 내용 확인 |
+| `/help` | 현재 명령과 사용법 확인 |
+| `/status`, `/context` | 현재 상태와 적용 지침 확인 |
+| `/permissions` | 권한 확인·조정 |
+| `/plan` | 변경 전 계획 모드로 전환 |
+| `/model`, `/effort`, `/fast` | 모델과 응답 방식 조정 |
+| `/mcp`, `/plugin` | 외부 연결과 Plugin 관리 |
+| `/init`, `/memory` | 프로젝트 지침 생성·확인 |
+| `/config`, `/doctor` | 설정 확인과 진단 |
 
-세션을 관리할 때:
+### 변경 확인과 검토
+
+| 입력 | 용도 |
+| --- | --- |
+| `/diff` | 변경 내용 확인 |
+| `/code-review` | 번들 Skill로 코드 검토 |
+| `현재 변경에서 동작 문제와 누락된 테스트를 검토해줘` | 대상과 기준을 지정해 자연어 검토 요청 |
+
+변경 확인과 문제 검토는 다른 단계예요.  
+검토 후 수정·재검증은 [작업 흐름](./workflows.md#변경-확인과-검토)으로 이어가요.
+
+### 세션과 병렬 작업
 
 | 명령 | 용도 |
 | --- | --- |
-| `/compact` | 대화를 요약해 컨텍스트 확보 |
-| `/clear` | 새 대화 시작 |
-| `/resume` | 이전 대화로 돌아가기 |
-| `/rewind` | 코드와 대화를 이전 지점으로 되돌리기 |
-| `/model` | 사용할 모델 선택 |
-| `/effort` | 추론 수준 조정 |
-| `/fast` | 같은 모델로 더 빠르게 응답 |
-| `/usage` | 토큰 사용량 확인 |
+| `/compact`, `/clear` | 맥락 요약 또는 새 작업 시작 |
+| `/resume`, `/branch`, `/rewind` | 이전 대화 재개·분기·되돌리기 |
+| `/background`, `/tasks` | 백그라운드 작업과 Subagent 상태 확인 |
+| `/usage` | 사용량 확인 |
 
-작업을 나눠 진행할 때:
+사용자 Skill은 `/ct-plan`, `/ct-apply`처럼 입력해요.  
+반복 실행은 [세션·예약·비대화형 실행](./extensions.md#반복-실행)을 구분해 사용해요.
 
-| 명령 | 용도 |
-| --- | --- |
-| `/plan` | 변경 전 탐색만 하는 계획 모드로 전환 |
-| `/branch` | 현재 대화를 분기해 다른 방향 시도 |
-| `/background` | 현재 세션을 백그라운드로 내리고 계속 실행 |
-| `/tasks` | 백그라운드 작업과 Subagent 상태 확인 |
+## 터미널에서 실행
 
-프로젝트를 준비할 때:
-
-| 명령 | 용도 |
-| --- | --- |
-| `/init` | 프로젝트 `CLAUDE.md` 초안 생성 |
-| `/memory` | 지침 파일 확인과 편집 |
-| `/config` | 설정 확인과 변경 |
-| `/doctor` | 설치와 설정 진단, 수정 제안 |
-| `/plugin` | Plugin 설치와 관리 |
-
-명령이 보이지 않으면 현재 설치 버전과 실행 환경에서 제공되는 목록을 따라요.  
-계정 플랜과 조직 설정에 따라 일부 기능은 보이지 않을 수 있어요.
-
-## CLI에서 확인
-
-설치된 CLI의 기본 명령과 옵션을 확인해요.
+터미널 명령은 세션을 시작·복원·관리하거나 비대화형 자동화에 사용해요.  
+일상 작업마다 새 명령을 실행할 필요는 없어요.
 
 ```bash
+# 프로젝트에서 대화형 세션 열기
+claude
+
+# 이전 세션 계속하기
+claude --continue
+
+# 단일 요청을 자동화나 스크립트에서 실행하기
+claude --print "현재 변경 내용을 검토해줘"
+
+# 현재 설치에서 지원하는 명령과 옵션 확인하기
 claude --help
 ```
 
-| 명령 | 용도 |
+| 용도 | 명령 또는 옵션 |
 | --- | --- |
-| `claude` | 대화형 세션 시작 |
-| `claude "요청"` | 첫 요청과 함께 세션 시작 |
-| `claude -p "요청"` | 비대화형 결과 출력 |
-| `claude -c` | 최근 대화 계속하기 |
-| `claude -r <session>` | 특정 세션 다시 열기 |
-| `claude agents` | 백그라운드 세션 목록 확인 |
-| `claude attach <id>` | 백그라운드 세션을 현재 터미널에서 열기 |
-| `claude stop <id>` | 백그라운드 세션 중지 |
-| `claude mcp` | MCP 서버 설정 관리 |
-| `claude plugin` | Plugin 설치와 관리 |
-| `claude update` | Claude Code 업데이트 |
-| `claude doctor` | 설치와 설정 상태 진단 |
+| 특정 세션 다시 열기 | `claude --resume <session-id>` |
+| 별도 Git worktree에서 세션 열기 | `claude --worktree` |
+| 백그라운드 세션 관리 | `claude --background`, `claude agents`, `claude attach <id>` |
+| 설치와 설정 진단 | `claude doctor` |
+| MCP와 Plugin 관리 | `claude mcp`, `claude plugin` |
+| 버전 확인 | `claude --version` |
 
-자주 사용하는 실행 옵션:
-
-| 옵션 | 용도 |
-| --- | --- |
-| `--add-dir` | 추가 작업 디렉터리 허용 |
-| `--model` | 세션 모델 지정 |
-| `--fallback-model` | 기본 모델이 막혔을 때 쓸 모델 지정 |
-| `--effort` | 추론 수준 지정 |
-| `--permission-mode` | 권한 모드 지정 |
-| `-w, --worktree` | 새 git worktree에서 세션 시작 |
-| `--bg` | 백그라운드 세션으로 시작 |
-| `--safe-mode` | 커스터마이징을 끄고 시작 |
-| `--output-format` | 비대화형 출력 형식 지정 |
-| `--append-system-prompt` | 시스템 프롬프트에 지침 추가 |
-
-권한 확인을 건너뛰는 옵션은 격리된 실행 환경에서만 사용해요.  
-권한 모드별 범위는 [환경 설정](./setup.md)을 봐요.
-
-## 확인 순서
-
-1. 입력창의 `/` 목록에서 현재 명령과 Skill을 찾아요.
-2. CLI 옵션은 설치된 `claude --help`에서 확인해요.
-3. 동작과 지원 범위는 Claude Code 공식 문서에서 확인해요.
+Git 명령은 터미널에서 직접 실행해요.  
+`git diff` 같은 명령을 입력창에 붙여 실행하지 않아요.  
+AI에게 Git 상태나 변경 내용을 자연어로 조회·검토해 달라고 요청할 수 있지만, 그 요청은 Git 명령 자체가 아니에요.
 
 ## 확인 기준
 
-2026-09-23에 Claude Code 2.1.280으로 확인했어요.  
-명령과 옵션은 버전마다 달라지므로 이 문서보다 현재 환경의 출력을 우선해요.
+1. 입력창에서 `/`를 입력해 현재 명령과 Skill을 확인해요.
+2. 터미널에서 `claude --help`와 `claude --version`을 실행해 설치 버전을 확인해요.
+3. 제품 동작은 현재 설치된 도움말과 공식 문서를 대조해요.
+
+이 문서는 2026-10-01에 Claude Code 2.1.283으로 확인했어요.
 
 ## 공식 문서
 

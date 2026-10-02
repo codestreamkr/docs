@@ -1,9 +1,9 @@
 # 07. [중급] Spring/Java 프로젝트 분석과 테스트
 
-Spring + Java 프로젝트에서 Pi로 분석과 테스트를 진행하는 방법을 정리해요.
-
-기본 흐름은 자연어 요청, 파일 참조, bash 실행, 세션 기능을 사용해요.  
-반복되는 테스트 로그 처리는 Extension이나 Pi package로 하네스에 옮길 수 있어요.
+Spring + Java 프로젝트에서 Pi 세션으로 분석과 테스트를 진행하는 방법을 정리해요.  
+기본 흐름은 입력창의 자연어 요청, 파일 참조, `!` 셸 실행과 세션 기능이에요.  
+반복되는 테스트 로그 처리는 Extension이나 Pi package로 하네스에 옮길 수 있어요.  
+이 문서는 설치본 Pi `0.87.1`과 공식 문서를 기준으로 확인했어요.
 
 ## 목차
 
@@ -23,8 +23,8 @@ Spring + Java 프로젝트에서 Pi로 분석과 테스트를 진행하는 방�
 
 작업 전 아래를 확인해요.
 
-```text
-!!git status
+```bash
+git status --short
 ```
 
 프로젝트의 빌드 도구를 확인해요.
@@ -350,3 +350,10 @@ pi install -l ./path/to/my-test-tools
 - 운영 코드와 테스트 코드 중 무엇을 수정할지 명확히 지시해요.
 - 큰 테스트 묶음보다 작은 케이스를 순서대로 추가하는 편이 안전해요.
 - 반복되는 로그 요약은 Extension이나 Pi package로 옮겨요.
+
+## 공식 문서
+
+- [Usage](https://pi.dev/docs/latest/usage)
+- [Sessions](https://pi.dev/docs/latest/sessions)
+- [Extensions](https://pi.dev/docs/latest/extensions)
+- [Packages](https://pi.dev/docs/latest/packages)

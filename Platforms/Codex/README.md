@@ -1,17 +1,26 @@
 # Codex 가이드
 
-Codex의 세션, Worktree, 코드 검토와 병렬 작업 기능으로 개발하고 필요한 CodeStream Skill을 연결해요.
-
-- 공통 작업 절차와 판단 기준: [Playbook](../../Playbooks/README.md)
-- Codex에서 실행·설정·확인하는 방법: 이 가이드
-- 기준: 2026-09-23 공식 문서와 Codex CLI `0.155.1`
-- 터미널 예제는 CLI 기준이에요. 앱 전용 절차는 별도로 표시해요. IDE 확장의 명령은 현재 화면에서 확인해요.
+프로젝트에서 Codex 세션을 열고, 입력창의 명령과 자연어 요청으로 분석·구현·검토를 진행해요.  
+이 가이드는 환경 준비, CodeStream 사용자 Skill과 Codex의 세션·Worktree·확장 기능을 다뤄요.  
+문제 유형별 공통 작업 순서와 판단 기준은 [Playbook](../../Playbooks/README.md)을 봐요.
 
 ## 바로 시작
 
-1. [환경 설정](./setup.md)에서 설치·로그인 후 프로젝트를 열어요.
-2. 다음 요청으로 작업 루트와 실행 방법을 확인해요.
-3. 원하는 변경과 완료 조건을 요청하고, [변경 검토](./workflows.md#구현한-변경-검토하기)로 결과를 확인해요.
+1. [환경 설정](./setup.md)에 따라 설치·인증을 마치고 프로젝트 루트의 터미널에서 세션을 열어요.
+
+```bash
+codex
+```
+
+2. 열린 입력창의 `/status`에서 작업 루트와 권한을 확인하고, `/skills`에서 사용자 Skill을 확인해요.
+3. 필요한 Skill에 대상과 원하는 결과를 지정하거나 자연어로 요청해요.
+4. 변경 뒤 `/diff`와 `/review`로 결과를 확인하고 다음 요청을 이어가요.
+
+```text
+$ct-plan 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
+```
+
+프로젝트를 처음 읽을 때는 다음 요청으로 지침과 실행 방법을 확인해요.
 
 ```text
 현재 작업 루트와 적용된 AGENTS.md를 확인하고,
@@ -22,42 +31,44 @@ Codex의 세션, Worktree, 코드 검토와 병렬 작업 기능으로 개발하
 
 | 목적 | Skill | 시작 예제 |
 | --- | --- | --- |
-| 현재 코드의 동작과 영향 분석 | `ct-analyze` | `$ct-analyze` |
+| 현재 코드의 동작과 영향 범위 분석 | `ct-analyze` | `$ct-analyze` |
 | 개발 문제 탐색과 작업 계획 | `ct-plan` | `$ct-plan` |
 | 확정된 작업의 실행·검증과 완료 기록 | `ct-apply` | `$ct-apply` |
 | 요구사항별 독립 검증 | `ct-verify` | `$ct-verify` |
 | Markdown 문서 생성과 형식 정리 | `ct-docs-md-format` | `$ct-docs-md-format` |
 | Git 이력의 월별·주차별 업무 보고 | `ct-docs-weekly-report` | `$ct-docs-weekly-report` |
-| Confluence REST API 작업 | `ct-wiki-api` | `$ct-wiki-api` |
-| 프로젝트 Markdown 위키 운영 | `ct-wiki-ops` | `$ct-wiki-ops` |
+| 원격 Confluence API 작업 | `ct-wiki-api` | `$ct-wiki-api` |
+| 저장소 안의 Markdown 위키 운영 | `ct-wiki-ops` | `$ct-wiki-ops` |
 
-```text
-$ct-plan 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
-```
+## Codex의 작업 방식
 
-## 결과 확인
+| 필요한 작업 | 사용하는 기능 | 자세히 |
+| --- | --- | --- |
+| 변경 내용 확인과 문제 검토 | `/diff`, `/review` | [변경 확인과 검토](./workflows.md#변경-확인과-검토) |
+| 작업 재개와 대안 비교 | `/resume`, `/fork` | [세션과 맥락 관리](./workflows.md#세션과-맥락-관리) |
+| 파일을 분리해 다른 변경 구현 | Worktree | [별도 작업 공간](./workflows.md#별도-작업-공간에서-구현하기) |
+| 독립된 모듈 병렬 조사 | Subagent 요청과 `/agent` | [병렬 조사](./workflows.md#큰-코드베이스-병렬-조사하기) |
+| 연결된 서비스와 도구 사용 | `/mcp`, `/apps`, `/plugins` | [확장 기능](./extensions.md) |
 
-- 요청한 범위와 실제 변경 파일을 비교해요.
-- 테스트·실행 결과와 미검증 항목을 확인해요.
-- 후속 작업에는 계획 문서가 있으면 경로를 전달하고, 변경 범위와 남은 검증도 함께 알려줘요.
+CLI의 `/` 명령과 앱·IDE의 화면 절차는 구분해요.  
+앱에서 작업 공간을 선택·이동하는 방법은 [Worktree와 Handoff](./workflows.md#별도-작업-공간에서-구현하기)를 봐요.
 
 ## 필요한 문서
 
 | 알고 싶은 것 | 문서 |
 | --- | --- |
-| 중단한 작업을 이어가거나 다른 접근을 시도해요 | [세션 재개·분기](./workflows.md#중단한-작업-이어가기) |
-| 현재 작업과 분리된 공간에서 구현해요 | [Worktree](./workflows.md#별도-작업-공간에서-구현하기) |
-| 구현한 변경의 문제를 찾아 수정해요 | [코드 검토](./workflows.md#구현한-변경-검토하기) |
-| 여러 모듈을 나누어 조사해요 | [병렬 조사](./workflows.md#큰-코드베이스-병렬-조사하기) |
-| 권한 요청이나 파일 접근 문제를 해결해요 | [승인과 샌드박스](./setup.md#승인과-샌드박스) |
-| MCP·Plugin을 연결하고 활용해요 | [확장 기능](./extensions.md) |
-| 분석·계획·실행·검증에 맞는 사용자 Skill을 골라요 | [Skill 안내](./skills.md#선택-기준) |
-| 반복 작업을 스크립트나 CI에서 실행해요 | [자동화](./automation.md) |
-| 필요한 명령을 빠르게 찾아요 | [명령 확인](./commands.md) |
+| 설치, 인증, Skill 위치와 지침·권한·설정 | [환경 설정](./setup.md) |
+| 입력창 명령과 터미널 명령 | [명령 확인](./commands.md) |
+| 사용자 Skill의 입력과 결과 | [사용자 Skill](./skills.md) |
+| Skill 연결, 변경 검토와 세션 관리 | [작업 흐름](./workflows.md) |
+| MCP, Subagent, Rules, Hook과 Plugin | [확장 기능](./extensions.md) |
+| 스크립트와 CI의 반복 실행 | [자동화](./automation.md) |
 
 ## 사용 기준
 
-- CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후 `/skills`에서 확인해요.
-- 사용자 Skill은 `$ct-*` 이름으로 직접 호출해요. 자동 선택과 안내 요청 방식은 [공통 호출 형식](./skills.md#공통-호출-형식)을 봐요.
-- 작업별 입력과 결과는 [Skill 안내](./skills.md)를 기준으로 해요.
-- 제품별 지원 범위와 전체 기능은 [OpenAI 공식 문서](https://learn.chatgpt.com/docs/codex/cli)에서 확인해요.
+- CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후 사용해요.
+- 일상 작업은 열린 세션에서 `$ct-*`, 내장 명령과 자연어 요청으로 이어가요.
+- 터미널 명령은 설치·시작·관리·자동화 등 셸에서 실행할 절차에 사용해요.
+- Git 상태 조회나 변경 검토를 맡길 때는 자연어로 요청하고, Git 명령을 직접 실행할 때는 별도 터미널을 사용해요.
+- 결과에는 변경 범위, 실행한 검증과 미검증 항목이 포함됐는지 확인해요.
+- CLI `0.158.0`과 공식 문서를 기준으로 정리했으며, 현재 지원 범위는 [명령 확인](./commands.md#확인-기준)을 따라요.

@@ -1,14 +1,11 @@
 # Grok Build 작업 흐름
 
-여러 결과가 필요한 작업에서는 앞 단계의 확정된 결과를 다음 Skill의 입력으로 연결해요.
-
-문제 유형별 흐름과 단계별 판단 기준은 [Playbook](../../Playbooks/README.md)에서 관리해요.  
-이 문서는 `/ct-*`를 사람이 잇는 방법만 다뤄요.  
-저장된 오케스트레이션인 `/workflow`와 `/goal`은 [Workflow와 Agent Profile](./reference/03-workflows-and-profiles.md)을 봐요.  
+여러 결과가 필요한 작업은 열린 세션에서 앞 단계의 확정 결과를 다음 Skill 입력으로 넘겨요.  
+문제 유형별 흐름과 판단 기준은 [Playbook](../../Playbooks/README.md)에서 관리해요.
 
 ## 호출과 연결
 
-Skill 이름 앞에 `/`를 붙이고, 앞 단계가 만든 결과를 다음 호출에서 지정해요.
+입력창에서 Skill과 대상 정보를 함께 보내요.
 
 ```text
 /ct-plan 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
@@ -18,19 +15,52 @@ Skill 이름 앞에 `/`를 붙이고, 앞 단계가 만든 결과를 다음 호�
 /ct-verify 주문 취소의 정상·중복·외부 실패 흐름이 계획의 요구사항을 충족하는지 검증해줘
 ```
 
-다음 단계에 넘길 항목은 [Playbook 공통 기준](../../Playbooks/README.md#공통-기준)을 따르고, 대화만으로 대상을 구분하기 어려우면 결과 파일 경로를 함께 지정해요.
+대화만으로 대상을 구분하기 어렵다면 계획 파일이나 결과 파일의 경로를 다음 요청에 함께 적어요.
 
-## 긴 작업의 맥락 관리
+## 변경 확인과 검토
 
-단계가 이어지면 현재 세션에 남은 맥락을 확인해요.
+변경 후에는 `현재 변경 내용을 검토해줘`라고 요청하거나, 필요하면 터미널에서 Git 상태를 확인해요.
 
-- `/compact`: 확정된 결과만 남기고 대화 요약
-- `/new`: 앞 단계와 무관한 새 작업 시작
-- `/rewind`: 이전 요청 지점으로 대화를 되돌려요. 디스크의 파일은 그대로 둬요
-- `/resume`: 중단한 이전 세션을 다시 열기
+```bash
+git diff
+git status --short
+```
 
-단계 사이에 맥락을 정리한 경우 다음 Skill 호출에 필요한 결과 문서와 경로를 다시 지정해요.
+`git diff`는 직접 실행하는 터미널 명령이고, 자연어 요청은 Grok Build에 검토를 맡기는 방법이에요.  
+두 입력은 목적 일부가 겹쳐도 같은 명령이 아니에요.  
+요구사항 충족 여부는 마지막에 `ct-verify`로 독립 확인해요.
 
-## 확인
+## 세션과 맥락 관리
 
-각 Skill의 입력과 결과는 [사용자 Skill](./skills.md)에서, 세션 명령은 [명령 확인](./commands.md)에서 확인해요.
+| 상황 | 입력창에서 하는 일 |
+| --- | --- |
+| 확정된 결과를 남기고 대화 줄이기 | `/compact` |
+| 관련 없는 새 작업 시작 | `/new` |
+| 이전 세션 다시 열기 | `/resume` |
+| 다른 방향을 시도할 세션 분기 | `/fork` |
+| 이전 대화 지점으로 돌아가기 | `/rewind` |
+| 세션과 Subagent 상태 보기 | `/dashboard` |
+
+대화를 압축하거나 새 세션을 열면 다음 Skill 호출에 계획과 결과의 경로를 다시 적어요.
+
+## Grok Build 고유 작업
+
+구현 전에 제품의 Plan 모드에서 계획을 검토할 수 있어요.  
+반복되는 연결은 `/workflow`, 여러 차례 계속할 목표는 `/goal`로 관리할 수 있어요.  
+독립 작업은 Subagent로 나누고, 같은 체크아웃과 간섭하면 안 되는 작업은 터미널의 `grok --worktree`로 분리해요.  
+상세 기준은 [권한과 Plan 모드](./reference/01-permissions-and-plan-mode.md), [세션과 Subagent](./reference/02-sessions-and-subagents.md), [Workflow와 Agent Profile](./reference/03-workflows-and-profiles.md)을 봐요.
+
+## 함께 사용하는 문서
+
+- Skill별 입력과 결과는 [사용자 Skill](./skills.md)을 봐요.
+- 권한, 지침과 설정은 [환경 설정](./setup.md)을 봐요.
+- Subagent, MCP, Hook과 Plugin의 역할은 [확장 기능](./extensions.md)을 봐요.
+
+## 확인 기준
+
+다음 단계로 넘어가기 전에 앞 단계의 결과, 남은 결정과 결과 파일 경로가 요청에 포함됐는지 확인해요.
+
+## 공식 문서
+
+- [Grok Build 개요](https://docs.x.ai/build/overview)
+- [Settings](https://docs.x.ai/build/settings)

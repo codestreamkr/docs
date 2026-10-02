@@ -1,13 +1,15 @@
 # 03. [중급] Pi 확장과 자동화
 
-Pi의 하네스 강점을 서로 다른 방식으로 직접 확인해요.
-
+Pi의 확장 수단을 서로 다른 방식으로 직접 확인해요.  
 이 문서는 [Pi 기본 개념](./02-understanding-core-concepts.md)의 `Pi가 잘하는 작업 방식`을 실습으로 연결해요.  
-같은 형태의 Extension 예제를 반복하지 않고, 설치해서 쓰기, 명령으로 쓰기, 도구로 쓰기, provider 연결, SDK/RPC 내장, 세션 분기까지 다른 패턴으로 나눠 확인해요.
+같은 형태의 Extension 예제를 반복하지 않고, 설치해서 쓰기, 명령으로 쓰기, 도구로 쓰기, provider 연결, SDK/RPC 내장, 세션 분기까지 다른 패턴으로 나눠 확인해요.  
+실습 기준은 설치본 Pi `0.87.1`과 공식 문서예요.  
+Extension, SDK와 RPC 예제는 이 버전의 문서와 타입 선언을 기준으로 읽어요.  
+확인 필요: 예제의 API 호환성과 외부 서비스 연결은 사용할 프로젝트에서 실행해 확인해요.
 
 ## 1. 실습 전 준비
 
-프로젝트 루트에서 Pi를 실행해요.
+프로젝트 루트의 터미널에서 Pi 세션을 열어요.
 
 ```bash
 cd /path/to/project
@@ -20,7 +22,7 @@ pi
 mkdir -p .pi/extensions
 ```
 
-Extension이나 package를 추가한 뒤에는 Pi 안에서 다시 로드해요.
+Extension이나 Package를 추가한 뒤에는 열린 Pi 세션의 입력창에서 다시 로드해요.
 
 ```text
 /reload
@@ -584,7 +586,7 @@ Pi에서 `/login`을 완료했거나 사용할 provider의 API 키 환경 변수
 mkdir pi-sdk-practice
 cd pi-sdk-practice
 npm init -y
-npm install --ignore-scripts @earendil-works/pi-coding-agent@0.80.6
+npm install --ignore-scripts @earendil-works/pi-coding-agent@0.87.1
 mkdir -p scripts
 ```
 
@@ -660,7 +662,7 @@ RPC 모드는 Pi를 별도 프로세스로 실행하고 외부 프로그램에�
 
 ### 사전 조건
 
-Pi 0.80.6 이상에서 `/login`을 완료했거나 provider API 키 환경 변수를 설정해요.  
+Pi 0.87.1에서 `/login`을 완료했거나 provider API 키 환경 변수를 설정해요.  
 요청 파일을 둘 디렉터리를 만들어요.
 
 ```bash
@@ -839,44 +841,20 @@ pi install -l ./path/to/my-pi-package
 
 ## 14. Customization 선택 기준
 
-Customization 리소스는 목적에 맞게 나눠 써요.
-
-| 목적 | 우선 선택 | 기준 |
-| --- | --- | --- |
-| 외부 시스템 API 호출 | Extensions | 인증, 요청, 응답 가공이 필요할 때 |
-| 모델이 직접 쓸 실행 기능 | Custom tool | Extension 안에서 `registerTool`로 등록 |
-| 반복 업무 절차 표준화 | Skills | 순서, 판단 기준, 참고 문서가 중요할 때 |
-| 반복 요청 단축 | Prompt Templates | 실행 코드 없이 프롬프트만 재사용할 때 |
-| 화면 색상 조정 | Themes | TUI 시인성을 바꿀 때 |
-| 여러 리소스 묶음 배포 | Pi Packages | 팀 공통 기능을 설치형으로 배포할 때 |
-| 로컬/사내 모델 추가 | Custom Models | 설정만으로 OpenAI 호환 모델을 붙일 때 |
-| 모델 연결 로직 구현 | Custom Providers | 프록시, SSO, 동적 모델 조회, 비표준 API가 필요할 때 |
-
-전역과 프로젝트 적용 기준은 아래와 같아요.
-
-| 범위 | 위치 | 사용 기준 |
-| --- | --- | --- |
-| 전역 | `~/.pi/agent/*` | 모든 프로젝트에서 반복 사용 |
-| 프로젝트 | `.pi/*` | 해당 프로젝트에만 필요한 기능 |
-| 패키지 | npm, git, local path | 여러 리소스를 묶어 공유 |
+기본 선택 기준과 전역·프로젝트·Package 적용 범위는 [Pi 확장 기능](../extensions.md#선택-기준)에서 관리해요.  
+이 실습에서는 각 패턴의 목표, 코드와 확인 결과를 기준으로 필요한 방식을 비교해요.
 
 ## 15. 패턴 선택 기준
 
-작업 성격에 따라 하네스 활용 방식을 골라요.
+반복 절차는 먼저 Skill이나 Prompt Template로 충분한지 확인해요.  
+도구 호출, 이벤트 처리, 모델 연결처럼 코드 실행이 필요하면 Extension을 선택해요.  
+같은 리소스를 여러 프로젝트에 배포할 때만 Package로 묶어요.  
+SDK, RPC와 JSON 모드는 대화형 세션이 아니라 다른 프로그램의 실행 경계를 만들 때 사용해요.
 
-| 하고 싶은 일 | 우선 선택 |
-| --- | --- |
-| 짧은 입력을 긴 지시로 바꾸기 | Extension `input` |
-| 긴 로그를 자동 정리하기 | Extension `tool_result` |
-| 반복 프롬프트 실행하기 | prompt template |
-| 작업 절차와 참고 문서 불러오기 | skill |
-| 로컬/외부 정보를 모델이 조회하게 하기 | custom tool |
-| Jira 이슈나 Confluence 문서를 함께 조회하기 | custom tool 또는 Pi package |
-| 모델 endpoint나 인증 방식 바꾸기 | custom provider |
-| 이미 있는 기능 가져오기 | Pi package 설치 |
-| 여러 프로젝트에 배포하기 | Pi package 제작 |
-| CI, 봇, 내부 도구에 넣기 | SDK |
-| 다른 언어에서 프로세스로 붙이기 | RPC |
-| 단일 실행 이벤트를 수집하기 | JSON 이벤트 스트림 |
-| 터미널 안에서 선택·확인 UI 만들기 | TUI Components |
-| 다른 해결 방향 비교하기 | `/tree`, `/fork`, `/clone` |
+## 공식 문서
+
+- [Extensions](https://pi.dev/docs/latest/extensions)
+- [Packages](https://pi.dev/docs/latest/packages)
+- [SDK](https://pi.dev/docs/latest/sdk)
+- [RPC Mode](https://pi.dev/docs/latest/rpc)
+- [CLI Integration](https://pi.dev/docs/latest/cli-integration)

@@ -1,103 +1,81 @@
 # Antigravity 확장 기능
 
-필요한 책임에 맞는 확장 수단을 선택해요.
+반복 절차, 지속 규칙, 외부 도구와 자동 검사는 서로 다른 확장 수단으로 관리해요.  
+일상 작업은 세션 입력창에서 요청하고, 확장은 재사용하거나 강제할 기준이 있을 때만 추가해요.
 
-## 선택표
+## 선택 기준
 
-| 필요한 것 | 선택 |
-| --- | --- |
-| 프로젝트에서 계속 적용할 작업 기준 | `GEMINI.md` 또는 `AGENTS.md` |
-| 특정 디렉터리와 모듈에만 적용할 기준 | 하위 디렉터리 `GEMINI.md` / `AGENTS.md` |
-| 파일 경로와 영역별 세부 규칙 | `.agents/rules/*.md` |
-| 반복 가능한 작업 절차, 전문 지식과 자원 | Skill |
-| 분리 가능한 작업의 별도 컨텍스트 | Subagent |
-| 외부 API, 서비스와 실시간 데이터 | MCP |
-| 도구 실행 전후의 결정적 자동 검사 | Hook |
-| 여러 구성요소를 묶어 배포하는 단위 | Plugin |
+| 필요한 것 | 선택 | 기본 위치 |
+| --- | --- | --- |
+| 프로젝트 작업 기준 | `AGENTS.md` 또는 `GEMINI.md` | 작업 공간 루트 또는 관련 디렉터리 |
+| 세부 규칙 | Rules | `.agents/rules/` |
+| 반복 가능한 절차·전문 지식 | Skill | `.agents/skills/` |
+| 분리된 역할의 병렬 작업 | Custom subagent | Plugin 또는 사용자 정의 위치 |
+| 외부 서비스의 도구·데이터 | MCP | `.agents/mcp_config.json` |
+| 도구 실행 전후 자동 검사 | Hook | `.agents/hooks.json` |
+| 여러 확장의 배포 | Plugin | Plugin 디렉터리 |
 
 ## Rules
 
-Rules는 프로젝트와 디렉터리에서 작업할 때 에이전트가 지켜야 할 원칙과 제약을 명시해요.
-
-- 파일 위치: 저장소 루트 및 하위 디렉터리의 `GEMINI.md`, `AGENTS.md`, `.agents/rules/*.md`
-- 자동 탐색: 현재 작업 디렉터리(CWD)에서 저장소 루트(`.git`)까지 거슬러 올라가며 모든 지침 파일을 자동으로 찾아 적용해요.
-- 크기 제한: 파일당 24KB 이하(권장 200줄 이하)로 유지해요.
-- 컨텍스트 예산 관리: 전체 Rules는 20,000 토큰 예산을 공유해요. 규칙 파일이 예산을 넘으면 에이전트에게 전체 텍스트 대신 파일 경로 포인터로 축소 제공되어 컨텍스트 폭발을 방지해요.
-- 자동 중복 제거: 하위 폴더나 중첩 경로에서 동일 파일이 여러 번 발견되더라도 세션 턴당 단 한 번만 주입돼요.
-- 포맷 호환: Antigravity는 Google 표준인 `GEMINI.md`와 업계 표준인 `AGENTS.md`를 모두 동등하게 인식하므로 기존 프로젝트 형식을 그대로 활용할 수 있어요.
+`AGENTS.md` 또는 `GEMINI.md`에는 프로젝트 전반의 짧은 작업 기준과 정본 위치를 둬요.  
+경로별 세부 규칙은 `.agents/rules/`의 Markdown 파일로 분리해요.  
+반복 절차를 길게 적어야 하면 Rules 대신 Skill을 만들어요.
 
 ## Skill
 
-Skill은 반복 가능한 작업의 입력, 절차, 결과와 필요한 자원을 묶어요.
+Skill은 `SKILL.md`와 선택적인 스크립트·예제·리소스를 묶은 폴더예요.  
+세션 시작 시 이름과 설명을 확인하고, 요청과 맞으면 에이전트가 전체 지시를 읽어요.  
+사용자가 명시적으로 실행하려면 입력창에서 `/<skill-name>`을 입력해요.
 
-- 개인 위치: `~/.gemini/config/skills/<name>/SKILL.md` (홈 디렉터리의 `~/.agents`는 전역으로 읽지 않으므로 심볼릭 링크로 연결해요)
-- 프로젝트 위치: `<repo>/.agents/skills/<name>/SKILL.md`
-- 직접 호출: `/skill-name` 또는 `/ct-*`
-- 점진적 공개(Progressive Disclosure): 평소에는 이름과 설명(`description`)만 시스템에 주입되고, 호출 시에만 `SKILL.md` 본문과 관련 리소스를 읽어 토큰을 절약해요.
-- 부속 디렉터리: 복잡한 문서는 `references/`, 실행 유틸리티는 `scripts/`, 예제는 `examples/`에 분리해 보관해요.
+CLI에서 사용할 위치와 CodeStream Skill 연결 방법은 [환경 설정](./setup.md#사용자-skill)을 봐요.
 
-현재 사용자 Skill과 호출 예제는 [Skill 안내](./skills.md)에서 확인해요.
+## Custom subagent
 
-## Subagent
-
-서로 독립된 조사, 검증이나 대규모 구현을 별도 컨텍스트로 나눌 때 사용해요.
-
-- 메인 대화의 컨텍스트 윈도우를 소모하지 않고 독립된 서브 프로세스(Subagent Trajectory)로 작업을 위임해요.
-- 역할별로 특화된 도구 권한(읽기 전용, 편집 가능 등)과 모델을 지정해 병렬 탐색이나 백엔드/프론트엔드 모듈별 동시 구현을 진행할 수 있어요.
-- 서브에이전트가 백그라운드 작업을 마치면 시스템이 자동으로 상위 에이전트를 깨우므로 별도의 대기 루프가 필요하지 않아요.
-
-## Plugin과 플랫폼 호환
-
-Skills, Rules, Hooks, MCP Server 설정을 하나의 배포 단위로 패키징할 때 사용해요.
-
-- 디렉터리 위치: `<repo>/.agents/plugins/<name>/`
-- 필수 매니페스트: `plugin.json`
-- CLI 관리 명령:
-  ```bash
-  # 설치된 플러그인 목록 확인
-  agy plugin list
-
-  # 플러그인 설치 및 유효성 검증
-  agy plugin install <target>
-  agy plugin validate [path]
-  ```
-- **타 플랫폼 플러그인 가져오기(Import)**: Claude Code나 Gemini에서 사용하던 기존 플러그인을 바로 가져오는 명령을 지원해요:
-  ```bash
-  agy plugin import claude
-  agy plugin import gemini
-  ```
-
-## Hook
-
-에이전트의 생명주기 이벤트(도구 실행 전후, 세션 시작 등)에 연결해 스크립트를 자동으로 실행해요.
-
-- 설정 파일: `<repo>/.agents/hooks.json`
-- 파일 편집 전 자동 백업, 코드 수정 직후 자동 린트 검사, 금지된 명령어 필터링 등 결정론적 검증을 안전하게 강제할 때 유용해요.
+서로 독립적인 조사·검증·구현을 별도 맥락으로 나눌 때 사용해요.  
+입력창의 `/agents`로 현재 에이전트와 백그라운드 서브에이전트를 확인해요.  
+역할·권한·도구는 서브에이전트 정의에서 필요한 만큼만 지정해요.
 
 ## MCP
 
-외부 시스템의 최신 데이터를 읽거나 외부 도구를 연결할 때 사용해요.
+MCP는 데이터베이스, 로컬 개발 도구, 원격 API 같은 외부 도구와 최신 데이터를 연결해요.  
+CLI에서 `/mcp`로 상태와 연결 로그를 확인하고, 전역 또는 작업 공간 설정으로 관리해요.
 
-- 프로젝트 설정: `<repo>/.agents/mcp_config.json`
-- 개인 설정: `~/.gemini/config/mcp_config.json`
-- CLI 관리:
-  ```bash
-  # MCP 서버 등록
-  agy mcp add <name> -- <command> [args...]
+| 범위 | 위치 |
+| --- | --- |
+| 개인 전역 | `~/.gemini/config/mcp_config.json` |
+| 작업 공간 | `.agents/mcp_config.json` |
 
-  # 목록 조회 및 상태 변경
-  agy mcp list
-  agy mcp enable <name>
-  agy mcp disable <name>
-  ```
+비밀값과 권한 범위는 MCP 서버의 인증 방식과 Antigravity 권한 정책을 함께 검토해요.
 
-IntelliJ IDEA MCP나 데이터베이스 MCP를 붙이면 디버거 세션 상태 조회 및 실시간 스키마 분석 도구가 에이전트에 자연스럽게 노출돼요.
+## Hook
+
+Hook은 도구 실행 전후 또는 에이전트 실행 단계에 셸 명령을 연결해 검사와 형식화를 자동화해요.  
+CLI는 작업 공간 `.agents/hooks.json`, 전역 `~/.gemini/config/hooks.json`, `~/.gemini/antigravity-cli/settings.json`, Plugin의 `hooks.json`을 지원해요.  
+현재 로드된 Hook은 입력창의 `/hooks`에서 확인해요.
+
+Hook에는 안전하고 빠르며 결과가 일정한 검사만 넣어요.
+
+## Plugin
+
+Plugin은 `plugin.json`을 필수 매니페스트로 사용하고 Skill·Subagent·Rule·MCP·Hook을 함께 배포해요.  
+설치된 Plugin은 입력창의 `/plugin` 또는 터미널의 `agy plugin list`로 확인해요.
+
+```bash
+agy plugin --help
+agy plugin list
+```
+
+## 확인 기준
+
+- 작업 기준, 반복 절차, 자동 검사, 외부 도구의 책임이 겹치지 않아요.
+- `/skills`, `/agents`, `/mcp`, `/hooks`에서 필요한 확장이 로드된 것을 확인해요.
+- 공유 설정에는 비밀값을 저장하지 않아요.
 
 ## 공식 문서
 
-- [Antigravity Customization System](https://antigravity.google/docs)
-- [Skills Guide](https://antigravity.google/docs/skills)
-- [Rules & Workflows](https://antigravity.google/docs/rules-workflows)
-- [Plugins Guide](https://antigravity.google/docs/plugins)
-- [Hooks Guide](https://antigravity.google/docs/hooks)
-- [MCP Guide](https://antigravity.google/docs/mcp)
+- [Antigravity Agent Skills](https://antigravity.google/docs/skills)
+- [Antigravity Rules](https://antigravity.google/docs/rules)
+- [Antigravity Custom Subagents](https://antigravity.google/docs/subagents/)
+- [Antigravity MCP](https://antigravity.google/docs/mcp)
+- [Antigravity Hooks](https://antigravity.google/docs/hooks)
+- [Antigravity Plugins](https://antigravity.google/docs/plugins)

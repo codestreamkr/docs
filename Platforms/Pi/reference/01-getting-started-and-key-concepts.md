@@ -1,125 +1,68 @@
 # 01. [초급] Pi 시작하기
 
-Pi는 터미널에서 사용하는 코딩 에이전트 하네스예요.
+Pi를 처음 설치한 뒤 프로젝트에서 대화형 세션을 열고 작업하는 흐름을 실습해요.  
+설치·인증·Skill·지침의 정본 절차는 [Pi 환경 설정](../setup.md)을 봐요.  
+이 문서는 설치본 Pi `0.87.1`과 공식 문서를 기준으로 확인했어요.
 
-단순히 답변만 받는 채팅 도구가 아니라, 현재 프로젝트 안에서 파일을 읽고, 수정하고, 명령을 실행하며 작업을 이어가는 도구로 보면 돼요.
+## 1. 설치와 세션 열기
 
-이 문서는 Pi `0.80.6`을 기준으로 해요.
-
-## 1. 설치
-
-Pi는 Node.js `22.19.0` 이상에서 npm 패키지로 설치해요.
-
-먼저 버전을 확인해요.
+Node.js 버전과 Pi 설치 상태를 확인해요.
 
 ```bash
 node --version
-npm --version
-```
-
-Pi를 설치해요.
-
-```bash
-npm install -g --ignore-scripts @earendil-works/pi-coding-agent
-```
-
-`--ignore-scripts`는 설치 중 의존성 lifecycle script 실행을 막아요.  
-Pi의 일반 npm 설치에는 install script가 필요하지 않아요.
-
-설치 결과를 확인해요.
-
-```bash
 pi --version
 ```
 
-설치 후 작업할 프로젝트 디렉토리에서 실행해요.
+Pi가 없다면 [환경 설정의 설치 절차](../setup.md#설치와-첫-실행)를 따라 설치해요.  
+프로젝트 루트의 터미널에서 세션을 열어요.
 
 ```bash
 cd /path/to/project
 pi
 ```
 
-Windows에서는 bash 셸이 필요해요.  
-보통 Git for Windows를 설치하면 충분해요.
+Windows에서는 Pi가 실행할 bash가 필요해요.  
+`shellPath`, Git for Windows의 `bash.exe`, PATH의 `bash.exe` 순으로 찾는지 현재 Settings와 설치 환경에서 확인해요.
 
-Pi가 Windows에서 bash를 찾는 순서는 아래와 같아요.
+## 2. 입력창에서 첫 분석하기
 
-1. `~/.pi/agent/settings.json`의 `shellPath`
-2. `C:\Program Files\Git\bin\bash.exe`
-3. PATH에 있는 `bash.exe`
+Pi가 열리면 입력창에서 프로젝트의 구조와 검증 방법을 먼저 확인해요.
 
-## 2. 로그인
+```text
+이 저장소 구조를 요약하고, 테스트 실행 방법을 근거 파일과 함께 알려줘.
+아직 파일은 수정하지 마.
+```
 
-Pi는 구독 로그인과 API 키 방식을 모두 지원해요.
+Pi는 기본적으로 `read`, `write`, `edit`, `bash` 도구를 제공하고 `grep`, `find`, `ls`도 필요할 때 사용할 수 있어요.  
+권한과 도구 제한은 [도구 범위와 프로젝트 신뢰](../setup.md#권한과-실행-범위)를 봐요.
 
-### 구독 로그인
+## 3. 로그인과 모델 선택
 
-Pi 실행 후 아래 명령을 입력해요.
+처음 인증할 때는 Pi 입력창에서 `/login`을 입력해요.  
+API 키를 환경 변수로 쓰거나 모델과 thinking을 바꾸는 기준은 [인증](../setup.md#인증)과 [모델과 실행 설정](../setup.md#모델과-실행-설정)을 봐요.
 
 ```text
 /login
+/model
+/thinking
 ```
 
-선택 가능한 구독 로그인 예시는 아래와 같아요.
+## 4. Project Trust 실습
 
-- Claude Pro/Max
-- ChatGPT Plus/Pro(Codex)
-- GitHub Copilot
-
-로그인 정보는 `~/.pi/agent/auth.json`에 저장돼요.
-
-> Claude Pro/Max 구독 인증은 Claude 플랜 한도와 별개로 Anthropic extra usage 과금이 발생할 수 있어요.
-
-### API 키
-
-환경 변수로 API 키를 지정한 뒤 실행할 수 있어요.
-
-```bash
-export ANTHROPIC_API_KEY=sk-ant-...
-pi
-```
-
-또는 `/login`에서 API 키 제공자를 선택해 `auth.json`에 저장할 수 있어요.
-
-## 3. 첫 요청
-
-Pi가 실행되면 바로 요청을 입력하고 Enter를 눌러요.
+Pi는 프로젝트의 `.pi/` 자원과 `.agents/skills/`를 읽기 전에 신뢰 여부를 확인해요.  
+신뢰할 대상의 소스와 동작 범위를 먼저 보고, Pi 입력창에서 `/trust`로 결정을 저장해요.
 
 ```text
-이 저장소 구조를 요약하고, 테스트 실행 방법을 알려줘.
+/trust
 ```
 
-Pi는 기본적으로 아래 도구를 모델에 제공해요.
+신뢰하지 않으면 프로젝트 설정, Extension, Prompt와 Skill을 건너뛰어요.  
+`AGENTS.md`와 `CLAUDE.md`는 컨텍스트 파일 설정에 따라 별도로 읽어요.  
+이번 실행에서만 신뢰 동작을 바꾸는 `--approve`, `--no-approve`는 자동화와 관리용 터미널 옵션이에요.
 
-| 도구 | 역할 |
-| --- | --- |
-| `read` | 파일 읽기 |
-| `write` | 파일 생성 또는 전체 덮어쓰기 |
-| `edit` | 기존 파일 일부 수정 |
-| `bash` | 셸 명령 실행 |
+## 5. 지침 파일 실습
 
-추가로 읽기 전용 도구인 `grep`, `find`, `ls`도 사용할 수 있어요.
-
-## 4. Pi 주요 개념
-
-- 현재 작업 디렉토리를 기준으로 동작해요.
-- 프로젝트 파일을 읽고 수정할 수 있어요.
-- 터미널 명령을 실행할 수 있어요.
-- 대화는 세션으로 자동 저장돼요.
-- 이전 세션을 다시 열거나, 중간 지점에서 분기할 수 있어요.
-- 컨텍스트가 길어지면 요약(compaction)으로 이어갈 수 있어요.
-- 모델과 thinking level을 작업 중에 바꿀 수 있어요.
-
-Pi는 기본 기능을 작게 유지하는 도구예요.  
-MCP, 웹 검색, sub-agent, plan mode, todo 같은 기능은 기본 탑재가 아니며, 필요하면 외부 도구나 확장으로 구성해요.
-
-> 처음에는 "Pi가 답한다"보다 "Pi가 프로젝트 안에서 작업한다"로 이해하면 빨라요.
-
-## 5. 프로젝트 지침 파일
-
-Pi는 시작 시 프로젝트 지침 파일을 읽어요.
-
-대표 파일은 `AGENTS.md`예요.
+프로젝트의 계속 적용할 기준은 `AGENTS.md`에 적어요.
 
 ```markdown
 # Project Instructions
@@ -129,77 +72,20 @@ Pi는 시작 시 프로젝트 지침 파일을 읽어요.
 - 답변은 간결하게 한다.
 ```
 
-Pi는 시작 시 `~/.pi/agent/AGENTS.md`를 전역 지침으로 읽고, 현재 작업 디렉토리에서 상위 디렉토리 방향으로 올라가며 발견되는 `AGENTS.md` 또는 `CLAUDE.md`를 컨텍스트 파일로 자동 로드해요.
+지침을 바꾼 뒤에는 새 Pi 세션을 열거나 입력창에서 `/reload`를 실행해 반영을 확인해요.
 
-지침 파일을 수정했다면 Pi를 재시작하거나 아래 명령으로 다시 읽어요.
+## 6. 다음 단계
 
-```text
-/reload
-```
-
-## 6. Project Trust
-
-Project Trust는 프로젝트가 Pi의 로컬 설정과 리소스를 불러오도록 승인하는 기준이에요.
-
-아래 프로젝트 리소스가 있으면 신뢰 결정이 필요해요.
-
-- `.pi/settings.json`
-- `.pi/extensions`, `.pi/skills`, `.pi/prompts`, `.pi/themes`
-- `.pi/SYSTEM.md`, `.pi/APPEND_SYSTEM.md`
-- 현재 디렉토리 또는 상위 디렉토리의 `.agents/skills`
-
-대화형 실행에서는 현재 디렉토리나 상위 디렉토리에 저장된 결정이 없으면 신뢰 여부를 물어요.  
-신뢰하면 프로젝트 설정과 리소스를 불러오고, 프로젝트 설정에 지정된 누락 package를 설치하며, 프로젝트 Extension을 실행할 수 있어요.
-
-신뢰하지 않으면 보호 대상 리소스를 건너뛰어요.  
-`AGENTS.md`와 `CLAUDE.md`는 컨텍스트 파일 로드를 끄지 않은 경우 Project Trust와 관계없이 불러와요.
-
-현재 프로젝트의 신뢰 결정을 저장하려면 아래 명령을 사용해요.
-
-```text
-/trust
-```
-
-결정은 `~/.pi/agent/trust.json`에 저장돼요.  
-현재 세션은 자동으로 다시 로드되지 않으므로 Pi를 재시작해야 적용돼요.
-
-비대화형 모드인 `-p`, `--mode json`, `--mode rpc`는 신뢰 확인 창을 표시하지 않아요.  
-한 번의 실행에만 결정을 지정하려면 아래 옵션을 사용해요.
-
-```bash
-pi --approve -p "이 프로젝트를 요약해줘."
-pi --no-approve -p "프로젝트 로컬 리소스를 제외하고 구조를 요약해줘."
-```
-
-- `--approve`, `-a`: 이번 실행에서 프로젝트 로컬 리소스를 신뢰해요.
-- `--no-approve`, `-na`: 이번 실행에서 프로젝트 로컬 리소스를 제외해요.
-
-Project Trust는 프로젝트 입력 리소스의 로드를 제어하며 sandbox를 제공하지 않아요.  
-Pi와 Extension은 Pi를 실행한 사용자 계정의 권한으로 파일과 명령에 접근해요.
-
-## 7. 문서 읽는 순서
-
-처음 사용하는 경우 아래 순서로 보면 돼요.
-
-| 상황 | 볼 문서 |
+| 상황 | 문서 |
 | --- | --- |
-| 설치와 첫 실행 | [Pi 시작하기](./01-getting-started-and-key-concepts.md) |
-| 화면 구조와 핵심 개념 이해 | [Pi 기본 개념](./02-understanding-core-concepts.md) |
-| 자주 쓰는 명령 확인 | [Pi 기본 명령](./06-basic-commands.md) |
-| 새 프로젝트에 적용 | [프로젝트 시작](./04-starting-a-project.md) |
-| 실제 코딩 작업 | [프로젝트 코딩](./05-project-cooking.md) |
-| Spring/Java 분석과 테스트 | [Spring/Java 프로젝트 분석과 테스트](./07-analysis-and-testing.md) |
-| 확장, package, SDK/RPC 실습 | [Pi 확장과 자동화](./03-applying-core-concepts.md) |
+| 화면, 모델, 세션과 자원 이해 | [02. Pi 기본 개념](./02-understanding-core-concepts.md) |
+| 입력창 명령과 단축키 | [06. Pi 기본 명령](./06-basic-commands.md) |
+| 새 프로젝트에 Pi 적용 | [04. 프로젝트 시작](./04-starting-a-project.md) |
+| 실제 구현과 검증 | [05. 프로젝트 코딩](./05-project-cooking.md) |
+| Extension, Package, SDK와 RPC | [03. Pi 확장과 자동화](./03-applying-core-concepts.md) |
 
-## 8. 기본 사용 흐름
+## 공식 문서
 
-```text
-1. 프로젝트 폴더에서 pi 실행
-2. Project Trust 결정
-3. /login 또는 API 키로 인증
-4. /model로 모델 선택
-5. AGENTS.md로 프로젝트 규칙 정리
-6. 자연어로 작업 요청
-7. 변경 내용을 확인하고 테스트 실행
-8. 필요하면 /compact 또는 /new로 세션 관리
-```
+- [Quickstart](https://pi.dev/docs/latest/quickstart)
+- [Usage](https://pi.dev/docs/latest/usage)
+- [Security](https://pi.dev/docs/latest/security)

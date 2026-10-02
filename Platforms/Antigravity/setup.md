@@ -1,82 +1,47 @@
 # Antigravity 환경 설정
 
-사용자 공통 확장, 프로젝트 작업 기준과 Antigravity 실행 설정을 역할에 맞는 위치에 둬요.
+Antigravity CLI의 설치와 인증을 마친 뒤, Skill·프로젝트 지침·권한·설정을 각각의 책임에 맞는 위치에 둬요.
 
-## 설치와 실행
+## 설치와 첫 실행
 
-Antigravity CLI(`agy`)로 대화형 세션을 실행해요.
+공식 설치 절차로 CLI를 설치한 뒤 프로젝트 루트에서 대화형 세션을 열어요.  
+처음 실행할 때 화면의 안내에 따라 로그인과 인증을 마쳐요.
 
 ```bash
-# 기본 대화형 실행
 agy
-
-# 첫 요청과 함께 대화형 세션 시작
-agy -i "주문 취소 기능 구조를 분석해줘"
-
-# 비대화형 결과 출력
-agy -p "OrderService.java 요약해줘"
-
-# 최근 대화 계속하기
-agy -c
-
-# 특정 세션 다시 열기
-agy --conversation <conversation-id>
-
-# 샌드박스 실행 (터미널 제약 활성화)
-agy --sandbox
-
-# 도구 권한 자동 승인
-agy --dangerously-skip-permissions
-
-# 추론 수준 지정 (low | medium | high)
-agy --effort high
-
-# 실행 모드 지정 (accept-edits | plan)
-agy --mode plan
-
-# 추가 작업 디렉터리 지정
-agy --add-dir ../another-repo
-
-# 그 외 관리 명령
-agy update
-agy changelog
-agy --help
 ```
 
-## 저장 위치
-
-| 위치 | 책임 |
-| --- | --- |
-| `~/.gemini/config/skills/` | 여러 프로젝트에서 개인적으로 사용하는 Skill |
-| `<repo>/.agents/skills/` | 저장소에서 팀과 공유하는 프로젝트 Skill |
-| `<repo>/GEMINI.md` 또는 `<repo>/AGENTS.md` | 프로젝트 작업 기준과 정본 문서 안내 |
-| 하위 폴더 `GEMINI.md` / `AGENTS.md` | 특정 모듈과 하위 디렉터리에 적용할 기준 |
-| `<repo>/.agents/rules/` | 파일 경로와 영역별 규칙 |
-| `<repo>/.agents/plugins/` | 기능 묶음 단위 Plugin |
-| `<repo>/.agents/hooks.json` | 도구 실행 전후 생명주기 Hook |
-| `<repo>/.agents/mcp_config.json` | 저장소 공유 MCP 서버 설정 |
-| `~/.gemini/config/mcp_config.json` | 개인 머신 공통 MCP 서버 설정 |
-| `~/.gemini/antigravity-cli/settings.json` | 사용자 CLI 실행 설정 |
-
-Antigravity가 제공하는 Built-in 커스텀은 시스템이 관리하며, 사용자 커스텀과 이름이 겹치면 Workspace와 사용자 커스텀이 우선해요.
-
-## 사용자 Skill 확인
-
-CodeStream 사용자 Skill(`ct-*`)은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요.  
-`ai-comm-init`는 스킬 정본을 `~/.agents/skills/`에 내려받아요.
-
-Antigravity는 홈 디렉터리의 `~/.agents`를 전역으로 자동 탐색하지 않고 `~/.gemini/config/skills/`를 읽어요.  
-따라서 여러 프로젝트에서 전역으로 사용하려면 심볼릭 링크를 한 번 연결해 둬요.
+설치와 현재 버전·옵션은 다음 명령으로 확인해요.
 
 ```bash
-mkdir -p ~/.gemini/config
-ln -s ~/.agents/skills ~/.gemini/config/skills
+agy --help
+agy changelog
 ```
 
-특정 프로젝트 저장소에서만 공유할 때는 저장소 루트에 `.agents/skills/`로 배치해요.
+세션을 연 뒤 입력창에서 `/help`와 `/skills`를 실행해 현재 명령과 Skill을 확인해요.
+
+## 인증
+
+인증 상태와 제공 모델은 계정·요금제에 따라 달라져요.  
+세션에서 로그인 안내가 나오면 완료한 뒤, `/usage`로 모델 사용량을 확인해요.  
+계정을 연결 해제해야 하면 입력창의 `/logout`을 사용해요.
+
+## 사용자 Skill
+
+CodeStream 사용자 Skill(`ct-*`)은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후 사용해요.  
+CLI는 작업 공간과 전역 위치에서 Skill을 찾아 입력창의 슬래시 명령으로 제공해요.
+
+| 범위 | 위치 |
+| --- | --- |
+| 현재 저장소 | `<workspace-root>/.agents/skills/<skill-folder>/` |
+| 개인 전역 | `~/.gemini/antigravity-cli/skills/<skill-folder>/` |
+| 설치된 Plugin | `~/.gemini/antigravity-cli/plugins/<name>/skills/` |
+
+`ai-comm-init`가 `~/.agents/skills/`에 Skill을 설치했다면 CLI 전역 위치로 복사하거나 심볼릭 링크로 연결한 뒤 새 세션에서 `/skills`로 확인해요.  
+프로젝트 팀과 공유할 Skill은 저장소의 `.agents/skills/`에 둬요.
 
 ```text
-~/.gemini/config/skills/ (또는 <repo>/.agents/skills/)
+<workspace-root>/.agents/skills/
 ├── ct-analyze/
 ├── ct-apply/
 ├── ct-docs-md-format/
@@ -87,12 +52,10 @@ ln -s ~/.agents/skills ~/.gemini/config/skills
 └── ct-wiki-ops/
 ```
 
-새 세션에서 `/` 또는 `/skills`를 입력해 실제 노출 목록을 확인해요.  
-Skill을 추가하거나 수정하면 세션을 다시 시작하지 않아도 반영돼요.
-
 ## 프로젝트 지침
 
-프로젝트에 계속 적용할 짧은 기준과 정본 위치를 `GEMINI.md` 또는 `AGENTS.md`에 적어요.
+프로젝트에 계속 적용할 작업 기준과 정본 위치는 `AGENTS.md` 또는 `GEMINI.md`에 적어요.  
+세부 규칙을 분리해야 하면 `.agents/rules/`의 Markdown 파일을 사용해요.
 
 ```markdown
 # 프로젝트 작업 기준
@@ -108,45 +71,69 @@ Skill을 추가하거나 수정하면 세션을 다시 시작하지 않아도 �
 - 빌드와 테스트: `README.md`
 ```
 
-작성 기준:
+규칙에는 실제로 계속 적용할 짧은 기준만 남겨요.  
+반복 절차와 전문 지식은 지침 파일 대신 Skill로 분리해요.
 
-- 파일당 24KB(권장 200줄 이하)를 목표로 하고 매 세션에 필요한 사실만 남겨요.
-- 프로젝트 디렉터리 어디서 실행하든 작업 경로에서 저장소 루트(`.git`)까지 거슬러 올라가며 모든 지침을 자동으로 로드해요.
-- 저장소 루트 상위의 홈 디렉터리(`~/.agents`)는 탐색하지 않으므로 프로젝트 외부 전역 설정과 스킬은 `~/.gemini/config/`를 사용해요.
-- 전체 규칙 예산(20,000 토큰)을 넘으면 본문 대신 파일 경로 참조로 축소되므로 핵심 규칙만 간결하게 유지해요.
-- 여러 단계의 복잡한 절차는 지침 파일이 아니라 Skill로 나눠요.
-- Antigravity는 `GEMINI.md`와 `AGENTS.md`를 모두 지원하므로 팀 표준에 맞춰 선택해요.
+## 권한과 실행 범위
 
-## Settings
+기본 권한 정책은 입력창의 `/permissions`에서 확인하고 작업 성격에 맞게 설정해요.  
+제한된 터미널 환경이 필요하면 세션을 시작할 때 `--sandbox`를 사용해요.
 
-`settings.json`에는 Antigravity CLI 실행에 필요한 기본 설정을 둬요.
+```bash
+agy --sandbox
+```
 
-- 기본 모델과 추론 수준(`effort`)
-- 자동 권한 승인 및 샌드박스 정책
-- 로깅 및 출력 포맷
+모든 도구 권한을 묻지 않고 승인하는 `--dangerously-skip-permissions`는 격리된 환경에서만 사용해요.  
+자세한 적용 범위는 [샌드박스와 권한](./reference/01-sandbox-and-permissions.md)을 봐요.
 
-우선순위는 CLI 실행 플래그, 프로젝트 설정, 사용자 전역 설정 순이에요.  
-프로젝트의 코드 규칙과 문서 책임은 Settings가 아니라 `GEMINI.md` 또는 `AGENTS.md`에서 관리해요.  
-비밀값은 설정 파일에 직접 적지 않고 환경 변수를 사용해요.
+## 모델과 실행 설정
 
-## 적용 확인
+세션에서 모델은 `/model`로 고르고, 시작 전에 정해야 하면 `--model <model>`을 사용해요.  
+복잡한 계획은 `--mode plan`, 편집을 허용하는 세션은 `--mode accept-edits`로 시작할 수 있어요.  
+추론 수준은 `--effort low|medium|high`로 지정해요.
 
-새 세션을 열고 다음 항목을 확인해요.
+```bash
+agy --mode plan --effort high
+```
 
-- 현재 작업 루트
-- 로드된 `GEMINI.md` / `AGENTS.md` 지침
-- `/` 또는 `/skills`에 표시되는 사용자 Skill
-- `agy mcp list`에 표시되는 외부 도구 연결
-- 현재 터미널 샌드박스 및 권한 범위
+사용자 CLI 설정은 `~/.gemini/antigravity-cli/settings.json`에서 관리해요.  
+프로젝트의 코드 규칙과 문서 책임은 Settings가 아니라 `AGENTS.md` 또는 `GEMINI.md`에 둬요.  
+비밀값은 설정 파일에 직접 적지 않고 환경 변수나 연결된 서비스의 인증 수단을 사용해요.
+
+## 저장 위치
+
+| 위치 | 책임 |
+| --- | --- |
+| `<workspace-root>/.agents/skills/` | 저장소에서 공유하는 Skill |
+| `~/.gemini/antigravity-cli/skills/` | 여러 프로젝트에서 쓰는 CLI 전역 Skill |
+| `AGENTS.md` 또는 `GEMINI.md` | 프로젝트 작업 기준과 정본 안내 |
+| `.agents/rules/` | 세부 작업 규칙 |
+| `.agents/hooks.json` | 도구 실행 전후 Hook |
+| `.agents/mcp_config.json` | 저장소 공유 MCP 서버 |
+| `~/.gemini/config/mcp_config.json` | 개인 전역 MCP 서버 |
+| `~/.gemini/antigravity-cli/settings.json` | CLI 실행 설정과 전역 Hook |
+
+Plugin은 Skill·Rule·Subagent·Hook·MCP 정의를 함께 배포할 때 사용해요.  
+Plugin의 구성과 관리 방법은 [확장 기능](./extensions.md)을 봐요.
+
+## 진단과 적용 확인
+
+새 세션을 열어 다음 항목을 확인해요.
+
+1. `/skills`에 필요한 사용자 Skill이 보여요.
+2. `/permissions`에 현재 권한 정책이 보여요.
+3. `/hooks`에 필요한 Hook이 로드돼요.
+4. `/mcp` 또는 `agy mcp list`에 MCP 서버 상태가 보여요.
+5. `agy --help`의 옵션과 이 문서의 터미널 명령이 일치해요.
 
 ## 확인 기준
 
-2026-09-23에 Antigravity CLI 1.2.9로 확인했어요.  
-설치 경로, 명령과 옵션은 버전마다 달라지므로 공식 문서를 함께 봐요.
+2026-10-01에 설치된 Antigravity CLI `1.2.9`의 `agy --help`로 CLI 옵션과 서브명령을 확인했어요.  
+인증 흐름, 계정 기능과 화면 명령은 버전·요금제에 따라 달라질 수 있으므로 현재 세션의 `/help`와 공식 문서를 함께 확인해요.
 
 ## 공식 문서
 
+- [Antigravity CLI 설치와 인증](https://antigravity.google/docs/cli/install/)
 - [Antigravity CLI Reference](https://antigravity.google/docs/cli/reference)
-- [Antigravity Customizations](https://antigravity.google/docs)
-- [Skills Guide](https://antigravity.google/docs/skills)
-- [Rules & Workflows](https://antigravity.google/docs/rules-workflows)
+- [Antigravity Agent Skills](https://antigravity.google/docs/skills)
+- [Antigravity Rules](https://antigravity.google/docs/rules)

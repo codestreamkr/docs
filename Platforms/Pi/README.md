@@ -1,19 +1,24 @@
 # Pi 가이드
 
-프로젝트에서 할 일을 고르고 필요한 사용자 Skill을 직접 호출해요.
+Pi는 터미널에서 여는 대화형 코딩 에이전트예요.  
+프로젝트 폴더에서 세션을 연 뒤 입력창에 자연어 요청이나 `/skill:` 명령을 입력해 작업해요.
 
-문제 유형별 작업 흐름은 [Playbook](../../Playbooks/README.md)에서 관리해요.  
-이 가이드는 Pi의 설정, Skill 호출과 확장 기능만 다뤄요.
+문제 유형별 작업 순서는 [Playbook](../../Playbooks/README.md)에서 관리해요.  
+이 가이드는 Pi에서 세션을 열고, 사용자 Skill과 확장 기능을 사용하는 방법을 다뤄요.
 
 ## 바로 시작
 
-1. 프로젝트 루트에서 `pi`를 실행해요.
-2. 시작 화면에서 불러온 Skill과 지침 파일을 확인해요.
-3. Skill만 호출해 역할, 필요한 입력과 예제를 확인해요.
-4. 원하는 결과와 대상을 자연어로 이어서 실행해요.
+1. 프로젝트 루트의 터미널에서 Pi 세션을 열어요.
+
+```bash
+pi
+```
+
+2. 시작 화면에서 로드된 지침 파일과 Skill을 확인해요.
+3. Pi 입력창에서 필요한 Skill을 호출하거나 작업을 자연어로 요청해요.
+4. 결과와 변경 내용을 확인한 뒤 다음 요청을 이어서 입력해요.
 
 ```text
-/skill:ct-plan
 /skill:ct-plan 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
 ```
 
@@ -22,79 +27,58 @@
 | 목적 | Skill | 시작 예제 |
 | --- | --- | --- |
 | 현재 코드의 동작과 영향 범위 분석 | `ct-analyze` | `/skill:ct-analyze` |
-| 개발 요구사항의 탐색과 계획 | `ct-plan` | `/skill:ct-plan` |
-| 확정된 계획의 실행과 검증 | `ct-apply` | `/skill:ct-apply` |
+| 개발 문제 탐색과 작업 계획 | `ct-plan` | `/skill:ct-plan` |
+| 확정된 작업의 실행·검증과 완료 기록 | `ct-apply` | `/skill:ct-apply` |
 | 요구사항별 독립 검증 | `ct-verify` | `/skill:ct-verify` |
-| Markdown 파일 생성과 형식 정리 | `ct-docs-md-format` | `/skill:ct-docs-md-format` |
-| Git 이력 기반 주간·월간 보고서 | `ct-docs-weekly-report` | `/skill:ct-docs-weekly-report` |
-| Confluence REST API 작업 | `ct-wiki-api` | `/skill:ct-wiki-api` |
-| 프로젝트 Markdown 위키 운영 | `ct-wiki-ops` | `/skill:ct-wiki-ops` |
+| Markdown 문서 생성과 형식 정리 | `ct-docs-md-format` | `/skill:ct-docs-md-format` |
+| Git 이력의 월별·주차별 업무 보고 | `ct-docs-weekly-report` | `/skill:ct-docs-weekly-report` |
+| 원격 Confluence API 작업 | `ct-wiki-api` | `/skill:ct-wiki-api` |
+| 저장소 안의 Markdown 위키 운영 | `ct-wiki-ops` | `/skill:ct-wiki-ops` |
 
-## 기능 찾기
+## Pi의 작업 방식
 
-이름이 달라 못 찾는 경우가 있어요.  
-하려는 것부터 찾아요.
+Pi는 가벼운 기본 기능에 Skill, Prompt Template, Extension, Theme, Package를 더하는 구조예요.  
+기본 세션에서 모델을 고르고 요청을 이어 가며, 반복되는 절차와 도구 연결만 필요한 범위로 확장해요.
 
-| 하려는 것 | 가장 빠른 조작 | 자세히 |
+| 하려는 것 | 세션에서 하는 일 | 자세히 |
 | --- | --- | --- |
-| 추론 수준 바꾸기 | `/thinking` 또는 `Shift+Tab` | [추론 수준](./setup.md#추론-수준) |
-| 모델 바꾸기 | `/model`, `/scoped-models`, `Ctrl+P` | [모델 연결](./setup.md#모델-연결) |
-| 로컬 모델 쓰기 | `/llama` | [모델 연결](./setup.md#모델-연결) |
-| 자격증명 점검 | `pi auth check --provider <이름>` | [인증](./setup.md#인증) |
-| 읽기만 시키기 | `--tools read,grep,find,ls` | [도구 범위](./setup.md#도구-범위) |
-| 전체 화면으로 보기 | `--tui-mode fullscreen` | [화면 모드](./setup.md#화면-모드) |
-| 낯선 저장소 안전하게 열기 | `--no-approve` | [프로젝트 신뢰](./setup.md#프로젝트-신뢰) |
-| 비용과 컨텍스트 보기 | `/session` | [컨텍스트와 비용](./setup.md#컨텍스트와-비용) |
-| 안을 갈라서 비교하기 | `/fork`, `/tree` | [작업 흐름](./workflows.md) |
-| 스크립트에서 돌리기 | `pi -p "요청"` | [확장 기능](./extensions.md) |
-| 변경 검토 | 요청으로 해요 | [작업 흐름](./workflows.md#구현한-변경-검토하기) |
-
-## Pi에서 먼저 정할 것
-
-다른 도구와 달리 Pi는 실행 조건을 직접 고르는 구조예요.  
-처음 쓸 때 아래 넷을 정해요.
-
-| 정할 것 | 방법 | 자세히 |
-| --- | --- | --- |
-| 어떤 모델로 돌릴지 | `/login`으로 제공자를 붙이고 `/model`로 선택 | [환경 설정](./setup.md) |
-| 이 프로젝트의 `.pi/` 자원을 믿을지 | 첫 실행 때 묻고 `/trust`로 저장 | [환경 설정](./setup.md) |
-| 어디까지 건드리게 할지 | `--tools`로 도구 제한, 필요하면 격리 실행 | [확장 기능](./extensions.md) |
-| 사람이 볼지 프로그램이 받을지 | 대화형, `--print`, `--mode json`, `--mode rpc` | [확장 기능](./extensions.md) |
-
-모델 제공자를 직접 붙이고 필요한 기능을 TypeScript Extension으로 만들어 넣을 수 있어요.  
-에이전트 자체를 확장하거나 다른 프로그램에 내장하는 방법은 [확장 기능](./extensions.md)에서 다뤄요.
+| 모델과 추론 수준 변경 | `/model`, `/thinking` 입력 | [환경 설정](./setup.md#모델과-추론-수준) |
+| 이전 작업 계속하기 | `/resume` 입력 | [명령 확인](./commands.md#입력창에서-사용) |
+| 현재 변경 검토 | 입력창에 검토 기준을 요청 | [작업 흐름](./workflows.md#변경-확인과-검토) |
+| 반복 절차 호출 | `/skill:이름` 입력 | [사용자 Skill](./skills.md) |
+| 프롬프트·도구·이벤트 확장 | 필요한 자원을 설치·설정 | [확장 기능](./extensions.md) |
+| 스크립트에서 실행 | 터미널에서 `pi -p` 실행 | [확장 기능](./extensions.md#실행-모드와-내장) |
 
 ## 필요한 문서
 
 | 알고 싶은 것 | 문서 |
 | --- | --- |
-| 설치, 인증, 프로젝트 신뢰와 `AGENTS.md`·Settings의 책임 | [환경 설정](./setup.md) |
-| 사용자 Skill의 입력과 결과 | [Skill 안내](./skills.md) |
-| 여러 Skill을 연결하는 실제 예제 | [작업 흐름](./workflows.md) |
-| Extension, Prompt Template, Provider, Package와 격리 실행의 차이 | [확장 기능](./extensions.md) |
-| 현재 환경에서 명령을 찾는 방법 | [명령 확인](./commands.md) |
+| 설치, 인증, 지침, 권한과 설정 | [환경 설정](./setup.md) |
+| 입력창 명령과 터미널 명령의 구분 | [명령 확인](./commands.md) |
+| 사용자 Skill의 입력과 결과 | [사용자 Skill](./skills.md) |
+| 세션에서 작업을 연결하고 검토하는 방법 | [작업 흐름](./workflows.md) |
+| Extension, Prompt Template, Package와 자동화 | [확장 기능](./extensions.md) |
 
 ## 사용 기준
 
-- CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요. 이 도구에서 보이는 위치는 [환경 설정](./setup.md)을 봐요.
-- 사용자 Skill은 `/skill:ct-*` 이름으로 직접 호출해요.
-- Skill은 현재 프로젝트의 `AGENTS.md`, 코드와 설정에서 필요한 근거를 수집해요.
-- 작업별 입력과 결과는 실제 Skill 안내를 기준으로 해요.
-- 제품 기능과 명령은 현재 환경과 [Pi 공식 문서](https://pi.dev/docs/latest)에서 확인해요.
+- CodeStream 사용자 Skill은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요.
+- 일상 작업은 새 `pi` 명령을 반복 실행하지 않고 이미 열린 세션의 입력창에서 요청을 이어 가요.
+- 터미널 명령은 Pi 설치·시작·관리, Git 상태 확인, 비대화형 자동화처럼 셸이 필요한 경우에만 써요.
+- Git 상태와 변경 내용은 터미널에서 직접 확인하거나 Pi 세션에 자연어로 확인을 요청해요.
+- 프로젝트의 `.pi/` 자원과 `.agents/skills/`는 내용을 확인한 뒤 신뢰해요.
+- 현재 설치본과 [Pi 공식 문서](https://pi.dev/docs/latest)를 기준으로 기능과 명령을 확인해요.
 
 ## 심화 학습 자료
 
-Extension, package, SDK와 RPC를 직접 만들어 볼 때는 `reference/`의 실습 문서를 사용해요.
-
 | 주제 | 문서 |
 | --- | --- |
-| 설치, 인증과 첫 요청 | [시작하기](./reference/01-getting-started-and-key-concepts.md) |
-| 화면, 모델, 세션과 컨텍스트 | [기본 개념](./reference/02-understanding-core-concepts.md) |
-| Extension·package·SDK·RPC 실습 | [핵심 개념 활용](./reference/03-applying-core-concepts.md) |
-| 프로젝트 최초 준비 | [프로젝트 시작](./reference/04-starting-a-project.md) |
-| 반복하는 개발 흐름 | [프로젝트 코딩](./reference/05-project-cooking.md) |
-| 명령과 단축키 상세 | [기본 명령](./reference/06-basic-commands.md) |
-| Spring·Java 분석과 테스트 | [분석과 테스트](./reference/07-analysis-and-testing.md) |
+| 설치, 인증과 첫 세션 | [01. Pi 시작하기](./reference/01-getting-started-and-key-concepts.md) |
+| 화면, 모델, 세션과 자원 | [02. Pi 기본 개념](./reference/02-understanding-core-concepts.md) |
+| Extension, Package, SDK와 RPC | [03. Pi 확장과 자동화](./reference/03-applying-core-concepts.md) |
+| 프로젝트 최초 준비 | [04. 프로젝트 시작](./reference/04-starting-a-project.md) |
+| 반복 개발 흐름 | [05. 프로젝트 코딩](./reference/05-project-cooking.md) |
+| 명령과 단축키 상세 | [06. Pi 기본 명령](./reference/06-basic-commands.md) |
+| Spring·Java 분석과 테스트 | [07. Spring/Java 프로젝트 분석과 테스트](./reference/07-analysis-and-testing.md) |
 
-예제 package는 [`examples/basic-pi-package`](./examples/basic-pi-package/)에 있어요.  
-실습 문서는 Pi `0.80.6` 기준으로 작성했고, 이 가이드 본문은 2026-09-23에 공식 문서와 설치본 `0.87.1`로 확인했어요.
+예제 Package는 [`examples/basic-pi-package`](./examples/basic-pi-package/)에 있어요.  
+이 문서는 설치본 Pi `0.87.1`과 공식 문서를 기준으로 확인했어요.

@@ -1,99 +1,90 @@
 # Grok Build 명령 확인
 
-Grok Build 명령은 버전과 실행 환경에 따라 달라질 수 있어요.  
-전체 목록을 문서에 복제하지 않고 현재 입력창과 설치된 문서를 기준으로 확인해요.
+Grok Build는 세션 입력창에서 쓰는 명령과 터미널에서 세션을 여는 명령을 구분해요.  
+목록은 버전과 실행 환경에 따라 달라지므로 현재 세션과 설치된 CLI를 우선해요.
 
-## 현재 명령 찾기
+## 입력창에서 사용
 
-입력창에 `/`를 입력해 현재 환경에서 제공하는 명령과 Skill을 확인해요.
+세션을 연 뒤 자연어 요청을 보내고, `/` 또는 `/skills`로 현재 명령과 Skill을 확인해요.
 
-작업을 시작할 때 자주 확인하는 명령:
-
-| 명령 | 용도 |
-| --- | --- |
-| `/skills` | 사용할 수 있는 Skill 확인 |
-| `/model` | 사용할 모델 선택 |
-| `/plugins` | 연결된 Plugin 확인 |
-| `/hooks` | 현재 세션에 적용된 Hook 확인 |
-| `/mcps` | 연결된 MCP 서버 확인 |
-
-세션을 관리할 때 사용하는 명령:
+### 작업 준비와 설정
 
 | 명령 | 용도 |
 | --- | --- |
-| `/compact` | 대화를 요약해 컨텍스트 확보 |
-| `/new` | 새 세션 시작 |
-| `/resume` | 이전 세션 다시 열기 |
-| `/rewind` | 이전 요청 지점으로 대화를 되돌리기. 디스크의 파일은 그대로 둬요 |
-| `/always-approve` | 자동 승인 모드 전환 |
+| `/skills` | 사용자 Skill 확인 |
+| `/model`, `/effort` | 모델과 추론 수준 조정 |
+| `/plugins`, `/hooks`, `/mcps` | 확장 연결 확인 |
+| `/plan`, `/view-plan` | 계획 모드 전환과 계획 확인 |
+| `/auto`, `/always-approve` | 세션 권한 동작 변경 |
 
-Grok에서 실행 방식이 달라지는 명령:
+`/auto`와 `/always-approve`는 세션 권한 동작을 바꿔요.  
+권한과 Plan 모드의 선택은 [권한과 Plan 모드](./reference/01-permissions-and-plan-mode.md)를 봐요.
 
-| 명령 | 용도 |
-| --- | --- |
-| `Shift+Tab` | Normal, Plan, Auto, Always-approve 순환이에요. Auto가 꺼져 있으면 그 단계는 빠져요. |
-| `/auto` | 안전 분류를 통과한 도구를 자동 승인. 이미 켜져 있으면 `ask`로 돌아와요. |
-| `/plan`, `/view-plan` | 코드 수정 전 계획 모드, 저장된 계획 다시 보기 |
-| `/effort` | 현재 모델의 reasoning 수준 |
-| `/context` | 컨텍스트 사용량 |
-| `/dashboard` | 이 터미널의 세션 목록. minimal 모드에서는 숨겨져요. |
-| `/fork` | 현재 시점까지의 세션 분기 |
-| `/config-agents` | Agent와 Persona 관리 |
-| `/workflow`, `/goal` | 저장된 워크플로와 목표 실행 |
+### 변경 확인과 검토
 
-동작은 [권한과 Plan 모드](./reference/01-permissions-and-plan-mode.md), [세션과 Subagent](./reference/02-sessions-and-subagents.md), [Workflow와 Agent Profile](./reference/03-workflows-and-profiles.md)을 봐요.
+검토할 대상과 판단 기준을 입력창에 자연어로 지정해요.
 
-사용자 Skill은 `/ct-*`로 호출해요.  
-명령이 보이지 않으면 현재 설치 버전에서 제공되는 목록을 따라요.
-
-## CLI에서 확인
-
-설치된 CLI의 기본 명령과 옵션을 확인해요.
-
-```bash
-grok --help
-grok <command> --help
+```text
+현재 변경에서 동작 문제, 빠진 테스트와 요청 밖 변경을 검토해줘.
+파일은 수정하지 말고 근거와 함께 알려줘.
 ```
 
+수정과 재검증은 [작업 흐름](./workflows.md#변경-확인과-검토)으로 이어가요.
+
+### 세션과 병렬 작업
+
 | 명령 | 용도 |
 | --- | --- |
-| `grok` | 대화형 세션 시작 |
-| `grok "요청"` | 첫 요청과 함께 세션 시작 |
-| `grok -p "요청"` | 단일 요청 결과 출력 |
-| `grok -c` | 현재 폴더의 최근 세션 계속하기 |
-| `grok sessions` | 세션 조회와 복원 |
-| `grok inspect` | 현재 디렉터리에서 인식된 구성 확인 |
-| `grok models` | 사용할 수 있는 모델 확인 |
-| `grok mcp` | MCP 서버 설정 관리 |
-| `grok update` | 업데이트 확인과 설치 |
+| `/compact`, `/new` | 맥락 요약 또는 새 작업 시작 |
+| `/resume`, `/fork`, `/rewind`, `/dashboard` | 이전 세션과 분기 관리 |
+| `/goal`, `/workflow` | 목표와 저장된 Workflow 관리 |
 
-자주 사용하는 실행 옵션:
+사용자 Skill은 `/ct-plan`처럼 호출해요.  
+Subagent는 [세션과 Subagent](./reference/02-sessions-and-subagents.md)에 따라 분담 범위를 지정해 요청해요.
 
-| 옵션 | 용도 |
+## 터미널에서 실행
+
+터미널 명령은 세션을 시작·복원·관리하거나 자동화에서 한 번 실행할 때 사용해요.  
+일상 작업마다 새 명령을 실행할 필요는 없어요.
+
+```bash
+# 프로젝트에서 대화형 세션 열기
+grok
+
+# 이전 세션 계속하기
+grok --continue
+
+# 스크립트나 자동화에서 단일 요청 실행하기
+grok --single "현재 변경 내용을 검토해줘"
+
+# 현재 설치에서 지원하는 명령과 옵션 확인하기
+grok --help
+```
+
+| 용도 | 명령 또는 옵션 |
 | --- | --- |
-| `--model` | 세션 모델 지정 |
-| `--permission-mode` | 권한 모드 지정 |
-| `--allow`, `--deny` | 도구 실행 허용과 차단 규칙 |
-| `--rules` | 세션에만 적용할 기준 추가 |
-| `--output-format` | 헤드리스 출력 형식 지정 |
-| `--no-subagents` | Subagent 실행 차단 |
+| 특정 세션 다시 열기 | `grok --resume <session-id-or-title>` |
+| 현재 디렉터리에서 인식한 구성 확인 | `grok inspect` |
+| 모델 목록 확인 | `grok models` |
+| 새 Git worktree 세션 열기 | `grok --worktree` |
+| 설정·터미널 진단 | `grok doctor` |
+| MCP와 Plugin 관리 | `grok mcp`, `grok plugin` |
+| 버전 확인 | `grok --version` |
 
-일상 작업은 `--permission-mode auto`예요.  
-`always-approve`와 `--dangerously-skip-permissions`는 격리된 실행 환경에서만 사용해요.  
-비대화형 `auto`에서 안전 분류를 통과하지 못한 호출은 다시 묻지 않고 실패로 보고돼요.
+Git 명령은 터미널에서 직접 실행해요.  
+`git diff` 같은 명령을 입력창에 붙여 실행하지 않아요.  
+AI에게 Git 상태나 변경 내용을 자연어로 조회·검토해 달라고 요청할 수 있지만, 그 요청은 Git 명령 자체가 아니에요.
 
-## 확인 순서
+## 확인 기준
 
-1. 입력창의 `/` 목록에서 현재 명령과 Skill을 찾아요.
-2. CLI 옵션은 설치된 `grok --help`에서 확인해요.
-3. 현재 디렉터리에 적용된 구성은 `grok inspect`에서 확인해요.
-4. 동작과 지원 범위는 `~/.grok/README.md`, `~/.grok/docs/user-guide/`와 xAI 공식 자료에서 확인해요.
+1. 입력창에서 `/` 또는 `/skills`로 현재 명령과 Skill을 확인해요.
+2. 터미널에서 `grok --help`, `grok --version`, `grok inspect`를 실행해 환경을 확인해요.
+3. 기능 동작은 설치된 도움말과 공식 문서를 대조해요.
 
-TUI의 `/hooks`, `/plugins`, `/skills`, `/mcps`는 같은 확장 모달의 탭을 열어요.  
-프로젝트 Hook을 실행하려면 `/hooks-trust`로 폴더를 신뢰해요.
+이 문서는 2026-10-01에 Grok Build 1.0.41로 확인했어요.
 
 ## 공식 문서
 
-- 설치된 전체 문서: `~/.grok/README.md`
-- 슬래시 명령: `~/.grok/docs/user-guide/04-slash-commands.md`
+- [Grok Build 개요](https://docs.x.ai/build/overview)
+- [Settings](https://docs.x.ai/build/settings)
 - [Grok Build 소개](https://x.ai/news/grok-build-cli)

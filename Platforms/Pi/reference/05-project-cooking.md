@@ -1,8 +1,9 @@
 # 05. [중급] 프로젝트 코딩
 
-Pi로 실제 프로젝트 코딩을 진행할 때의 기본 흐름이에요.
-
-코딩 작업은 기본 흐름으로 시작하고, 반복되는 절차는 Extension, custom tool, Pi package로 옮겨요.
+Pi 세션에서 실제 프로젝트 코딩을 진행하는 기본 흐름이에요.  
+분석, 계획, 수정, 검증과 검토는 열린 세션의 입력창에서 요청으로 이어 가요.  
+반복되는 절차는 확인한 뒤 Extension, custom tool, Pi Package로 옮겨요.  
+이 문서는 설치본 Pi `0.87.1`과 공식 문서를 기준으로 확인했어요.
 
 ## 이 문서는 언제 보나요
 
@@ -99,25 +100,20 @@ Pi는 `edit`, `write` 도구를 사용해 파일을 수정해요.
 
 ## 5. 변경 검토
 
-현재 검토 절차는 [구현한 변경 검토하기](../workflows.md#구현한-변경-검토하기)를 봐요.  
-아래는 세션 안에서 diff를 확인한 뒤 요청하는 실습이에요.
+현재 검토 절차는 [변경 확인과 검토](../workflows.md#변경-확인과-검토)를 봐요.  
+터미널에서 변경 범위를 확인한 뒤 모델에게 리뷰를 요청해요.
 
-```text
-!git diff
+```bash
+git diff
+git status --short
 ```
-
-모델에게 리뷰를 요청해요.
 
 ```text
 방금 diff를 기준으로 코드 리뷰해줘.
 버그 가능성, 테스트 누락, 불필요한 변경을 중심으로 봐줘.
 ```
 
-단순 상태 확인만 할 때는 `!!`를 써요.
-
-```text
-!!git status
-```
+Git 상태 확인은 터미널에서 직접 해요.
 
 ## 6. 긴 작업에서 세션 관리
 
@@ -198,7 +194,7 @@ README의 로컬 실행 방법이 현재 프로젝트와 맞는지 확인하고 
 
 필요한 기능이 이미 만들어져 있으면 Pi package로 설치해요.
 
-이 문서 저장소 자체에서 예제 package의 `package.json`, prompt, skill을 검토한 뒤 프로젝트 전용으로 설치해요.
+이 문서 저장소 자체에서 예제 package의 `package.json`, prompt, skill을 검토한 뒤 프로젝트 전용으로 설치해요.  
 `--approve`는 현재 명령에서 검토한 프로젝트 로컬 리소스를 승인해요.
 
 ```bash
@@ -286,3 +282,10 @@ pi install -l ./Platforms/Pi/examples/basic-pi-package
 - 단순 확인 명령은 `!!`를 사용해 컨텍스트 낭비를 줄여요.
 - 큰 변경은 한 번에 맡기지 말고 단계별로 승인해요.
 - 외부 package는 소스와 동작 범위를 확인한 뒤 설치해요.
+
+## 공식 문서
+
+- [Usage](https://pi.dev/docs/latest/usage)
+- [Sessions](https://pi.dev/docs/latest/sessions)
+- [Extensions](https://pi.dev/docs/latest/extensions)
+- [Packages](https://pi.dev/docs/latest/packages)

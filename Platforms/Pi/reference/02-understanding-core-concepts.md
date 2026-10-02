@@ -1,10 +1,8 @@
 # 02. [초급] Pi 기본 개념
 
-Pi를 사용할 때 먼저 알아야 할 기본 개념을 정리해요.
-
-1차 문서에서는 커스텀 확장 제작이 아니라 Pi 기본 기능만 다뤄요.
-
-검증 기준은 Pi `0.80.6`이에요.
+Pi 세션의 입력창, 모델, 맥락과 확장 자원을 정리해요.  
+이 문서는 기본 사용을 다루며 Extension 제작은 [Pi 확장과 자동화](./03-applying-core-concepts.md)에서 다뤄요.  
+설치본 Pi `0.87.1`과 공식 문서를 기준으로 확인했어요.
 
 ## 1. Interactive Mode
 
@@ -40,7 +38,8 @@ Editor는 Pi에 요청을 입력하는 곳이에요.
 | 이미지 붙여넣기 | Ctrl+V, Windows에서는 Alt+V |
 | 외부 편집기 | Ctrl+G |
 
-파일을 직접 지정해서 실행할 수도 있어요.
+세션을 열 때만 터미널에서 파일을 함께 지정할 수 있어요.  
+이미 열린 세션에서는 입력창에 `@`를 입력해 파일을 참조해요.
 
 ```bash
 pi @README.md "이 파일을 요약해줘"
@@ -57,10 +56,11 @@ Pi 안에서 `!`로 셸 명령을 실행할 수 있어요.
 
 이 경우 명령 출력이 모델 컨텍스트에 전달돼요.
 
-출력을 모델에게 보내고 싶지 않으면 `!!`를 써요.
+출력을 모델에게 보내고 싶지 않으면 `!!`를 써요.  
+Git 상태는 보통 터미널에서 직접 확인해요.
 
 ```text
-!!git status
+!!pwd
 ```
 
 ## 4. Model
@@ -193,7 +193,7 @@ Pi 설정은 JSON 파일로 관리돼요.
 
 프로젝트 설정은 전역 설정을 덮어써요.
 
-프로젝트에 `.pi/settings.json`이나 `.pi` 리소스가 있으면 Project Trust 결정 후 해당 설정과 리소스를 불러와요.
+프로젝트에 `.pi/settings.json`이나 `.pi` 리소스가 있으면 Project Trust 결정 후 해당 설정과 리소스를 불러와요.  
 `/trust`로 저장한 결정은 다음 실행부터 적용돼요.
 
 자주 보는 항목은 아래와 같아요.
@@ -350,116 +350,22 @@ Custom Providers는 모델 제공자 연결을 Extension 코드로 등록해요.
 
 ## 11. Pi가 잘하는 작업 방식
 
-Pi는 AI가 일하는 실행 흐름을 조정하기 좋은 코딩 에이전트 하네스예요.
+Pi는 기본 개념을 조합해 대화형 개발 흐름을 만들고, 반복되거나 결정적으로 처리해야 할 부분만 확장해요.
 
-Pi의 강점은 요청 문장을 잘 쓰는 데서 끝나지 않아요.  
-Extension, custom tool, custom provider, SDK/RPC를 사용하면 AI가 작업하기 전후의 흐름을 코드로 조정할 수 있어요.
+| 필요해진 상황 | 다음 문서 |
+| --- | --- |
+| 실행 전후에 검사하거나 모델용 도구를 추가해요 | [Pi 확장 기능](../extensions.md) |
+| Extension, custom tool, provider, SDK나 RPC를 직접 구현해요 | [03. Pi 확장과 자동화](./03-applying-core-concepts.md) |
+| 검증된 리소스를 Package로 설치·공유해요 | [Pi 확장 기능](../extensions.md#pi-package) |
+| 세션 분기로 다른 접근을 비교해요 | [Pi 작업 흐름](../workflows.md#pi-고유-작업) |
 
-### 11.1 실행 흐름 앞단에 개입
+Extension은 실행 흐름과 도구 호출을 코드로 조정할 때 사용해요.  
+SDK와 RPC는 Pi를 다른 프로그램에 내장하거나 제어할 때 사용해요.  
+구체적인 선택 기준은 기본 문서에서 한 번만 관리하고 실습에서는 각 패턴의 확인 결과를 중심으로 봐요.
 
-Extension은 사용자 입력, 모델 호출, 도구 실행 전후에 들어갈 수 있어요.
+## 공식 문서
 
-- 사용자 입력을 LLM에 보내기 전에 변환
-- 모델 호출 전에 필요한 컨텍스트 주입
-- 도구 실행 전에 인자 검사
-- 도구 실행 후 결과 가공
-- 특정 요청을 LLM 없이 Extension에서 직접 처리
-- 긴 테스트 로그를 요약해서 모델에 전달
-
-핵심은 AI에게 설명해서 따르게 하는 것이 아니라, AI 앞단과 중간 단계에서 코드가 먼저 처리한다는 점이에요.
-
-### 11.2 도구 호출 전후 제어
-
-Pi는 모델이 `read`, `bash`, `edit`, `write` 같은 도구를 호출할 때 전후 이벤트에 개입할 수 있어요.
-
-- `bash` 실행 전 명령 검사
-- `read` 전에 파일 경로 검사
-- `edit`, `write` 전에 변경 대상 확인
-- `bash` 결과를 모델에 전달하기 전에 요약
-- 실패한 테스트 로그에서 핵심 정보 추출
-
-예를 들어 테스트 로그가 길면 Extension이 실패 테스트명, 에러 메시지, 관련 파일만 추려서 모델에 전달할 수 있어요.
-
-### 11.3 모델이 쓸 도구 추가
-
-Extension으로 모델이 호출할 수 있는 custom tool을 붙일 수 있어요.
-
-- Jira 이슈 조회
-- 사내 문서 검색
-- API 명세 조회
-- 로그 검색
-- 배포 상태 확인
-- 로컬 스크립트 실행
-- 테스트 결과 파싱
-- 보안 점검 실행
-
-이 방식은 도구 사용법을 프롬프트로 설명하는 것이 아니라, 모델이 호출 가능한 도구로 하네스에 등록하는 방식이에요.
-
-### 11.4 모델 연결 방식 조정
-
-Custom Provider로 모델 실행 계층을 프로젝트 환경에 맞출 수 있어요.
-
-- 사내 LLM Gateway 연결
-- 회사 프록시 경유
-- SSO/OAuth 로그인 연결
-- 자체 모델 서버 연결
-- OpenAI 호환 로컬 서버 연결
-- 비표준 스트리밍 API 구현
-- 모델별 thinking level 매핑
-
-모델 선택뿐 아니라 인증, 라우팅, endpoint, 스트리밍 방식까지 조정할 수 있어요.
-
-### 11.5 다른 시스템에 내장
-
-Pi는 CLI뿐 아니라 SDK와 RPC 모드를 제공해요.
-
-- CI 자동 리뷰
-- PR 점검 봇
-- 내부 개발자 포털
-- 배포 점검 도구
-- 운영 콘솔
-- 개인 자동화 스크립트
-- 자체 UI를 가진 에이전트 앱
-
-이 경우 Pi는 대화형 도구가 아니라 에이전트 런타임 부품으로 동작해요.
-
-### 11.6 만들어진 하네스 리소스 설치
-
-Pi는 직접 Extension이나 Skill을 만들지 않고, 이미 만들어진 Pi package를 설치해서 쓸 수 있어요.
-
-Pi package는 extension, skill, prompt template, theme를 묶어 배포하는 단위예요.  
-npm, git, 로컬 경로에서 설치할 수 있어요.
-
-```bash
-pi install npm:@scope/pi-package
-pi install git:github.com/user/pi-package
-pi install ./local-pi-package
-```
-
-프로젝트에만 적용하려면 `-l`을 붙여요.
-
-```bash
-pi install -l npm:@scope/pi-package
-```
-
-설치한 package는 Pi 하네스에 리소스를 추가해요.
-
-- extension: 실행 흐름 개입, custom tool, custom command 추가
-- skill: 작업 절차와 참고 문서 제공
-- prompt template: 반복 프롬프트 재사용
-- theme: 터미널 UI 스타일 적용
-
-이 방식은 하네스 조정을 직접 구현하지 않고, 검증된 리소스를 가져와 현재 작업 환경에 붙이는 방법이에요.
-
-### 11.7 트리 구조 세션 활용
-
-Pi 세션은 선형 기록이 아니라 트리 구조로 저장돼요.
-
-- `/tree`로 이전 지점 이동
-- 같은 세션 파일 안에서 다른 분기로 이어가기
-- `/fork`로 특정 시점에서 새 세션 만들기
-- `/clone`으로 현재 분기 복제
-- JSONL 세션 파일을 외부 도구에서 분석
-- SDK에서 세션, 분기, compaction 제어
-
-이 구조는 긴 작업에서 여러 해결 방식을 비교하거나, 세션 로그를 평가 데이터로 다룰 때 유리해요.
+- [Sessions](https://pi.dev/docs/latest/sessions)
+- [Settings](https://pi.dev/docs/latest/settings)
+- [Extensions](https://pi.dev/docs/latest/extensions)
+- [Packages](https://pi.dev/docs/latest/packages)

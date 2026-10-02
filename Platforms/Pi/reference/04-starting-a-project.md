@@ -1,10 +1,9 @@
 # 04. [중급] 프로젝트 시작
 
-새 프로젝트에서 Pi를 처음 적용할 때의 기본 흐름이에요.
-
-프로젝트 시작 단계에서는 작업 기준을 확인한 뒤 지침 파일, 프로젝트 설정, 로컬 Extension, Pi package를 구성해요.
-
-이 문서는 Pi `0.80.6`을 기준으로 해요.
+새 프로젝트에서 Pi를 처음 적용할 때의 준비 절차예요.  
+터미널에서는 프로젝트 위치, Git 기준 상태와 검증 명령을 확인하고, Pi 세션에서는 분석과 설정 반영을 요청해요.  
+지침 파일, 프로젝트 설정, 로컬 Extension과 Pi Package는 필요한 경우에만 구성해요.  
+이 문서는 설치본 Pi `0.87.1`과 공식 문서를 기준으로 확인했어요.
 
 ## 사전작업
 
@@ -357,3 +356,10 @@ AGENTS.md 작성
 - `.pi/settings.json`과 Extension은 프로젝트에 필요한 항목만 포함해요.
 - 설치한 package의 출처와 동작 범위를 확인했어요.
 - 작은 첫 작업 후 diff와 검증 결과를 확인했어요.
+
+## 공식 문서
+
+- [Quickstart](https://pi.dev/docs/latest/quickstart)
+- [Configuration](https://pi.dev/docs/latest/configuration)
+- [Settings](https://pi.dev/docs/latest/settings)
+- [Project Trust](https://pi.dev/docs/latest/security)
