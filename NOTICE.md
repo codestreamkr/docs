@@ -39,6 +39,14 @@ MIT License 원문과 저작권 표시는 재배포할 때 함께 유지해요.
 
 이 저장소의 MIT License는 제3자 상표권, 저작권, 서비스 이용 권한을 주지 않아요.
 
+## 포함된 외부 소프트웨어
+
+| 파일 | 버전 | 라이선스 |
+| --- | --- | --- |
+| `assets/docs/vendor/marked.esm.js` | Marked 17.0.5 | [MIT License 원문](./assets/docs/vendor/marked-LICENSE.md) |
+
+Marked의 저작권 표시와 라이선스는 함께 유지해요.
+
 ## 브랜드 자산
 
 아래 파일은 해당 제품을 식별할 때만 사용해요.  

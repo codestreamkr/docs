@@ -15,7 +15,7 @@
 3. 지금 쓰는 AI의 실행 방법을 확인해요: [Antigravity](./Platforms/Antigravity/README.md), [Codex](./Platforms/Codex/README.md), [Claude Code](./Platforms/ClaudeCode/README.md), [Grok Build](./Platforms/GrokBuild/README.md) 또는 [Pi](./Platforms/Pi/README.md)
 
 Git, Python, macOS, IntelliJ 가이드는 아래 [문서 구성](#문서-구성)에서 골라요.  
-웹 목차에서 전체 문서를 찾으려면 [CodeStream 기술문서 목록](./index.md)을 사용해요.
+웹 목차에서 전체 문서를 찾으려면 [CodeStream 기술문서](./index.html)을 사용해요.
 
 ## 문서 구성
 
@@ -34,6 +34,8 @@ Git, Python, macOS, IntelliJ 가이드는 아래 [문서 구성](#문서-구성)
 | Macos | 개발용 Mac의 상주 프로세스와 저장공간 관리 | [macOS 개발 머신 관리 가이드](./Macos/README.md) |
 | IntelliJ | IntelliJ IDEA 세션 기준으로 JVM/JS 런타임 검증 | [IntelliJ IDEA 개발 가이드](./IntelliJ/README.md) |
 
+Pi의 package 설치와 호출 예제는 [Pi 로컬 예제 package](./Platforms/Pi/examples/basic-pi-package/README.md)를 봐요.
+
 ## AI별 구현 기준
 
 같은 Skill을 어느 플랫폼에서 호출해도 필수 입력과 결과 기준은 같아요.  
@@ -43,6 +45,21 @@ Codex는 `$ct-*`, Antigravity, Claude Code와 Grok Build는 `/ct-*`, Pi는 `/ski
 ## 문서 작성 기준
 
 문서를 추가하거나 고칠 때는 [문서 포맷 기준](./DOC_FORMAT.md)을 따라요.
+
+## 문서 사이트 실행
+
+저장소 루트에서 정적 서버를 실행해요.
+
+```bash
+python3 -m http.server 8000
+```
+
+브라우저에서 `http://localhost:8000/index.html`을 열어요.  
+문서 내용은 기존 Markdown을 읽고, 탐색 목록은 `assets/docs/navigation.json`을 사용해요.  
+문서를 추가하거나 이동하면 탐색 목록의 `groups`와 `docs`도 갱신해요.
+
+정적 호스팅에는 저장소 파일을 그대로 배치해요.  
+GitHub Pages에서는 `.nojekyll`로 Markdown 원본 경로를 유지해요.
 
 ## 라이선스와 고지
 

@@ -1,0 +1,648 @@
+{
+  "groups": [
+    {
+      "label": "시작하기",
+      "items": [
+        {
+          "label": "문서 안내",
+          "path": "README.md",
+          "children": []
+        },
+        {
+          "label": "문서 포맷",
+          "path": "DOC_FORMAT.md",
+          "children": []
+        },
+        {
+          "label": "권리 고지",
+          "path": "NOTICE.md",
+          "children": []
+        }
+      ]
+    },
+    {
+      "label": "AI 플랫폼",
+      "items": [
+        {
+          "label": "Antigravity",
+          "path": "Platforms/Antigravity/README.md",
+          "children": [
+            {
+              "label": "환경 설정",
+              "path": "Platforms/Antigravity/setup.md"
+            },
+            {
+              "label": "사용자 Skill",
+              "path": "Platforms/Antigravity/skills.md"
+            },
+            {
+              "label": "명령 확인",
+              "path": "Platforms/Antigravity/commands.md"
+            },
+            {
+              "label": "작업 흐름",
+              "path": "Platforms/Antigravity/workflows.md"
+            },
+            {
+              "label": "확장 기능",
+              "path": "Platforms/Antigravity/extensions.md"
+            },
+            {
+              "label": "심화 학습",
+              "children": [
+                {
+                  "label": "샌드박스와 권한",
+                  "path": "Platforms/Antigravity/reference/01-sandbox-and-permissions.md"
+                },
+                {
+                  "label": "서브에이전트와 백그라운드 태스크",
+                  "path": "Platforms/Antigravity/reference/02-subagents-and-background-tasks.md"
+                },
+                {
+                  "label": "아티팩트 작업과 피드백",
+                  "path": "Platforms/Antigravity/reference/03-artifacts-workflow.md"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Codex",
+          "path": "Platforms/Codex/README.md",
+          "children": [
+            {
+              "label": "환경 설정",
+              "path": "Platforms/Codex/setup.md"
+            },
+            {
+              "label": "사용자 Skill",
+              "path": "Platforms/Codex/skills.md"
+            },
+            {
+              "label": "명령 확인",
+              "path": "Platforms/Codex/commands.md"
+            },
+            {
+              "label": "작업 흐름",
+              "path": "Platforms/Codex/workflows.md"
+            },
+            {
+              "label": "확장 기능",
+              "path": "Platforms/Codex/extensions.md"
+            },
+            {
+              "label": "자동화",
+              "path": "Platforms/Codex/automation.md"
+            }
+          ]
+        },
+        {
+          "label": "Claude Code",
+          "path": "Platforms/ClaudeCode/README.md",
+          "children": [
+            {
+              "label": "환경 설정",
+              "path": "Platforms/ClaudeCode/setup.md"
+            },
+            {
+              "label": "사용자 Skill",
+              "path": "Platforms/ClaudeCode/skills.md"
+            },
+            {
+              "label": "명령 확인",
+              "path": "Platforms/ClaudeCode/commands.md"
+            },
+            {
+              "label": "작업 흐름",
+              "path": "Platforms/ClaudeCode/workflows.md"
+            },
+            {
+              "label": "확장 기능",
+              "path": "Platforms/ClaudeCode/extensions.md"
+            }
+          ]
+        },
+        {
+          "label": "Grok Build",
+          "path": "Platforms/GrokBuild/README.md",
+          "children": [
+            {
+              "label": "환경 설정",
+              "path": "Platforms/GrokBuild/setup.md"
+            },
+            {
+              "label": "사용자 Skill",
+              "path": "Platforms/GrokBuild/skills.md"
+            },
+            {
+              "label": "명령 확인",
+              "path": "Platforms/GrokBuild/commands.md"
+            },
+            {
+              "label": "작업 흐름",
+              "path": "Platforms/GrokBuild/workflows.md"
+            },
+            {
+              "label": "확장 기능",
+              "path": "Platforms/GrokBuild/extensions.md"
+            },
+            {
+              "label": "심화 학습",
+              "children": [
+                {
+                  "label": "권한과 Plan 모드",
+                  "path": "Platforms/GrokBuild/reference/01-permissions-and-plan-mode.md"
+                },
+                {
+                  "label": "세션과 Subagent",
+                  "path": "Platforms/GrokBuild/reference/02-sessions-and-subagents.md"
+                },
+                {
+                  "label": "Workflow와 Agent Profile",
+                  "path": "Platforms/GrokBuild/reference/03-workflows-and-profiles.md"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Pi",
+          "path": "Platforms/Pi/README.md",
+          "children": [
+            {
+              "label": "환경 설정",
+              "path": "Platforms/Pi/setup.md"
+            },
+            {
+              "label": "사용자 Skill",
+              "path": "Platforms/Pi/skills.md"
+            },
+            {
+              "label": "명령 확인",
+              "path": "Platforms/Pi/commands.md"
+            },
+            {
+              "label": "작업 흐름",
+              "path": "Platforms/Pi/workflows.md"
+            },
+            {
+              "label": "확장 기능",
+              "path": "Platforms/Pi/extensions.md"
+            },
+            {
+              "label": "심화 학습",
+              "children": [
+                {
+                  "label": "Pi 시작하기",
+                  "path": "Platforms/Pi/reference/01-getting-started-and-key-concepts.md"
+                },
+                {
+                  "label": "Pi 기본 개념",
+                  "path": "Platforms/Pi/reference/02-understanding-core-concepts.md"
+                },
+                {
+                  "label": "Pi 확장과 자동화",
+                  "path": "Platforms/Pi/reference/03-applying-core-concepts.md"
+                },
+                {
+                  "label": "프로젝트 시작",
+                  "path": "Platforms/Pi/reference/04-starting-a-project.md"
+                },
+                {
+                  "label": "프로젝트 코딩",
+                  "path": "Platforms/Pi/reference/05-project-cooking.md"
+                },
+                {
+                  "label": "Pi 기본 명령",
+                  "path": "Platforms/Pi/reference/06-basic-commands.md"
+                },
+                {
+                  "label": "Spring/Java 분석과 테스트",
+                  "path": "Platforms/Pi/reference/07-analysis-and-testing.md"
+                }
+              ]
+            },
+            {
+              "label": "로컬 예제 package",
+              "path": "Platforms/Pi/examples/basic-pi-package/README.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Playbook",
+      "items": [
+        {
+          "label": "Playbook 안내",
+          "path": "Playbooks/README.md",
+          "children": [
+            {
+              "label": "기능 구현과 검증",
+              "path": "Playbooks/02-implement-and-verify.md"
+            },
+            {
+              "label": "느린 SQL 개선",
+              "path": "Playbooks/04-tune-sql.md"
+            },
+            {
+              "label": "구조 전환",
+              "path": "Playbooks/05-transition-structure.md"
+            },
+            {
+              "label": "외부 서비스 연동",
+              "path": "Playbooks/06-integrate-external.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "개발 가이드",
+      "items": [
+        {
+          "label": "Git",
+          "path": "Git/README.md",
+          "children": [
+            {
+              "label": "상태와 변경 확인",
+              "path": "Git/git_01_worktree_guide.md"
+            },
+            {
+              "label": "변경 확인과 커밋",
+              "path": "Git/git_02_apply_guide.md"
+            },
+            {
+              "label": "되돌리기와 복구",
+              "path": "Git/git_03_reset_rebase_revert_guide.md"
+            },
+            {
+              "label": "브랜치와 원격 협업",
+              "path": "Git/git_04_branch_remote_guide.md"
+            },
+            {
+              "label": "변경 통합과 충돌 해결",
+              "path": "Git/git_05_integration_conflict_guide.md"
+            }
+          ]
+        },
+        {
+          "label": "Python",
+          "path": "Python/README.md",
+          "children": [
+            {
+              "label": "생태계 지도",
+              "path": "Python/python_01_ecosystem_overview.md"
+            },
+            {
+              "label": "실행 환경과 가상환경",
+              "path": "Python/python_02_runtime_environment_guide.md"
+            },
+            {
+              "label": "패키징과 의존성",
+              "path": "Python/python_03_packaging_dependency_guide.md"
+            },
+            {
+              "label": "코드 품질 도구",
+              "path": "Python/python_04_quality_tools_guide.md"
+            },
+            {
+              "label": "웹 백엔드 구조",
+              "path": "Python/python_05_web_backend_structure_guide.md"
+            },
+            {
+              "label": "데이터 접근과 마이그레이션",
+              "path": "Python/python_06_web_data_access_guide.md"
+            },
+            {
+              "label": "API 계약과 인증",
+              "path": "Python/python_07_web_api_contract_guide.md"
+            },
+            {
+              "label": "실행과 운영",
+              "path": "Python/python_08_web_runtime_operations_guide.md"
+            }
+          ]
+        },
+        {
+          "label": "IntelliJ IDEA",
+          "path": "IntelliJ/README.md",
+          "children": [
+            {
+              "label": "런타임 디버깅",
+              "path": "IntelliJ/intellij_01_runtime_debug_guide.md"
+            },
+            {
+              "label": "사내 SSL 인증서",
+              "path": "IntelliJ/intellij_02_ssl_cert_guide.md"
+            }
+          ]
+        },
+        {
+          "label": "macOS",
+          "path": "Macos/README.md",
+          "children": [
+            {
+              "label": "백그라운드 프로세스와 캐시 정리",
+              "path": "Macos/macos_01_background_cleanup_guide.md"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "docs": [
+    {
+      "path": "README.md",
+      "title": "CodeStream 기술문서"
+    },
+    {
+      "path": "DOC_FORMAT.md",
+      "title": "문서 포맷 기준"
+    },
+    {
+      "path": "NOTICE.md",
+      "title": "저작권과 제3자 권리 고지"
+    },
+    {
+      "path": "Platforms/Antigravity/README.md",
+      "title": "Antigravity 가이드"
+    },
+    {
+      "path": "Platforms/Antigravity/setup.md",
+      "title": "Antigravity 환경 설정"
+    },
+    {
+      "path": "Platforms/Antigravity/skills.md",
+      "title": "Antigravity 사용자 Skill"
+    },
+    {
+      "path": "Platforms/Antigravity/commands.md",
+      "title": "Antigravity 명령 확인"
+    },
+    {
+      "path": "Platforms/Antigravity/workflows.md",
+      "title": "Antigravity 작업 흐름"
+    },
+    {
+      "path": "Platforms/Antigravity/extensions.md",
+      "title": "Antigravity 확장 기능"
+    },
+    {
+      "path": "Platforms/Antigravity/reference/01-sandbox-and-permissions.md",
+      "title": "01. 터미널 샌드박스와 권한 정책"
+    },
+    {
+      "path": "Platforms/Antigravity/reference/02-subagents-and-background-tasks.md",
+      "title": "02. 서브에이전트와 백그라운드 태스크"
+    },
+    {
+      "path": "Platforms/Antigravity/reference/03-artifacts-workflow.md",
+      "title": "03. 아티팩트 기반 작업과 피드백"
+    },
+    {
+      "path": "Platforms/Codex/README.md",
+      "title": "Codex 가이드"
+    },
+    {
+      "path": "Platforms/Codex/setup.md",
+      "title": "Codex 환경 설정"
+    },
+    {
+      "path": "Platforms/Codex/skills.md",
+      "title": "Codex 사용자 Skill"
+    },
+    {
+      "path": "Platforms/Codex/commands.md",
+      "title": "Codex 명령 확인"
+    },
+    {
+      "path": "Platforms/Codex/workflows.md",
+      "title": "Codex 작업 흐름"
+    },
+    {
+      "path": "Platforms/Codex/extensions.md",
+      "title": "Codex 확장 기능"
+    },
+    {
+      "path": "Platforms/Codex/automation.md",
+      "title": "Codex 자동화"
+    },
+    {
+      "path": "Platforms/ClaudeCode/README.md",
+      "title": "Claude Code 가이드"
+    },
+    {
+      "path": "Platforms/ClaudeCode/setup.md",
+      "title": "Claude Code 환경 설정"
+    },
+    {
+      "path": "Platforms/ClaudeCode/skills.md",
+      "title": "Claude Code 사용자 Skill"
+    },
+    {
+      "path": "Platforms/ClaudeCode/commands.md",
+      "title": "Claude Code 명령 확인"
+    },
+    {
+      "path": "Platforms/ClaudeCode/workflows.md",
+      "title": "Claude Code 작업 흐름"
+    },
+    {
+      "path": "Platforms/ClaudeCode/extensions.md",
+      "title": "Claude Code 확장 기능"
+    },
+    {
+      "path": "Platforms/GrokBuild/README.md",
+      "title": "Grok Build 가이드"
+    },
+    {
+      "path": "Platforms/GrokBuild/setup.md",
+      "title": "Grok Build 환경 설정"
+    },
+    {
+      "path": "Platforms/GrokBuild/skills.md",
+      "title": "Grok Build 사용자 Skill"
+    },
+    {
+      "path": "Platforms/GrokBuild/commands.md",
+      "title": "Grok Build 명령 확인"
+    },
+    {
+      "path": "Platforms/GrokBuild/workflows.md",
+      "title": "Grok Build 작업 흐름"
+    },
+    {
+      "path": "Platforms/GrokBuild/extensions.md",
+      "title": "Grok Build 확장 기능"
+    },
+    {
+      "path": "Platforms/GrokBuild/reference/01-permissions-and-plan-mode.md",
+      "title": "01. 권한과 Plan 모드"
+    },
+    {
+      "path": "Platforms/GrokBuild/reference/02-sessions-and-subagents.md",
+      "title": "02. 세션과 Subagent"
+    },
+    {
+      "path": "Platforms/GrokBuild/reference/03-workflows-and-profiles.md",
+      "title": "03. Workflow와 Agent Profile"
+    },
+    {
+      "path": "Platforms/Pi/README.md",
+      "title": "Pi 가이드"
+    },
+    {
+      "path": "Platforms/Pi/setup.md",
+      "title": "Pi 환경 설정"
+    },
+    {
+      "path": "Platforms/Pi/skills.md",
+      "title": "Pi 사용자 Skill"
+    },
+    {
+      "path": "Platforms/Pi/commands.md",
+      "title": "Pi 명령 확인"
+    },
+    {
+      "path": "Platforms/Pi/workflows.md",
+      "title": "Pi 작업 흐름"
+    },
+    {
+      "path": "Platforms/Pi/extensions.md",
+      "title": "Pi 확장 기능"
+    },
+    {
+      "path": "Platforms/Pi/reference/01-getting-started-and-key-concepts.md",
+      "title": "01. [초급] Pi 시작하기"
+    },
+    {
+      "path": "Platforms/Pi/reference/02-understanding-core-concepts.md",
+      "title": "02. [초급] Pi 기본 개념"
+    },
+    {
+      "path": "Platforms/Pi/reference/03-applying-core-concepts.md",
+      "title": "03. [중급] Pi 확장과 자동화"
+    },
+    {
+      "path": "Platforms/Pi/reference/04-starting-a-project.md",
+      "title": "04. [중급] 프로젝트 시작"
+    },
+    {
+      "path": "Platforms/Pi/reference/05-project-cooking.md",
+      "title": "05. [중급] 프로젝트 코딩"
+    },
+    {
+      "path": "Platforms/Pi/reference/06-basic-commands.md",
+      "title": "06. Pi 기본 명령"
+    },
+    {
+      "path": "Platforms/Pi/reference/07-analysis-and-testing.md",
+      "title": "07. [중급] Spring/Java 프로젝트 분석과 테스트"
+    },
+    {
+      "path": "Playbooks/README.md",
+      "title": "Playbook"
+    },
+    {
+      "path": "Playbooks/02-implement-and-verify.md",
+      "title": "기능 구현하고 검증하기"
+    },
+    {
+      "path": "Playbooks/04-tune-sql.md",
+      "title": "느린 SQL 개선하기"
+    },
+    {
+      "path": "Playbooks/05-transition-structure.md",
+      "title": "구조 전환하기"
+    },
+    {
+      "path": "Playbooks/06-integrate-external.md",
+      "title": "외부 서비스 연동하기"
+    },
+    {
+      "path": "Git/README.md",
+      "title": "개발자를 위한 Git 필수 가이드"
+    },
+    {
+      "path": "Git/git_01_worktree_guide.md",
+      "title": "Git 상태와 변경 확인"
+    },
+    {
+      "path": "Git/git_02_apply_guide.md",
+      "title": "Git 변경 확인과 커밋"
+    },
+    {
+      "path": "Git/git_03_reset_rebase_revert_guide.md",
+      "title": "Git 되돌리기와 복구"
+    },
+    {
+      "path": "Git/git_04_branch_remote_guide.md",
+      "title": "Git 브랜치와 원격 협업"
+    },
+    {
+      "path": "Git/git_05_integration_conflict_guide.md",
+      "title": "Git 변경 통합과 충돌 해결"
+    },
+    {
+      "path": "Python/README.md",
+      "title": "개발자를 위한 Python 개발 가이드"
+    },
+    {
+      "path": "Python/python_01_ecosystem_overview.md",
+      "title": "Python 생태계 지도"
+    },
+    {
+      "path": "Python/python_02_runtime_environment_guide.md",
+      "title": "실행 환경과 가상환경"
+    },
+    {
+      "path": "Python/python_03_packaging_dependency_guide.md",
+      "title": "패키징과 의존성 관리"
+    },
+    {
+      "path": "Python/python_04_quality_tools_guide.md",
+      "title": "코드 품질 도구"
+    },
+    {
+      "path": "Python/python_05_web_backend_structure_guide.md",
+      "title": "웹 백엔드 구조 선택"
+    },
+    {
+      "path": "Python/python_06_web_data_access_guide.md",
+      "title": "데이터 접근과 마이그레이션"
+    },
+    {
+      "path": "Python/python_07_web_api_contract_guide.md",
+      "title": "API 계약과 인증"
+    },
+    {
+      "path": "Python/python_08_web_runtime_operations_guide.md",
+      "title": "실행과 운영"
+    },
+    {
+      "path": "IntelliJ/README.md",
+      "title": "IntelliJ IDEA 개발 가이드"
+    },
+    {
+      "path": "IntelliJ/intellij_01_runtime_debug_guide.md",
+      "title": "IntelliJ 런타임 디버깅 가이드"
+    },
+    {
+      "path": "IntelliJ/intellij_02_ssl_cert_guide.md",
+      "title": "IntelliJ 사내 SSL 인증서 설정 가이드"
+    },
+    {
+      "path": "Macos/README.md",
+      "title": "macOS 개발 머신 관리 가이드"
+    },
+    {
+      "path": "Macos/macos_01_background_cleanup_guide.md",
+      "title": "macOS 백그라운드 프로세스 및 사용자 캐시 정리 가이드"
+    },
+    {
+      "path": "Platforms/Pi/examples/basic-pi-package/README.md",
+      "title": "Pi 로컬 예제 package"
+    }
+  ]
+}
