@@ -54,6 +54,52 @@ codex mcp list
 IntelliJ IDEA MCP로 디버거를 붙이면 Codex가 실행 중인 JavaScript Debug 세션을 읽고 브레이크포인트를 다룰 수 있어요.  
 연결 준비는 [IntelliJ IDEA 개발 가이드](../../IntelliJ/README.md)에서, 런타임 검증은 [IntelliJ 런타임 디버깅](../../IntelliJ/intellij_01_runtime_debug_guide.md)에서 확인해요.
 
+## 사이트 도구(WebMCP)
+
+WebMCP는 열린 웹사이트가 제공하는 기능을 Codex의 도구로 연결해요.  
+같은 페이지와 로그인 세션에서 사내 대시보드나 편집 도구를 다룰 때 사용해요.
+
+1. 최신 데스크톱 앱의 내장 브라우저에서 대상 사이트를 여세요.
+2. 주소 표시줄의 **Site tools > Available site tools**에서 제공 도구를 확인하세요.
+3. GPT-5.6 Sol 또는 GPT-6 Sol을 선택하세요.
+4. 대상 데이터와 요청할 작업을 지정하세요.
+5. 실행 후 페이지 결과와 **Recently used**의 도구 호출을 확인하세요.
+
+```text
+현재 대시보드의 Site tools로 실패한 배포 목록을 조회해줘.
+실행 상태와 오류를 요약해줘. 배포를 다시 실행하지 마.
+```
+
+- 웹사이트가 도구를 제공해야 사용할 수 있어요.
+- Enterprise는 관리자 정책에서 Site tools를 허용해야 해요. Edu에서는 제공하지 않아요.
+- 외부 MCP 서버는 열린 페이지 없이도 동작할 수 있어요. WebMCP 도구는 페이지를 닫거나 이동하면 사용할 수 없어요.
+- 지원 모델과 조직 조건은 [Site tools 공식 안내](https://learn.chatgpt.com/docs/webmcp)를 확인하세요.
+
+### 기존 브라우저 연결
+
+Chrome·Microsoft Edge·Brave·Opera·Vivaldi의 탭과 로그인 상태를 활용할 수 있어요.
+
+1. 데스크톱 앱의 **Settings > Computer Use**에서 브라우저 확장을 설정하세요.
+2. 입력창에서 `@`로 대상 탭을 선택하세요.
+3. 읽을 내용이나 실행할 작업을 지정하세요.
+
+Opera에서는 Side chat을 제공하지 않아요.  
+WebMCP의 사용 위치는 내장 브라우저예요.  
+연결 조건은 [브라우저 확장 공식 안내](https://learn.chatgpt.com/docs/chrome-extension)를 확인하세요.
+
+## Codex를 외부 프로그램에 연결하기
+
+대화 이력·인증·승인·실행 이벤트를 외부 프로그램에서 다룰 때 App Server를 검토해요.
+
+- App Server는 JSON-RPC 프로토콜을 사용해요.
+- 기존 `codex mcp-server` 연동은 MCP 호출을 App Server 프로토콜로 변경해야 해요.
+- 명령어만 교체하면 기존 MCP 클라이언트가 동작하지 않아요.
+- App Server 명령은 실험 기능이며 운영 워크로드를 지원하지 않아요.
+- Codex에서 외부 MCP 도구를 사용하는 절차는 [MCP와 App·Connector](#mcp와-appconnector)를 따라요.
+- 관리형 API로 서비스에 연결하려면 [Agents API](./automation.md#agents-api로-서비스에-연결하기)를 확인하세요.
+
+프로토콜과 이전 절차는 [App Server](https://learn.chatgpt.com/docs/app-server)와 [MCP 서버 제거 안내](https://learn.chatgpt.com/docs/mcp-server)를 확인하세요.
+
 ## Subagent
 
 Subagent는 메인 대화와 분리된 컨텍스트에서 결과를 돌려줘요.  

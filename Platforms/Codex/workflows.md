@@ -37,6 +37,91 @@ $ct-verify 주문 취소 변경의 정상·중복·외부 실패 흐름이 계�
 - Spring 구현 관례는 현재 코드와 설정을 근거로 검토해요.
 - 스크립트에서 검토 결과를 받을 때는 [비대화형 검토 명령](./commands.md#터미널에서-실행)을 사용해요.
 
+## GitLab Merge Request 검토하기
+
+Codex Cloud에서 GitLab Merge Request를 검토할 때 사용해요.  
+GitLab 연동은 베타 기능이에요.
+
+1. GitLab 계정을 연결하고 Codex Cloud에 대상 프로젝트 환경을 만드세요.
+2. 환경의 **Enable Codex activity from GitLab**을 켜서 웹훅을 연결하세요.
+3. 저장소의 `AGENTS.md`에 프로젝트 고유 리뷰 규칙을 작성하세요.
+4. Merge Request 댓글에서 검토를 요청하세요.
+
+```text
+@codex review for issues in the database migration
+```
+
+5. 지적 사항을 코드와 테스트로 확인하세요.
+6. 수정 작업을 요청한 뒤 변경 diff와 CI 결과를 검토하세요.
+
+```text
+@codex fix the P1 issue
+```
+
+- 자동 리뷰는 Codex 리뷰 설정의 **Automatic reviews**에서 저장소와 실행 조건을 선택하세요.
+- Self-Managed·Dedicated는 관리자 연결 설정이 필요해요. 서명된 웹훅은 GitLab 19.0 이상을 요구해요.
+- 웹훅 생성 권한과 Codex가 리뷰를 게시할 프로젝트 접근 권한을 확인하세요.
+- 그룹 웹훅만 설정하면 리뷰를 할 수 있어요. 코드 수정·명령 실행에는 프로젝트 환경이 필요해요.
+- GitLab이 접거나 생략한 대규모 diff는 검토를 완료할 수 없어요.
+- 리뷰 결과는 테스트와 병합 승인을 대신하지 않아요.
+
+상세 연결과 자동 리뷰 조건은 [GitLab 공식 안내](https://learn.chatgpt.com/docs/third-party/gitlab)를 확인하세요.
+
+## 대화 결과 공유하기
+
+macOS 데스크톱 앱에서 로컬 Codex 대화를 읽기 전용 스냅샷으로 공유해요.
+
+1. 공유할 대화의 **Share**를 선택하세요.
+2. 조직 계정에서는 **Who has access**로 공개 대상을 선택하세요.
+3. 업로드가 끝나면 **Copy link**를 선택하세요.
+4. 복사한 링크를 열어 메시지·이미지·파일 경로·diff를 확인하세요.
+
+- 개인 계정의 링크는 링크를 가진 사람이 열 수 있어요.
+- 조직 계정은 원래 워크스페이스의 인증된 구성원으로 접근을 제한해요.
+- 스냅샷은 공유 시점의 내용만 포함해요. 이후 대화와 변경은 반영하지 않아요.
+- 자동 비밀값 제거 후에도 민감한 내용이 남을 수 있어요. 공유 화면을 직접 확인하세요.
+- 링크를 폐기하려면 ChatGPT 데이터 설정의 **Shared links**를 사용하세요.
+
+공유 범위와 포함 항목은 [공식 스냅샷 안내](https://learn.chatgpt.com/docs/use-chatgpt#share-a-read-only-snapshot-of-a-codex-thread)를 확인하세요.
+
+## 모바일에서 Worktree 작업하기
+
+iOS의 Codex Remote에서 연결한 컴퓨터의 Worktree 작업을 시작하고 검토해요.
+
+1. 모바일 앱과 연결할 컴퓨터의 데스크톱 앱을 업데이트하세요.
+2. 새 작업에서 컴퓨터와 프로젝트를 선택하세요.
+3. Worktree의 시작 브랜치를 선택하거나 현재 로컬 변경 포함을 선택하세요.
+4. 설정 완료 후 작업을 열고 경로·브랜치·미커밋 변경을 확인하세요.
+5. 변경과 테스트 결과를 검토하세요.
+
+- iOS 26에서는 Worktree 설정을 백그라운드에서 계속하고 Live Activity로 진행을 확인할 수 있어요.
+- `@`로 다른 작업을 참조할 수 있어요.
+- 모바일 diff가 데스크톱의 같은 Worktree를 가리키는지 확인하세요.
+- 통합과 정리는 [Worktree 변경 비교·통합·정리](#변경-비교와-통합)를 따라요.
+
+지원 범위는 [공식 릴리스 기록](https://learn.chatgpt.com/docs/changelog)을 확인하세요.
+
+## 앱 화면을 문맥으로 전달하기
+
+Appshot으로 오류 창이나 미리보기 화면을 Codex에 전달해요.  
+데스크톱 앱의 macOS·Windows에서 사용할 수 있어요.
+
+1. 앱 설정의 **Appshot destination**을 **Current chat**으로 선택하세요.
+2. 전달할 창을 화면 맨 앞으로 가져오세요.
+3. Windows에서는 양쪽 Alt 키를, macOS에서는 양쪽 Command 키를 함께 누르세요.
+4. 첨부한 화면과 요청할 분석 범위를 확인하세요.
+
+```text
+첨부한 브라우저 오류 화면을 현재 프로젝트 코드와 대조해줘.
+오류 원인과 재현 절차를 정리해줘. 파일은 수정하지 마.
+```
+
+- Appshot은 창 이미지와 앱이 제공하는 텍스트를 포함할 수 있어요.
+- 전체 문서나 화면 밖 텍스트를 항상 포함하지는 않아요.
+- CLI에서는 새 Appshot을 만들 수 없어요.
+
+단축키와 권한 설정은 [Appshots 공식 안내](https://learn.chatgpt.com/docs/appshots)를 확인하세요.
+
 ## 세션과 맥락 관리
 
 CLI 입력창에서 현재 대화를 관리해요.

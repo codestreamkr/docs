@@ -34,6 +34,69 @@ codex
 로그인 상태는 `codex login status`로 확인해요.  
 계정과 조직 정책에 따라 사용할 수 있는 기능이 달라질 수 있어요.
 
+## Linux 데스크톱 앱
+
+Ubuntu·Debian·Fedora에서는 데스크톱 앱 프리뷰를 사용할 수 있어요.  
+x64·ARM64에 맞는 `.deb` 또는 `.rpm` 패키지를 [공식 설치 안내](https://learn.chatgpt.com/docs/linux/linux-app)에서 확인하세요.
+
+설치 후 로그인하고 프로젝트 폴더를 열어 로컬 파일 접근을 확인하세요.
+
+## 다른 에이전트에서 가져오기
+
+Claude Code·Cursor의 설정과 최근 대화를 가져올 때 사용해요.  
+데스크톱 앱에서는 Claude Cowork도 지원해요.
+
+1. 앱의 **Settings > Import > Import**를 선택하세요.
+2. 원본 에이전트와 가져올 설정·Skill·Plugin·프로젝트·대화를 선택하세요.
+3. 가져온 권한·MCP 인증·Hook을 확인하세요.
+4. 연결에 추가 인증이 필요하면 **Finish**를 선택하세요.
+
+CLI에서는 로컬 대화 입력창에 `/import`를 입력하세요.  
+작업 실행 중이거나 원격 세션 또는 로컬 App Server 데몬에 연결한 상태에서는 사용할 수 없어요.
+
+```bash
+# 로컬 App Server 데몬에 연결하지 않고 시작해요.
+codex --no-daemon
+```
+
+CLI는 최근 30일의 대화를 최대 50개 가져와요.  
+원본 에이전트 설정은 변경하지 않아요.  
+가져오기 범위와 변환 항목은 [공식 가져오기 안내](https://learn.chatgpt.com/docs/import)를 확인하세요.
+
+## 모델과 속도 선택
+
+사용할 수 있는 모델은 요금제·로그인 방식·클라이언트·조직 설정에 따라 달라요.
+
+| 작업 | 모델 | 선택 기준 |
+| --- | --- | --- |
+| 복잡한 코딩과 반복되는 장기 작업 | `gpt-6.1-sol` | 사용할 수 있으면 일반 개발 작업에 선택해요. |
+| 복잡한 코딩과 WebMCP 작업 | `gpt-6-sol` | 해당 기능과 계정에서 지원하는지 확인하고 선택해요. |
+| 범위가 명확한 요약·추출·코드 변환 | `gpt-6-luna` | 입력과 완료 조건이 정해진 작업에 선택해요. |
+| 여러 도구와 판단이 필요한 복잡한 작업 | `gpt-6-astra` | 가장 어려운 작업의 품질을 비교할 때 선택해요. |
+
+1. CLI 입력창의 `/model`에서 모델과 추론 수준을 선택하세요.
+2. 앱에서는 입력창 아래 모델·추론 설정에서 제공되는 항목을 선택하세요.
+3. 추론 수준은 기본값으로 시작하고, 복잡한 분석이 필요하면 높이세요.
+
+```bash
+codex --model gpt-6.1-sol
+```
+
+| 속도 모드 | 사용 방법 | ChatGPT 로그인 기준 사용량 |
+| --- | --- | --- |
+| Standard | 기본 속도를 사용해요. | 기준 사용량 |
+| Fast | 지원 모델에서 CLI `/fast`로 전환해요. | 포함 사용량 2.5배, 구매 크레딧·Enterprise 종량제 2배 |
+| Ultrafast | 지원 화면의 속도 설정에서 선택해요. | 포함 사용량 8배, 구매 크레딧·Enterprise 종량제 6배 |
+
+- CLI `/statusline`에서 Fast 상태 표시를 설정하세요.
+- Ultrafast는 GPT-6 Astra·6.1 Sol과 Pro $500·지원 Enterprise·Edu 요금제에서 제공해요.
+- Enterprise에서는 소유자가 Ultrafast 접근을 허용해야 해요.
+- API 키 인증에는 API 가격을 적용해요. 위 크레딧 배율을 적용하지 않아요.
+- 지원 종료 모델은 [릴리스 안내](./releases.md)에서 확인하세요.
+- 저장한 모델을 변경할 때는 `config.toml`, Custom Agent, 예약 작업과 스크립트의 모델 지정값을 확인하세요.
+
+모델별 제공 범위는 [Models](https://learn.chatgpt.com/docs/models), 속도와 과금 조건은 [Speed](https://learn.chatgpt.com/docs/agent-configuration/speed)를 확인하세요.
+
 ## 사용자 Skill
 
 1. [ai-comm-init](https://github.com/codestreamkr/ai-comm-init)의 설치·배치 절차를 따라요.

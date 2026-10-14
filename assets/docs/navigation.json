@@ -93,6 +93,10 @@
             {
               "label": "자동화",
               "path": "Platforms/Codex/automation.md"
+            },
+            {
+              "label": "릴리스 안내",
+              "path": "Platforms/Codex/releases.md"
             }
           ]
         },
@@ -427,6 +431,10 @@
     {
       "path": "Platforms/Codex/automation.md",
       "title": "Codex 자동화"
+    },
+    {
+      "path": "Platforms/Codex/releases.md",
+      "title": "Codex 릴리스"
     },
     {
       "path": "Platforms/ClaudeCode/README.md",

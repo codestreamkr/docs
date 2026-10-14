@@ -170,6 +170,7 @@
             <li><a href="./index.html?doc=Platforms/Codex/extensions.md">확장 기능 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/Codex/commands.md">명령 확인 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/Codex/automation.md">자동화 <span>→</span></a></li>
+            <li><a href="./index.html?doc=Platforms/Codex/releases.md">릴리스 안내 <span>→</span></a></li>
           </ul>
         </section>
 

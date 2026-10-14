@@ -36,6 +36,8 @@ Git, Python, macOS, IntelliJ 가이드는 아래 [문서 구성](#문서-구성)
 
 Pi의 package 설치와 호출 예제는 [Pi 로컬 예제 package](./Platforms/Pi/examples/basic-pi-package/README.md)를 봐요.
 
+Codex의 월별 변경사항은 [Codex 릴리스 안내](./Platforms/Codex/releases.md)에서 확인해요.
+
 ## AI별 구현 기준
 
 같은 Skill을 어느 플랫폼에서 호출해도 필수 입력과 결과 기준은 같아요.  

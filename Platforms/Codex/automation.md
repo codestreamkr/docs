@@ -102,6 +102,31 @@ codex exec --sandbox read-only resume --last \
 재현성과 추적성이 필요한 작업은 `--last` 대신 실행에서 기록한 세션 ID를 지정해요.  
 대화형 세션의 재개와 분기는 [작업 흐름](./workflows.md)을 봐요.
 
+## Agents API로 서비스에 연결하기
+
+자체 서비스에서 세션을 유지하며 Codex를 실행할 때 Agents API를 사용해요.  
+OpenAI가 세션 관리·문맥 압축·복구를 처리하고, 서비스가 도구와 실행 환경을 지정해요.
+
+| 구성 | 역할 |
+| --- | --- |
+| Agent | 모델·지침·도구·MCP 서버를 지정해요. |
+| Environment | 코드 실행·파일 편집에 사용할 샌드박스를 지정해요. |
+| Session | 여러 요청에서 작업 상태와 대화를 유지해요. |
+| Events | 진행 상태·완료·추가 입력 요청을 서비스에 전달해요. |
+
+1. [공식 Quickstart](https://developers.openai.com/api/docs/guides/agents-api/quickstart)의 SDK와 API 키 권한을 준비하세요.
+2. 모델·지침·도구와 실행 환경을 지정해 Session을 만드세요.
+3. 작업 입력을 보내고 진행 이벤트를 처리하세요.
+4. 완료 결과와 Session ID를 보관하세요.
+5. 후속 작업은 같은 Session에 입력하세요.
+
+- 브라우저 작업에는 Agents API의 [Computer Use](https://developers.openai.com/api/docs/guides/agents-api/tools/computer-use)를 연결하세요.
+- 모델·도구·호스팅 샌드박스에는 API 요금을 적용해요.
+- 미국 데이터 레지던시만 지원하며 Zero Data Retention을 지원하지 않아요.
+- 세부 요청 필드와 실행 예제는 공식 Quickstart를 사용하세요.
+
+구성과 제한은 [Agents API 공식 안내](https://developers.openai.com/api/docs/guides/agents-api/overview)를 확인하세요.
+
 ## 확인 기준
 
 2026-10-01에 공식 문서와 설치된 Codex CLI `0.158.0`의 `exec --help`를 확인했어요.  
