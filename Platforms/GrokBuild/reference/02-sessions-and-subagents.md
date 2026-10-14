@@ -22,6 +22,23 @@
 `/rewind`를 사용해도 디스크의 파일은 그대로일 수 있으므로 변경 상태를 따로 확인해요.  
 `/compact` 뒤에는 다음 Skill 요청에 계획과 결과 파일 경로를 다시 적어요.
 
+## 컨텍스트 창 선택
+
+Grok Build 1.0.44부터 모델이 여러 크기를 지원하면 현재 세션의 컨텍스트 창을 선택할 수 있어요.
+
+1. `/model`에서 사용할 모델을 선택해요.
+2. 컨텍스트 창 선택지가 나타나면 필요한 크기를 선택해요.
+3. `/context-window`에서 현재 세션의 선택을 변경해요.
+4. `/context`에서 사용량을 확인해요.
+
+```text
+/context-window
+/context
+```
+
+선택지는 모델이 지원하는 크기로 제한해요.  
+작업 범위를 줄이거나 대화를 압축하는 방법은 [세션 관리](#세션-관리)를 봐요.
+
 ## Subagent 역할
 
 Subagent는 역할별 도구와 별도 컨텍스트에서 작업해요.
@@ -59,3 +76,4 @@ explore = "grok-4.6"
 
 - [Grok Build 개요](https://docs.x.ai/build/overview)
 - [Settings](https://docs.x.ai/build/settings)
+- [Grok Build Changelog](https://x.ai/changelog/build)

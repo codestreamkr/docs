@@ -86,6 +86,77 @@ agy plugin --help
 `--dangerously-skip-permissions`는 격리된 환경에서만 사용해요.  
 권한과 샌드박스의 적용 범위는 [샌드박스와 권한](./reference/01-sandbox-and-permissions.md)에서 확인해요.
 
+## 추가 기능 활용
+
+### Skill 새로고침
+
+CLI 1.2.4부터 Skill을 추가한 뒤 세션을 재시작하지 않고 다시 찾을 수 있어요.
+
+```text
+/skills reload
+/skills
+```
+
+첫 명령은 Skill과 슬래시 명령 탐색을 다시 실행해요.  
+두 번째 명령으로 필요한 Skill이 표시되는지 확인해요.
+
+### 보조 질문
+
+`/btw`로 현재 작업을 중단하지 않고 보조 질문을 요청해요.  
+CLI 1.2.3부터 `/copy btw`로 보조 질문의 전체 답변을 복사해요.
+
+```text
+/btw 현재 코드에서 멱등성 키는 어디에서 검증해?
+/copy btw
+```
+
+### 음성 입력
+
+CLI 1.1.21부터 `/voice` 또는 `F5`로 음성 입력을 전환해요.  
+`Enter` 또는 `F5`로 녹음을 끝내고 전사된 텍스트를 확인해요.  
+텍스트를 확인한 뒤 요청을 전송해요.
+
+```text
+/voice
+```
+
+음성 입력은 대화형 세션에서만 지원해요.  
+Business·Enterprise 계정은 지원하지 않아요.  
+인증 권한 오류가 나면 `/logout` 후 다시 로그인해요.
+
+SSH 환경의 마이크 연결은 [공식 음성 입력 문서](https://www.antigravity.google/docs/cli/commands/voice/)에서 확인해요.
+
+### 출력 상세 수준
+
+CLI 1.3.0의 기본 `Verbosity`는 `medium`이에요.  
+개별 도구 호출과 사고 과정을 모두 확인하려면 `/config`에서 `Verbosity`를 `high`로 설정해요.
+
+### 비대화형 자동화
+
+CLI 1.1.15부터 NDJSON 요청을 한 프로세스의 대화에 순서대로 전달할 수 있어요.  
+`--input-format stream-json`에는 `--output-format stream-json`이 필요해요.
+
+```bash
+printf '%s\n' \
+  '{"event":"user","message":{"content":"현재 프로젝트의 테스트 명령을 확인해줘"}}' \
+  '{"event":"user","message":{"content":"앞서 확인한 테스트 명령을 요약해줘"}}' \
+  | agy --input-format stream-json --output-format stream-json
+```
+
+자동화 프로그램은 현재 요청의 `result` 이벤트를 받은 뒤 다음 요청을 전송해요.  
+인증은 먼저 마치고, 실행할 도구의 권한을 설정해요.
+
+CLI 1.2.14부터 `--json-schema`의 루트는 `"type": "object"`여야 해요.  
+원시 타입 이름, 일반 텍스트와 없는 스키마 파일은 시작 오류로 처리해요.
+
+```bash
+agy -p "현재 변경을 한 문장으로 요약해줘" --output-format json \
+  --json-schema '{"type":"object","properties":{"summary":{"type":"string"}},"required":["summary"]}'
+```
+
+자동화 결과는 `status`와 `structured_output`을 확인해요.  
+명령 성공만으로 테스트나 요청한 도구 실행이 완료됐다고 판단하지 않아요.
+
 ## 확인 기준
 
 1. 입력창에서 `/` 또는 `/help`로 현재 명령을 확인해요.
@@ -97,3 +168,5 @@ agy plugin --help
 
 - [Antigravity CLI Reference](https://antigravity.google/docs/cli/reference)
 - [Antigravity CLI Features](https://antigravity.google/docs/cli/features)
+- [비대화형 자동화](https://www.antigravity.google/docs/cli/headless/)
+- [CLI 변경 기록](https://www.antigravity.google/docs/changelog?tab=cli)

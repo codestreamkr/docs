@@ -51,6 +51,7 @@ agy
 | Skill 연결, 검토, 세션과 Antigravity 고유 작업 | [작업 흐름](./workflows.md) |
 | Rules, Skill, Subagent, Plugin, Hook과 MCP의 선택 기준 | [확장 기능](./extensions.md) |
 | 입력창 명령과 터미널 실행 옵션 | [명령 확인](./commands.md) |
+| 2026년 8~10월 CLI 변경과 기능 사용법 | [릴리스](./releases.md) |
 
 ## 사용 기준
 

@@ -58,6 +58,7 @@ Pi는 가벼운 기본 기능에 Skill, Prompt Template, Extension, Theme, Packa
 | 사용자 Skill의 입력과 결과 | [사용자 Skill](./skills.md) |
 | 세션에서 작업을 연결하고 검토하는 방법 | [작업 흐름](./workflows.md) |
 | Extension, Prompt Template, Package와 자동화 | [확장 기능](./extensions.md) |
+| 월별 변경사항과 새 기능 | [릴리스 안내](./releases.md) |
 
 ## 사용 기준
 
@@ -81,4 +82,4 @@ Pi는 가벼운 기본 기능에 Skill, Prompt Template, Extension, Theme, Packa
 | Spring·Java 분석과 테스트 | [07. Spring/Java 프로젝트 분석과 테스트](./reference/07-analysis-and-testing.md) |
 
 예제 Package는 [`examples/basic-pi-package`](./examples/basic-pi-package/)에 있어요.  
-이 문서는 설치본 Pi `0.87.1`과 공식 문서를 기준으로 확인했어요.
+기본 명령은 설치본 Pi `0.87.1`, 추가 기능은 2026-10-14 공식 문서를 기준으로 확인했어요.

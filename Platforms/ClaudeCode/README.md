@@ -49,6 +49,7 @@ Claude Code는 터미널 세션을 유지하면서 코드, 지침과 도구 결�
 | 세션에서 Skill을 연결하고 검토하는 방법 | [작업 흐름](./workflows.md) |
 | Skill, Subagent, MCP, Hook과 Plugin의 선택 | [확장 기능](./extensions.md) |
 | 입력창 명령과 터미널 명령의 구분 | [명령 확인](./commands.md) |
+| 최근 릴리스와 새 기능의 활용 문서 | [릴리스](./releases.md) |
 
 ## 사용 기준
 

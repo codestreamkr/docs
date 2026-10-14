@@ -22,8 +22,18 @@
 ```
 
 `/workflow runs`에서 실행 목록을 보고 상태를 관리해요.  
-자식 호출 상한은 `agent_budget`으로 제한될 수 있으므로, 반복 실행 전에 현재 설정과 중단 조건을 확인해요.  
+자식 호출 상한과 추론 수준을 실행 요청에 지정해요.  
 프로세스가 다시 시작되어 끊긴 실행의 복원 가능 여부는 현재 버전 도움말을 확인해요.
+
+```text
+/workflow <이름> --agent-budget 4 --effort high
+```
+
+`--agent-budget`은 자식 호출 상한이에요.  
+토큰 예산과 구분해요.  
+`--effort`는 자식의 추론 수준이에요.  
+선택한 모델이 지원하는 수준을 사용해요.  
+실행 후 `/workflow runs`에서 진행 상태를 확인해요.
 
 ## Goal
 
@@ -55,3 +65,5 @@ Profile이 프로젝트 기준을 대체하지 않도록 `AGENTS.md`와 역할�
 
 - [Grok Build 개요](https://docs.x.ai/build/overview)
 - [Settings](https://docs.x.ai/build/settings)
+- [Modes and Commands](https://docs.x.ai/build/modes-and-commands)
+- [Grok Build Changelog](https://x.ai/changelog/build)

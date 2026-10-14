@@ -39,6 +39,22 @@ Subagent는 독립된 컨텍스트에서 조사, 검토나 구현을 맡아요.
 같은 저장소를 동시에 수정해야 하면 worktree 세션을 사용해요.  
 오래 걸리는 작업은 백그라운드 세션으로 보내고, 앞 단계의 결과가 필요한 작업은 같은 세션에서 이어가요.
 
+### GitLab MR에서 작업
+
+Claude Code 2.1.233 이상에서는 GitLab MR에서 별도 worktree를 만들어요.
+
+1. 대상 저장소를 로컬에 열어요.
+2. `origin`이 MR의 GitLab 저장소를 가리키는지 확인해요.
+3. GitLab 인증을 확인하고 MR URL로 세션을 열어요.
+
+```bash
+git remote get-url origin
+claude --worktree "https://gitlab.com/<group>/<project>/-/merge_requests/<number>"
+```
+
+worktree는 `origin`에서 MR을 가져와 분기해요.  
+세션에서 현재 브랜치와 diff를 확인한 뒤 검토나 수정을 요청해요.
+
 ## MCP
 
 MCP는 외부 시스템의 현재 데이터를 읽거나 작업할 때 연결해요.
@@ -56,6 +72,41 @@ claude mcp list
 Hook은 모델 판단 없이 도구 실행 전후와 세션 생명주기에 검사를 연결해요.  
 `settings.json`의 `hooks`에서 `PreToolUse`, `PostToolUse`, `SessionStart`, `SessionEnd`, `Stop` 같은 이벤트에 설정해요.  
 프로젝트 의미를 판단해야 하는 기준은 Hook이 아니라 `CLAUDE.md`나 Skill에 둬요.
+
+### Hook 실패 시 차단
+
+Claude Code 2.1.295 이상에서는 command·HTTP Hook에 `onFailure: "block"`을 설정할 수 있어요.  
+검사 실행 실패나 시간 초과가 발생하면 해당 작업을 차단해요.
+
+1. 실제 검사 스크립트를 준비해요.
+2. `.claude/settings.json`에 Hook 설정을 추가해요.
+3. 검사 실패와 시간 초과에서 대상 도구 호출이 차단되는지 확인해요.
+
+다음은 Bash 실행 전에 Node.js 검사 스크립트를 호출하는 예제예요.
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/check-command.js"],
+            "onFailure": "block"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+기본값 `continue`는 Hook 실행 실패만으로 작업을 차단하지 않아요.  
+`Stop`, `SubagentStop`, `TaskCompleted`, `TeammateIdle`과 비동기 command Hook에는 이 설정이 적용되지 않아요.  
+상세 실패 조건은 [Hook 실패 시 차단](https://code.claude.com/docs/en/hooks#block-the-action-when-a-hook-fails)을 확인해요.
 
 ## 반복 실행
 
@@ -76,6 +127,20 @@ Routine은 커넥터와 저장소에 쓰기 작업을 할 수 있으므로 실�
 Plugin은 Skill, Subagent, Hook과 MCP 설정을 함께 배포할 때 사용해요.  
 입력창의 `/plugin` 또는 터미널의 `claude plugin`으로 설치와 상태 관리를 해요.  
 개별 작업 절차만 필요하면 Skill로 시작해요.
+
+### Plugin 설정 확인
+
+Claude Code 2.1.285 이상에서는 터미널에서 Plugin 옵션과 미설정 값을 확인해요.
+
+```bash
+claude plugin configure <plugin>
+```
+
+1. 설치한 Plugin 이름으로 명령을 실행해요.
+2. 미설정 값을 확인해요.
+3. 입력창의 `/plugin`에서 해당 Plugin의 Configure를 열어 필요한 값을 설정해요.
+
+설정을 마친 뒤 `/plugin`에서 Plugin과 번들 MCP 서버의 상태를 확인해요.
 
 ## 확인 기준
 

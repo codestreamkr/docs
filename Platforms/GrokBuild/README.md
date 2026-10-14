@@ -49,6 +49,7 @@ Plan 모드에서 계획을 검토하고 승인한 뒤 실행할 수 있어요.
 | 세션에서 Skill을 연결하고 검토하는 방법 | [작업 흐름](./workflows.md) |
 | Subagent, 모델, MCP와 Plugin의 선택 | [확장 기능](./extensions.md) |
 | 입력창 명령과 터미널 명령의 구분 | [명령 확인](./commands.md) |
+| 최근 변경과 새 기능의 적용 방법 | [릴리스](./releases.md) |
 
 ## 사용 기준
 

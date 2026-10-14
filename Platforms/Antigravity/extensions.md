@@ -47,6 +47,21 @@ CLI에서 `/mcp`로 상태와 연결 로그를 확인하고, 전역 또는 작�
 
 비밀값과 권한 범위는 MCP 서버의 인증 방식과 Antigravity 권한 정책을 함께 검토해요.
 
+CLI 1.1.16부터 전역 MCP 서버는 터미널에서 관리할 수 있어요.
+
+```bash
+agy mcp --help
+agy mcp add --help
+agy mcp list
+agy mcp enable <서버 이름>
+agy mcp disable <서버 이름>
+agy mcp remove <서버 이름>
+```
+
+서버를 추가할 때는 `add --help`에서 `--type`, `--env`, `--header` 형식을 먼저 확인해요.  
+관리 명령은 사용자 전역 `mcp_config.json`을 수정해요.  
+추가한 서버는 열린 CLI의 `/mcp`에서 상태와 인증을 확인해요.
+
 ## Hook
 
 Hook은 도구 실행 전후 또는 에이전트 실행 단계에 셸 명령을 연결해 검사와 형식화를 자동화해요.  
@@ -79,3 +94,4 @@ agy plugin list
 - [Antigravity MCP](https://antigravity.google/docs/mcp)
 - [Antigravity Hooks](https://antigravity.google/docs/hooks)
 - [Antigravity Plugins](https://antigravity.google/docs/plugins)
+- [CLI 변경 기록](https://www.antigravity.google/docs/changelog?tab=cli)

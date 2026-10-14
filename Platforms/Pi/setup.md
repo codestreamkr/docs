@@ -58,6 +58,10 @@ pi auth print-api-key --provider anthropic
 
 `print-bearer-token`은 OAuth 자격증명을 갱신해 외부 도구에 전달할 때 사용해요.
 
+Pi `0.99.0` 이상에서는 입력창의 `/login openai`로 ChatGPT 구독 로그인을 시작할 수 있어요.  
+이전 OpenAI Codex 제공자는 legacy로 표시해요.  
+로그인 후 `/model`에서 계정이 지원하는 모델을 선택하세요.
+
 ## 사용자 Skill
 
 CodeStream 사용자 Skill(`ct-*`)은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후에 사용해요.  
@@ -125,6 +129,21 @@ Pi는 명령 단위가 아니라 도구 단위로 허용 범위를 정해요.
 읽기 전용 모드에서는 `bash`가 없어 Pi가 Git 상태나 테스트를 직접 실행할 수 없어요.  
 더 강한 격리가 필요하면 [확장 기능](./extensions.md#격리-실행)을 봐요.
 
+Pi `1.1.0` 이상에서는 기본 도구에 이름을 더하거나 뺄 수 있어요.  
+Pi `1.0.4` 이상에서는 도구 이름에 `*` 패턴을 사용할 수 있어요.
+
+```bash
+# 기본 도구에 Codemode를 추가하고 write를 제외해요.
+pi --tools +codemode,-write
+
+# 기본 도구만 읽기로 제한하고 MCP를 끈 상태에서 시작해요.
+pi --tools read,grep,find,ls --no-mcp
+```
+
+`--tools`의 일반 도구 이름만 지정하면 MCP 도구는 계속 포함돼요.  
+외부 도구까지 제외하려면 `--no-mcp`를 함께 지정하세요.  
+Extension이 제공하는 도구의 권한도 별도로 확인하세요.
+
 프로젝트의 `.pi/` 자원과 `.agents/skills/`는 신뢰 승인 뒤에만 로드돼요.
 
 | 세션에서 입력 | 시작 옵션 | Settings |
@@ -154,15 +173,72 @@ thinking은 `off`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max` 중 지원
 `modelThinkingLevels`와 `thinkingBudgets`로 모델별 기본 수준과 예산을 정해요.  
 모델 카탈로그는 `pi update --models`로 갱신해요.
 
+새 모델을 사용하려면 인증을 확인한 뒤 `/model`에서 목록을 확인하세요.  
+GPT-6.1 Sol과 GPT-6 Sol·Luna의 제공 범위는 로그인한 제공자에 따라 달라요.  
+OpenRouter는 Pi `1.2.0` 이상에서 해당 API 키가 사용할 수 있는 모델 목록을 조회해요.
+
+### 제공자 설정 변경
+
+Pi `1.0.3` 이상에서 Azure 제공자 이름은 `azure`예요.
+
+1. `auth.json`·`models.json`의 제공자 키를 `azure-openai-responses`에서 `azure`로 변경하세요.
+2. `settings.json`의 `defaultProvider`, `enabledModels`, `modelThinkingLevels`도 확인하세요.
+3. 저장한 인증을 다시 설정하려면 `/login`을 사용하세요.
+4. 이전 세션을 재개한 뒤 실제 선택된 모델을 확인하세요.
+
+`AZURE_OPENAI_*` 환경 변수 이름은 유지해요.  
+기존 세션의 프롬프트 캐시는 재사용하지 않아요.
+
 ### 화면, 세션과 맥락
 
 `/settings`으로 화면과 동작 설정을 바꾸고 `/hotkeys`로 단축키를 확인해요.  
 `--tui-mode fullscreen` 또는 `tuiMode`는 전사와 입력창의 화면 배치를 정해요.  
 `--use-theme` 또는 `theme`은 테마를 정해요.
 
+Pi `1.0.0` 이상은 Fullscreen을 기본으로 사용해요.  
+터미널의 일반 스크롤 기록이 필요하면 `/settings`에서 `tuiMode`를 `regular`로 선택하세요.
+
 `/session`으로 토큰과 비용을 확인하고 `/compact`로 현재 대화를 요약해요.  
 `compaction.enabled`, `compaction.keepRecentTokens`, `cacheWarming`, `showCacheMissNotices`는 긴 세션의 요약과 캐시 표시를 조정해요.  
 세션 분기와 재개는 [작업 흐름](./workflows.md#세션과-맥락-관리)을 봐요.
+
+### 터미널 표시와 원격 복사
+
+터미널이 지원하는 기능을 Pi가 감지하지 못하면 다음 환경 변수를 설정하세요.
+
+| 변수 | 값 | 용도 |
+| --- | --- | --- |
+| `PI_HYPERLINKS` | `1`, `0`, `auto` | OSC 8 링크 지원을 지정해요. |
+| `PI_IMAGE_PROTOCOL` | `kitty`, `iterm2`, `none`, `auto` | 이미지 표시 방식을 지정해요. |
+| `PI_TRUE_COLOR` | `1`, `0`, `auto` | Truecolor 지원을 지정해요. |
+| `PI_CLIPBOARD_OSC52` | `1` | Pi `1.2.0` 이상에서 원격 클립보드로 복사 내용을 전달해요. |
+
+원격 터미널이 OSC 52를 지원하는지 확인한 뒤 실행하세요.
+
+```bash
+PI_CLIPBOARD_OSC52=1 pi
+```
+
+Fullscreen에서 선택만 해도 복사되는 동작을 끄려면 `/settings`에서 `fullscreenCopyOnSelect`를 끄세요.  
+그 뒤 `Ctrl+X`로 선택 영역을 복사하세요.
+
+### 설정 파일 검증
+
+Pi `1.2.0` 이상은 설정 파일의 JSON Schema를 제공해요.  
+설정 파일을 편집할 때 키 이름과 값 형식을 검증할 수 있어요.
+
+`settings.json`에 다음 `$schema` 항목을 추가하세요.
+
+```json
+{
+  "$schema": "https://pi.dev/schemas/settings.schema.json",
+  "defaultThinkingLevel": "medium"
+}
+```
+
+`models.json`, Keybindings와 Theme에도 해당 공식 스키마를 적용하세요.  
+기존 Theme의 스키마 주소는 `https://pi.dev/schemas/theme.schema.json`으로 변경하세요.  
+재사용 색은 `vars`에 두고 지원하지 않는 메타데이터를 제거하세요.
 
 ## 저장 위치
 
@@ -211,7 +287,7 @@ thinking은 `off`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max` 중 지원
 
 ## 확인 기준
 
-설치본 Pi `0.87.1`과 공식 문서를 기준으로 확인했어요.  
+기본 명령은 설치본 Pi `0.87.1`, 추가 기능은 2026-10-14 공식 문서를 기준으로 확인했어요.  
 옵션과 입력창 명령은 설치 버전과 Extension에 따라 달라지므로 `pi --help`와 현재 `/` 목록을 우선해요.
 
 ## 공식 문서
@@ -222,3 +298,5 @@ thinking은 `off`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max` 중 지원
 - [Choose a Model](https://pi.dev/docs/latest/models)
 - [Keybindings](https://pi.dev/docs/latest/keybindings)
 - [Security](https://pi.dev/docs/latest/security)
+- [Environment Variables](https://pi.dev/docs/latest/environment-variables)
+- [Pi 릴리스](./releases.md)

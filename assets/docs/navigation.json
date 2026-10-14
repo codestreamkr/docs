@@ -48,6 +48,10 @@
               "path": "Platforms/Antigravity/extensions.md"
             },
             {
+              "label": "릴리스 안내",
+              "path": "Platforms/Antigravity/releases.md"
+            },
+            {
               "label": "심화 학습",
               "children": [
                 {
@@ -123,6 +127,10 @@
             {
               "label": "확장 기능",
               "path": "Platforms/ClaudeCode/extensions.md"
+            },
+            {
+              "label": "릴리스 안내",
+              "path": "Platforms/ClaudeCode/releases.md"
             }
           ]
         },
@@ -149,6 +157,10 @@
             {
               "label": "확장 기능",
               "path": "Platforms/GrokBuild/extensions.md"
+            },
+            {
+              "label": "릴리스 안내",
+              "path": "Platforms/GrokBuild/releases.md"
             },
             {
               "label": "심화 학습",
@@ -192,6 +204,10 @@
             {
               "label": "확장 기능",
               "path": "Platforms/Pi/extensions.md"
+            },
+            {
+              "label": "릴리스 안내",
+              "path": "Platforms/Pi/releases.md"
             },
             {
               "label": "심화 학습",
@@ -385,6 +401,10 @@
       "title": "Antigravity 명령 확인"
     },
     {
+      "path": "Platforms/Antigravity/releases.md",
+      "title": "Antigravity 릴리스"
+    },
+    {
       "path": "Platforms/Antigravity/workflows.md",
       "title": "Antigravity 작업 흐름"
     },
@@ -453,6 +473,10 @@
       "title": "Claude Code 명령 확인"
     },
     {
+      "path": "Platforms/ClaudeCode/releases.md",
+      "title": "Claude Code 릴리스"
+    },
+    {
       "path": "Platforms/ClaudeCode/workflows.md",
       "title": "Claude Code 작업 흐름"
     },
@@ -475,6 +499,10 @@
     {
       "path": "Platforms/GrokBuild/commands.md",
       "title": "Grok Build 명령 확인"
+    },
+    {
+      "path": "Platforms/GrokBuild/releases.md",
+      "title": "Grok Build 릴리스"
     },
     {
       "path": "Platforms/GrokBuild/workflows.md",
@@ -511,6 +539,10 @@
     {
       "path": "Platforms/Pi/commands.md",
       "title": "Pi 명령 확인"
+    },
+    {
+      "path": "Platforms/Pi/releases.md",
+      "title": "Pi 릴리스"
     },
     {
       "path": "Platforms/Pi/workflows.md",

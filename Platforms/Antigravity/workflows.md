@@ -30,6 +30,16 @@ Skill 이름과 필요한 대상을 한 요청에 적고, 이전 단계의 결�
 Git 상태와 커밋 이력은 터미널에서 `git status`, `git diff`, `git log`로 직접 확인해요.  
 에이전트에는 Git 명령 자체보다 검토·수정·검증할 대상과 의도를 요청해요.
 
+CLI 1.3.1의 `/diff` 파일 화면에서는 아래 키로 변경을 탐색해요.
+
+| 키 | 동작 |
+| --- | --- |
+| `←`, `→` | 이전·다음 파일 열기 |
+| `j`, `k` | 한 줄씩 이동 |
+| `n`, `N` | 다음·이전 변경으로 이동하며 파일 경계 넘기 |
+
+화면 너비가 충분하면 헤더의 `change A/B · file X/Y`로 현재 위치를 확인해요.
+
 ## 세션과 맥락 관리
 
 - 같은 작업은 같은 세션에서 이어가요.
@@ -37,6 +47,43 @@ Git 상태와 커밋 이력은 터미널에서 `git status`, `git diff`, `git lo
 - 특정 대화로 돌아가야 하면 `agy --conversation <conversation-id>`로 세션을 열어요.
 - 무관한 새 작업은 입력창의 `/clear` 또는 `/new`로 시작해요.
 - 긴 요청의 맥락 사용량은 `/context`에서 확인해요.
+
+## 후속 메시지 전달
+
+CLI 1.2.14부터 `/config`의 `Queued Messages`로 후속 메시지 전달 시점을 설정해요.
+
+| 값 | 동작 |
+| --- | --- |
+| `Queue` | 현재 턴이 끝난 뒤 전달하는 기본값 |
+| `Send Immediately` | 진행 중인 에이전트에 즉시 전달 |
+
+급한 범위 수정은 `Send Immediately`를 선택한 뒤 새 조건을 보내요.  
+다음 단계 요청은 `Queue`로 보내요.
+
+## 원격 세션 연결
+
+진행 중인 CLI 작업을 다른 기기에서 이어가려면 `/remote-control`을 사용해요.
+
+1. 입력창에서 `/remote-control`을 실행해요.
+2. 출력된 URL을 같은 Google 계정으로 로그인한 브라우저에서 열어요.
+3. 원격 화면에서 요청을 보내거나 도구 승인에 응답해요.
+4. 연결을 끝내려면 `/remote-control off`를 실행해요.
+
+대화형 연결은 로컬 `agy` 프로세스가 종료되면 끝나요.  
+설정 변경은 CLI에서 진행해요.
+
+CLI 1.2.0부터 터미널 없이 연결을 유지하려면 백그라운드 서비스를 등록해요.
+
+```bash
+agy remote-control start --name "dev-workstation"
+agy remote-control status
+agy remote-control stop
+```
+
+`start`는 서비스를 등록하고, `status`는 상태를 확인하며, `stop`은 서비스를 해제해요.  
+Windows에서 부팅 시 시작하려면 관리자 터미널에서 등록해요.  
+일반 터미널에서 등록하면 다시 로그인한 뒤 시작해요.  
+계정이나 조직에서 Remote Control을 허용해야 해요.
 
 ## Antigravity 고유 작업
 
@@ -70,3 +117,4 @@ Git 상태와 커밋 이력은 터미널에서 `git status`, `git diff`, `git lo
 - [Antigravity Projects](https://antigravity.google/docs/projects/)
 - [Antigravity CLI Reference](https://antigravity.google/docs/cli/reference)
 - [Antigravity Reviewing Artifacts](https://antigravity.google/docs/cli/artifacts/)
+- [Remote Control](https://www.antigravity.google/docs/remote-control/)

@@ -26,6 +26,32 @@ agy changelog
 세션에서 로그인 안내가 나오면 완료한 뒤, `/usage`로 모델 사용량을 확인해요.  
 계정을 연결 해제해야 하면 입력창의 `/logout`을 사용해요.
 
+### Gemini API 키 인증
+
+CLI 1.1.13부터 Gemini API 키로 로그인 없이 실행할 수 있어요.  
+이 방식은 Gemini API를 사용하므로 API 사용량과 결제를 별도로 확인해요.
+
+1. `~/.gemini/antigravity-cli/settings.json`에 `modelProvider`를 추가해요.
+2. 실행할 셸에 `GEMINI_API_KEY`를 설정해요.
+3. `agy`를 실행하고 인증 표기가 `Gemini API key`인지 확인해요.
+
+```json
+{
+  "modelProvider": "gemini"
+}
+```
+
+```bash
+export GEMINI_API_KEY="<API 키>"
+agy
+```
+
+위 환경 변수 예제는 Bash 기준이에요.  
+키는 저장소에 기록하지 않아요.
+
+API 키 인증에서는 `/logout`으로 키를 해제할 수 없어요.  
+계정 로그인으로 돌아가려면 `modelProvider`를 제거하고 CLI를 다시 실행해요.
+
 ## 사용자 Skill
 
 CodeStream 사용자 Skill(`ct-*`)은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후 사용해요.  
@@ -137,3 +163,4 @@ Plugin의 구성과 관리 방법은 [확장 기능](./extensions.md)을 봐요.
 - [Antigravity CLI Reference](https://antigravity.google/docs/cli/reference)
 - [Antigravity Agent Skills](https://antigravity.google/docs/skills)
 - [Antigravity Rules](https://antigravity.google/docs/rules)
+- [CLI 변경 기록](https://www.antigravity.google/docs/changelog?tab=cli)

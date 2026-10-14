@@ -156,6 +156,7 @@
             <li><a href="./index.html?doc=Platforms/Antigravity/workflows.md">작업 흐름 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/Antigravity/extensions.md">확장 기능 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/Antigravity/commands.md">명령 확인 <span>→</span></a></li>
+            <li><a href="./index.html?doc=Platforms/Antigravity/releases.md">릴리스 안내 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/Antigravity/reference/01-sandbox-and-permissions.md">심화 학습 자료 <span>→</span></a></li>
           </ul>
         </section>
@@ -183,6 +184,7 @@
             <li><a href="./index.html?doc=Platforms/ClaudeCode/workflows.md">작업 흐름 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/ClaudeCode/extensions.md">확장 기능 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/ClaudeCode/commands.md">명령 확인 <span>→</span></a></li>
+            <li><a href="./index.html?doc=Platforms/ClaudeCode/releases.md">릴리스 안내 <span>→</span></a></li>
           </ul>
         </section>
 
@@ -195,6 +197,7 @@
             <li><a href="./index.html?doc=Platforms/GrokBuild/workflows.md">작업 흐름 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/GrokBuild/extensions.md">확장 기능 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/GrokBuild/commands.md">명령 확인 <span>→</span></a></li>
+            <li><a href="./index.html?doc=Platforms/GrokBuild/releases.md">릴리스 안내 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/GrokBuild/reference/01-permissions-and-plan-mode.md">심화 학습 자료 <span>→</span></a></li>
           </ul>
         </section>
@@ -209,6 +212,7 @@
             <li><a href="./index.html?doc=Platforms/Pi/workflows.md">작업 흐름 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/Pi/extensions.md">확장 기능 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/Pi/commands.md">명령 확인 <span>→</span></a></li>
+            <li><a href="./index.html?doc=Platforms/Pi/releases.md">릴리스 안내 <span>→</span></a></li>
             <li><a href="./index.html?doc=Platforms/Pi/reference/01-getting-started-and-key-concepts.md">심화 학습 자료 <span>→</span></a></li>
           </ul>
         </section>

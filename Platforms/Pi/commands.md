@@ -24,6 +24,7 @@ Pi는 열린 세션의 입력창에서 쓰는 명령과 터미널에서 Pi를 �
 | `/thinking` | 추론 수준을 정해요. |
 | `/settings` | Pi 설정을 열어요. |
 | `/reload` | 지침, Skill, Template과 Extension을 다시 읽어요. |
+| `/mcp` | Pi `0.99.0` 이상에서 [MCP 연결과 인증](./extensions.md#mcp-연결)을 관리해요. |
 | `/hotkeys` | 단축키 목록을 확인해요. |
 
 ### 변경 확인과 검토
@@ -91,6 +92,10 @@ pi --help
 | `pi auth check` | 제공자 자격증명을 확인해요. |
 | `pi --list-models` | 사용할 수 있는 모델을 확인해요. |
 | `pi update` | Pi, Package 또는 모델 카탈로그를 갱신해요. |
+| `pi mcp add`, `pi mcp list`, `pi mcp login` | Pi `0.99.0` 이상에서 [MCP 서버](./extensions.md#mcp-연결)를 관리해요. |
+
+도구 선택 옵션의 패턴과 `--no-mcp`는 [권한과 실행 범위](./setup.md#권한과-실행-범위)를 확인하세요.  
+Codemode의 시작 옵션은 [Codemode 활용](./extensions.md#codemode)을 확인하세요.
 
 `--model`, `--thinking`, `--tools`, `--extension`, `--skill` 같은 실행 옵션은 특정 세션의 시작 조건을 정할 때 사용해요.  
 옵션의 현재 지원 여부는 `pi --help`로 확인해요.

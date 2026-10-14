@@ -75,6 +75,60 @@ Git 명령은 터미널에서 직접 실행해요.
 `git diff` 같은 명령을 입력창에 붙여 실행하지 않아요.  
 AI에게 Git 상태나 변경 내용을 자연어로 조회·검토해 달라고 요청할 수 있지만, 그 요청은 Git 명령 자체가 아니에요.
 
+## 자동화와 표시 설정
+
+Grok Build 1.0.51부터 headless 실행은 백그라운드 Goal 완료를 기다리고 결과를 보고해요.  
+Goal에는 검증 가능한 완료 조건을 적어요.
+
+```bash
+grok -p "/goal 인증 모듈 테스트 실패를 수정하고 전체 인증 테스트가 통과할 때까지 진행해줘. --budget 50000" --output-format json
+```
+
+로그인, 허용할 도구와 실행 권한을 먼저 설정해요.  
+지원 옵션은 `grok --help`에서 확인해요.
+
+입력창에서 도구 호출 표시와 메시지 시간을 조정해요.
+
+```text
+/density Diff focus
+/timestamps minimal
+```
+
+`/density`는 `Detailed`, `Diff focus`, `Balanced`, `Grouped`, `Compact`를 지원해요.  
+`/timestamps`는 `off`, `minimal`, `on`을 지원해요.  
+코드 검토에서는 `Diff focus`로 변경 내용을 확인해요.
+
+Grok Build 1.0.51부터 `/share`와 세션 URL 공유를 사용할 수 없어요.  
+대화 내용을 전달하려면 `/export`나 `grok export <session-id> <output>`을 사용해요.  
+실행 중인 턴은 `Esc` 대신 `Ctrl+C`로 취소해요.
+
+## worktree 자동화
+
+Git 저장소에서 자동화 실행의 수정 파일을 별도 worktree에 분리해요.
+
+```bash
+grok -p "현재 변경을 검토하고 재현 가능한 결함을 보고해줘" --worktree --output-format json
+grok worktree list
+```
+
+기본 worktree는 현재 `HEAD`와 커밋하지 않은 변경을 포함해요.  
+실행 종료 후에도 worktree는 남아요.  
+결과를 검토하고 Git으로 필요한 변경을 반영해요.
+
+Grok Build 1.0.42부터 세션을 열지 않고 worktree를 만들 수 있어요.
+
+```bash
+grok worktree create release-review
+grok worktree list
+```
+
+첫 명령은 `release-review`라는 이름의 worktree를 만들어요.  
+`--ref <ref>`를 추가하면 지정한 브랜치, 태그나 커밋에서 시작해요.  
+현재 버전의 생성 옵션은 `grok worktree create --help`에서 확인해요.
+
+삭제 전에는 `grok worktree rm <id> --dry-run`으로 대상을 확인해요.  
+사용 중인 worktree와 저장하지 않은 변경을 확인해요.
+
 ## 확인 기준
 
 1. 입력창에서 `/` 또는 `/skills`로 현재 명령과 Skill을 확인해요.
@@ -88,3 +142,7 @@ AI에게 Git 상태나 변경 내용을 자연어로 조회·검토해 달라고
 - [Grok Build 개요](https://docs.x.ai/build/overview)
 - [Settings](https://docs.x.ai/build/settings)
 - [Grok Build 소개](https://x.ai/news/grok-build-cli)
+- [Modes and Commands](https://docs.x.ai/build/modes-and-commands)
+- [Headless and Scripting](https://docs.x.ai/build/cli/headless-scripting)
+- [Worktrees](https://docs.x.ai/build/features/worktrees)
+- [Grok Build Changelog](https://x.ai/changelog/build)

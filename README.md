@@ -36,7 +36,18 @@ Git, Python, macOS, IntelliJ 가이드는 아래 [문서 구성](#문서-구성)
 
 Pi의 package 설치와 호출 예제는 [Pi 로컬 예제 package](./Platforms/Pi/examples/basic-pi-package/README.md)를 봐요.
 
-Codex의 월별 변경사항은 [Codex 릴리스 안내](./Platforms/Codex/releases.md)에서 확인해요.
+## AI 릴리스
+
+월별 변경사항은 최신순으로 확인해요.  
+추가 기능의 사용법은 각 릴리스 페이지가 연결하는 활용 문서에서 확인해요.
+
+| 플랫폼 | 릴리스 |
+| --- | --- |
+| Antigravity | [Antigravity 릴리스](./Platforms/Antigravity/releases.md) |
+| Codex | [Codex 릴리스](./Platforms/Codex/releases.md) |
+| Claude Code | [Claude Code 릴리스](./Platforms/ClaudeCode/releases.md) |
+| Grok Build | [Grok Build 릴리스](./Platforms/GrokBuild/releases.md) |
+| Pi | [Pi 릴리스](./Platforms/Pi/releases.md) |
 
 ## AI별 구현 기준
 
