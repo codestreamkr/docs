@@ -19,8 +19,21 @@
 | `/dashboard` | 이 터미널의 세션과 Subagent를 봐요 |
 | `/resume` | 이전 세션을 다시 열어요 |
 
-`/rewind`를 사용해도 디스크의 파일은 그대로일 수 있으므로 변경 상태를 따로 확인해요.  
+Grok Build 1.0.1부터 `/rewind`는 대화 기록만 되돌리고 파일은 복원하지 않아요.  
+파일을 되돌리려면 Git 변경 내용을 확인하고 복원할 파일을 따로 선택해요.  
 `/compact` 뒤에는 다음 Skill 요청에 계획과 결과 파일 경로를 다시 적어요.
+
+### 원격 세션과 코드 복원
+
+Grok Build 1.0.0부터 원격 세션을 다시 열면 기본적으로 대화만 복원해요.  
+원래 세션의 코드 스냅샷이 필요하면 `--restore-code`와 `--worktree`를 함께 지정해요.
+
+```bash
+grok --resume <session-id> --worktree --restore-code
+```
+
+코드는 현재 작업 폴더 대신 새 worktree에 복원해요.  
+복원 후 Git 변경 내용을 검토해 필요한 변경만 반영해요.
 
 ## 컨텍스트 창 선택
 
@@ -66,6 +79,11 @@ explore = "grok-4.6"
 
 전체 Subagent를 끄려면 `[subagents] enabled = false` 또는 `--no-subagents`를 사용해요.  
 현재 모델 ID는 `grok models`에서 확인해요.
+
+부모 모델과 같은 모델을 쓰려면 `/settings`에서 Subagent 모델 상속 설정을 선택해요.  
+이 설정은 Grok Build 1.0.41부터 사용자 `config.toml`에 유지돼요.  
+부모 모델 상속 선택은 세션을 시작할 때 확정돼요.  
+작업을 분담하기 전에 설정하고 새 세션에서 적용을 확인해요.
 
 ## 확인 기준
 

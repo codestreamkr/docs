@@ -51,6 +51,39 @@ git status --short
 오래 걸리는 작업은 `claude --background`로 시작하고 `claude agents`와 `claude attach <id>`로 관리해요.  
 세션을 여는 명령과 관리 명령은 [명령 확인](./commands.md)을 봐요.
 
+## UI 시안에서 구현으로 연결
+
+`/design`은 2.1.234 이상에서 제공하는 research preview예요.  
+Pro·Max·Team·Enterprise의 CLI와 Desktop에서 편집 가능한 artboard를 만들어요.
+
+```text
+/design 주문 목록 화면을 설계해줘. 상태 필터, 검색과 빈 결과 화면을 포함해줘.
+```
+
+1. 출력된 canvas 링크를 열어요.
+2. 구현할 artboard를 선택하고 필요한 내용을 수정해요.
+3. 선택한 시안과 구현 범위를 Claude에게 알려요.
+
+canvas는 artifact로 게시돼요.  
+계정 지원 범위는 [공식 디자인 안내](https://code.claude.com/docs/en/whats-new/2026-w34)를 확인해요.
+
+## 휴대전화에서 로컬 작업 이어가기
+
+Remote Control로 컴퓨터의 세션을 휴대전화에서 확인하고 이어갈 수 있어요.
+
+1. 프로젝트 컴퓨터에서 다음 명령을 실행해요.
+
+```bash
+claude remote-control
+```
+
+2. 같은 계정의 Claude 모바일 앱에서 Code 탭을 열어요.
+3. Devices의 컴퓨터를 선택하고 디렉터리와 작업을 지정해요.
+
+실행은 원래 컴퓨터에서 계속돼요.  
+컴퓨터와 프로세스를 유지하고 조직 정책을 확인해요.  
+기존 세션 연결은 [Remote Control](https://code.claude.com/docs/en/remote-control)을 확인해요.
+
 ## 함께 사용하는 문서
 
 - Skill별 입력과 결과는 [사용자 Skill](./skills.md)을 봐요.

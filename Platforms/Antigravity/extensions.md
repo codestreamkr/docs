@@ -29,6 +29,21 @@ Skill은 `SKILL.md`와 선택적인 스크립트·예제·리소스를 묶은 �
 
 CLI에서 사용할 위치와 CodeStream Skill 연결 방법은 [환경 설정](./setup.md#사용자-skill)을 봐요.
 
+### 확장 매니페스트의 중첩 항목
+
+CLI 1.2.10부터 `skills.json`·`rules.json`·`agents.json`·`plugins.json`의 디렉터리 항목은 바로 아래 항목만 찾아요.  
+중첩된 항목을 로드하려면 해당 경로를 `include_only`에 명시해요.
+
+```json
+{
+  "path": "shared_skills",
+  "include_only": ["category/my-skill"]
+}
+```
+
+위 코드는 매니페스트 안의 디렉터리 항목 예제예요.  
+변경 뒤에는 [Skill 새로고침](./commands.md#skill-새로고침)으로 필요한 항목이 표시되는지 확인해요.
+
 ## Custom subagent
 
 서로 독립적인 조사·검증·구현을 별도 맥락으로 나눌 때 사용해요.  
@@ -79,6 +94,9 @@ Plugin은 `plugin.json`을 필수 매니페스트로 사용하고 Skill·Subagen
 agy plugin --help
 agy plugin list
 ```
+
+CLI 1.2.11부터 `~/.gemini/config/plugins`에 직접 배치한 Plugin도 필요한 MCP 설정 변수가 없으면 비활성 상태로 시작해요.  
+Plugin의 필수 설정을 채우고 `/plugin`에서 활성화한 뒤 `/mcp`로 연결을 확인해요.
 
 ## 확인 기준
 

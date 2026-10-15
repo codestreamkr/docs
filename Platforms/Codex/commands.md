@@ -20,6 +20,7 @@
 | `/plan` | 구현 전 계획 모드로 전환 |
 | `/skills` | 사용할 수 있는 Skill 탐색·선택 |
 | `/mcp` | 연결된 MCP 서버와 도구 확인 |
+| `/mcp login <name>` | CLI `0.161.0`부터 활성 세션에서 MCP 로그인 |
 | `/apps` | App·Connector 탐색과 요청에 첨부 |
 | `/plugins` | 설치된 Plugin과 사용 가능한 Plugin 탐색 |
 | `/hooks` | Hook 정의 확인과 신뢰·활성화 관리 |
@@ -34,6 +35,7 @@
 | `/diff` | 현재 Git 변경 확인 |
 | `/review` | 작업 트리 등의 변경에서 문제 검토 |
 | `/mention` | 요청에 파일 첨부 |
+| `/copy` | CLI `0.162.0`부터 [대화 블록 탐색·복사](./workflows.md#대화-블록-복사하기) |
 
 `/diff`는 변경을 보여주고, `/review`는 변경의 문제를 검토해요.  
 검토 뒤 수정과 테스트는 [변경 확인과 검토](./workflows.md#변경-확인과-검토)의 요청으로 이어가요.
@@ -48,7 +50,7 @@
 | `/new` | 같은 CLI에서 새 대화 시작 |
 | `/clear` | 화면을 지우고 새 대화 시작 |
 | `/rename` | 현재 세션 이름 변경 |
-| `/agent`, `/subagents` | Subagent 상태 확인과 대화 전환 |
+| `/agent`, `/subagents` | Subagent 상태 확인과 대화 전환, 지원 서버에서 `p`로 작업 고정 |
 | `/ps` | 백그라운드 터미널과 최근 출력 확인 |
 | `/stop` | 현재 세션의 백그라운드 터미널 중지 |
 | `/quit`, `/exit` | CLI 종료 |
@@ -65,6 +67,7 @@
 | 프로젝트에서 대화형 CLI 시작 | `codex` | 프로젝트 디렉터리에서 실행 |
 | 프로젝트 경로를 지정해 시작 | `codex -C /path/to/project` | [환경 설정](./setup.md) |
 | 모델을 지정해 시작 | `codex --model gpt-6.1-sol` | [모델과 속도 선택](./setup.md#모델과-속도-선택) |
+| 즉시 방향 전환을 켜고 시작 | `codex --enable instant_interrupt` | [실행 중 방향 전환](./workflows.md#실행-중-방향-전환하기) |
 | 로그인 상태 확인 | `codex login status` | [인증](./setup.md#인증) |
 | 시작하면서 이전 세션 선택 | `codex resume` | 열린 세션에서는 `/resume` 사용 |
 | 시작하면서 최근 세션 재개 | `codex resume --last` | 최근 세션의 작업 루트 확인 |
@@ -84,7 +87,7 @@
 
 ## 확인 기준
 
-2026-10-01에 공식 명령 문서와 설치된 Codex CLI `0.158.0`의 도움말을 확인했어요.  
+2026-10-15에 공식 명령·릴리스와 설치된 Codex CLI `0.162.1`의 버전·도움말을 확인했어요.  
 CLI 입력창 명령은 공식 문서 기준이며, 실제 제공 목록은 현재 세션을 우선해요.
 
 1. 입력창의 `/` 목록에서 현재 제공하는 명령을 확인해요.

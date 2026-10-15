@@ -91,7 +91,7 @@ pi --help
 | `pi list`, `pi config`, `pi remove <source>` | 설치한 Package를 확인·설정·제거해요. |
 | `pi auth check` | 제공자 자격증명을 확인해요. |
 | `pi --list-models` | 사용할 수 있는 모델을 확인해요. |
-| `pi update` | Pi, Package 또는 모델 카탈로그를 갱신해요. |
+| `pi update` | 설치 방식에 따라 Pi를 갱신하거나 관리형 설치 전환을 안내해요. [업데이트 방법](./setup.md#업데이트와-설치-방식-전환)을 확인하세요. |
 | `pi mcp add`, `pi mcp list`, `pi mcp login` | Pi `0.99.0` 이상에서 [MCP 서버](./extensions.md#mcp-연결)를 관리해요. |
 
 도구 선택 옵션의 패턴과 `--no-mcp`는 [권한과 실행 범위](./setup.md#권한과-실행-범위)를 확인하세요.  

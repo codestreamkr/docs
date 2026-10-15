@@ -12,6 +12,7 @@
 | 분리 가능한 조사, 검토와 구현 | Subagent |
 | xAI 외 모델이나 사내 게이트웨이 연결 | Custom Model |
 | 외부 API, 서비스와 현재 데이터 | MCP |
+| IDE나 자체 앱에서 Grok 에이전트 실행 | ACP |
 | 도구 실행 전후의 결정적 검사 | Hook |
 | 여러 구성요소를 함께 배포 | Plugin |
 
@@ -66,6 +67,24 @@ enabled = true
 사용자 설정은 `~/.grok/config.toml`, 팀 공유 설정은 `<repo>/.grok/config.toml`에 둬요.  
 `grok mcp` 또는 `/mcps`에서 연결과 도구를 확인해요.
 
+## ACP
+
+ACP는 IDE나 자체 앱이 Grok Build 세션을 제어할 때 사용해요.  
+MCP는 Grok이 호출할 외부 도구를 연결해요.
+
+```bash
+grok agent stdio
+```
+
+연결할 앱이 이 프로세스를 실행하고 표준 입출력으로 JSON-RPC 메시지를 교환하게 구성해요.  
+실행 전에 로컬 로그인을 완료하거나 `XAI_API_KEY`를 제공해요.  
+직접 클라이언트를 만들면 `initialize`, `authenticate`, `session/new`, `session/prompt` 순서로 호출해요.  
+응답 본문은 `session/update` 이벤트에서 수집해요.  
+`session/prompt`의 완료 메타데이터만 읽으면 스트리밍 본문을 놓칠 수 있어요.
+
+한 번 실행하고 결과만 받는 자동화는 [headless 실행](./commands.md#자동화와-표시-설정)을 사용해요.  
+클라이언트 예제는 [Headless and Scripting](https://docs.x.ai/build/cli/headless-scripting#acp)에서 확인해요.
+
 ## Hook
 
 Hook은 도구 실행 전후와 세션 생명주기에 결정적 검사를 연결해요.  
@@ -85,3 +104,4 @@ Plugin은 도구, Skill과 MCP를 하나의 설치 단위로 배포할 때 사�
 - [Grok Build 개요](https://docs.x.ai/build/overview)
 - [Settings](https://docs.x.ai/build/settings)
 - [Docs MCP](https://docs.x.ai/developers/docs-mcp)
+- [Headless and Scripting](https://docs.x.ai/build/cli/headless-scripting)

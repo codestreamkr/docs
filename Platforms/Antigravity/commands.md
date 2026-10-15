@@ -71,7 +71,7 @@ agy plugin --help
 | 옵션 또는 서브명령 | 용도 |
 | --- | --- |
 | `--mode accept-edits\|plan` | 시작할 세션의 실행 모드를 지정해요 |
-| `--effort low\|medium\|high` | 세션 추론 수준을 지정해요 |
+| `--effort low\|medium\|high\|xhigh\|max` | 모델이 지원하는 추론 수준을 지정해요 |
 | `--model <model>` | 세션 모델을 지정해요 |
 | `--sandbox` | 터미널 제한이 있는 샌드박스에서 실행해요 |
 | `--add-dir <path>` | 작업 공간에 추가 디렉터리를 넣어요 |
@@ -130,6 +130,21 @@ SSH 환경의 마이크 연결은 [공식 음성 입력 문서](https://www.anti
 
 CLI 1.3.0의 기본 `Verbosity`는 `medium`이에요.  
 개별 도구 호출과 사고 과정을 모두 확인하려면 `/config`에서 `Verbosity`를 `high`로 설정해요.
+
+### 비대화형 상태 조회
+
+CLI 1.1.11부터 조회용 슬래시 명령은 에이전트 호출 없이 print 모드에서 결과를 반환해요.  
+CLI 1.1.12부터 설정·권한·Hook 조회도 지원해요.
+
+```bash
+agy -p "/help"
+agy -p "/permissions" --output-format json
+agy -p "/hooks" --output-format json
+```
+
+이 조회는 모델 사용량을 소비하거나 대화를 만들지 않아요.  
+인증을 먼저 준비하고 `/help`가 나열하는 지원 명령만 사용해요.  
+대화형 전용 명령은 print 모드에서 거부할 수 있어요.
 
 ### 비대화형 자동화
 

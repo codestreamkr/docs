@@ -5,17 +5,37 @@
 
 ## 설치와 첫 실행
 
-macOS와 Linux에서는 설치 스크립트를 실행해요.
+공식 설치기는 의존성을 고정하는 관리형 설치를 제공해요.  
+설치 방식을 선택하고 해당 명령을 실행하세요.
+
+macOS·Linux:
 
 ```bash
 curl -fsSL https://pi.dev/install.sh | sh
 ```
 
-Windows를 포함해 npm으로 설치할 수도 있어요.  
-Node.js `22.19` 이상이 필요해요.
+Windows PowerShell:
+
+```powershell
+irm https://pi.dev/install.ps1 | iex
+```
+
+Windows 설치기도 Node.js와 npm을 사용해요.  
+필요한 경우 별도 Node.js 설치를 안내해요.  
+Windows에서 WSL 없이 실행하는 방법은 [Windows 실행 환경](#windows-실행-환경)을 확인하세요.
+
+Node.js `22.19` 이상을 직접 관리한다면 npm으로 설치할 수도 있어요.
 
 ```bash
 npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+```
+
+npm 설치는 전이 의존성을 고정하지 않아요.  
+공식 설치기는 배포된 잠금 파일로 의존성을 고정해요.
+
+설치 후 버전을 확인하세요.
+
+```bash
 pi --version
 ```
 
@@ -35,6 +55,51 @@ pi
 
 `pi "요청"`, `pi -c`, `--print`, `--mode json`, `--mode rpc`는 시작·재개·자동화에 쓰는 터미널 옵션이에요.  
 일상 작업에서는 열린 세션의 입력창을 사용해요.
+
+### 업데이트와 설치 방식 전환
+
+| 설치 방식 | 업데이트 방법 | 확인할 내용 |
+| --- | --- | --- |
+| 공식 관리형 설치 | `pi update` | Pi가 관리하는 릴리스와 의존성을 갱신해요. |
+| 전역 npm 설치 | 공식 설치기를 다시 실행해 관리형 설치로 전환해요. | Pi `1.0.1` 이상은 `pi update`에서 전환을 권장해요. |
+| Nix 설치 | `nix profile upgrade pi` | `pi update`로 Pi 본체를 갱신하지 않아요. |
+
+Package 전체 갱신은 `pi update --extensions`, 모델 카탈로그 갱신은 `pi update --models`를 사용해요.  
+Pi와 Package를 함께 갱신하려면 `pi update --all`을 사용하세요.
+
+1. 실행 중인 Pi 세션을 종료하고 현재 버전과 실행 파일 경로를 확인하세요.
+2. npm 설치를 전환할 때는 운영체제에 맞는 위 공식 설치기를 실행하세요.
+3. 설치기의 전환 안내를 확인하고 설치를 완료하세요.
+4. 새 터미널에서 `pi --version`과 실행 파일 경로를 다시 확인하세요.
+5. 프로젝트를 열고 `/resume`으로 기존 세션을 확인하세요.
+
+Windows에서는 `Get-Command pi -All`, macOS·Linux에서는 `command -v pi`로 실행 경로를 확인해요.  
+설치 제거 명령은 설정·인증·세션·설치한 Package가 있는 `~/.pi/agent/`를 제거하지 않아요.  
+설치와 제거는 [Quickstart](https://pi.dev/docs/latest/quickstart), 전환 조건은 [1.0.1 릴리스](https://pi.dev/changelog/releases/1.0.1)를 확인하세요.
+
+## Windows 실행 환경
+
+Windows 파일과 도구를 사용하면 Windows 프로세스로, Linux 도구를 사용하면 WSL 안에서 Pi를 실행하세요.
+
+| 환경 | 명령 실행 방식 |
+| --- | --- |
+| Windows 기본 | `bash` 도구와 `!`·`!!` 입력이 Git Bash를 사용해요. |
+| Windows PowerShell 도구 | 모델의 명령 실행에 `powershell` 도구를 사용할 수 있어요. |
+| WSL | 선택한 Linux 배포판의 Bash와 도구를 사용해요. |
+
+기본 Bash는 `shellPath`, Git for Windows 설치 경로, `PATH` 순서로 찾아요.  
+사용자 `~/.pi/agent/settings.json`에서 모델용 Bash를 PowerShell로 바꿀 수 있어요.
+
+```json
+{
+  "defaultTools": ["-bash", "+powershell"]
+}
+```
+
+Pi를 다시 시작하고 모델에 `$PSVersionTable.PSVersion` 확인을 요청하세요.  
+`powershell` 도구는 `pwsh.exe`를 먼저 사용하고, 없으면 Windows PowerShell을 사용해요.  
+`!`와 `!!` 입력은 계속 Bash를 사용해요.  
+지원 조건과 Windows Terminal 단축키는 [Windows 공식 안내](https://pi.dev/docs/latest/windows)를 확인하세요.
 
 ## 인증
 
@@ -287,7 +352,7 @@ Pi `1.2.0` 이상은 설정 파일의 JSON Schema를 제공해요.
 
 ## 확인 기준
 
-기본 명령은 설치본 Pi `0.87.1`, 추가 기능은 2026-10-14 공식 문서를 기준으로 확인했어요.  
+기본 명령 예제는 Pi `0.87.1`, 설치와 추가 기능은 2026-10-15 공식 문서를 기준으로 해요.  
 옵션과 입력창 명령은 설치 버전과 Extension에 따라 달라지므로 `pi --help`와 현재 `/` 목록을 우선해요.
 
 ## 공식 문서
@@ -300,3 +365,5 @@ Pi `1.2.0` 이상은 설정 파일의 JSON Schema를 제공해요.
 - [Security](https://pi.dev/docs/latest/security)
 - [Environment Variables](https://pi.dev/docs/latest/environment-variables)
 - [Pi 릴리스](./releases.md)
+- [Windows 실행 환경](https://pi.dev/docs/latest/windows)
+- [공식 Windows 설치기](https://pi.dev/install.ps1)

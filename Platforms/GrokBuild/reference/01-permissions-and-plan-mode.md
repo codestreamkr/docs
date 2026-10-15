@@ -62,6 +62,14 @@ grok --sandbox read-only
 `workspace`는 현재 작업 범위에서 변경을 허용하고, `read-only`는 조사와 검토에 맞아요.  
 운영체제별 네트워크 제한 범위는 현재 설치된 도움말을 확인해요.
 
+Grok Build 1.0.44부터 macOS에서는 Seatbelt(`sandbox-exec`)가 Sandbox를 적용해요.  
+Linux에서는 Landlock을 사용해요.  
+Windows에서도 같은 커널 격리를 제공한다고 가정하지 말고 실행 환경의 지원 범위를 확인해요.
+
+Grok Build 1.0.14는 `--sandbox strict`의 쓰기를 `~/.grok/sessions`로 제한해요.  
+코드 수정이 필요한 작업에서는 쓰기 범위를 확인하고 `workspace`를 선택해요.  
+이 변경은 일반 파일 편집 권한과 구분해요.
+
 ## 확인 기준
 
 세션에서 현재 권한 모드를 확인하고, `grok inspect`로 적용된 권한 규칙과 신뢰 상태를 확인해요.
@@ -70,3 +78,5 @@ grok --sandbox read-only
 
 - [Grok Build 개요](https://docs.x.ai/build/overview)
 - [Settings](https://docs.x.ai/build/settings)
+- [Sandbox](https://docs.x.ai/build/features/sandbox)
+- [Grok Build Changelog](https://x.ai/changelog/build)

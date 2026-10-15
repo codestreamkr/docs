@@ -55,6 +55,72 @@ claude --worktree "https://gitlab.com/<group>/<project>/-/merge_requests/<number
 worktree는 `origin`에서 MR을 가져와 분기해요.  
 세션에서 현재 브랜치와 diff를 확인한 뒤 검토나 수정을 요청해요.
 
+### Subagent 추론과 압축 조정
+
+2.1.292 이상에서는 일반 Subagent를 시작할 때 요청별 `effort`를 지정할 수 있어요.  
+2.1.296 이상에서는 정의 파일의 `autoCompactWindow`로 압축 시점을 앞당길 수 있어요.
+
+다음은 `.claude/agents/log-reader.md` 예제예요.
+
+```markdown
+---
+name: log-reader
+description: 로그에서 실패 원인을 찾는다.
+tools: Read, Grep, Glob
+effort: medium
+autoCompactWindow: 200000
+---
+로그에서 확인한 오류와 파일 위치를 보고한다.
+```
+
+```text
+log-reader Subagent로 logs/의 실패 원인을 medium effort로 분석해줘.
+```
+
+`autoCompactWindow`는 100000~1000000 사이 정수로 써요.  
+`CLAUDE_CODE_AUTO_COMPACT_WINDOW`가 설정되면 해당 환경 변수가 우선해요.  
+요청별 `effort`는 fork Subagent에 적용되지 않아요.  
+`/tasks`에서 실행 모델과 결과를 확인해요.  
+정의와 우선순위는 [Subagents](https://code.claude.com/docs/en/sub-agents)를 확인해요.
+
+### 다른 세션에 메시지 전달
+
+2.1.224부터 다른 Claude Code 세션을 찾아 메시지를 전달할 수 있어요.  
+Windows 네이티브는 2.1.234 이상이 필요해요.  
+현재 지원 범위와 수신 정책은 [세션 간 메시지](https://code.claude.com/docs/en/cross-session-messaging)를 확인해요.
+
+1. 수신할 세션에 구분할 수 있는 이름을 지정해요.
+2. `/list-agents`로 도달할 수 있는 세션을 확인해요.
+3. 수신 세션과 전달할 내용만 지정해 요청해요.
+
+```text
+payments-api 세션에 users.name을 users.display_name으로 바꿨다고 전달해줘.
+```
+
+메시지는 텍스트만 전달하고, 대화 이력이나 파일 전체를 전송하지 않아요.  
+`/config`의 세션 메시지 수신 설정에서 허용·보류·거절을 선택해요.
+
+### 자체 인프라에서 클라우드 세션 실행
+
+Self-hosted environments는 Team·Enterprise의 공개 베타예요.  
+Claude Code 2.1.224 이상에서 조직의 Linux·macOS 호스트나 Linux 컨테이너를 실행 환경으로 연결해요.
+
+1. Owner가 관리자 화면에서 Allow self-hosted environments를 켜요.
+2. 전용 호스트에서 버전과 필요한 HTTPS 연결을 확인해요.
+3. Owner로 로그인한 호스트에서 안내형 설정을 실행해요.
+
+```bash
+claude self-hosted-runner --help
+claude self-hosted-runner setup
+```
+
+4. 관리자 화면에서 환경이 Healthy인지 확인해요.
+5. `claude.ai/code`에서 해당 환경을 선택하고 테스트 세션을 실행해요.
+
+Windows를 runner 호스트로 직접 사용할 수 없어요.  
+설정 완료 단계는 임시 runner를 종료하므로 계속 사용하려면 생성된 안내서의 실행 명령을 사용해요.  
+실제 저장소 연결 전 [공식 빠른 시작](https://code.claude.com/docs/en/self-hosted-environments-quickstart)의 인증·전용 디렉터리 조건을 확인해요.
+
 ## MCP
 
 MCP는 외부 시스템의 현재 데이터를 읽거나 작업할 때 연결해요.
@@ -141,6 +207,28 @@ claude plugin configure <plugin>
 3. 입력창의 `/plugin`에서 해당 Plugin의 Configure를 열어 필요한 값을 설정해요.
 
 설정을 마친 뒤 `/plugin`에서 Plugin과 번들 MCP 서버의 상태를 확인해요.
+
+### Plugin 평가
+
+2.1.269 이상에서는 Plugin의 유무에 따른 결과를 비교할 수 있어요.
+
+1. Plugin 루트에서 평가 초안을 만들어요.
+
+```bash
+claude plugin eval init
+```
+
+2. 생성한 사례와 채점 기준을 검토하고 초안 생성 세션을 종료해요.
+3. 평가를 실행하고 `evals/results/`의 `report.html`을 확인해요.
+
+```bash
+claude plugin eval . --no-publish
+```
+
+평가와 모델 기반 채점은 실제 모델 호출 비용을 사용해요.  
+`--no-publish`는 HTML 보고서를 로컬에만 남겨요.  
+기본 비교 실행은 Plugin이 없는 상태도 평가해요.  
+도구 권한과 평가 구성은 [Plugin 평가](https://code.claude.com/docs/en/plugin-evals)를 확인해요.
 
 ## 확인 기준
 

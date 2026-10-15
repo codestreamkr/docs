@@ -181,6 +181,21 @@ Extension이나 SDK를 사용하는 프로젝트는 업그레이드 전에 다�
 2. [0.87.0](https://pi.dev/changelog/releases/0.87.0)과 [1.2.0](https://pi.dev/changelog/releases/1.2.0)의 변경된 타입을 적용하세요.
 3. 사용자 요청·Extension 메시지·실행 중단·오류 경로를 검증하세요.
 
+## 가상 모델로 요청 분배
+
+가상 모델은 요청마다 실제 모델과 추론 수준을 선택하는 실험 기능이에요.  
+Pi `0.99.0` 이상에서 Extension으로 등록해요.
+
+1. [공식 Virtual Models 예제](https://pi.dev/docs/latest/virtual-models)를 기준으로 라우터 Extension을 작성하세요.
+2. `pi.registerVirtualModel()`의 `route()`에서 실제 모델과 추론 수준을 반환하세요.
+3. `/reload` 후 `/model`에서 등록한 가상 모델을 선택하세요.
+4. 하단 표시에서 실제 모델을, `/session`에서 모델별 비용을 확인하세요.
+
+- 분배할 실제 모델의 제공자 인증이 필요해요.
+- 다른 가상 모델로 다시 분배할 수 없어요.
+- 도구 결과의 후속 요청은 `request.previous`, 실패 재시도는 `request.failed`를 확인하세요.
+- 턴마다 모델을 바꾸면 프롬프트 캐시를 잃을 수 있어요.
+
 ## Pi Package
 
 Extension, Skill, Prompt Template과 Theme를 하나의 배포 단위로 묶어요.
@@ -222,6 +237,33 @@ Pi를 다른 프로그램에서 쓸 때 고르는 경계가 달라요.
 
 네 방법 모두 같은 에이전트, 세션, 자원과 도구를 써요.
 
+### Pi Durable로 장기 실행 서비스 만들기
+
+Pi Durable은 장기 실행 에이전트 애플리케이션용 별도 실험 패키지예요.  
+Pi CLI를 사용하듯 터미널에서 작업할 때는 기존 Pi를 사용해요.
+
+| 필요한 기능 | 선택 |
+| --- | --- |
+| 한 사용자가 터미널에서 개발 작업 수행 | Pi CLI |
+| 기존 CLI를 다른 프로그램에서 제어 | RPC 또는 Pi SDK |
+| 프로세스 재시작 후 복구할 장기 실행 서비스 | Pi Durable |
+
+애플리케이션 프로젝트에서 패키지를 설치하세요.
+
+```bash
+npm install @earendil-works/pi-durable @earendil-works/pi-ai @earendil-works/chord
+```
+
+1. 저장소 구현을 선택하세요. 기본 구현은 메모리·SQLite·JSONL을 제공해요.
+2. 도구 Registry와 도구를 실행할 Environment를 구성하세요.
+3. Harness를 열고 Conversation에 모델·작업 경로를 지정하세요.
+4. 사용자 입력을 전달하고 실행 상태와 결과를 구독하세요.
+5. 재시작 시 같은 영속 저장소를 열어 복구 결과를 검증하세요.
+
+메모리 저장소는 프로세스가 종료되면 데이터를 유지하지 않아요.  
+한 프로세스가 저장소를 소유하고 다른 클라이언트가 그 프로세스에 연결해요.  
+실험 API와 전체 실행 예제는 [Pi Durable 공식 안내](https://earendil.com/posts/pi-durable/)를 확인하세요.
+
 Pi가 실행하는 셸 명령에는 현재 세션 정보가 환경 변수로 들어가요.  
 기존 스크립트와 엮을 때 써요.
 
@@ -251,7 +293,7 @@ Pi는 실행한 계정의 권한으로 파일을 읽고 쓰고 명령을 실행�
 
 ## 확인 기준
 
-기본 기능은 설치본 Pi `0.87.1`, 추가 기능은 2026-10-14 공식 문서를 기준으로 해요.  
+기본 예제는 Pi `0.87.1`, 추가 기능은 2026-10-15 공식 문서를 기준으로 해요.  
 추가한 Extension·Package는 `/reload` 뒤 명령과 도구가 노출되는지 확인해요.  
 Extension·SDK·RPC 예제의 실행과 외부 서비스 연결은 사용할 프로젝트에서 확인해요.
 
@@ -267,3 +309,5 @@ Extension·SDK·RPC 예제의 실행과 외부 서비스 연결은 사용할 프
 - [Containerization](https://pi.dev/docs/latest/containerization)
 - [MCP Servers](https://pi.dev/docs/latest/mcp)
 - [Codemode](https://pi.dev/docs/latest/codemode)
+- [Virtual Models](https://pi.dev/docs/latest/virtual-models)
+- [Pi Durable](https://earendil.com/posts/pi-durable/)

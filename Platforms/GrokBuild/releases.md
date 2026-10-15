@@ -1,7 +1,10 @@
 # Grok Build 릴리스
 
-2026년 8월부터 10월 14일까지 개발자에게 필요한 Grok Build CLI 변경을 최신순으로 정리해요.  
+2026년 8월부터 10월 15일까지 개발자에게 필요한 Grok Build CLI 변경을 최신순으로 정리해요.  
 자동 적용 개선은 이 문서에서 확인하고, 새 기능의 사용법은 연결된 활용 문서에서 확인해요.
+
+설치·업데이트·채널 선택은 [환경 설정](./setup.md#업데이트와-채널)에서 확인해요.  
+IDE와 자체 앱 연결은 [ACP](./extensions.md#acp)를 사용해요.
 
 ## 2026년 10월
 
@@ -17,9 +20,13 @@
 
 | 날짜 | 버전 | 구분 | 변경사항 | 활용 문서 | 공식 자료 |
 | --- | --- | --- | --- | --- | --- |
+| 09/28 | 1.0.44 | 실행 환경 변경 | macOS Sandbox가 Seatbelt를 사용해요. | [Sandbox](./reference/01-permissions-and-plan-mode.md#sandbox) | [Changelog](https://x.ai/changelog/build) |
 | 09/28 | 1.0.44 | 기능 추가 | `/context-window`로 컨텍스트 창을 선택할 수 있어요. | [컨텍스트 창 선택](./reference/02-sessions-and-subagents.md#컨텍스트-창-선택) | [Changelog](https://x.ai/changelog/build) |
 | 09/28 | 1.0.44 | 자동 적용 개선 | 같은 파일의 병렬 수정을 순서대로 실행해요. | 별도 절차 없음 | [Changelog](https://x.ai/changelog/build) |
 | 09/26 | 1.0.42 | 기능 추가 | 대화형 세션 없이 `grok worktree create`로 worktree를 만들 수 있어요. | [worktree 자동화](./commands.md#worktree-자동화) | [Changelog](https://x.ai/changelog/build) |
+| 09/26 | 1.0.42 | 업데이트 변경 | WinGet 설치는 `grok update`가 안내하는 `winget upgrade` 명령으로 업데이트해요. | [업데이트와 채널](./setup.md#업데이트와-채널) | [Changelog](https://x.ai/changelog/build) |
+| 09/22 | 1.0.41 | 기능 추가 | Subagent 모델 상속 설정을 `/settings`에 추가했어요. | [Subagent 설정](./reference/02-sessions-and-subagents.md#subagent-설정) | [Changelog](https://x.ai/changelog/build) |
+| 09/20 | 1.0.40 | 모델 추가 | Grok Build에서 Grok 4.7을 지원해요. | [모델과 실행 설정](./setup.md#모델과-실행-설정) | [Changelog](https://x.ai/changelog/build) |
 | 09/07 | 1.0.24 | 사용법 변경 | `Esc`가 실행 중인 턴을 취소하지 않아요. | [턴 취소](./commands.md#자동화와-표시-설정) | [Changelog](https://x.ai/changelog/build) |
 | 09/04 | 1.0.19 | 기능 추가 | headless 실행에서 `--worktree`를 지원해요. | [worktree 자동화](./commands.md#worktree-자동화) | [Changelog](https://x.ai/changelog/build) |
 
@@ -27,8 +34,11 @@
 
 | 날짜 | 버전 | 구분 | 변경사항 | 활용 문서 | 공식 자료 |
 | --- | --- | --- | --- | --- | --- |
+| 08/31 | 1.0.14 | 실행 범위 변경 | `--sandbox strict`의 쓰기 범위를 `~/.grok/sessions`로 제한했어요. | [Sandbox](./reference/01-permissions-and-plan-mode.md#sandbox) | [Changelog](https://x.ai/changelog/build) |
 | 08/28 | 1.0.13 | 자동 적용 개선 | 일시적인 추론 실패를 재시도하고, 길이 제한으로 끊긴 응답을 이어가요. | 별도 절차 없음 | [Changelog](https://x.ai/changelog/build) |
 | 08/24 | 1.0.9 | 기능 추가 | Workflow의 자식 호출 상한과 추론 수준을 실행 시 지정할 수 있어요. | [Workflow 실행](./reference/03-workflows-and-profiles.md#workflow-실행) | [Changelog](https://x.ai/changelog/build) |
+| 08/10 | 1.0.1 | 사용법 변경 | `/rewind`는 대화 기록만 되돌려요. 파일은 복원하지 않아요. | [세션 관리](./reference/02-sessions-and-subagents.md#세션-관리) | [Changelog](https://x.ai/changelog/build) |
+| 08/07 | 1.0.0 | 복원 방식 변경 | 원격 세션의 코드는 `--restore-code`를 지정해야 복원해요. | [원격 세션과 코드 복원](./reference/02-sessions-and-subagents.md#원격-세션과-코드-복원) | [Changelog](https://x.ai/changelog/build) |
 
 ## 공식 문서
 

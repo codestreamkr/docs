@@ -95,6 +95,22 @@ pi --mode json "빌드하고 실패 원인을 정리해줘"
 
 판단이 필요한 단계는 자동화하지 않아요.
 
+### 세션 공유 위치 선택
+
+Pi `1.2.0` 이상은 `/share`의 업로드 위치를 `sessionShareDestination`으로 선택해요.
+
+| 값 | 업로드 위치 |
+| --- | --- |
+| `auto` | Radius 인증이 있으면 Radius, 없으면 GitHub gist |
+| `gist` | GitHub gist |
+| `radius` | Radius 인증이 필요하며 gist로 전환하지 않아요. |
+
+1. 사용자 또는 프로젝트 `settings.json`에서 공유 위치를 선택하세요.
+2. 외부 업로드 없이 파일로 전달하려면 `/export`를 사용하세요.
+3. 업로드할 세션의 내용과 공유 범위를 확인한 뒤 `/share`를 실행하세요.
+
+공유 위치의 기본값과 조건은 [Settings 공식 안내](https://pi.dev/docs/latest/settings#sessions-and-context)를 확인하세요.
+
 ## 함께 사용하는 문서
 
 사용자 Skill의 역할과 호출 형식은 [사용자 Skill](./skills.md)에서 확인해요.  

@@ -16,6 +16,9 @@ Windows PowerShell:
 irm https://chatgpt.com/codex/install.ps1 | iex
 ```
 
+CLI `0.162.0`부터 Windows 릴리스에 서명된 PowerShell 설치기를 제공해요.  
+설치 배포 기준은 [공식 릴리스](https://learn.chatgpt.com/docs/changelog#october-2026)를 확인하세요.
+
 설치 후 프로젝트 루트의 터미널에서 세션을 열어요.
 
 ```bash
@@ -34,6 +37,11 @@ codex
 로그인 상태는 `codex login status`로 확인해요.  
 계정과 조직 정책에 따라 사용할 수 있는 기능이 달라질 수 있어요.
 
+인증 정보는 `cli_auth_credentials_store` 설정에 따라 `auth.json` 또는 운영체제 자격증명 저장소에 보관해요.  
+`keyring`은 운영체제 저장소를 사용하고, `auto`는 저장소를 사용할 수 없으면 파일로 대체해요.  
+파일 저장의 기본 경로는 `~/.codex/auth.json`이에요.  
+저장 방식과 정책은 [인증 공식 안내](https://learn.chatgpt.com/docs/auth#credential-storage)를 확인하세요.
+
 ## Linux 데스크톱 앱
 
 Ubuntu·Debian·Fedora에서는 데스크톱 앱 프리뷰를 사용할 수 있어요.  
@@ -51,13 +59,10 @@ Claude Code·Cursor의 설정과 최근 대화를 가져올 때 사용해요.
 3. 가져온 권한·MCP 인증·Hook을 확인하세요.
 4. 연결에 추가 인증이 필요하면 **Finish**를 선택하세요.
 
-CLI에서는 로컬 대화 입력창에 `/import`를 입력하세요.  
-작업 실행 중이거나 원격 세션 또는 로컬 App Server 데몬에 연결한 상태에서는 사용할 수 없어요.
-
-```bash
-# 로컬 App Server 데몬에 연결하지 않고 시작해요.
-codex --no-daemon
-```
+CLI에서는 작업이 끝난 뒤 입력창에 `/import`를 입력하세요.  
+CLI `0.157.0`부터 원격 세션과 로컬 백그라운드 서버 세션에서도 가져오기를 지원해요.  
+지원되는 대화형 세션은 백그라운드 서버를 자동으로 시작하므로, 가져오기에 `--no-daemon`을 지정할 필요가 없어요.  
+버전별 지원 범위는 [CLI 릴리스](https://learn.chatgpt.com/docs/changelog#september-2026)를 기준으로 확인하세요.
 
 CLI는 최근 30일의 대화를 최대 50개 가져와요.  
 원본 에이전트 설정은 변경하지 않아요.  
@@ -218,7 +223,7 @@ approval_policy = "on-request"
 
 ## 확인 기준
 
-2026-10-01에 공식 문서와 설치된 Codex CLI `0.158.0`의 도움말을 확인했어요.  
+2026-10-15에 공식 릴리스와 설치된 Codex CLI `0.162.1`의 버전·도움말을 확인했어요.  
 새 세션에서 작업 루트, 적용 지침, Skill 목록과 권한을 확인해요.
 
 | 확인할 것 | 방법 |

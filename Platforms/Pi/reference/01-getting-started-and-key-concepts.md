@@ -21,8 +21,7 @@ cd /path/to/project
 pi
 ```
 
-Windows에서는 Pi가 실행할 bash가 필요해요.  
-`shellPath`, Git for Windows의 `bash.exe`, PATH의 `bash.exe` 순으로 찾는지 현재 Settings와 설치 환경에서 확인해요.
+Windows의 Bash·PowerShell·WSL 선택은 [Windows 실행 환경](../setup.md#windows-실행-환경)을 확인하세요.
 
 ## 2. 입력창에서 첫 분석하기
 

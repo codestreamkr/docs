@@ -14,8 +14,49 @@ grok --version
 grok
 ```
 
-Windows PowerShell에서는 `irm https://x.ai/cli/install.ps1 | iex`를 실행해요.  
-설치 방법과 업데이트는 [Grok Build 개요](https://docs.x.ai/build/overview)와 `grok update`를 확인해요.
+Windows PowerShell에서는 아래 명령을 실행해요.
+
+```powershell
+irm https://x.ai/cli/install.ps1 | iex
+```
+
+설치 스크립트의 기본 채널은 `stable`이에요.  
+시험 기능이 필요한 환경만 `alpha`를 선택해요.  
+공식 Changelog의 공개 버전과 설치된 `alpha` 버전을 구분해요.
+
+## 업데이트와 채널
+
+내장 설치 프로그램으로 설치했다면 `grok update`로 업데이트해요.
+
+| 목적 | 명령 |
+| --- | --- |
+| 설치하지 않고 업데이트 확인 | `grok update --check` |
+| 현재 채널의 버전 설치 | `grok update` |
+| 안정 채널로 전환 | `grok update --stable` |
+| 시험 채널로 전환 | `grok update --alpha` |
+| 특정 버전 설치 | `grok update --version <version>` |
+
+채널 전환 명령은 해당 채널의 버전을 설치해요.  
+실행 전 `grok update --help`에서 옵션을 확인해요.  
+업데이트 후 `grok --version`으로 버전과 채널을 확인해요.
+
+Grok Build 1.0.42부터 WinGet 설치의 `grok update`는 바이너리를 직접 교체하지 않아요.  
+대신 출력되는 `winget upgrade` 명령으로 업데이트해요.
+
+CI에서는 검증한 버전을 고정하고 실행 중 자동 업데이트 확인을 끌 수 있어요.
+
+```bash
+grok --no-auto-update -p "현재 변경에서 테스트 누락을 확인해줘"
+```
+
+사용자 설정으로 계속 끄려면 `~/.grok/config.toml`에 아래 설정을 추가해요.
+
+```toml
+[cli]
+auto_update = false
+```
+
+이 설정은 자동 업데이트 확인을 끄고, 명시적인 `grok update` 실행은 막지 않아요.
 
 ## 인증
 
@@ -93,6 +134,12 @@ permission_mode = "auto"
 현재 모델 ID는 `grok models` 또는 `/model`에서 확인해요.  
 프로젝트 `.grok/config.toml`은 MCP, Plugin과 권한 규칙처럼 팀에서 공유할 항목에 사용해요.
 
+Grok Build 1.0.40은 Grok 4.7을 지원해요.  
+`/model`에서 계정에 제공되는 모델을 확인하고 선택해요.  
+스크립트는 확인한 모델 ID를 `grok -p "요청" -m <model-id>`로 지정해요.  
+Grok 4.7 Fast는 Build에서 제공되지만 공개 xAI API에는 없어요.  
+Fast는 Build 요금제로 과금하며 무료 등급에는 포함되지 않아요.
+
 프로젝트 설정의 같은 이름 MCP와 Plugin은 현재 디렉터리, 저장소 루트, 사용자 설정 순으로 대체될 수 있어요.  
 권한 규칙은 함께 적용하고 `deny`가 `ask`, `allow`보다 우선해요.
 
@@ -153,3 +200,8 @@ Claude와 Cursor 호환 설정을 켜면 기존 Skill, 지침, MCP, Hook과 Plug
 - [Grok Build 개요](https://docs.x.ai/build/overview)
 - [Settings](https://docs.x.ai/build/settings)
 - [Enterprise 인증](https://docs.x.ai/build/enterprise)
+- [CLI Reference](https://docs.x.ai/build/cli/reference)
+- [Headless and Scripting](https://docs.x.ai/build/cli/headless-scripting)
+- [Windows 설치 스크립트](https://x.ai/cli/install.ps1)
+- [Grok 4.7 Developer Guide](https://docs.x.ai/developers/grok-4-7)
+- [Grok Build Changelog](https://x.ai/changelog/build)
