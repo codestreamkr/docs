@@ -1,115 +1,93 @@
 # Antigravity 확장 기능
 
-반복 절차, 지속 규칙, 외부 도구와 자동 검사는 서로 다른 확장 수단으로 관리해요.  
-일상 작업은 세션 입력창에서 요청하고, 확장은 재사용하거나 강제할 기준이 있을 때만 추가해요.
+프로젝트 지침, 반복 절차와 외부 도구를 필요한 범위에 연결해요.
 
-## 선택 기준
+## 확장 선택
 
-| 필요한 것 | 선택 | 기본 위치 |
-| --- | --- | --- |
-| 프로젝트 작업 기준 | `AGENTS.md` 또는 `GEMINI.md` | 작업 공간 루트 또는 관련 디렉터리 |
-| 세부 규칙 | Rules | `.agents/rules/` |
-| 반복 가능한 절차·전문 지식 | Skill | `.agents/skills/` |
-| 분리된 역할의 병렬 작업 | Custom subagent | Plugin 또는 사용자 정의 위치 |
-| 외부 서비스의 도구·데이터 | MCP | `.agents/mcp_config.json` |
-| 도구 실행 전후 자동 검사 | Hook | `.agents/hooks.json` |
-| 여러 확장의 배포 | Plugin | Plugin 디렉터리 |
+| 필요한 것 | 선택 |
+| --- | --- |
+| 계속 적용할 작업 기준 | `AGENTS.md` 또는 Rules |
+| 반복 절차와 전문 지식 | Skill |
+| 독립적인 조사와 검증 | Custom subagent |
+| 외부 서비스의 도구와 데이터 | MCP |
+| 실행 전후 자동 검사 | Hook |
+| 여러 확장의 묶음 배포 | Plugin |
 
-## Rules
+## Skill 만들기
 
-`AGENTS.md` 또는 `GEMINI.md`에는 프로젝트 전반의 짧은 작업 기준과 정본 위치를 둬요.  
-경로별 세부 규칙은 `.agents/rules/`의 Markdown 파일로 분리해요.  
-반복 절차를 길게 적어야 하면 Rules 대신 Skill을 만들어요.
+프로젝트의 `.agents/skills/explain-tests/SKILL.md`에 작성하세요.
 
-## Skill
+```markdown
+---
+name: explain-tests
+description: 테스트의 실행 방법과 검증 범위를 설명한다.
+---
 
-Skill은 `SKILL.md`와 선택적인 스크립트·예제·리소스를 묶은 폴더예요.  
-세션 시작 시 이름과 설명을 확인하고, 요청과 맞으면 에이전트가 전체 지시를 읽어요.  
-사용자가 명시적으로 실행하려면 입력창에서 `/<skill-name>`을 입력해요.
+# 테스트 설명
 
-CLI에서 사용할 위치와 CodeStream Skill 연결 방법은 [환경 설정](./setup.md#사용자-skill)을 봐요.
-
-### 확장 매니페스트의 중첩 항목
-
-CLI 1.2.10부터 `skills.json`·`rules.json`·`agents.json`·`plugins.json`의 디렉터리 항목은 바로 아래 항목만 찾아요.  
-중첩된 항목을 로드하려면 해당 경로를 `include_only`에 명시해요.
-
-```json
-{
-  "path": "shared_skills",
-  "include_only": ["category/my-skill"]
-}
+1. README.md에서 테스트 명령을 확인한다.
+2. 관련 테스트 파일과 검증 범위를 설명한다.
+3. 파일은 수정하지 않는다.
 ```
 
-위 코드는 매니페스트 안의 디렉터리 항목 예제예요.  
-변경 뒤에는 [Skill 새로고침](./commands.md#skill-새로고침)으로 필요한 항목이 표시되는지 확인해요.
+목록 갱신은 [환경 설정](./setup.md#5-사용자-skill)을 확인하세요.  
+갱신한 뒤 호출하세요.
 
-## Custom subagent
-
-서로 독립적인 조사·검증·구현을 별도 맥락으로 나눌 때 사용해요.  
-입력창의 `/agents`로 현재 에이전트와 백그라운드 서브에이전트를 확인해요.  
-역할·권한·도구는 서브에이전트 정의에서 필요한 만큼만 지정해요.
+```text
+/explain-tests 주문 취소 테스트를 설명해줘
+```
 
 ## MCP
 
-MCP는 데이터베이스, 로컬 개발 도구, 원격 API 같은 외부 도구와 최신 데이터를 연결해요.  
-CLI에서 `/mcp`로 상태와 연결 로그를 확인하고, 전역 또는 작업 공간 설정으로 관리해요.
+외부 도구를 연결하기 전에 서버의 설치·인증 절차를 확인하세요.  
+전역 설정은 `~/.gemini/config/mcp_config.json`, 프로젝트 설정은 `.agents/mcp_config.json`에 둬요.
 
-| 범위 | 위치 |
-| --- | --- |
-| 개인 전역 | `~/.gemini/config/mcp_config.json` |
-| 작업 공간 | `.agents/mcp_config.json` |
-
-비밀값과 권한 범위는 MCP 서버의 인증 방식과 Antigravity 권한 정책을 함께 검토해요.
-
-CLI 1.1.16부터 전역 MCP 서버는 터미널에서 관리할 수 있어요.
+터미널에서 OpenAI 공식 문서 서버를 등록하고 목록을 확인하세요.
 
 ```bash
-agy mcp --help
-agy mcp add --help
+agy mcp add docs https://developers.openai.com/mcp
 agy mcp list
-agy mcp enable <서버 이름>
-agy mcp disable <서버 이름>
-agy mcp remove <서버 이름>
 ```
 
-서버를 추가할 때는 `add --help`에서 `--type`, `--env`, `--header` 형식을 먼저 확인해요.  
-관리 명령은 사용자 전역 `mcp_config.json`을 수정해요.  
-추가한 서버는 열린 CLI의 `/mcp`에서 상태와 인증을 확인해요.
+서버를 등록한 뒤 연결과 인증 상태를 확인하세요.
+
+```text
+/mcp
+```
+
+서버별 설정은 [MCP 공식 안내](https://antigravity.google/docs/mcp)를 따라요.
+
+## Rules
+
+프로젝트·전역 지침 위치는 [환경 설정](./setup.md#4-프로젝트-지침)을 확인하세요.  
+경로별 규칙은 `.agents/rules/`에 두고 `trigger`를 지정해요.  
+[Rules 공식 안내](https://antigravity.google/docs/rules)에서 활성화 조건을 확인하세요.
+
+## 확장 매니페스트의 중첩 항목
+
+중첩된 Skill·Rule·Agent는 매니페스트의 `include_only`로 경로를 지정해요.  
+[Rules 매니페스트](https://antigravity.google/docs/rules/#sharing-rules-across-projects)에서 형식을 확인하세요.
+
+## Custom subagent
+
+독립적인 조사·검증 역할을 재사용해요.  
+[서브에이전트 학습 자료](./reference/02-subagents-and-background-tasks.md)와 [공식 정의 방법](https://antigravity.google/docs/subagents/)을 확인하세요.
 
 ## Hook
 
-Hook은 도구 실행 전후 또는 에이전트 실행 단계에 셸 명령을 연결해 검사와 형식화를 자동화해요.  
-CLI는 작업 공간 `.agents/hooks.json`, 전역 `~/.gemini/config/hooks.json`, `~/.gemini/antigravity-cli/settings.json`, Plugin의 `hooks.json`을 지원해요.  
-현재 로드된 Hook은 입력창의 `/hooks`에서 확인해요.
-
-Hook에는 안전하고 빠르며 결과가 일정한 검사만 넣어요.
+도구 실행 전후에 검사나 형식화를 실행해요.  
+`/hooks`에서 로드 상태를 확인하고 [Hook 공식 안내](https://antigravity.google/docs/hooks)에서 설정하세요.
 
 ## Plugin
 
-Plugin은 `plugin.json`을 필수 매니페스트로 사용하고 Skill·Subagent·Rule·MCP·Hook을 함께 배포해요.  
-설치된 Plugin은 입력창의 `/plugin` 또는 터미널의 `agy plugin list`로 확인해요.
-
-```bash
-agy plugin --help
-agy plugin list
-```
-
-CLI 1.2.11부터 `~/.gemini/config/plugins`에 직접 배치한 Plugin도 필요한 MCP 설정 변수가 없으면 비활성 상태로 시작해요.  
-Plugin의 필수 설정을 채우고 `/plugin`에서 활성화한 뒤 `/mcp`로 연결을 확인해요.
-
-## 확인 기준
-
-- 작업 기준, 반복 절차, 자동 검사, 외부 도구의 책임이 겹치지 않아요.
-- `/skills`, `/agents`, `/mcp`, `/hooks`에서 필요한 확장이 로드된 것을 확인해요.
-- 공유 설정에는 비밀값을 저장하지 않아요.
+Skill·Rule·Subagent·MCP·Hook을 묶어 배포해요.  
+`/plugin`에서 설치와 활성 상태를 확인하고 [Plugin 공식 안내](https://antigravity.google/docs/plugins)를 따라요.
 
 ## 공식 문서
 
-- [Antigravity Agent Skills](https://antigravity.google/docs/skills)
-- [Antigravity Rules](https://antigravity.google/docs/rules)
-- [Antigravity Custom Subagents](https://antigravity.google/docs/subagents/)
-- [Antigravity MCP](https://antigravity.google/docs/mcp)
-- [Antigravity Hooks](https://antigravity.google/docs/hooks)
-- [Antigravity Plugins](https://antigravity.google/docs/plugins)
-- [CLI 변경 기록](https://www.antigravity.google/docs/changelog?tab=cli)
+- [Agent Skills](https://antigravity.google/docs/skills)
+- [확장 관리](https://www.antigravity.google/docs/cli/plugins/)
+- [MCP](https://antigravity.google/docs/mcp)
+- [Rules](https://antigravity.google/docs/rules)
+- [Hooks](https://antigravity.google/docs/hooks)
+- [Plugins](https://antigravity.google/docs/plugins)

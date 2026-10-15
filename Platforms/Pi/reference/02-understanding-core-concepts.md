@@ -1,371 +1,75 @@
 # 02. [초급] Pi 기본 개념
 
-Pi 세션의 입력창, 모델, 맥락과 확장 자원을 정리해요.  
-이 문서는 기본 사용을 다루며 Extension 제작은 [Pi 확장과 자동화](./03-applying-core-concepts.md)에서 다뤄요.  
-설치본 Pi `0.87.1`과 공식 문서를 기준으로 확인했어요.
+Pi 1.x 공식 문서 기준으로 화면, 모델, 세션과 확장 자원을 구분해요.
 
-## 1. Interactive Mode
+## 화면과 입력
 
-Pi를 인자 없이 실행하면 대화형 모드로 열려요.
-
-```bash
-pi
-```
-
-화면은 크게 네 영역으로 나뉘어요.
-
-| 영역 | 설명 |
+| 영역 | 표시 내용 |
 | --- | --- |
-| Startup header | 단축키, 로드된 지침 파일, 리소스 정보 표시 |
-| Messages | 사용자 메시지, assistant 응답, 도구 실행 결과 표시 |
-| Editor | 사용자가 입력하는 영역 |
-| Footer | 현재 경로, 세션명, 토큰/비용, 컨텍스트 사용량, 모델 표시 |
+| 시작 화면 | 지침 파일과 로드한 자원 |
+| 대화 영역 | 요청, 응답과 도구 실행 결과 |
+| 채팅창 | 자연어 요청과 `/` 명령 |
+| 하단 상태 | 작업 경로, 모델, 토큰과 비용 |
 
-Footer의 컨텍스트 사용량은 현재 모델의 context window 기준으로 표시돼요.
+파일을 지정할 때는 채팅창에서 `@`로 검색하세요.
 
-실제 입력 단축키와 slash command는 [Pi 기본 명령](./06-basic-commands.md)에서 확인해요.
+```text
+@README.md의 실행 절차가 현재 빌드 설정과 일치하는지 확인해줘.
+파일은 수정하지 마.
+```
 
-## 2. Editor
+입력·셸 실행 단축키는 [Pi 기본 명령](./06-basic-commands.md)을 확인하세요.
 
-Editor는 Pi에 요청을 입력하는 곳이에요.
+## 모델과 추론 수준
 
-| 기능 | 사용법 |
+모델은 응답을 생성하고, 제공자는 모델에 접근할 계정이나 서비스를 정해요.  
+추론 수준은 모델이 지원하는 범위에서 선택해요.  
+변경 방법은 [환경 설정](../setup.md#모델과-추론-수준)을 확인하세요.
+
+## 세션과 맥락
+
+대화는 `~/.pi/agent/sessions/`에 자동 저장돼요.  
+세션은 트리 구조라 이전 지점에서 다른 해결 방향을 시도할 수 있어요.
+
+| 목적 | 명령 |
 | --- | --- |
-| 입력 제출 | Enter |
-| 여러 줄 입력 | Shift+Enter, Windows Terminal에서는 설정에 따라 Ctrl+Enter 가능 |
-| 파일 참조 | `@` 입력 후 파일 검색 |
-| 경로 자동완성 | Tab |
-| 이미지 붙여넣기 | Ctrl+V, Windows에서는 Alt+V |
-| 외부 편집기 | Ctrl+G |
+| 이전 세션 열기 | `/resume` |
+| 이전 지점으로 이동 | `/tree` |
+| 과거 요청에서 새 세션 시작 | `/fork` |
+| 현재 흐름을 복제 | `/clone` |
 
-세션을 열 때만 터미널에서 파일을 함께 지정할 수 있어요.  
-이미 열린 세션에서는 입력창에 `@`를 입력해 파일을 참조해요.
-
-```bash
-pi @README.md "이 파일을 요약해줘"
-pi @src/app.ts @src/app.test.ts "두 파일을 함께 리뷰해줘"
-```
-
-## 3. Shell command
-
-Pi 안에서 `!`로 셸 명령을 실행할 수 있어요.
+대화 분기는 작업 파일을 격리하지 않아요.  
+맥락이 길어지면 오래된 대화를 자동으로 요약해요.  
+직접 요약할 때는 남길 내용을 지정하세요.
 
 ```text
-!npm test
+/compact 현재 목표, 변경 파일과 남은 테스트 실패를 중심으로 요약해줘.
 ```
 
-이 경우 명령 출력이 모델 컨텍스트에 전달돼요.
+## 설정과 프로젝트 신뢰
 
-출력을 모델에게 보내고 싶지 않으면 `!!`를 써요.  
-Git 상태는 보통 터미널에서 직접 확인해요.
+개인 설정은 `~/.pi/agent/settings.json`, 프로젝트 설정은 `.pi/settings.json`에 둬요.  
+프로젝트 설정은 개인 설정보다 우선해요.  
+프로젝트 자원은 신뢰 결정 뒤 로드하지만 지침 파일은 별도 컨텍스트 설정으로 읽어요.
 
-```text
-!!pwd
-```
+저장 위치와 도구 범위는 [환경 설정](../setup.md)을 확인하세요.
 
-## 4. Model
+## 확장 자원 구분
 
-Pi는 여러 제공자와 모델을 지원해요.
-
-모델은 아래 방식으로 바꿔요.
-
-```text
-/model
-```
-
-또는 단축키를 써요.
-
-| 단축키 | 동작 |
+| 자원 | 역할 |
 | --- | --- |
-| Ctrl+L | 모델 선택 |
-| Ctrl+P | scoped model 다음 모델로 전환 |
-| Shift+Ctrl+P | scoped model 이전 모델로 전환 |
-| Shift+Tab | thinking level 순환 |
-
-CLI에서 모델을 지정할 수도 있어요.
-
-```bash
-pi --provider openai --model gpt-4o
-pi --model openai/gpt-4o
-pi --model sonnet:high
-```
-
-## 5. Thinking level
-
-Thinking level은 모델의 추론 강도를 조절하는 설정이에요.
-
-Pi에서 사용하는 값은 아래와 같아요.
-
-- `off`
-- `minimal`
-- `low`
-- `medium`
-- `high`
-- `xhigh`
-- `max`
-
-`max`는 `xhigh`보다 높은 opt-in 단계예요.  
-모든 모델이 모든 thinking level을 지원하는 것은 아니므로 모델 선택 화면에서 지원 여부를 확인해요.
-
-## 6. Session
-
-Pi의 대화는 자동으로 세션에 저장돼요.
-
-기본 저장 위치는 아래와 같아요.
-
-```text
-~/.pi/agent/sessions/
-```
-
-세션은 단순한 로그가 아니라 트리 구조예요.
-
-그래서 이전 지점으로 이동해 다른 방향으로 이어가거나, 새 세션 파일로 분기할 수 있어요.
-
-세션 이름은 목록에 표시할 작업명이고, 세션 ID는 자동화에서 같은 프로젝트 세션을 정확히 지정하는 식별자예요.  
-CLI의 `--name`, `--session`, `--session-id` 사용 기준은 [Pi 기본 명령](./06-basic-commands.md)에서 확인해요.
-
-주요 명령은 아래와 같아요.
-
-| 명령어 | 설명 |
-| --- | --- |
-| `/resume` | 이전 세션 선택 |
-| `/new` | 새 세션 시작 |
-| `/session` | 현재 세션 정보 확인 |
-| `/tree` | 현재 세션 트리 탐색 |
-| `/fork` | 이전 사용자 메시지에서 새 세션 생성 |
-| `/clone` | 현재 활성 브랜치를 새 세션으로 복제 |
-
-세션을 실제 작업에서 쓰는 흐름은 [프로젝트 코딩](./05-project-cooking.md)의 긴 작업 관리 항목을 따라요.
-
-## 7. Context
-
-모델은 무한히 긴 대화를 볼 수 없어요.
-
-각 모델에는 context window가 있고, Pi footer에는 현재 사용량이 표시돼요.
-
-예:
-
-```text
-0.0%/272k (auto)
-```
-
-의미는 아래와 같아요.
-
-- `0.0%`: 현재 컨텍스트 사용률
-- `272k`: 현재 모델의 context window
-- `(auto)`: 자동 compaction 활성화
-
-## 8. Compaction
-
-대화가 길어지면 Pi는 오래된 내용을 요약해 컨텍스트를 확보해요.
-
-자동 compaction 조건은 개념적으로 아래와 같아요.
-
-```text
-contextTokens > contextWindow - reserveTokens
-```
-
-수동으로 실행할 수도 있어요.
-
-```text
-/compact
-/compact 테스트 실패 원인과 수정 내역 중심으로 요약해줘
-```
-
-기본 설정은 아래와 같아요.
-
-| 설정 | 기본값 | 설명 |
-| --- | ---: | --- |
-| `compaction.enabled` | `true` | 자동 compaction 사용 |
-| `compaction.reserveTokens` | `16384` | 응답을 위해 남겨둘 토큰 |
-| `compaction.keepRecentTokens` | `20000` | 요약하지 않고 유지할 최근 토큰 |
-
-긴 작업 중 compaction 실행 예시는 [프로젝트 코딩](./05-project-cooking.md)과 [Spring/Java 프로젝트 분석과 테스트](./07-analysis-and-testing.md)에서 확인해요.
-
-## 9. Settings
-
-Pi 설정은 JSON 파일로 관리돼요.
-
-| 위치 | 범위 |
-| --- | --- |
-| `~/.pi/agent/settings.json` | 전역 |
-| `.pi/settings.json` | 프로젝트 |
-
-프로젝트 설정은 전역 설정을 덮어써요.
-
-프로젝트에 `.pi/settings.json`이나 `.pi` 리소스가 있으면 Project Trust 결정 후 해당 설정과 리소스를 불러와요.  
-`/trust`로 저장한 결정은 다음 실행부터 적용돼요.
-
-자주 보는 항목은 아래와 같아요.
-
-- `defaultProvider`
-- `defaultModel`
-- `defaultThinkingLevel`
-- `theme`
-- `compaction`
-- `retry`
-- `enabledModels`
-- `shellPath`
-
-일반 설정은 `/settings`, package 리소스 활성화 여부는 `pi config`로 관리해요.  
-`pi config -l`은 프로젝트 설정 화면에서 시작해요.  
-세부 명령은 [Pi 기본 명령](./06-basic-commands.md), 프로젝트 설정 생성 기준은 [프로젝트 시작](./04-starting-a-project.md)에서 확인해요.
-
-## 10. Customization 구성 요소
-
-Pi는 기능을 목적별 리소스로 나눠 확장해요.
-
-Customization은 단순 설정이 아니라, 모델이 일하는 방식과 실행 환경을 조정하는 구조예요.  
-기능별 역할을 구분하면 어떤 작업을 어디에 넣을지 빠르게 정할 수 있어요.
-
-| 구성 요소 | 역할 | 활용 예 |
-| --- | --- | --- |
-| Extensions | Pi 실행 흐름과 도구를 TypeScript로 확장 | Jira, Wiki, 배포 API, 로그 조회 도구 |
-| Skills | 특정 작업 절차와 판단 기준 제공 | 장애 분석 절차, 코드 리뷰 기준, 문서 작성 규칙 |
-| Prompt Templates | 반복 프롬프트를 명령처럼 재사용 | PR 설명 작성, 릴리스 노트 초안, 이슈 요약 |
-| Themes | TUI 색상과 표시 스타일 조정 | 다크/라이트 테마, diff 색상, 오류 강조 |
-| Pi Packages | extension, skill, prompt, theme를 묶어 배포 | 팀 공통 개발 도구 패키지 |
-| Custom Models | 로컬 또는 사내 모델을 설정 파일로 추가 | Ollama, LM Studio, vLLM, 사내 OpenAI 호환 서버 |
-| Custom Providers | 모델 제공자 연결 방식을 코드로 등록 | 사내 LLM Gateway, 프록시, SSO/OAuth, 비표준 API |
-
-### 10.1 Extensions
-
-Extensions는 Pi 기능을 코드로 확장해요.
-
-- 실행 흐름 이벤트에 개입해요.
-- 모델이 호출할 custom tool을 등록해요.
-- slash command, shortcut, provider를 추가해요.
-- 외부 API 인증과 호출을 내부에 숨겨요.
-
-적합한 작업은 아래와 같아요.
-
-- Jira 이슈 CRUD
-- Confluence 문서 CRUD
-- 사내 API 조회
-- 위험 명령 실행 전 확인
-- 긴 로그 요약 후 모델 전달
-
-전역 위치는 아래와 같아요.
-
-```text
-~/.pi/agent/extensions/
-```
-
-### 10.2 Skills
-
-Skills는 작업 절차를 필요할 때 불러오는 지침 묶음이에요.
-
-- 특정 업무의 순서와 기준을 제공해요.
-- 참고 문서와 스크립트를 함께 둘 수 있어요.
-- 모델이 필요한 경우에만 전체 내용을 읽어요.
-
-적합한 작업은 아래와 같아요.
-
-- 신규 프로젝트 분석 절차
-- 장애 원인 분석 절차
-- API 설계 검토 기준
-- 사내 문서 작성 기준
-
-전역 위치는 아래와 같아요.
-
-```text
-~/.pi/agent/skills/
-```
-
-### 10.3 Prompt Templates
-
-Prompt Templates는 자주 쓰는 요청을 짧은 명령으로 실행해요.
-
-- 파일명으로 slash command가 만들어져요.
-- 인자를 받아 프롬프트에 넣을 수 있어요.
-- 실행 코드는 없고 요청 문장만 재사용해요.
-
-적합한 작업은 아래와 같아요.
-
-- PR 설명 작성
-- 커밋 메시지 초안
-- Jira 이슈 요약
-- Wiki 문서 초안
-
-전역 위치는 아래와 같아요.
-
-```text
-~/.pi/agent/prompts/
-```
-
-### 10.4 Themes
-
-Themes는 Pi TUI 색상을 조정해요.
-
-- 메시지, 도구 결과, diff, markdown 색상을 바꿔요.
-- 터미널 배경이나 개인 시인성에 맞춰요.
-- 기능 동작에는 영향을 주지 않아요.
-
-전역 위치는 아래와 같아요.
-
-```text
-~/.pi/agent/themes/
-```
-
-### 10.5 Pi Packages
-
-Pi Packages는 여러 리소스를 묶어 설치하는 배포 단위예요.
-
-- extensions, skills, prompts, themes를 함께 배포해요.
-- npm, git, 로컬 경로에서 설치할 수 있어요.
-- 팀 공통 환경을 맞출 때 사용해요.
-
-적합한 작업은 아래와 같아요.
-
-- 사내 개발 도구 묶음
-- 프로젝트 표준 리뷰 흐름
-- 팀 공통 프롬프트와 스킬 배포
-- 여러 프로젝트에서 같은 custom tool 사용
-
-### 10.6 Custom Models
-
-Custom Models는 모델 목록을 설정 파일로 추가해요.
-
-- OpenAI 호환 로컬 서버를 붙여요.
-- 사내 모델 endpoint를 등록해요.
-- 모델별 context window, max token, 비용 정보를 지정해요.
-
-설정 위치는 아래와 같아요.
-
-```text
-~/.pi/agent/models.json
-```
-
-### 10.7 Custom Providers
-
-Custom Providers는 모델 제공자 연결을 Extension 코드로 등록해요.
-
-- 기존 provider의 base URL을 proxy로 바꿔요.
-- 커스텀 헤더나 인증 흐름을 추가해요.
-- 동적으로 모델 목록을 가져와요.
-- 비표준 스트리밍 API를 직접 구현해요.
-
-단순 모델 추가는 Custom Models를 우선해요.  
-인증, 라우팅, API 변환이 필요하면 Custom Providers를 사용해요.
-
-## 11. Pi가 잘하는 작업 방식
-
-Pi는 기본 개념을 조합해 대화형 개발 흐름을 만들고, 반복되거나 결정적으로 처리해야 할 부분만 확장해요.
-
-| 필요해진 상황 | 다음 문서 |
-| --- | --- |
-| 실행 전후에 검사하거나 모델용 도구를 추가해요 | [Pi 확장 기능](../extensions.md) |
-| Extension, custom tool, provider, SDK나 RPC를 직접 구현해요 | [03. Pi 확장과 자동화](./03-applying-core-concepts.md) |
-| 검증된 리소스를 Package로 설치·공유해요 | [Pi 확장 기능](../extensions.md#pi-package) |
-| 세션 분기로 다른 접근을 비교해요 | [Pi 작업 흐름](../workflows.md#pi-고유-작업) |
-
-Extension은 실행 흐름과 도구 호출을 코드로 조정할 때 사용해요.  
-SDK와 RPC는 Pi를 다른 프로그램에 내장하거나 제어할 때 사용해요.  
-구체적인 선택 기준은 기본 문서에서 한 번만 관리하고 실습에서는 각 패턴의 확인 결과를 중심으로 봐요.
+| Prompt Template | 반복 요청 문구 재사용 |
+| Skill | 작업 절차와 참고 자료 제공 |
+| Extension | 실행 도구·명령·이벤트 처리 추가 |
+| Theme | 화면 색상 변경 |
+| Package | 여러 자원 설치와 배포 |
+| 모델 설정 | 호환 API의 모델 목록 추가 |
+| Provider Extension | 인증이나 통신 방식 구현 |
+
+필요한 수단만 선택하고 [확장 실습](./03-applying-core-concepts.md)으로 확인하세요.
 
 ## 공식 문서
 
-- [Sessions](https://pi.dev/docs/latest/sessions)
-- [Settings](https://pi.dev/docs/latest/settings)
-- [Extensions](https://pi.dev/docs/latest/extensions)
-- [Packages](https://pi.dev/docs/latest/packages)
+- [세션과 맥락](https://pi.dev/docs/latest/sessions)
+- [설정](https://pi.dev/docs/latest/settings)
+- [확장 기능](https://pi.dev/docs/latest/extensions)

@@ -1,207 +1,145 @@
 # Grok Build 환경 설정
 
-설치, 인증, 사용자 Skill, 프로젝트 지침과 실행 설정을 책임별 위치에 나눠 둬요.  
-일상 작업은 설정을 마친 뒤 열린 세션의 입력창에서 진행해요.
+설치부터 로그인, 프로젝트 지침 확인까지 순서대로 진행해요.
 
-## 설치와 첫 실행
+## 1. 설치와 첫 실행
+
+사용하는 운영체제의 터미널에서 설치하세요.
+
+macOS·Linux·WSL:
 
 ```bash
-# macOS, Linux, WSL
 curl -fsSL https://x.ai/cli/install.sh | bash
-
-# 설치 확인과 첫 세션
-grok --version
-grok
 ```
 
-Windows PowerShell에서는 아래 명령을 실행해요.
+Windows PowerShell:
 
 ```powershell
 irm https://x.ai/cli/install.ps1 | iex
 ```
 
-설치 스크립트의 기본 채널은 `stable`이에요.  
-시험 기능이 필요한 환경만 `alpha`를 선택해요.  
-공식 Changelog의 공개 버전과 설치된 `alpha` 버전을 구분해요.
-
-## 업데이트와 채널
-
-내장 설치 프로그램으로 설치했다면 `grok update`로 업데이트해요.
-
-| 목적 | 명령 |
-| --- | --- |
-| 설치하지 않고 업데이트 확인 | `grok update --check` |
-| 현재 채널의 버전 설치 | `grok update` |
-| 안정 채널로 전환 | `grok update --stable` |
-| 시험 채널로 전환 | `grok update --alpha` |
-| 특정 버전 설치 | `grok update --version <version>` |
-
-채널 전환 명령은 해당 채널의 버전을 설치해요.  
-실행 전 `grok update --help`에서 옵션을 확인해요.  
-업데이트 후 `grok --version`으로 버전과 채널을 확인해요.
-
-Grok Build 1.0.42부터 WinGet 설치의 `grok update`는 바이너리를 직접 교체하지 않아요.  
-대신 출력되는 `winget upgrade` 명령으로 업데이트해요.
-
-CI에서는 검증한 버전을 고정하고 실행 중 자동 업데이트 확인을 끌 수 있어요.
+프로젝트 폴더에서 실행하세요.
 
 ```bash
-grok --no-auto-update -p "현재 변경에서 테스트 누락을 확인해줘"
+cd /path/to/project
+grok
 ```
 
-사용자 설정으로 계속 끄려면 `~/.grok/config.toml`에 아래 설정을 추가해요.
+## 2. 인증
+
+첫 실행 안내에 따라 브라우저에서 로그인하세요.  
+다시 로그인하려면 CLI 채팅창에 입력하세요.
+
+```text
+/login
+```
+
+브라우저를 열 수 없는 환경은 터미널에서 기기 인증을 시작하세요.
+
+```bash
+grok login --device-auth
+```
+
+자동화에서는 `XAI_API_KEY` 환경 변수로 인증할 수도 있어요.
+
+## 3. 모델과 권한 선택
+
+CLI 채팅창에서 모델과 추론 수준을 선택하세요.
+
+```text
+/model
+/effort
+```
+
+기본 권한은 도구 실행 전에 승인을 요청해요.  
+일반 작업의 자동 승인이 필요하면 Auto 모드를 선택하세요.
+
+```text
+/auto
+```
+
+Shift+Tab으로 모드를 바꿀 수 있어요.  
+모드별 차이와 Sandbox는 [권한과 Plan 모드](./reference/01-permissions-and-plan-mode.md)를 확인하세요.
+
+## 4. 기본 설정 저장
+
+CLI 채팅창의 `/settings`에서 개인 기본값을 바꾸세요.  
+설정 파일은 `~/.grok/config.toml`이에요.
+
+```text
+/settings
+```
+
+파일로 권한 기본값을 저장하려면 다음처럼 작성하세요.
 
 ```toml
-[cli]
-auto_update = false
+[ui]
+permission_mode = "ask"
 ```
 
-이 설정은 자동 업데이트 확인을 끄고, 명시적인 `grok update` 실행은 막지 않아요.
+팀 공유 `.grok/config.toml`에는 MCP, Plugin과 권한 규칙을 저장해요.
 
-## 인증
+## 5. 프로젝트 지침
 
-처음 `grok`를 실행하면 브라우저에서 로그인해요.  
-브라우저를 열 수 없는 환경은 `XAI_API_KEY` 환경 변수 또는 `grok login --device-auth`를 사용해요.  
-API 키와 인증 정보는 저장소나 설정 파일에 직접 기록하지 않아요.  
-로그아웃은 `grok logout`으로 관리해요.
+개인 공통 지침은 `~/.grok/AGENTS.md`, 프로젝트 지침은 루트의 `AGENTS.md`에 적으세요.  
+하위 폴더의 지침은 해당 경로에 적용하며, 충돌하면 상위 지침보다 우선해요.
 
-## 사용자 Skill
+```markdown
+# 프로젝트 작업 기준
 
-CodeStream 사용자 Skill(`ct-*`)은 [ai-comm-init](https://github.com/codestreamkr/ai-comm-init) 설치 후 사용해요.  
-Grok Build는 `~/.agents/skills/`, `~/.grok/skills/`, Claude 호환 위치의 `~/.claude/skills/`를 읽을 수 있어요.
+- 먼저 README.md에서 실행 방법을 확인한다.
+- 요청한 범위만 수정한다.
+- 변경 후 관련 테스트를 실행한다.
+- 실행하지 못한 검증을 보고한다.
+```
+
+## 6. 사용자 Skill
+
+[ai-comm-init](https://github.com/codestreamkr/ai-comm-init)의 설치 절차를 따른 뒤 Grok Build를 다시 실행하세요.  
+CLI 채팅창에서 설치한 Skill을 확인하세요.
+
+```text
+/skills
+```
+
+개인 Skill은 `~/.grok/skills/`, 프로젝트 Skill은 `.grok/skills/`에 두세요.  
+각 Skill 폴더에는 `SKILL.md`가 있어야 해요.  
+공유 개인 경로 `~/.agents/skills/`와 Claude 호환 Skill도 읽어요.
+
+목록에 없으면 경로와 파일명을 확인하고 다시 실행하세요.  
+호출 예제는 [사용자 Skill](./skills.md)을 확인하세요.
+
+## 7. 버전 확인과 업데이트
+
+터미널에서 버전을 확인하고 업데이트하세요.
+
+```bash
+grok --version
+grok update
+```
+
+WinGet 설치는 출력된 `winget upgrade` 명령을 따르세요.  
+채널 전환과 버전 고정은 [CLI Reference](https://docs.x.ai/build/cli/reference)를 확인하세요.
+
+## 8. 적용 확인과 진단
+
+터미널에서 적용된 지침, Skill과 외부 연결을 확인하세요.
 
 ```bash
 grok inspect
 ```
 
-`grok inspect`의 Skill 목록과 세션 입력창의 `/skills`에서 `ct-*`가 노출되는지 확인해요.  
-사용자 Skill은 `/ct-*`로 직접 호출해요.
+설정이나 터미널 문제가 있으면 진단하세요.
 
-## 프로젝트 지침
-
-프로젝트에 계속 적용할 짧은 기준과 정본 위치는 `<repo>/AGENTS.md`에 둬요.
-
-```markdown
-# 프로젝트 작업 기준
-
-## 작업 시작
-
-- 먼저 `README.md`에서 프로젝트 구조와 실행 방법을 확인한다.
-- 변경 대상 영역의 기존 코드와 문서를 확인한다.
-
-## 정본
-
-- API 계약: `docs/api.md`
-- 빌드와 테스트: `README.md`
+```bash
+grok doctor
 ```
-
-저장소 루트부터 현재 디렉터리까지의 지침이 적용되고, 하위 디렉터리 지침이 뒤에 와요.  
-프로젝트 지침과 Skill은 폴더를 신뢰한 뒤에 읽으므로 `/hooks-trust` 또는 `--trust`로 신뢰 상태를 기록해요.  
-세션에만 필요한 기준은 `--rules`로 추가해요.
-
-## 권한과 실행 범위
-
-권한 모드는 도구 실행 전에 물어볼 범위를 정해요.  
-세션에서는 Shift+Tab, `/auto`, `/always-approve`로 현재 동작을 바꿀 수 있어요.
-
-| 모드 | 적합한 작업 |
-| --- | --- |
-| `plan` | 구현 전에 계획을 검토할 때 |
-| `acceptEdits` | 검토한 파일을 반복해서 고칠 때 |
-| `auto` | 긴 작업에서 일반 승인 요청을 줄일 때 |
-| `dontAsk` | 승인할 수 없는 자동화 |
-| `bypassPermissions` | 격리된 실행 환경에서만 |
-
-`deny` 규칙은 허용 규칙보다 우선해요.  
-Sandbox와 제품 Plan 모드의 상세 동작은 [권한과 Plan 모드](./reference/01-permissions-and-plan-mode.md)를 봐요.
-
-## 모델과 실행 설정
-
-세션 입력창의 `/model`, `/effort`로 현재 세션의 모델과 추론 수준을 조정해요.  
-기본 모델, reasoning 수준, 추가 Skill 경로와 사용자 권한 기본값은 `~/.grok/config.toml`에 둬요.
-
-```toml
-[models]
-default_reasoning_effort = "medium"
-
-[skills]
-paths = ["~/my-team-skills"]
-
-[ui]
-permission_mode = "auto"
-```
-
-현재 모델 ID는 `grok models` 또는 `/model`에서 확인해요.  
-프로젝트 `.grok/config.toml`은 MCP, Plugin과 권한 규칙처럼 팀에서 공유할 항목에 사용해요.
-
-Grok Build 1.0.40은 Grok 4.7을 지원해요.  
-`/model`에서 계정에 제공되는 모델을 확인하고 선택해요.  
-스크립트는 확인한 모델 ID를 `grok -p "요청" -m <model-id>`로 지정해요.  
-Grok 4.7 Fast는 Build에서 제공되지만 공개 xAI API에는 없어요.  
-Fast는 Build 요금제로 과금하며 무료 등급에는 포함되지 않아요.
-
-프로젝트 설정의 같은 이름 MCP와 Plugin은 현재 디렉터리, 저장소 루트, 사용자 설정 순으로 대체될 수 있어요.  
-권한 규칙은 함께 적용하고 `deny`가 `ask`, `allow`보다 우선해요.
-
-## 저장 위치
-
-| 위치 | 책임 |
-| --- | --- |
-| `~/.grok/skills/` | 개인 Skill |
-| `<repo>/.grok/skills/` | 팀 Skill |
-| `~/.agents/skills/`, `<repo>/.agents/skills/` | 공유 Skill 정본과 호환 Skill |
-| `AGENTS.md` | 프로젝트 작업 기준과 정본 안내 |
-| `~/.grok/rules/` | 모든 프로젝트에 적용할 개인 규칙 |
-| `~/.grok/config.toml` | 사용자 실행 설정, 모델과 MCP 연결 |
-| `<repo>/.grok/config.toml` | 팀 공유 MCP, Plugin과 권한 규칙 |
-| `<repo>/.grok/hooks/` | 프로젝트 생명주기 스크립트 |
-| `~/.grok/agents/`, `<repo>/.grok/agents/` | Agent Profile과 Subagent 정의 |
-| `~/.grok/plugins/`, `<repo>/.grok/plugins/` | Plugin |
-
-Grok Build는 Claude 호환 Skill, `CLAUDE.md`, `.mcp.json`, `.claude/settings.json`과 Plugin도 읽을 수 있어요.  
-호환 탐색의 세부 범위는 현재 설치된 도움말과 `grok inspect`를 기준으로 확인해요.  
-비밀값은 환경 변수나 `auth_provider`로 전달해요.
-
-### 다른 도구 호환
-
-Claude Code 없이도 Grok Build를 사용할 수 있어요.  
-Claude와 Cursor 호환 설정을 켜면 기존 Skill, 지침, MCP, Hook과 Plugin을 발견할 수 있어요.
-
-| 위치 | 호환으로 발견할 수 있는 내용 |
-| --- | --- |
-| `~/.claude/skills/`, `<repo>/.claude/skills/` | Skill |
-| `CLAUDE.md`, `.claude/CLAUDE.md` | 프로젝트 지침 |
-| `.mcp.json`, `~/.claude.json` | MCP 서버 |
-| `.claude/settings.json` | 권한 등 실행 설정 |
-| `.claude/plugins/` | Plugin |
-
-호환 탐색은 `[compat.claude]`, `[compat.cursor]` 설정으로 조정할 수 있어요.  
-지원 범위가 바뀔 수 있으므로 활성 항목은 `grok inspect`로 확인해요.
-
-## 진단과 적용 확인
-
-`grok inspect`로 현재 디렉터리에서 인식한 구성을 확인해요.
-
-| 확인할 것 | 방법 |
-| --- | --- |
-| 설치 버전 | `grok --version` |
-| 현재 작업 루트와 Git 루트 | `grok inspect` |
-| 적용된 프로젝트 지침과 Skill | `grok inspect`, `/skills` |
-| 연결된 Plugin과 MCP | `grok inspect`, `/plugins`, `/mcps` |
-| 권한 규칙과 신뢰 상태 | `grok inspect` |
-| 터미널 문제 | `grok doctor` |
-
-## 확인 기준
-
-이 문서는 2026-10-01에 Grok Build 1.0.41로 설치된 CLI 도움말을 확인해 정리했어요.
 
 ## 공식 문서
 
-- [Grok Build 개요](https://docs.x.ai/build/overview)
-- [Settings](https://docs.x.ai/build/settings)
-- [Enterprise 인증](https://docs.x.ai/build/enterprise)
-- [CLI Reference](https://docs.x.ai/build/cli/reference)
-- [Headless and Scripting](https://docs.x.ai/build/cli/headless-scripting)
-- [Windows 설치 스크립트](https://x.ai/cli/install.ps1)
-- [Grok 4.7 Developer Guide](https://docs.x.ai/developers/grok-4-7)
-- [Grok Build Changelog](https://x.ai/changelog/build)
+- [설치와 첫 실행](https://docs.x.ai/build/overview)
+- [로그인과 CLI 옵션](https://docs.x.ai/build/cli/reference)
+- [기본 설정](https://docs.x.ai/build/settings)
+- [프로젝트 지침](https://docs.x.ai/build/features/project-rules)
+- [Skill과 호환 설정](https://docs.x.ai/build/features/skills-plugins-marketplaces)
+- [권한](https://docs.x.ai/build/features/permissions)

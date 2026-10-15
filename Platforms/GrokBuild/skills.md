@@ -17,7 +17,7 @@ Skill만 입력하면 역할과 필요한 입력을 확인할 수 있어요.
 ### ct-analyze
 
 현재 코드·설정·테스트를 읽기 전용으로 조사해 동작과 영향 범위를 분석해요.  
-결과에는 호출·데이터 흐름, 파일·심볼 근거와 미확인 연결을 구분해요.
+호출·데이터 흐름과 근거 파일을 보고해요.
 
 ```text
 /ct-analyze OrderController.cancel의 호출과 데이터 흐름을 분석해줘
@@ -25,7 +25,7 @@ Skill만 입력하면 역할과 필요한 입력을 확인할 수 있어요.
 
 ### ct-plan
 
-문제와 선택지를 탐색하거나 요구사항을 작업·완료 조건·검증 방법에 연결한 계획을 작성해요.  
+요구사항을 작업·완료 조건·검증 방법에 연결해요.  
 결과를 바꾸는 미결정 사항은 확인받고, 계획 단계에서 구현과 검증을 실행하지 않아요.
 
 ```text
@@ -45,7 +45,7 @@ Skill만 입력하면 역할과 필요한 입력을 확인할 수 있어요.
 
 ### ct-verify
 
-요구사항마다 구현 근거와 정상·실패·경계 흐름의 실행 결과를 독립적으로 대조해요.  
+요구사항별 구현 근거와 정상·실패·경계 흐름을 독립 검증해요.  
 통과·실패·미검증과 사유를 보고하며, 구현 파일과 계획의 작업 상태는 바꾸지 않아요.
 
 ```text
@@ -84,33 +84,18 @@ Skill만 입력하면 역할과 필요한 입력을 확인할 수 있어요.
 ### ct-wiki-ops
 
 프로젝트의 `LLM-WIKI.md`, 원문·코드와 현재 Markdown 위키를 기준으로 운영해요.  
-원문 보관, 반영, 조회, 통합과 근거·현재성·구조·링크 점검을 수행해요.
+원문을 반영하고 근거·현재성·구조·링크를 점검해요.
 
 ```text
 /ct-wiki-ops 지난 7일의 변경과 남은 작업을 정리해줘
 ```
 
-## 선택 기준
+## /plan과 ct-plan
 
-| 필요한 결과 | 선택 |
-| --- | --- |
-| 현재 코드의 동작과 영향 범위 분석 | `ct-analyze` |
-| 개발 문제 탐색과 작업 계획 | `ct-plan` |
-| 확정된 작업의 실행·검증과 완료 기록 | `ct-apply` |
-| 요구사항별 독립 검증 | `ct-verify` |
-| Markdown 문서 생성과 형식 정리 | `ct-docs-md-format` |
-| Git 이력의 월별·주차별 업무 보고 | `ct-docs-weekly-report` |
-| 원격 Confluence API 작업 | `ct-wiki-api` |
-| 저장소 안의 Markdown 위키 운영 | `ct-wiki-ops` |
-
-여러 Skill의 결과를 연결할 때는 [작업 흐름](./workflows.md)을 봐요.
-
-## Grok Build 고유 비교
-
-Grok Build는 Skill을 현재 디렉터리와 사용자 설정에서 발견해 `/skills`에 보여요.  
 계획을 제품의 `plan.md`로 검토·승인해야 하는 작업에는 `/plan`을 사용할 수 있어요.  
 CodeStream의 `ct-plan`은 요구사항, 완료 조건과 검증 방법을 정리하는 Skill이므로 두 기능의 목적을 구분해요.
 
-## 확인 기준
+## 공식 문서
 
-`grok inspect`와 `/skills`에서 Skill 노출을 확인하고, 역할은 설치된 각 `SKILL.md`를 기준으로 해요.
+- [Skill 작성과 호출](https://docs.x.ai/build/features/skills-plugins-marketplaces)
+- [Plan 모드](https://docs.x.ai/build/features/plan-mode)

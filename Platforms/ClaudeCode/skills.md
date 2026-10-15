@@ -90,27 +90,14 @@ Skill만 입력하면 역할과 필요한 입력을 확인할 수 있어요.
 /ct-wiki-ops 지난 7일의 변경과 남은 작업을 정리해줘
 ```
 
-## 선택 기준
-
-| 필요한 결과 | 선택 |
-| --- | --- |
-| 현재 코드의 동작과 영향 범위 분석 | `ct-analyze` |
-| 개발 문제 탐색과 작업 계획 | `ct-plan` |
-| 확정된 작업의 실행·검증과 완료 기록 | `ct-apply` |
-| 요구사항별 독립 검증 | `ct-verify` |
-| Markdown 문서 생성과 형식 정리 | `ct-docs-md-format` |
-| Git 이력의 월별·주차별 업무 보고 | `ct-docs-weekly-report` |
-| 원격 Confluence API 작업 | `ct-wiki-api` |
-| 저장소 안의 Markdown 위키 운영 | `ct-wiki-ops` |
-
-여러 Skill의 결과를 연결할 때는 [작업 흐름](./workflows.md)을 봐요.
+여러 Skill의 결과를 연결할 때는 [작업 흐름](./workflows.md)을 확인해요.
 
 ## Claude Code 번들 Skill과 비교
 
 `/` 목록에 보이는 번들 Skill은 Claude Code가 제공하고, `ct-*`는 CodeStream 또는 프로젝트가 관리해요.  
 요구사항별 독립 검증과 CodeStream 작업 기준이 필요하면 `ct-verify`를 사용해요.  
-현재 세션에 없는 Skill은 설치 위치와 `/` 목록을 다시 확인해요.
+Skill이 보이지 않으면 [환경 설정](./setup.md#6-사용자-skill)을 확인해요.
 
-## 확인 기준
+## 공식 문서
 
-Skill 역할은 설치된 각 `SKILL.md`를 기준으로 하고, 호출 가능 여부는 현재 세션의 `/` 목록에서 확인해요.
+- [Skills](https://code.claude.com/docs/ko/skills): 설치 위치와 호출 방식을 확인해요.

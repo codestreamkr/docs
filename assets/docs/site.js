@@ -132,10 +132,15 @@ function enhanceContent() {
     const box = document.createElement('div');
     box.className = 'codebox';
     const language = pre.querySelector('code')?.className.replace('language-', '') || 'text';
-    const label = language === 'bash' || language === 'sh' ? '터미널' : language === 'text' ? '입력 예제' : '설정·코드';
+    const isTerminal = ['bash', 'sh', 'powershell'].includes(language);
+    const platformKey = new URL(location.href).searchParams.get('doc')?.match(/^Platforms\/([^/]+)\//)?.[1];
+    const platform = { Codex: 'Codex', Antigravity: 'Antigravity', ClaudeCode: 'Claude Code', GrokBuild: 'Grok Build', Pi: 'Pi' }[platformKey];
+    const label = isTerminal ? '터미널' : language === 'text' ? (platform ? `${platform} 채팅창` : '입력 예제') : '설정·코드';
+    const iconPath = isTerminal ? '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3m6 0h4"/>' : language === 'text' ? '<path d="M21 11a8 8 0 0 1-8 8H7l-4 3V11a9 9 0 0 1 18 0Z"/>' : '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Zm0 0v6h6M8 13h8m-8 4h6"/>';
     const header = document.createElement('div');
     header.className = 'codehead';
-    header.innerHTML = `<span>${label} · ${escape(language)}</span><button class="copy" aria-label="코드 복사">복사</button>`;
+    const languageLabel = platform && language === 'text' ? '' : ` · ${escape(language)}`;
+    header.innerHTML = `<span class="code-label"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${iconPath}</svg>${label}${languageLabel}</span><button class="copy" aria-label="코드 복사">복사</button>`;
     header.querySelector('button').onclick = async event => {
       try { await navigator.clipboard.writeText(pre.textContent); event.target.textContent = '복사됨'; }
       catch { event.target.textContent = '권한 필요'; }

@@ -1,107 +1,70 @@
 # Grok Build 확장 기능
 
-반복되는 작업과 외부 연결은 필요한 책임에 맞는 확장 수단으로 구성해요.
+외부 자료는 MCP로 연결하고, 반복 작업은 Skill로 묶어요.  
+독립 작업은 Subagent로 나눠요.
 
-## 선택 기준
+## 1. MCP 연결
 
-| 필요한 것 | 선택 |
-| --- | --- |
-| 프로젝트에서 계속 적용할 작업 기준 | `AGENTS.md` |
-| 반복 가능한 작업 절차와 전문 지식 | Skill |
-| 세션 역할과 도구 구성을 고정 | Agent Profile |
-| 분리 가능한 조사, 검토와 구현 | Subagent |
-| xAI 외 모델이나 사내 게이트웨이 연결 | Custom Model |
-| 외부 API, 서비스와 현재 데이터 | MCP |
-| IDE나 자체 앱에서 Grok 에이전트 실행 | ACP |
-| 도구 실행 전후의 결정적 검사 | Hook |
-| 여러 구성요소를 함께 배포 | Plugin |
-
-권한과 Sandbox는 확장이 아니라 실행 조건이므로 [권한과 Plan 모드](./reference/01-permissions-and-plan-mode.md)에서 다뤄요.
-
-## Skill
-
-Skill은 반복되는 작업의 입력, 절차, 결과와 필요한 자원을 묶어요.
-
-- 사용자 위치는 `~/.grok/skills/<name>/SKILL.md`예요.
-- 프로젝트 위치는 `<repo>/.grok/skills/<name>/SKILL.md`예요.
-- Claude 호환 Skill 위치는 `~/.claude/skills/`, `<repo>/.claude/skills/`예요.
-- 입력창에서 `/skill-name`으로 직접 호출하거나 설명과 요청을 보고 자동 선택되게 할 수 있어요.
-- 목록은 `/skills` 또는 `grok inspect`에서 확인해요.
-
-CodeStream Skill의 실제 사용법은 [사용자 Skill](./skills.md)을 봐요.
-
-## Subagent와 Agent Profile
-
-Agent Profile은 세션의 시스템 프롬프트와 도구 구성을 고정해요.  
-파일은 `<repo>/.grok/agents/`, `~/.grok/agents/`에 두고, 프로젝트 공통 기준은 Profile이 아니라 `AGENTS.md`에 둬요.
-
-Subagent는 독립된 조사, 검토나 구현을 별도 컨텍스트에서 처리해요.  
-타입과 모델 설정, 세션 관리 방법은 [세션과 Subagent](./reference/02-sessions-and-subagents.md)을 봐요.
-
-## Custom Model
-
-사용자 범위의 `~/.grok/config.toml`에 OpenAI 호환 엔드포인트를 모델로 추가할 수 있어요.
-
-```toml
-[model.local-llama]
-model = "llama-3.1-70b"
-base_url = "http://localhost:8080/v1"
-name = "Local Llama"
-env_key = "LOCAL_API_KEY"
-```
-
-인증값은 `env_key`나 `auth_provider`로 연결하고, 비밀값을 저장소 설정에 적지 않아요.  
-적용 결과는 `grok models`, `/model`, `grok inspect`에서 확인해요.
-
-## MCP
-
-MCP는 외부 시스템의 현재 데이터를 읽거나 작업할 때 연결해요.
-
-```toml
-[mcp_servers.<name>]
-command = "/path/to/server"
-args = ["--flag", "value"]
-enabled = true
-```
-
-사용자 설정은 `~/.grok/config.toml`, 팀 공유 설정은 `<repo>/.grok/config.toml`에 둬요.  
-`grok mcp` 또는 `/mcps`에서 연결과 도구를 확인해요.
-
-## ACP
-
-ACP는 IDE나 자체 앱이 Grok Build 세션을 제어할 때 사용해요.  
-MCP는 Grok이 호출할 외부 도구를 연결해요.
+터미널에서 공식 문서 MCP를 추가하고 연결을 확인하세요.
 
 ```bash
-grok agent stdio
+grok mcp add --transport http xai-docs https://docs.x.ai/api/mcp
+grok mcp doctor xai-docs
 ```
 
-연결할 앱이 이 프로세스를 실행하고 표준 입출력으로 JSON-RPC 메시지를 교환하게 구성해요.  
-실행 전에 로컬 로그인을 완료하거나 `XAI_API_KEY`를 제공해요.  
-직접 클라이언트를 만들면 `initialize`, `authenticate`, `session/new`, `session/prompt` 순서로 호출해요.  
-응답 본문은 `session/update` 이벤트에서 수집해요.  
-`session/prompt`의 완료 메타데이터만 읽으면 스트리밍 본문을 놓칠 수 있어요.
+CLI 채팅창에서 연결된 도구를 확인하세요.
 
-한 번 실행하고 결과만 받는 자동화는 [headless 실행](./commands.md#자동화와-표시-설정)을 사용해요.  
-클라이언트 예제는 [Headless and Scripting](https://docs.x.ai/build/cli/headless-scripting#acp)에서 확인해요.
+```text
+/mcps
+```
 
-## Hook
+연결을 확인한 뒤 공식 문서 조회를 요청하세요.
 
-Hook은 도구 실행 전후와 세션 생명주기에 결정적 검사를 연결해요.  
-프로젝트 Hook은 `<repo>/.grok/hooks/` 또는 Config에 두고, 프로젝트를 신뢰한 뒤 실행해요.
+```text
+xai-docs MCP로 Grok Build의 현재 인증 방법을 찾아서 알려줘.
+```
 
-## Plugin
+인증이 필요한 서버는 `/mcps`에서 서버를 선택하고 `i`로 로그인하세요.  
+팀 공유 연결은 추가 명령에 `--scope project`를 붙이세요.
 
-Plugin은 도구, Skill과 MCP를 하나의 설치 단위로 배포할 때 사용해요.  
-프로젝트 Plugin은 `<repo>/.grok/plugins/`, 개인 Plugin은 `~/.grok/plugins/`에 두고 `/plugins` 또는 `grok plugin`으로 관리해요.
+## 2. Skill 추가
 
-## 확인 기준
+개인·프로젝트 설치 위치는 [환경 설정](./setup.md#6-사용자-skill)을 확인하세요.  
+CodeStream의 8개 Skill 호출 예제는 [사용자 Skill](./skills.md)을 확인하세요.
 
-`grok inspect`에서 지침, Skill, Plugin, Hook과 MCP가 현재 디렉터리에 인식됐는지 확인해요.
+직접 만든 Skill에는 이름과 용도를 적으세요.
+
+```markdown
+---
+name: review-api
+description: API 변경에서 계약 위반과 테스트 누락을 검토한다.
+---
+
+- API 계약과 변경 코드를 비교한다.
+- 결함과 근거 파일을 보고한다.
+- 파일은 수정하지 않는다.
+```
+
+`review-api/SKILL.md`로 저장하고 새 세션에서 호출하세요.
+
+```text
+/review-api 주문 취소 API 변경을 검토해줘.
+```
+
+## 다른 확장 기능
+
+| 기능 | 용도와 안내 |
+| --- | --- |
+| Subagent | [별도 컨텍스트에서 독립 작업을 처리해요.](https://docs.x.ai/build/features/subagents) |
+| Agent Profile | [세션 역할과 도구 구성을 고정해요.](./reference/03-workflows-and-profiles.md#agent-profile) |
+| Custom Model | [OpenAI 호환 모델과 사내 게이트웨이를 연결해요.](https://docs.x.ai/build/overview#custom-models) |
+| ACP | [IDE와 자체 앱에서 Grok Build를 제어해요.](https://docs.x.ai/build/cli/headless-scripting#acp) |
+| Hook | [도구 실행 전후에 검사 스크립트를 실행해요.](https://docs.x.ai/build/features/hooks) |
+| Plugin | [Skill, Hook과 MCP를 함께 배포해요.](https://docs.x.ai/build/features/skills-plugins-marketplaces) |
+| Claude 호환 설정 | [기존 Skill, 지침과 외부 연결을 재사용해요.](https://docs.x.ai/build/features/skills-plugins-marketplaces#claude-code-compatibility) |
 
 ## 공식 문서
 
-- [Grok Build 개요](https://docs.x.ai/build/overview)
-- [Settings](https://docs.x.ai/build/settings)
-- [Docs MCP](https://docs.x.ai/developers/docs-mcp)
-- [Headless and Scripting](https://docs.x.ai/build/cli/headless-scripting)
+- [공식 문서 MCP](https://docs.x.ai/developers/docs-mcp)
+- [MCP 연결과 인증](https://docs.x.ai/build/features/mcp-servers)
+- [Skill과 Plugin](https://docs.x.ai/build/features/skills-plugins-marketplaces)

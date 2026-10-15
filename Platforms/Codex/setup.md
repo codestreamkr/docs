@@ -1,8 +1,10 @@
 # Codex 환경 설정
 
-CLI에서 설치·로그인·첫 요청을 완료하고 작업에 맞는 접근 범위를 선택해요.
+설치부터 로그인, 첫 요청까지 순서대로 진행해요.
 
-## 설치와 첫 실행
+## 1. 설치와 첫 실행
+
+사용하는 운영체제의 터미널에서 설치하세요.
 
 macOS·Linux:
 
@@ -16,233 +18,105 @@ Windows PowerShell:
 irm https://chatgpt.com/codex/install.ps1 | iex
 ```
 
-CLI `0.162.0`부터 Windows 릴리스에 서명된 PowerShell 설치기를 제공해요.  
-설치 배포 기준은 [공식 릴리스](https://learn.chatgpt.com/docs/changelog#october-2026)를 확인하세요.
-
-설치 후 프로젝트 루트의 터미널에서 세션을 열어요.
+프로젝트 폴더로 이동한 뒤 Codex를 실행하세요.
 
 ```bash
-codex --version
+cd /path/to/project
 codex
 ```
 
-열린 입력창에서 [바로 시작](./README.md#바로-시작)의 Skill을 호출하거나 자연어로 요청해요.  
-현재 작업 루트는 `/status`로 확인해요.  
-다른 경로를 지정해 시작할 때만 `codex -C /path/to/project`를 사용해요.
+## 2. 인증
 
-## 인증
-
-첫 실행의 로그인 안내에서 제공되는 인증 방식을 선택해요.  
-로그인이 필요하면 입력창 밖의 터미널에서 `codex login`을 실행해요.  
-로그인 상태는 `codex login status`로 확인해요.  
-계정과 조직 정책에 따라 사용할 수 있는 기능이 달라질 수 있어요.
-
-인증 정보는 `cli_auth_credentials_store` 설정에 따라 `auth.json` 또는 운영체제 자격증명 저장소에 보관해요.  
-`keyring`은 운영체제 저장소를 사용하고, `auto`는 저장소를 사용할 수 없으면 파일로 대체해요.  
-파일 저장의 기본 경로는 `~/.codex/auth.json`이에요.  
-저장 방식과 정책은 [인증 공식 안내](https://learn.chatgpt.com/docs/auth#credential-storage)를 확인하세요.
-
-## Linux 데스크톱 앱
-
-Ubuntu·Debian·Fedora에서는 데스크톱 앱 프리뷰를 사용할 수 있어요.  
-x64·ARM64에 맞는 `.deb` 또는 `.rpm` 패키지를 [공식 설치 안내](https://learn.chatgpt.com/docs/linux/linux-app)에서 확인하세요.
-
-설치 후 로그인하고 프로젝트 폴더를 열어 로컬 파일 접근을 확인하세요.
-
-## 다른 에이전트에서 가져오기
-
-Claude Code·Cursor의 설정과 최근 대화를 가져올 때 사용해요.  
-데스크톱 앱에서는 Claude Cowork도 지원해요.
-
-1. 앱의 **Settings > Import > Import**를 선택하세요.
-2. 원본 에이전트와 가져올 설정·Skill·Plugin·프로젝트·대화를 선택하세요.
-3. 가져온 권한·MCP 인증·Hook을 확인하세요.
-4. 연결에 추가 인증이 필요하면 **Finish**를 선택하세요.
-
-CLI에서는 작업이 끝난 뒤 입력창에 `/import`를 입력하세요.  
-CLI `0.157.0`부터 원격 세션과 로컬 백그라운드 서버 세션에서도 가져오기를 지원해요.  
-지원되는 대화형 세션은 백그라운드 서버를 자동으로 시작하므로, 가져오기에 `--no-daemon`을 지정할 필요가 없어요.  
-버전별 지원 범위는 [CLI 릴리스](https://learn.chatgpt.com/docs/changelog#september-2026)를 기준으로 확인하세요.
-
-CLI는 최근 30일의 대화를 최대 50개 가져와요.  
-원본 에이전트 설정은 변경하지 않아요.  
-가져오기 범위와 변환 항목은 [공식 가져오기 안내](https://learn.chatgpt.com/docs/import)를 확인하세요.
-
-## 모델과 속도 선택
-
-사용할 수 있는 모델은 요금제·로그인 방식·클라이언트·조직 설정에 따라 달라요.
-
-| 작업 | 모델 | 선택 기준 |
-| --- | --- | --- |
-| 복잡한 코딩과 반복되는 장기 작업 | `gpt-6.1-sol` | 사용할 수 있으면 일반 개발 작업에 선택해요. |
-| 복잡한 코딩과 WebMCP 작업 | `gpt-6-sol` | 해당 기능과 계정에서 지원하는지 확인하고 선택해요. |
-| 범위가 명확한 요약·추출·코드 변환 | `gpt-6-luna` | 입력과 완료 조건이 정해진 작업에 선택해요. |
-| 여러 도구와 판단이 필요한 복잡한 작업 | `gpt-6-astra` | 가장 어려운 작업의 품질을 비교할 때 선택해요. |
-
-1. CLI 입력창의 `/model`에서 모델과 추론 수준을 선택하세요.
-2. 앱에서는 입력창 아래 모델·추론 설정에서 제공되는 항목을 선택하세요.
-3. 추론 수준은 기본값으로 시작하고, 복잡한 분석이 필요하면 높이세요.
+첫 실행의 안내에 따라 로그인하세요.  
+이미 실행했다면 터미널에서 로그인할 수 있어요.
 
 ```bash
-codex --model gpt-6.1-sol
+codex login
 ```
 
-| 속도 모드 | 사용 방법 | ChatGPT 로그인 기준 사용량 |
-| --- | --- | --- |
-| Standard | 기본 속도를 사용해요. | 기준 사용량 |
-| Fast | 지원 모델에서 CLI `/fast`로 전환해요. | 포함 사용량 2.5배, 구매 크레딧·Enterprise 종량제 2배 |
-| Ultrafast | 지원 화면의 속도 설정에서 선택해요. | 포함 사용량 8배, 구매 크레딧·Enterprise 종량제 6배 |
+## 3. 모델과 권한 선택
 
-- CLI `/statusline`에서 Fast 상태 표시를 설정하세요.
-- Ultrafast는 GPT-6 Astra·6.1 Sol과 Pro $500·지원 Enterprise·Edu 요금제에서 제공해요.
-- Enterprise에서는 소유자가 Ultrafast 접근을 허용해야 해요.
-- API 키 인증에는 API 가격을 적용해요. 위 크레딧 배율을 적용하지 않아요.
-- 지원 종료 모델은 [릴리스 안내](./releases.md)에서 확인하세요.
-- 저장한 모델을 변경할 때는 `config.toml`, Custom Agent, 예약 작업과 스크립트의 모델 지정값을 확인하세요.
+Codex 채팅창에서 모델을 선택하세요.
 
-모델별 제공 범위는 [Models](https://learn.chatgpt.com/docs/models), 속도와 과금 조건은 [Speed](https://learn.chatgpt.com/docs/agent-configuration/speed)를 확인하세요.
-
-## 사용자 Skill
-
-1. [ai-comm-init](https://github.com/codestreamkr/ai-comm-init)의 설치·배치 절차를 따라요.
-2. `~/.agents/skills/`의 각 Skill 폴더에 `SKILL.md`가 있는지 확인해요.
-3. CLI 입력창에서 `/skills`를 열고 필요한 Skill을 선택해요.
-4. `$ct-plan`처럼 이름만 호출해 사용 안내를 확인해요.
-
-8개 목록과 선택 기준은 [사용자 Skill](./skills.md)에서 관리해요.  
-설치한 Skill이 보이지 않으면 Codex를 다시 시작해요.
-
-## 프로젝트 지침
-
-- 전역 지침을 먼저 읽고 저장소 루트부터 현재 작업 디렉터리까지의 지침을 결합해요.
-- 전역과 프로젝트의 각 위치에서는 `AGENTS.override.md`, `AGENTS.md` 순서로 비어 있지 않은 파일 하나를 선택해요.
-- 하위 경로의 지침이 앞선 지침을 구체화하거나 재정의해요.
-- 기본 지침 총량은 32 KiB이며, 더 필요하면 `project_doc_max_bytes`를 조정해요.
-- 프로젝트에는 실제 실행 명령과 정본 위치처럼 계속 적용할 짧은 기준을 둬요.
-
-```markdown
-# 프로젝트 작업 기준
-
-- 먼저 README.md에서 프로젝트 구조와 실행 방법을 확인한다.
-- 변경 영역의 기존 코드와 문서를 확인한다.
-- 빌드와 테스트: README.md
-- API 계약: docs/api.md
+```text
+/model
 ```
 
-설정 후 새 작업에서 “현재 적용된 지침 파일과 작업 루트를 알려줘”라고 요청해요.
+파일 수정과 명령 실행에 필요한 권한을 선택하세요.
 
-## 권한과 실행 범위
-
-먼저 입력창의 `/status`에서 현재 범위를 확인하고, `/permissions`에서 작업에 맞는 모드를 선택해요.  
-조사만 할 때는 읽기 전용, 파일 수정과 테스트가 필요하면 작업 공간 수정 모드를 선택해요.
-
-- 샌드박스: 명령이 접근할 수 있는 파일·네트워크 범위를 정해요.
-- 승인 정책: 그 범위를 넘는 작업 등에 사용자 확인을 요청할지 정해요.
-- `on-request`: Codex가 필요하다고 판단하면 승인을 요청해요.
-- `never`: 승인을 요청하지 않아요. 샌드박스 밖 작업이 자동으로 허용되는 것은 아니에요.
-
-시작할 때 범위를 지정하거나 추가 디렉터리가 필요하면 터미널 옵션을 사용해요.
-
-```bash
-# 읽기 위주 조사, 필요시 승인 요청
-codex --sandbox read-only --ask-for-approval on-request
-
-# 작업 공간에서 수정·실행, 필요시 승인 요청
-codex --sandbox workspace-write --ask-for-approval on-request
-
-# 추가 디렉터리에도 쓰기가 필요한 작업
-codex --sandbox workspace-write --add-dir /path/to/shared --ask-for-approval on-request
+```text
+/permissions
 ```
 
-- `/status`에서 현재 상태를 보고 `/permissions`에서 지원되는 권한 모드를 확인해요.
-- `workspace-write`에서도 `.git`, `.agents`, `.codex` 같은 보호 경로와 네트워크 접근은 별도 제한을 받을 수 있어요.
-- `--approve-for-me`는 승인 요청을 자동 검토로 보내는 CLI 옵션이에요. 일반 `on-request`와 구분해요.
-- `--dangerously-bypass-approvals-and-sandbox`는 승인과 샌드박스를 모두 해제해요. 외부에서 격리된 실행 환경에 한해 검토해요.
-- 조직에서 강제한 정책은 사용자 옵션만으로 해제할 수 없어요.
+## 4. 기본 설정 저장
 
-## 모델과 실행 설정
-
-세션의 모델과 추론 수준은 입력창의 `/model`에서 선택해요.  
-계획 모드 전환은 `/plan`, 권한 조정은 `/permissions`에서 진행해요.  
-기본 실행 설정은 `config.toml`, 계속 적용할 작업 기준은 `AGENTS.md`에 둬요.
-
-- `config.toml`: 모델·reasoning, 승인·샌드박스, MCP와 UI 설정
-- `AGENTS.md`: 코드 규칙, 작업 기준과 정본 안내
-- 비밀값: 환경변수나 지원되는 인증 저장소
-
-프로젝트 실행 설정의 최소 예:
+개인 기본값은 `~/.codex/config.toml`에 저장하세요.  
+프로젝트에서 공유할 설정은 `.codex/config.toml`에 저장하세요.
 
 ```toml
 sandbox_mode = "workspace-write"
 approval_policy = "on-request"
 ```
 
-설정은 다음 순서로 우선해요.
+새 세션에서 `/status`로 적용 결과를 확인하세요.
 
-1. CLI 옵션과 `--config` 지정값
-2. 신뢰된 프로젝트의 `.codex/config.toml` — 현재 디렉터리에 가까운 설정 우선
-3. `--profile`로 선택한 프로필 파일
-4. 사용자 `~/.codex/config.toml`
-5. 조직에서 배포한 기본 설정
-6. 시스템 설정
-7. 제품 기본값
+## 5. 프로젝트 지침
 
-프로젝트가 신뢰되지 않으면 프로젝트 설정 계층을 읽지 않아요.  
-조직이 강제하는 제한은 이 우선순위와 별도로 적용돼요.
+개인 공통 지침은 `~/.codex/AGENTS.md`에 적으세요.  
+프로젝트 지침은 루트의 `AGENTS.md`에 적으세요.  
+하위 폴더의 `AGENTS.md`는 해당 경로의 지침을 추가하거나 앞선 지침을 재정의해요.
 
-## 저장 위치
+```markdown
+# 프로젝트 작업 기준
 
-아래 `~/.codex`는 기본 Codex 홈이에요.  
-`CODEX_HOME`을 지정했다면 해당 경로를 사용해요.
+- 먼저 README.md에서 실행 방법을 확인한다.
+- 요청한 범위만 수정한다.
+- 변경 후 관련 테스트를 실행한다.
+- 실행하지 못한 검증을 보고한다.
+```
 
-| 위치 | 책임 |
-| --- | --- |
-| `~/.agents/skills/` | 여러 프로젝트에서 개인적으로 사용하는 Skill |
-| `<repo>/.agents/skills/` | 저장소에서 공유하는 Skill |
-| `~/.codex/AGENTS.md` | 사용자 공통 작업 기준 |
-| `<repo>/AGENTS.md` | 프로젝트 작업 기준과 정본 문서 안내 |
-| 하위 `AGENTS.md` | 해당 경로의 추가 기준 |
-| `AGENTS.override.md` | 같은 위치의 `AGENTS.md`를 대신하는 지침 |
-| `~/.codex/config.toml` | 사용자 실행 설정과 MCP 연결 |
-| `<repo>/.codex/config.toml` | 신뢰된 프로젝트의 실행 설정 |
+지침 적용 여부는 [가이드의 첫 요청](./README.md#바로-시작)으로 확인하세요.
 
-## 진단과 적용 확인
+## 6. 사용자 Skill
 
-| 증상 | 확인할 것 |
-| --- | --- |
-| Skill이 보이지 않아요 | 배치 경로, `SKILL.md`, 비활성화 설정 확인 후 재시작 |
-| 프로젝트 규칙이 적용되지 않아요 | 작업 루트, 상위 지침, `AGENTS.override.md` 확인 |
-| 프로젝트 Config가 적용되지 않아요 | 프로젝트 신뢰 여부, CLI 옵션과 더 가까운 설정 확인 |
-| 파일 수정·명령 실행이 막혀요 | `/status`, `/permissions`, 보호 경로와 네트워크 제한 확인 |
-| MCP를 사용할 수 없어요 | [연결 확인](./extensions.md), 서버 실행 상태와 인증 확인 |
-| 명령이 보이지 않아요 | 제품·버전과 [명령 확인](./commands.md)의 도움말 확인 |
+[ai-comm-init](https://github.com/codestreamkr/ai-comm-init)의 설치 절차를 따른 뒤 Codex를 다시 실행하세요.  
+채팅창에서 설치한 Skill을 확인하세요.
 
-설치 상태는 터미널에서 `codex doctor`, 현재 버전은 `codex --version`으로 확인해요.  
-업데이트는 `codex update` 또는 사용한 패키지 관리자의 명령을 사용해요.  
-터미널 스크롤 기록을 유지하려면 시작할 때 `codex --no-alt-screen`을 사용해요.
+```text
+/skills
+```
 
-## 확인 기준
+개인 Skill은 `~/.agents/skills/`, 프로젝트 Skill은 `.agents/skills/`에 두세요.  
+각 Skill 폴더에 `SKILL.md`가 있어야 해요.  
+목록에 보이지 않으면 경로와 파일명을 확인한 뒤 Codex를 다시 실행하세요.
 
-2026-10-15에 공식 릴리스와 설치된 Codex CLI `0.162.1`의 버전·도움말을 확인했어요.  
-새 세션에서 작업 루트, 적용 지침, Skill 목록과 권한을 확인해요.
+호출 방법과 작업별 예제는 [사용자 Skill](./skills.md)을 확인하세요.
 
-| 확인할 것 | 방법 |
-| --- | --- |
-| 작업 루트와 권한 | `/status`, `/permissions` |
-| 모델과 추론 수준 | `/model` |
-| 적용 지침 | `현재 적용된 지침 파일을 알려줘`라고 요청 |
-| 사용자 Skill | `/skills` |
-| MCP 연결 | `/mcp` |
-| CLI 옵션 | 터미널의 `codex --help` |
+## 7. 버전 확인과 업데이트
 
-인증과 설정을 바꾼 뒤에는 새 세션에서 적용 결과를 확인해요.
+터미널에서 설치 버전을 확인하세요.
+
+```bash
+codex --version
+```
+
+최신 버전으로 업데이트한 뒤 Codex를 다시 실행하세요.
+
+```bash
+codex update
+```
+
+## 다른 환경에서 시작하기
+
+- [설정 가져오기](https://learn.chatgpt.com/docs/import): 다른 에이전트의 설정과 최근 대화를 가져와요.
+- [Linux 앱](https://learn.chatgpt.com/docs/linux/linux-app): Linux 데스크톱 앱을 설치해요.
 
 ## 공식 문서
 
-- [CLI 설치와 로그인](https://learn.chatgpt.com/docs/codex/cli)
-- [승인과 샌드박스](https://learn.chatgpt.com/docs/agent-approvals-security)
-- [AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
-- [Config 기본과 우선순위](https://learn.chatgpt.com/docs/config-file/config-basic)
-- [Skill 검색 위치](https://learn.chatgpt.com/docs/build-skills)
+- [CLI 설치와 실행](https://learn.chatgpt.com/docs/codex/cli)
+- [기본 설정](https://learn.chatgpt.com/docs/config-file/config-basic)
+- [Skill 설치 위치](https://learn.chatgpt.com/docs/build-skills)
 - [인증](https://learn.chatgpt.com/docs/auth)
-- [CLI 입력창 명령](https://learn.chatgpt.com/docs/developer-commands?surface=cli)
+- [모델 선택](https://learn.chatgpt.com/docs/models)
+- [권한 설정](https://learn.chatgpt.com/docs/agent-approvals-security)
+- [프로젝트 지침](https://learn.chatgpt.com/docs/agent-configuration/agents-md)

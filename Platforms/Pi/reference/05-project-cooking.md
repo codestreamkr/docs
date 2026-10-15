@@ -1,291 +1,76 @@
 # 05. [중급] 프로젝트 코딩
 
-Pi 세션에서 실제 프로젝트 코딩을 진행하는 기본 흐름이에요.  
-분석, 계획, 수정, 검증과 검토는 열린 세션의 입력창에서 요청으로 이어 가요.  
-반복되는 절차는 확인한 뒤 Extension, custom tool, Pi Package로 옮겨요.  
-이 문서는 설치본 Pi `0.87.1`과 공식 문서를 기준으로 확인했어요.
+Pi 1.x 공식 문서 기준으로 분석, 계획, 수정과 검증을 순서대로 진행해요.  
+CodeStream Skill 연결 예제는 [작업 흐름](../workflows.md)을 확인하세요.
 
-## 이 문서는 언제 보나요
-
-아래 상황에서 봐요.
-
-- 기능을 하나 추가해야 할 때
-- 버그를 수정해야 할 때
-- 테스트 실패를 분석해야 할 때
-- 리팩토링 범위를 먼저 판단해야 할 때
-- 변경 후 검증 명령을 실행해야 할 때
-
-## 기본 원칙
-
-Pi는 파일을 직접 수정할 수 있어요.
-
-따라서 큰 작업은 아래 순서로 나누는 것이 안전해요.
+## 1. 수정 범위 분석
 
 ```text
-분석 → 계획 → 수정 → 검증 → 요약
-```
-
-처음부터 바로 수정시키기보다, 먼저 읽고 판단하게 해요.
-
-## 1. 분석 먼저 시키기
-
-```text
-OrderService의 cancelOrder 흐름을 분석해줘.
-관련 Controller, Service, Repository, 테스트 파일을 찾아서 함께 봐줘.
+OrderService.cancelOrder의 호출 흐름과 외부 의존성을 분석해줘.
+관련 테스트와 수정 영향 범위를 알려줘.
 아직 파일은 수정하지 마.
 ```
 
-분석 결과에서 확인할 내용은 아래와 같아요.
+근거 파일을 읽고 변경할 동작을 확정하세요.
 
-- 어떤 파일을 읽었는지
-- 진입점이 어디인지
-- 핵심 로직이 어디 있는지
-- 외부 의존성이 무엇인지
-- 테스트가 있는지
-- 수정 영향 범위가 어디까지인지
+## 2. 계획과 구현
 
-## 2. 계획을 먼저 받기
+변경 파일과 테스트 방법을 먼저 정하세요.
 
 ```text
-수정 계획을 단계별로 제안해줘.
-각 단계마다 변경 파일, 변경 이유, 테스트 방법을 같이 적어줘.
-아직 수정하지 마.
+중복 취소 요청을 막는 구현 계획을 제안해줘.
+변경 파일과 테스트 방법을 함께 적어줘.
+아직 파일은 수정하지 마.
 ```
 
-계획이 마음에 들면 승인해요.
+계획을 확인한 뒤 구현을 요청하세요.
 
 ```text
-좋아. 1단계와 2단계만 먼저 반영해줘.
+확정한 계획을 구현해줘.
+기존 public API를 유지하고 관련 테스트를 실행해줘.
 ```
 
-범위를 줄여서 지시하는 것이 좋아요.
+## 3. 실패 분석과 재검증
 
-## 3. 파일 수정
-
-Pi는 `edit`, `write` 도구를 사용해 파일을 수정해요.
-
-수정 요청 예시:
+실패한 테스트의 원인과 수정 범위를 확인하세요.
 
 ```text
-방금 계획대로 OrderService의 검증 로직을 분리해줘.
-기존 public 메서드 시그니처는 바꾸지 마.
+테스트 실패 원인을 로그와 코드로 대조해줘.
+이번 변경으로 발생한 문제만 수정하고 같은 테스트를 다시 실행해줘.
 ```
 
-수정 후에는 변경 요약을 요구해요.
+테스트 코드와 운영 코드 중 무엇을 바꿨는지 확인하세요.
 
-```text
-변경한 파일 목록과 변경 이유를 요약해줘.
-```
+## 4. 변경 검토
 
-## 4. 테스트 실행
+검토와 수정 요청을 분리하세요.  
+[변경 검토 예제](../workflows.md#변경-확인과-검토)로 요청 밖 변경과 테스트 누락을 확인하세요.
 
-테스트 명령은 `!`로 실행해요.
+## 5. 긴 작업 이어가기
 
-```text
-!./gradlew test
-```
-
-특정 테스트만 실행할 수도 있어요.
-
-```text
-!./gradlew test --tests "com.example.order.OrderServiceTest"
-```
-
-실패하면 바로 이어서 분석해요.
-
-```text
-테스트 실패 원인을 로그 기준으로 분석하고 수정해줘.
-수정 후 같은 테스트를 다시 실행해줘.
-```
-
-## 5. 변경 검토
-
-현재 검토 절차는 [변경 확인과 검토](../workflows.md#변경-확인과-검토)를 봐요.  
-터미널에서 변경 범위를 확인한 뒤 모델에게 리뷰를 요청해요.
-
-```bash
-git diff
-git status --short
-```
-
-```text
-방금 diff를 기준으로 코드 리뷰해줘.
-버그 가능성, 테스트 누락, 불필요한 변경을 중심으로 봐줘.
-```
-
-Git 상태 확인은 터미널에서 직접 해요.
-
-## 6. 긴 작업에서 세션 관리
-
-작업이 길어지면 세션 이름을 붙여요.
+세션 이름을 정하면 `/resume`에서 찾기 쉬워요.
 
 ```text
 /name 주문 취소 테스트 보강
 ```
 
-컨텍스트가 많아지면 수동으로 요약해요.
+대화가 길어지면 목표와 남은 실패를 중심으로 `/compact`를 실행하세요.  
+다른 접근은 `/tree`나 `/clone`으로 비교하되 파일은 공유한다는 점을 확인하세요.
 
-```text
-/compact 현재 목표, 변경 파일, 남은 테스트 실패만 중심으로 요약해줘.
-```
+## 6. 반복 작업 재사용
 
-다른 접근을 실험하거나 컨텍스트를 줄일 때는 아래 기준으로 선택해요.
-
-| 상황 | 우선 선택 |
+| 반복 항목 | 사용할 자원 |
 | --- | --- |
-| 같은 세션 안에서 다른 방향을 시도 | `/tree` |
-| 과거 요청에서 독립 세션 시작 | `/fork` |
-| 현재 상태를 보존하고 별도 실험 | `/clone` |
-| 오래된 대화가 많아 context가 부족 | `/compact` |
+| 응답 형식과 요청 문구 | Prompt Template |
+| 작업 순서와 판단 기준 | Skill |
+| 명령 검사와 로그 가공 | Extension |
+| 여러 프로젝트의 공통 자원 | Package |
 
-## 상황별 요청 예시
-
-### 버그 수정
-
-```text
-주문 취소 시 재고 복구가 누락되는 버그를 찾아줘.
-관련 테스트가 있으면 먼저 확인하고, 없으면 어떤 테스트가 필요한지 제안해줘.
-아직 수정하지 마.
-```
-
-### 작은 기능 추가
-
-```text
-회원 상태가 BLOCKED이면 로그인할 수 없도록 처리해줘.
-기존 예외 처리 패턴을 찾아서 동일한 방식으로 반영해줘.
-수정 후 관련 테스트를 실행해줘.
-```
-
-### 리팩토링
-
-```text
-PaymentService가 너무 커졌는지 분석해줘.
-분리 후보를 제안하되, public API 변경이 필요한 안과 필요 없는 안을 구분해줘.
-```
-
-### 문서 수정
-
-```text
-README의 로컬 실행 방법이 현재 프로젝트와 맞는지 확인하고 수정해줘.
-실제 명령은 package.json과 gradle 설정을 기준으로 해줘.
-```
-
-## 7. 반복 작업을 하네스로 옮기기
-
-같은 요청을 반복하면 프롬프트가 아니라 하네스 기능으로 옮겨요.
-
-| 반복되는 작업 | 옮길 위치 |
-| --- | --- |
-| 매번 붙이는 응답 형식 | prompt template |
-| 작업 절차와 참고 문서 | skill |
-| 명령 실행 전 검사 | Extension `tool_call` |
-| 긴 로그 요약 | Extension `tool_result` |
-| 로컬 스크립트 실행 | custom tool |
-| 외부 서비스 조회 | custom tool 또는 Pi package |
-| 여러 프로젝트 공통 기능 | Pi package |
-
-작업 중 반복 패턴이 보이면 먼저 후보를 정리해요.
-
-```text
-이번 작업에서 반복된 요청과 절차를 prompt template, skill, extension, custom tool 후보로 분류해줘.
-```
-
-## 8. package로 설치해서 쓰기
-
-필요한 기능이 이미 만들어져 있으면 Pi package로 설치해요.
-
-이 문서 저장소 자체에서 예제 package의 `package.json`, prompt, skill을 검토한 뒤 프로젝트 전용으로 설치해요.  
-`--approve`는 현재 명령에서 검토한 프로젝트 로컬 리소스를 승인해요.
-
-```bash
-pi install -l ./Platforms/Pi/examples/basic-pi-package --approve
-pi list --approve
-```
-
-Pi 안에서 `/trust`로 신뢰 결정을 저장해요.
-
-```text
-/trust
-```
-
-Pi를 종료하고 저장소 루트에서 다시 시작해요.  
-예시 package를 설치했다면 PR 준비 템플릿을 실행할 수 있어요.
-
-```text
-/ready-pr
-```
-
-또는 프로젝트 점검 skill을 직접 호출해요.
-
-```text
-/skill:project-check
-```
-
-외부 package를 설치할 때는 placeholder를 실제 package 이름이나 repository로 바꿔요.
-
-```bash
-pi install -l npm:@scope/pi-package
-pi install -l git:github.com/organization/pi-package
-```
-
-예제 호출이 보이지 않으면 저장소 루트에서 설치했는지, `/trust` 저장 후 Pi를 재시작했는지 확인해요.
-
-package 사용 기준은 아래와 같아요.
-
-- 이미 있는 기능은 설치해서 사용해요.
-- 프로젝트에만 필요한 기능은 `-l`로 프로젝트 설정에 둬요.
-- 개인 실험은 전역 설치보다 `pi -e`로 먼저 확인해요.
-- 여러 프로젝트에서 반복되면 직접 package로 묶어요.
-
-## 9. package로 묶을 후보 정리하기
-
-하나의 프로젝트에서 검증된 Extension, prompt, skill은 package 후보가 돼요.  
-이 저장소에서는 실제 `basic-pi-package`를 기준으로 구조를 확인해요.
-
-예제 구조는 아래와 같아요.
-
-```text
-Platforms/Pi/examples/basic-pi-package/
-├── package.json
-├── prompts/
-│   └── ready-pr.md
-└── skills/
-    └── project-check/
-        └── SKILL.md
-```
-
-`package.json`에는 `pi` 항목을 둬요.
-
-```json
-{
-  "name": "pi-basic-example-package",
-  "version": "1.0.0",
-  "private": true,
-  "keywords": ["pi-package"],
-  "pi": {
-    "prompts": ["./prompts"],
-    "skills": ["./skills"]
-  }
-}
-```
-
-이 문서 저장소에서는 로컬 package를 바로 설치해 확인해요.
-
-```bash
-pi install -l ./Platforms/Pi/examples/basic-pi-package
-```
-
-## 주의할 점
-
-- 운영 설정, 마이그레이션, 보안 관련 파일은 수정 전 확인을 요구해요.
-- 테스트 실패 로그는 `!`로 실행해 모델에게 전달해요.
-- 단순 확인 명령은 `!!`를 사용해 컨텍스트 낭비를 줄여요.
-- 큰 변경은 한 번에 맡기지 말고 단계별로 승인해요.
-- 외부 package는 소스와 동작 범위를 확인한 뒤 설치해요.
+[예제 Package](../examples/basic-pi-package/)로 설치와 호출을 먼저 확인하세요.  
+직접 만드는 방법은 [확장 실습](./03-applying-core-concepts.md)을 확인하세요.
 
 ## 공식 문서
 
-- [Usage](https://pi.dev/docs/latest/usage)
-- [Sessions](https://pi.dev/docs/latest/sessions)
-- [Extensions](https://pi.dev/docs/latest/extensions)
-- [Packages](https://pi.dev/docs/latest/packages)
+- [채팅창 사용법](https://pi.dev/docs/latest/usage)
+- [세션 관리](https://pi.dev/docs/latest/sessions)
+- [확장 기능](https://pi.dev/docs/latest/extensions)

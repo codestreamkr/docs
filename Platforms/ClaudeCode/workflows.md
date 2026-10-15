@@ -1,101 +1,83 @@
 # Claude Code 작업 흐름
 
-여러 결과가 필요한 작업은 열린 세션에서 앞 단계의 확정 결과를 다음 Skill 입력으로 넘겨요.  
-문제 유형별 흐름과 판단 기준은 [Playbook](../../Playbooks/README.md)에서 관리해요.
+계획을 확정한 뒤 구현하고, 마지막에 독립 검증해요.  
+문제별 판단 기준은 [Playbook](../../Playbooks/README.md)을 확인해요.
 
-## 호출과 연결
+## 1. 계획 작성
 
-입력창에서 Skill과 대상 정보를 함께 보내요.
+Claude Code 채팅창에서 대상과 완료 조건을 전달해요.
 
 ```text
-/ct-plan 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
-        ↓
-/ct-apply 확정된 계획의 남은 작업을 구현·검증하고 완료 상태를 기록해줘
-        ↓
-/ct-verify 주문 취소의 정상·중복·외부 실패 흐름이 계획의 요구사항을 충족하는지 검증해줘
+/ct-plan 주문 취소의 중복 요청 방지 기능을 계획해줘.
+기존 응답 형식을 유지하고 정상·중복·외부 실패 흐름의 검증 방법을 포함해줘.
 ```
 
-대화만으로 대상을 구분하기 어렵다면 계획 파일이나 결과 파일의 경로를 다음 요청에 함께 적어요.
+결정할 사항을 확인하고 계획을 확정해요.
 
-## 변경 확인과 검토
+## 2. 구현과 검증
 
-변경 후에는 입력창에서 `/diff`를 사용하거나 `현재 변경 내용을 검토해줘`라고 요청해요.  
-Git 상태와 테스트를 직접 확인해야 하면 터미널에서 명령을 실행해요.
+확정한 계획을 실행해요.
+
+```text
+/ct-apply 확정된 주문 취소 계획의 남은 작업을 구현해줘.
+관련 테스트를 실행하고 완료 조건별 결과를 기록해줘.
+```
+
+계획 파일이 있으면 요청에 경로를 함께 적어요.
+
+## 3. 변경 확인과 검토
+
+채팅창에서 변경 내용을 확인해요.
+
+```text
+/diff
+```
+
+동작 문제와 누락된 테스트를 검토해요.
+
+```text
+현재 변경에서 동작 문제와 누락된 테스트를 검토해줘.
+문제가 있으면 근거 파일과 수정 방향을 알려줘.
+```
+
+문제를 수정한 뒤 요구사항 충족 여부를 독립적으로 확인해요.
+
+```text
+/ct-verify 주문 취소 기능이 확정된 계획의 요구사항을 충족하는지 검증해줘.
+```
+
+미검증 항목과 실패 원인이 남았는지 확인해요.
+
+## 별도 작업 공간에서 작업
+
+같은 저장소에서 작업이 겹치면 터미널에서 별도 worktree를 열어요.
 
 ```bash
-git diff
-git status --short
+claude --worktree order-cancel
 ```
 
-`git diff`는 직접 실행하는 터미널 명령이고, `변경 내용을 검토해줘`는 Claude Code에 검토를 맡기는 자연어 요청이에요.  
-두 입력은 목적 일부가 겹쳐도 같은 명령이 아니에요.  
-요구사항 충족 여부는 마지막에 `ct-verify`로 독립 확인해요.
+작업 후 채팅창에서 변경 비교와 통합을 요청해요.
+
+```text
+이 worktree의 변경을 원래 브랜치와 비교해줘.
+테스트 통과 여부와 충돌을 확인한 뒤 원래 브랜치로 통합해줘.
+```
 
 ## 세션과 맥락 관리
 
-| 상황 | 입력창에서 하는 일 |
-| --- | --- |
-| 적용 지침과 남은 맥락 확인 | `/context` |
-| 확정된 결과를 남기고 대화 줄이기 | `/compact` |
-| 관련 없는 작업 시작 | `/clear` |
-| 다른 해결 방향 시도 | `/branch` |
-| 이전 대화와 변경 지점 검토 | `/rewind` |
-| 이전 세션으로 돌아가기 | `/resume` |
+대화가 길어지면 `/compact`로 확정된 결과와 남은 작업을 남겨요.  
+재개·분기·되돌리기 명령은 [명령 확인](./commands.md#채팅창에서-사용)을 확인해요.
 
-대화를 압축하거나 새 세션을 열면 다음 Skill 호출에 계획과 결과의 경로를 다시 적어요.
+새 세션에서는 계획과 결과 파일의 경로를 다시 전달해요.  
+독립 조사와 반복 작업은 [확장 기능](./extensions.md)을 확인해요.
 
-## Claude Code 고유 작업
+## 다른 환경에서 이어가기
 
-독립적인 조사, 검토와 구현은 Subagent로 나눌 수 있어요.  
-같은 체크아웃과 간섭하면 안 되는 작업은 터미널에서 `claude --worktree`로 별도 worktree 세션을 열어요.  
-오래 걸리는 작업은 `claude --background`로 시작하고 `claude agents`와 `claude attach <id>`로 관리해요.  
-세션을 여는 명령과 관리 명령은 [명령 확인](./commands.md)을 봐요.
-
-## UI 시안에서 구현으로 연결
-
-`/design`은 2.1.234 이상에서 제공하는 research preview예요.  
-Pro·Max·Team·Enterprise의 CLI와 Desktop에서 편집 가능한 artboard를 만들어요.
-
-```text
-/design 주문 목록 화면을 설계해줘. 상태 필터, 검색과 빈 결과 화면을 포함해줘.
-```
-
-1. 출력된 canvas 링크를 열어요.
-2. 구현할 artboard를 선택하고 필요한 내용을 수정해요.
-3. 선택한 시안과 구현 범위를 Claude에게 알려요.
-
-canvas는 artifact로 게시돼요.  
-계정 지원 범위는 [공식 디자인 안내](https://code.claude.com/docs/en/whats-new/2026-w34)를 확인해요.
-
-## 휴대전화에서 로컬 작업 이어가기
-
-Remote Control로 컴퓨터의 세션을 휴대전화에서 확인하고 이어갈 수 있어요.
-
-1. 프로젝트 컴퓨터에서 다음 명령을 실행해요.
-
-```bash
-claude remote-control
-```
-
-2. 같은 계정의 Claude 모바일 앱에서 Code 탭을 열어요.
-3. Devices의 컴퓨터를 선택하고 디렉터리와 작업을 지정해요.
-
-실행은 원래 컴퓨터에서 계속돼요.  
-컴퓨터와 프로세스를 유지하고 조직 정책을 확인해요.  
-기존 세션 연결은 [Remote Control](https://code.claude.com/docs/en/remote-control)을 확인해요.
-
-## 함께 사용하는 문서
-
-- Skill별 입력과 결과는 [사용자 Skill](./skills.md)을 봐요.
-- 권한, 지침과 설정은 [환경 설정](./setup.md)을 봐요.
-- Subagent, MCP, Hook과 Plugin의 역할은 [확장 기능](./extensions.md)을 봐요.
-
-## 확인 기준
-
-다음 단계로 넘어가기 전에 앞 단계의 결과, 남은 결정과 결과 파일 경로가 요청에 포함됐는지 확인해요.
+- [UI 디자인](https://code.claude.com/docs/en/whats-new/2026-w34): `/design`으로 시안을 만들고 선택한 시안을 구현으로 연결해요.
+- [Remote Control](https://code.claude.com/docs/en/remote-control): 휴대전화에서 컴퓨터의 세션을 이어가요.
+- [Desktop](https://code.claude.com/docs/ko/desktop-quickstart): 데스크톱 앱에서 프로젝트 작업을 시작해요.
 
 ## 공식 문서
 
-- [명령](https://code.claude.com/docs/ko/commands)
-- [Subagents](https://code.claude.com/docs/ko/sub-agents)
-- [worktree](https://code.claude.com/docs/ko/worktrees)
+- [일반 작업 흐름](https://code.claude.com/docs/en/common-workflows)
+- [체크포인트와 되돌리기](https://code.claude.com/docs/en/checkpointing)

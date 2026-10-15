@@ -1,82 +1,74 @@
 # 01. 권한과 Plan 모드
 
-Grok Build의 권한 모드, 제품 Plan 모드와 Sandbox를 설명해요.  
-기준 버전은 Grok Build 1.0.41이에요.
+도구 실행 승인, 계획 검토와 Sandbox의 차이를 설명해요.  
+기준은 2026-10-16 공식 문서예요.
 
 ## 권한 모드
 
-권한 모드는 도구 실행 전에 물어볼 기본 범위를 정해요.  
-일상 구현 작업은 승인 범위를 검토한 뒤 `auto`를 사용할 수 있어요.
+| 모드 | 동작 |
+| --- | --- |
+| Ask | 사전에 허용하지 않은 실행은 승인을 요청해요. |
+| Auto | 분류를 통과한 실행을 승인하며 위험한 실행은 물어볼 수 있어요. |
+| Always-approve | 도구 실행을 자동 승인해요. |
 
-| 모드 | 동작 | 적합한 작업 |
-| --- | --- | --- |
-| `default` | 읽기 외 작업에 승인 여부를 물어요 | 민감한 설정, 처음 여는 저장소 |
-| `plan` | 계획 파일 외 편집을 제한해요 | 구현 전 합의 |
-| `acceptEdits` | 파일 편집을 포함한 일반 작업을 허용해요 | 검토한 코드 반복 수정 |
-| `auto` | 안전 분류를 통과한 도구 실행을 자동 승인해요 | 구현, 테스트, 문서 수정 |
-| `dontAsk` | 승인할 수 없는 호출을 거부해요 | CI와 스크립트 |
-| `bypassPermissions` | 권한 검사를 우회해요 | 격리된 실행 환경 |
-
-세션에서는 Shift+Tab으로 모드를 순환하고, `/auto`와 `/always-approve`로 자동 승인 동작을 바꿀 수 있어요.  
-`deny` 규칙은 모드와 관계없이 적용해요.  
-권한 우회 옵션은 격리된 환경에서만 사용해요.
+Shift+Tab으로 모드를 바꾸세요.  
+`deny` 규칙과 Hook 검사는 자동 승인 모드에서도 적용해요.
 
 ## Plan 모드와 ct-plan
 
-제품 Plan 모드는 코드 변경 전에 계획을 작성하고 승인하는 세션 모드예요.  
-입력창에서 `/plan`으로 시작하고 `/view-plan`으로 저장된 계획을 다시 봐요.
+제품 Plan 모드는 구현 전에 계획을 검토하는 모드예요.  
+시작 예제는 [계획과 구현](../workflows.md#1-계획과-구현)을 확인하세요.
 
-`ct-plan`은 개발 문제와 선택지를 탐색하고, 요구사항을 작업·완료 조건·검증 방법에 연결하는 사용자 Skill이에요.  
-제품 Plan 모드와 `ct-plan`을 함께 쓰면 계획 검토 과정과 계획 내용의 책임을 나눌 수 있어요.  
-확정된 계획을 구현·검증할 때는 Plan 모드를 끄고 `ct-apply`로 넘어가요.
+계획 화면에서 `a`로 승인하거나 `s`로 수정을 요청하세요.  
+`/view-plan`으로 다시 확인하고 `q`로 계획 모드를 종료할 수 있어요.
 
-Plan 모드에서 만든 계획은 세션 디렉터리의 `~/.grok/sessions/<cwd>/<session-id>/plan.md`에 저장돼요.  
-계획 파일 편집만 자동 승인되고 다른 파일 편집은 현재 권한 모드와 관계없이 거부돼요.  
-계획을 승인하기 전에는 `/view-plan`으로 저장된 계획을 다시 열고, 필요한 수정 의견을 보낼 수 있어요.
+`ct-plan`은 요구사항·완료 조건·검증 방법을 정리하는 사용자 Skill이에요.  
+호출 예제는 [사용자 Skill](../skills.md#ct-plan)을 확인하세요.
 
-Plan 모드는 편집 도구만 제한해요.  
-셸 명령의 리디렉션 같은 파일 쓰기는 검사하지 않고, Subagent는 부모 세션의 Plan 모드 편집 제한을 상속하지 않아요.  
-Plan 모드에서 Subagent를 사용할 때는 쓰기 가능한 역할이 파일을 바꿀 수 있음을 전제로 범위와 권한을 따로 확인해요.
+Plan 모드는 계획 파일 외 편집 도구를 제한해요.  
+셸의 파일 쓰기와 Subagent 편집은 같은 제한을 받지 않으므로 범위를 별도로 지정하세요.
 
 ## 권한 규칙
 
-프로젝트 `.grok/config.toml`의 `[permission]` 규칙은 사용자 규칙과 함께 적용해요.  
-같은 대상에서는 `deny`가 `ask`, `allow`보다 우선해요.  
-현재 세션이 적용한 규칙은 `grok inspect`에서 확인해요.
+사용자 또는 프로젝트 `.grok/config.toml`에서 규칙을 지정해요.  
+같은 실행에 여러 규칙이 있으면 `deny`가 우선해요.
+
+```toml
+[permission]
+rules = [
+  { action = "allow", tool = "read" },
+  { action = "deny", tool = "bash", pattern = "rm -rf *" },
+]
+```
 
 ## 폴더 신뢰
 
-프로젝트 지침, Skill, Hook과 저장소 MCP는 폴더를 신뢰한 뒤에 실행돼요.  
-`/hooks-trust` 또는 `--trust`는 이 항목에 공통으로 적용되는 신뢰 상태를 기록해요.  
-현재 신뢰 상태와 적용 구성은 `grok inspect`로 확인해요.
+프로젝트 Hook은 신뢰한 폴더에서 실행해요.  
+구성을 검토한 뒤 CLI 채팅창에서 신뢰를 설정하세요.
+
+```text
+/hooks-trust
+```
+
+터미널의 `grok inspect`에서 적용한 구성과 출처를 확인하세요.
 
 ## Sandbox
 
-Sandbox는 파일 시스템과 네트워크 접근 범위를 제한해요.
+Sandbox는 승인된 실행의 파일·네트워크 접근을 제한해요.  
+조사만 할 때는 터미널에서 읽기 전용 세션을 여세요.
 
 ```bash
-grok --sandbox workspace
 grok --sandbox read-only
 ```
 
-`workspace`는 현재 작업 범위에서 변경을 허용하고, `read-only`는 조사와 검토에 맞아요.  
-운영체제별 네트워크 제한 범위는 현재 설치된 도움말을 확인해요.
-
-Grok Build 1.0.44부터 macOS에서는 Seatbelt(`sandbox-exec`)가 Sandbox를 적용해요.  
-Linux에서는 Landlock을 사용해요.  
-Windows에서도 같은 커널 격리를 제공한다고 가정하지 말고 실행 환경의 지원 범위를 확인해요.
-
-Grok Build 1.0.14는 `--sandbox strict`의 쓰기를 `~/.grok/sessions`로 제한해요.  
-코드 수정이 필요한 작업에서는 쓰기 범위를 확인하고 `workspace`를 선택해요.  
-이 변경은 일반 파일 편집 권한과 구분해요.
-
-## 확인 기준
-
-세션에서 현재 권한 모드를 확인하고, `grok inspect`로 적용된 권한 규칙과 신뢰 상태를 확인해요.
+코드 수정이 필요하면 `workspace`를 선택하세요.  
+`strict`는 쓰기 범위를 세션 저장소로 제한해요.  
+운영체제별 격리 범위는 공식 문서에서 확인하세요.
 
 ## 공식 문서
 
-- [Grok Build 개요](https://docs.x.ai/build/overview)
-- [Settings](https://docs.x.ai/build/settings)
+- [권한 모드와 규칙](https://docs.x.ai/build/features/permissions)
+- [계획 검토와 승인](https://docs.x.ai/build/features/plan-mode)
 - [Sandbox](https://docs.x.ai/build/features/sandbox)
-- [Grok Build Changelog](https://x.ai/changelog/build)
+- [Hook 신뢰](https://docs.x.ai/build/features/hooks)
+- [자동화 권한과 조직 정책](https://docs.x.ai/build/enterprise)

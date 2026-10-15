@@ -1,313 +1,110 @@
 # Pi 확장 기능
 
-필요한 책임에 맞는 확장 수단을 선택해요.
+반복 문구는 Prompt Template, 작업 절차는 Skill, 실행 기능은 Extension으로 추가해요.
 
 ## 선택 기준
 
 | 필요한 것 | 선택 |
 | --- | --- |
-| 프로젝트에서 계속 적용할 작업 기준 | `AGENTS.md` |
-| 반복 가능한 작업 절차, 전문 지식과 자원 | Skill |
-| 자주 쓰는 요청 문구의 단축 입력 | Prompt Template |
-| 도구, 명령, 이벤트 처리와 UI 변경 | Extension |
-| 사내 게이트웨이나 로컬 모델 연결 | `models.json` 또는 Provider Extension |
-| 화면 색과 표시 방식 | Theme |
-| 여러 구성요소를 배포하는 단위 | Pi Package |
-| 다른 프로그램에 에이전트를 내장 | SDK, RPC 또는 JSON 모드 |
-| 외부 서버의 도구와 데이터 연결 | 내장 MCP |
-| 도구를 병렬 호출하고 결과를 추려 전달 | Codemode |
-| 실행이 닿는 범위 제한 | 격리 실행 |
+| 프로젝트 공통 규칙 | `AGENTS.md` |
+| 반복 요청 문구 | Prompt Template |
+| 절차와 참고 자료 | Skill |
+| 도구·명령·이벤트 처리 | Extension |
+| 외부 도구 연결 | MCP |
+| 여러 자원 설치와 배포 | Pi Package |
 
-Pi `0.99.0` 이상은 MCP와 Codemode를 내장 Extension으로 제공해요.  
-이전 버전에서는 외부 도구를 Skill 또는 별도 Extension으로 연결해요.
-
-프로젝트의 `.pi/` 자원과 `.agents/skills/`는 신뢰를 준 뒤에만 로드돼요.  
-신뢰 기준은 [환경 설정](./setup.md)을 봐요.
-
-## Skill
-
-Skill은 반복 가능한 작업의 입력, 절차, 결과와 필요한 자원을 묶어요.  
-Agent Skills 표준을 따라요.
-
-- 공유 위치: `~/.agents/skills/<name>/SKILL.md`
-- Pi 전용 위치: `~/.pi/agent/skills/<name>/SKILL.md`
-- 프로젝트 위치: `<repo>/.agents/skills/`, `<repo>/.pi/skills/`
-- 직접 호출: `/skill:name`
-- 자동 선택: `description`과 현재 요청을 기준으로 선택
-- 다시 읽기: `/reload`
-
-frontmatter의 `allowed-tools`로 사전 승인 도구를 정하고, `disable-model-invocation`으로 자동 선택에서 감출 수 있어요.
-
-같은 `SKILL.md`를 Claude Code, Codex, Grok Build와 공유할 수 있어요.  
-현재 사용자 Skill과 호출 예제는 [Skill 안내](./skills.md)에서 확인해요.
+Skill 설치는 [환경 설정](./setup.md#사용자-skill), 호출 예제는 [사용자 Skill](./skills.md)을 확인하세요.
 
 ## Prompt Template
 
-자주 쓰는 요청 문구를 직접 만들어 명령처럼 사용해요.  
-실행 코드는 없고, Pi가 기본 제공하는 템플릿도 없어요.
+반복할 요청을 `.pi/prompts/ready-pr.md`에 저장하세요.
 
-파일 이름이 명령 이름이 돼요.  
-[예제 `ready-pr.md`](./examples/basic-pi-package/prompts/ready-pr.md)를 `~/.pi/agent/prompts/`에 두면 `/ready-pr`로 불러요.
-
-- 위치: `~/.pi/agent/prompts/`, `<repo>/.pi/prompts/`
-- 추가하거나 고친 뒤에는 `/reload`로 다시 읽어요.
-
-판단 기준과 절차가 중요한 작업은 Prompt Template이 아니라 Skill로 만들어요.  
-변경 문제 지적은 [작업 흐름](./workflows.md#변경-확인과-검토)을 봐요.
-
-## Extension
-
-TypeScript로 Pi의 동작 자체를 바꿔요.  
-로컬 Extension은 별도 컴파일 없이 그대로 읽혀요.
-
-```typescript
-export default function (pi: ExtensionAPI) {
-  pi.registerTool(/* 도구 정의 */);
-  pi.registerCommand(/* 명령 정의 */);
-  pi.on(/* 이벤트 이름, 핸들러 */);
-}
+```markdown
+---
+description: PR 설명 초안을 작성한다
+---
+현재 Git 변경을 읽고 변경 요약, 테스트 결과와 PR 설명 초안을 작성해줘.
+파일은 수정하지 마.
 ```
 
-- 위치: `~/.pi/agent/extensions/`, `<repo>/.pi/extensions/`
-- 단일 `.ts`·`.js` 파일이나 `index.ts`·`index.js`를 가진 디렉터리를 읽어요.
-- 세션 로드: `--extension <경로>`, 끄기: `--no-extensions`
+채팅창에서 `/reload` 후 파일 이름으로 호출하세요.
 
-주요 용도:
-
-- 커스텀 도구 추가와 기본 도구 대체
-- 실행 옵션과 슬래시 명령 추가
-- 이벤트를 받아 권한 게이트나 경로 보호 적용
-- 상태줄, 헤더와 UI 컴포넌트 변경
-- 모델 제공자 등록
-
-Extension은 Pi 프로세스 안에서 실행돼요.  
-자격증명과 대화 내용에 접근할 수 있으니 외부 Extension은 코드를 먼저 확인해요.
-
-## 모델 제공자
-
-연결 방법은 필요한 만큼만 고르면 돼요.
-
-| 필요한 것 | 방법 |
-| --- | --- |
-| 지원하는 API를 쓰는 엔드포인트 추가 | `models.json` |
-| 기존 제공자의 주소나 헤더만 변경 | `models.json` 또는 작은 Provider Extension |
-| 모델 목록을 동적으로 조회 | Provider Extension |
-| `/login` 흐름 추가 | Provider Extension |
-| 지원하지 않는 통신 규격 구현 | Provider Extension |
-
-Provider Extension은 `pi.registerProvider()`를 Extension 함수 안에서 호출해 등록해요.  
-등록한 제공자는 시작 시 모델 선택과 `pi --list-models`에 함께 나와요.
-
-API 키는 `$NAME` 형식으로 환경 변수를 읽거나 `!command` 형식으로 명령 출력을 쓸 수 있어요.
+```text
+/ready-pr
+```
 
 ## MCP 연결
 
-Pi `0.99.0` 이상에서 stdio 또는 Streamable HTTP 서버를 연결해요.
-
-1. 사용할 MCP 서버의 주소·인증·도구 범위를 확인하세요.
-2. 터미널에서 서버를 등록하고 연결 상태를 확인하세요.
+터미널에서 서버를 등록하세요.  
+`https://example.com/mcp`를 사용할 서버 주소로 바꾸세요.
 
 ```bash
-pi mcp add docs --url https://example.com/mcp --bearer-token-env-var DOCS_TOKEN
-pi mcp list
+pi mcp add docs --url https://example.com/mcp
 ```
 
-`https://example.com/mcp`는 실제 서버 주소로 바꾸세요.  
-`DOCS_TOKEN` 환경 변수에 서버가 요구하는 자격증명을 설정하세요.
-
-3. 실행 중인 세션에서는 `/reload` 후 `/mcp`에서 서버 상태와 노출 도구를 확인하세요.
-4. OAuth 서버는 `/mcp login <서버명>`으로 로그인하세요.
-
-| 위치 또는 설정 | 동작 |
-| --- | --- |
-| `~/.pi/agent/mcp.json` | 사용자 서버를 설정해요. |
-| `<repo>/.pi/mcp.json` | 신뢰한 프로젝트에서만 서버 설정을 읽어요. |
-| `exposure: "codemode"` | 도구를 검색하고 Codemode에서 호출해요. |
-| `exposure: "direct"` | 모델에 도구를 직접 선언해요. |
-
-- Pi `1.0.1` 이상은 프로젝트에서 사용자 서버의 활성화와 노출 범위만 재정의할 수 있어요.
-- `/mcp`에서 **Disable in this project**를 선택하면 프로젝트 재정의를 저장해요.
-- 인증 정보는 사용자 설정에 두세요.
-- SSE 전송은 지원하지 않아요.
-
-인증 옵션과 도구 노출 기준은 [MCP Servers](https://pi.dev/docs/latest/mcp)를 확인하세요.
-
-## Codemode
-
-Codemode는 JavaScript로 여러 도구를 호출하고 필요한 결과만 모델에 전달해요.  
-Pi `0.99.0` 이상에서 사용할 수 있어요.
-
-```bash
-pi --tools +codemode
-```
-
-위 시작 옵션은 Pi `1.1.0` 이상을 기준으로 해요.  
-Pi `0.99.0` 이상에서는 Settings의 `defaultTools`에 `+codemode`를 추가할 수도 있어요.
-
-```json
-{
-  "defaultTools": ["+codemode"]
-}
-```
-
-입력창에서 도구와 조사 범위를 지정하세요.
+채팅창에서 `/reload` 후 연결을 확인하세요.
 
 ```text
-Codemode로 src/order와 src/payment의 테스트 목록을 병렬 조회해줘.
-모듈별 테스트 경로와 누락된 검증만 보고해줘. 파일은 수정하지 마.
+/mcp
 ```
 
-- JavaScript는 QuickJS 샌드박스에서 실행해요.
-- 파일·네트워크 작업은 도구를 통해 실행해요.
-- 도구 호출로 발생한 변경은 스크립트 실패로 취소되지 않아요.
-- `searchTools()`와 `describeTool()`로 도구를 찾고 입력 형식을 확인해요.
-- `models.classify()`는 분류 모델을, `models.generateImages()`는 이미지 모델을 호출해요.
-- 해당 모델을 지원하는 제공자 인증이 필요해요. 모델 호출 비용은 세션 비용에 포함돼요.
+OAuth 인증이 필요한 서버는 먼저 로그인하세요.
 
-호출 형식과 지원 모델은 [Codemode](https://pi.dev/docs/latest/codemode)를 확인하세요.
+```text
+/mcp login docs
+```
 
-## Extension 호환성 확인
+인증이 필요하지 않으면 바로 도구 사용을 요청하세요.
 
-Extension이나 SDK를 사용하는 프로젝트는 업그레이드 전에 다음 항목을 확인하세요.
-
-| 기준 버전 | 기존 사용 | 변경할 내용 |
-| --- | --- | --- |
-| 0.87.0 | `shouldStopAfterTurn` | `finishTurn`에서 `{ action: "end" }`를 반환해요. 오류·중단 응답도 처리해요. |
-| 0.87.0 | `session.agent.state.messages`에 문맥 대입 | SessionManager에서 항목을 변경한 뒤 `session.refreshContext()`를 호출해요. |
-| 0.87.0 | `SessionEntry`·`ExtensionEvent` 전체 분기 | `context_edit`와 `agent_before_settle`을 처리해요. |
-| 1.2.0 | `before_agent_start`에서 항상 `prompt` 참조 | `event.messageType === "user"`일 때만 사용자 요청 필드를 읽어요. |
-
-1. 설치 버전과 프로젝트가 사용하는 이벤트 타입을 확인하세요.
-2. [0.87.0](https://pi.dev/changelog/releases/0.87.0)과 [1.2.0](https://pi.dev/changelog/releases/1.2.0)의 변경된 타입을 적용하세요.
-3. 사용자 요청·Extension 메시지·실행 중단·오류 경로를 검증하세요.
-
-## 가상 모델로 요청 분배
-
-가상 모델은 요청마다 실제 모델과 추론 수준을 선택하는 실험 기능이에요.  
-Pi `0.99.0` 이상에서 Extension으로 등록해요.
-
-1. [공식 Virtual Models 예제](https://pi.dev/docs/latest/virtual-models)를 기준으로 라우터 Extension을 작성하세요.
-2. `pi.registerVirtualModel()`의 `route()`에서 실제 모델과 추론 수준을 반환하세요.
-3. `/reload` 후 `/model`에서 등록한 가상 모델을 선택하세요.
-4. 하단 표시에서 실제 모델을, `/session`에서 모델별 비용을 확인하세요.
-
-- 분배할 실제 모델의 제공자 인증이 필요해요.
-- 다른 가상 모델로 다시 분배할 수 없어요.
-- 도구 결과의 후속 요청은 `request.previous`, 실패 재시도는 `request.failed`를 확인하세요.
-- 턴마다 모델을 바꾸면 프롬프트 캐시를 잃을 수 있어요.
+```text
+연결한 docs MCP로 프로젝트의 API 문서를 찾아줘.
+요청과 응답 형식을 공식 링크와 함께 알려줘.
+```
 
 ## Pi Package
 
-Extension, Skill, Prompt Template과 Theme를 하나의 배포 단위로 묶어요.
+[로컬 예제 Package](./examples/basic-pi-package/)의 파일을 확인한 뒤 저장소 루트에서 설치하세요.
 
 ```bash
-pi install npm:@example/pi-tools@1.0.0
-pi install git:github.com/example/pi-tools@v1
-pi install ./local-package
-pi list
-pi config
-pi remove <source>
+pi install -l ./Platforms/Pi/examples/basic-pi-package --approve
+pi list --approve
 ```
 
-```json
-{
-  "pi": {
-    "extensions": ["./src/extension.ts"],
-    "skills": ["./resources/skills"],
-    "prompts": ["./resources/prompts/*.md"],
-    "themes": ["./resources/themes/*.json"]
-  }
-}
+`-l`은 프로젝트 설치, `--approve`는 해당 명령에서 프로젝트 자원을 신뢰하는 옵션이에요.  
+채팅창에서 `/trust`로 신뢰 결정을 저장하고 Pi를 다시 실행하세요.
+
+```text
+/skill:project-check
 ```
 
-- `package.json`의 `pi` 항목으로 포함 자원을 지정하고, 없으면 관례 디렉터리에서 찾아요.
-- `pi config`로 설치한 Package의 자원별 사용 여부를 정해요.
-- Package는 코드를 실행해요. 설치 전에 출처와 내용을 확인해요.
+Package를 조정하려면 터미널의 `pi config -l`, 제거하려면 `pi remove -l <source>`를 사용하세요.
 
 ## 실행 모드와 내장
 
-Pi를 다른 프로그램에서 쓸 때 고르는 경계가 달라요.
-
-| 방법 | 경계 | 쓰는 상황 |
+| 방식 | 용도 | 공식 문서 |
 | --- | --- | --- |
-| `--print` | 프로세스 1회 실행 | 최종 텍스트만 필요할 때 |
-| `--mode json` | JSONL 이벤트 스트림 | 진행 상황을 구조화해 받을 때 |
-| `--mode rpc` | 장시간 유지되는 양방향 채널 | 외부 프로그램이 계속 제어할 때 |
-| SDK | 프로세스 경계 없음 | Node.js나 Bun 안에 직접 내장할 때 |
+| `pi -p` | 한 번 실행하고 최종 텍스트 받기 | [CLI 연동](https://pi.dev/docs/latest/cli-integration) |
+| `pi --mode json` | 진행 이벤트를 JSONL로 받기 | [JSON 이벤트](https://pi.dev/docs/latest/json) |
+| RPC | 다른 프로세스에서 지속 제어 | [RPC](https://pi.dev/docs/latest/rpc) |
+| SDK | Node.js 프로그램에 내장 | [SDK](https://pi.dev/docs/latest/sdk) |
 
-네 방법 모두 같은 에이전트, 세션, 자원과 도구를 써요.
+간단한 실행은 [작업 흐름](./workflows.md#반복-작업-실행)의 예제를 사용하세요.
 
-### Pi Durable로 장기 실행 서비스 만들기
+## 다른 확장 기능
 
-Pi Durable은 장기 실행 에이전트 애플리케이션용 별도 실험 패키지예요.  
-Pi CLI를 사용하듯 터미널에서 작업할 때는 기존 Pi를 사용해요.
+- [Extension](https://pi.dev/docs/latest/extensions): TypeScript로 도구·명령·이벤트 처리를 추가해요.
+- [모델 제공자](https://pi.dev/docs/latest/custom-provider): 사내 API나 로컬 모델을 연결해요.
+- [Theme](https://pi.dev/docs/latest/themes): 터미널 화면 색상을 바꿔요.
+- [Codemode](https://pi.dev/docs/latest/codemode): 여러 도구를 호출하고 필요한 결과만 모델에 전달해요.
+- [가상 모델](https://pi.dev/docs/latest/virtual-models): 요청마다 실제 모델과 추론 수준을 선택해요.
+- [Pi Durable](https://earendil.com/posts/pi-durable/): 재시작 후 복구할 장기 실행 서비스를 만들어요.
+- [격리 실행](https://pi.dev/docs/latest/containerization): 컨테이너나 샌드박스로 파일·네트워크 범위를 제한해요.
+- [Extension 호환성](https://pi.dev/changelog): 업데이트 전 이벤트와 SDK 변경사항을 확인해요.
 
-| 필요한 기능 | 선택 |
-| --- | --- |
-| 한 사용자가 터미널에서 개발 작업 수행 | Pi CLI |
-| 기존 CLI를 다른 프로그램에서 제어 | RPC 또는 Pi SDK |
-| 프로세스 재시작 후 복구할 장기 실행 서비스 | Pi Durable |
-
-애플리케이션 프로젝트에서 패키지를 설치하세요.
-
-```bash
-npm install @earendil-works/pi-durable @earendil-works/pi-ai @earendil-works/chord
-```
-
-1. 저장소 구현을 선택하세요. 기본 구현은 메모리·SQLite·JSONL을 제공해요.
-2. 도구 Registry와 도구를 실행할 Environment를 구성하세요.
-3. Harness를 열고 Conversation에 모델·작업 경로를 지정하세요.
-4. 사용자 입력을 전달하고 실행 상태와 결과를 구독하세요.
-5. 재시작 시 같은 영속 저장소를 열어 복구 결과를 검증하세요.
-
-메모리 저장소는 프로세스가 종료되면 데이터를 유지하지 않아요.  
-한 프로세스가 저장소를 소유하고 다른 클라이언트가 그 프로세스에 연결해요.  
-실험 API와 전체 실행 예제는 [Pi Durable 공식 안내](https://earendil.com/posts/pi-durable/)를 확인하세요.
-
-Pi가 실행하는 셸 명령에는 현재 세션 정보가 환경 변수로 들어가요.  
-기존 스크립트와 엮을 때 써요.
-
-| 변수 | 값 |
-| --- | --- |
-| `AI_AGENT` | `pi` |
-| `PI_CODING_AGENT` | `true` |
-| `PI_SESSION_ID` | 현재 세션 ID |
-| `PI_PROVIDER`, `PI_MODEL` | 현재 제공자와 모델 |
-| `PI_REASONING_LEVEL` | 현재 thinking 수준 |
-
-## 격리 실행
-
-Pi는 실행한 계정의 권한으로 파일을 읽고 쓰고 명령을 실행해요.  
-매번 승인을 묻지 않아요.  
-영향 범위를 제한하려면 격리 환경을 써요.
-
-| 방법 | Pi가 도는 곳 | 격리되는 것 |
-| --- | --- | --- |
-| Docker | 컨테이너 | Pi, 기본 도구, `!` 명령, Extension |
-| Docker Sandboxes | 관리형 샌드박스 | 위와 같고, 제공자 자격증명은 호스트에 남아요 |
-| OpenShell | 로컬 또는 원격 샌드박스 | 파일, 프로세스, 네트워크와 자격증명을 정책으로 제한 |
-| Gondolin Extension | 호스트 | 기본 도구와 `!` 명령만 격리 |
-
-`~/.pi/agent`를 컨테이너에 그대로 마운트하면 자격증명과 세션까지 노출돼요.  
-필요한 작업 폴더와 네트워크만 열어요.
-
-## 확인 기준
-
-기본 예제는 Pi `0.87.1`, 추가 기능은 2026-10-15 공식 문서를 기준으로 해요.  
-추가한 Extension·Package는 `/reload` 뒤 명령과 도구가 노출되는지 확인해요.  
-Extension·SDK·RPC 예제의 실행과 외부 서비스 연결은 사용할 프로젝트에서 확인해요.
+직접 만드는 절차는 [확장 실습](./reference/03-applying-core-concepts.md)을 확인하세요.
 
 ## 공식 문서
 
-- [Extensions](https://pi.dev/docs/latest/extensions)
-- [Skills](https://pi.dev/docs/latest/skills)
-- [Prompt Templates](https://pi.dev/docs/latest/prompt-templates)
-- [Custom Provider](https://pi.dev/docs/latest/custom-provider)
-- [Packages](https://pi.dev/docs/latest/packages)
-- [CLI Integration](https://pi.dev/docs/latest/cli-integration)
-- [SDK](https://pi.dev/docs/latest/sdk)
-- [Containerization](https://pi.dev/docs/latest/containerization)
-- [MCP Servers](https://pi.dev/docs/latest/mcp)
-- [Codemode](https://pi.dev/docs/latest/codemode)
-- [Virtual Models](https://pi.dev/docs/latest/virtual-models)
-- [Pi Durable](https://earendil.com/posts/pi-durable/)
+- [Prompt Template](https://pi.dev/docs/latest/prompt-templates)
+- [MCP 연결](https://pi.dev/docs/latest/mcp)
+- [Package 설치와 배포](https://pi.dev/docs/latest/packages)

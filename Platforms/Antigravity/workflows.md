@@ -1,124 +1,96 @@
 # Antigravity 작업 흐름
 
-열린 Antigravity CLI 세션에서 앞 단계 결과를 다음 요청에 연결해요.  
-문제 유형별 단계와 판단 기준은 [Playbook](../../Playbooks/README.md)에서 관리해요.
+계획을 확인한 뒤 구현과 검증을 이어가요.  
+작업 유형별 판단 기준은 [Playbook](../../Playbooks/README.md)을 확인하세요.
 
-## 호출과 연결
+## 1. 계획 세우기
 
-Skill 이름과 필요한 대상을 한 요청에 적고, 이전 단계의 결과 파일이 있으면 경로를 함께 알려줘요.
+대상과 원하는 결과를 함께 요청하세요.
 
 ```text
 /ct-plan 주문 취소의 중복 요청 방지 기능 구현 계획을 작성해줘
-        ↓
-/ct-apply 확정된 계획의 남은 작업을 구현·검증하고 완료 상태를 기록해줘
-        ↓
-/ct-verify 주문 취소의 정상·중복·외부 실패 흐름이 계획의 요구사항을 충족하는지 검증해줘
 ```
 
-대화만으로 대상이 분명하면 같은 세션에서 다음 요청을 이어가요.  
-결과가 파일로 남았거나 세션을 바꿨다면 파일 경로와 확인할 요구사항을 다시 적어요.
+내장 `/plan`은 세션의 계획 모드예요.  
+`/ct-plan`은 CodeStream Skill의 절차와 결과 형식을 적용해요.
 
-## 변경 확인과 검토
+## 2. 구현과 검증
 
-코드나 문서를 바꾸는 작업은 에이전트에 자연어로 요청하고, 변경 결과는 `/diff`에서 확인해요.  
-필요하면 검토 패널에서 피드백을 남긴 뒤 같은 세션에서 수정을 요청해요.
+계획을 확정한 뒤 남은 작업을 요청하세요.
 
 ```text
-현재 변경을 /diff에서 검토할 수 있게 정리하고, 실패한 테스트 원인을 설명해줘.
+/ct-apply 확정된 주문 취소 계획의 남은 작업을 구현하고 테스트해줘
 ```
 
-Git 상태와 커밋 이력은 터미널에서 `git status`, `git diff`, `git log`로 직접 확인해요.  
-에이전트에는 Git 명령 자체보다 검토·수정·검증할 대상과 의도를 요청해요.
+세션을 바꿨다면 계획 파일 경로와 완료 조건을 다시 전달하세요.
 
-CLI 1.3.1의 `/diff` 파일 화면에서는 아래 키로 변경을 탐색해요.
+## 3. 변경 확인과 검토
 
-| 키 | 동작 |
-| --- | --- |
-| `←`, `→` | 이전·다음 파일 열기 |
-| `j`, `k` | 한 줄씩 이동 |
-| `n`, `N` | 다음·이전 변경으로 이동하며 파일 경계 넘기 |
+변경 파일을 확인하세요.
 
-화면 너비가 충분하면 헤더의 `change A/B · file X/Y`로 현재 위치를 확인해요.
+```text
+/diff
+```
+
+누락이나 오류를 발견하면 수정과 재검증을 요청하세요.
+
+```text
+검토에서 확인한 null 처리 누락을 수정하고 관련 테스트를 실행해줘.
+```
+
+독립 검증이 필요하면 [사용자 Skill](./skills.md#ct-verify)의 예제를 사용하세요.  
+계획과 시각 결과는 [아티팩트 작업 흐름](./reference/03-artifacts-workflow.md)에서 확인해요.
 
 ## 세션과 맥락 관리
 
-- 같은 작업은 같은 세션에서 이어가요.
-- 이전 대화를 열 때는 입력창의 `/resume` 또는 터미널의 `agy -c`를 사용해요.
-- 특정 대화로 돌아가야 하면 `agy --conversation <conversation-id>`로 세션을 열어요.
-- 무관한 새 작업은 입력창의 `/clear` 또는 `/new`로 시작해요.
-- 긴 요청의 맥락 사용량은 `/context`에서 확인해요.
+같은 작업은 같은 세션에서 이어가세요.  
+재개와 새 대화 명령은 [명령 확인](./commands.md#명령-찾기)을 확인하세요.
 
-## 후속 메시지 전달
+### 후속 메시지 전달
 
-CLI 1.2.14부터 `/config`의 `Queued Messages`로 후속 메시지 전달 시점을 설정해요.
+`/config`의 `Queued Messages`에서 전달 시점을 선택해요.
 
-| 값 | 동작 |
+| 값 | 사용 시점 |
 | --- | --- |
-| `Queue` | 현재 턴이 끝난 뒤 전달하는 기본값 |
-| `Send Immediately` | 진행 중인 에이전트에 즉시 전달 |
+| `Queue` | 현재 작업이 끝난 뒤 다음 요청을 전달할 때 |
+| `Send Immediately` | 진행 중인 작업의 범위를 바로 수정할 때 |
 
-급한 범위 수정은 `Send Immediately`를 선택한 뒤 새 조건을 보내요.  
-다음 단계 요청은 `Queue`로 보내요.
+## 병렬 작업
+
+독립적인 조사 범위를 나눠 요청하세요.
+
+```text
+주문 API와 결제 API의 중복 요청 처리를 각각 서브에이전트로 조사해줘.
+각 결과에 근거 파일과 미확인 항목을 포함해줘.
+파일은 수정하지 마.
+```
+
+`/agents`로 서브에이전트를 확인하세요.  
+백그라운드 명령의 로그 확인과 중지는 `/tasks`에서 진행해요.
 
 ## 원격 세션 연결
 
-진행 중인 CLI 작업을 다른 기기에서 이어가려면 `/remote-control`을 사용해요.
+진행 중인 CLI 작업을 다른 기기에서 이어가요.
 
-1. 입력창에서 `/remote-control`을 실행해요.
-2. 출력된 URL을 같은 Google 계정으로 로그인한 브라우저에서 열어요.
-3. 원격 화면에서 요청을 보내거나 도구 승인에 응답해요.
-4. 연결을 끝내려면 `/remote-control off`를 실행해요.
-
-대화형 연결은 로컬 `agy` 프로세스가 종료되면 끝나요.  
-설정 변경은 CLI에서 진행해요.
-
-CLI 1.2.0부터 터미널 없이 연결을 유지하려면 백그라운드 서비스를 등록해요.
-
-```bash
-agy remote-control start --name "dev-workstation"
-agy remote-control status
-agy remote-control stop
+```text
+/remote-control
 ```
 
-`start`는 서비스를 등록하고, `status`는 상태를 확인하며, `stop`은 서비스를 해제해요.  
-Windows에서 부팅 시 시작하려면 관리자 터미널에서 등록해요.  
-일반 터미널에서 등록하면 다시 로그인한 뒤 시작해요.  
-계정이나 조직에서 Remote Control을 허용해야 해요.
+출력된 URL을 같은 Google 계정으로 열어요.  
+연결을 끝내려면 `/remote-control off`를 입력하세요.  
+로컬 CLI를 종료하면 이 연결도 끝나요.
 
-CLI 1.2.14는 systemd 사용자 서비스가 없는 Linux에서도 데몬을 일반 백그라운드 프로세스로 실행해요.  
-이 경우 충돌 후 재시작과 부팅 시 시작을 지원하지 않아요.  
-기존 스크립트 방식으로 설치한 원격 서비스는 현재 `remote-control start` 방식으로 이전해요.
+백그라운드 서비스 등록은 [Remote Control](https://www.antigravity.google/docs/remote-control/)을 확인하세요.
 
-## Antigravity 고유 작업
+## 추가 작업 방식
 
-| 작업 | 입력창에서 하는 일 | 사용 시점 |
-| --- | --- | --- |
-| 복잡한 계획 | `/plan` | 설계와 구현 순서를 먼저 검토할 때 |
-| 심층 검토 | `/boost <작업>` | 여러 관점의 분석이 필요할 때 |
-| 장기 협업 | `/teamwork-preview <작업>` | 독립적인 조사·구현을 나눌 때 |
-| 서브에이전트 확인 | `/agents` | 실행 중인 서브에이전트와 대기 작업을 볼 때 |
-| 아티팩트 검토 | `/artifact` | 계획·walkthrough·시각 결과를 검토할 때 |
-
-요금제나 현재 버전에서 명령이 보이지 않으면 `/help`의 목록을 따라요.
-
-## 함께 사용하는 문서
-
-| 필요한 것 | 문서 |
-| --- | --- |
-| Skill별 입력·결과·호출 형식 | [Skill 안내](./skills.md) |
-| 현재 입력창 명령과 CLI 옵션 | [명령 확인](./commands.md) |
-| 확장 수단의 책임과 위치 | [확장 기능](./extensions.md) |
-| 공통 작업 흐름과 전환 기준 | [Playbook](../../Playbooks/README.md) |
-
-## 확인 기준
-
-- 각 단계의 입력과 결과가 다음 요청에서 식별돼요.
-- 변경은 `/diff` 또는 터미널 Git 명령으로 확인해요.
-- 새 세션으로 넘길 때 필요한 파일 경로와 요구사항을 다시 적어요.
+- [Boost](https://antigravity.google/docs/boost/): 여러 에이전트로 심층 분석해요.
+- [Teamwork](https://antigravity.google/docs/teamwork/): 장기 작업을 협업 에이전트 팀에 나눠요.
+- [변경 검토](https://antigravity.google/docs/cli/artifacts/): 파일·턴·커밋별 차이를 탐색해요.
 
 ## 공식 문서
 
-- [Antigravity Projects](https://antigravity.google/docs/projects/)
-- [Antigravity CLI Reference](https://antigravity.google/docs/cli/reference)
-- [Antigravity Reviewing Artifacts](https://antigravity.google/docs/cli/artifacts/)
+- [프로젝트와 대화](https://antigravity.google/docs/projects/)
+- [CLI 명령](https://antigravity.google/docs/cli/reference)
+- [서브에이전트](https://antigravity.google/docs/subagents/)
 - [Remote Control](https://www.antigravity.google/docs/remote-control/)
